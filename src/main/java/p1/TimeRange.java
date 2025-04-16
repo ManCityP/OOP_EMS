@@ -30,8 +30,7 @@ public class TimeRange {
     }
 
     public boolean Contains(TimeRange timeRange) {
-        return (timeRange.start >= this.start && timeRange.start < this.end && timeRange.end <= this.end && timeRange.end > this.start
-                && (this.end - this.start)*(timeRange.end - timeRange.start) > 0);
+        return (timeRange.start >= this.start && timeRange.end <= this.end);
     }
 
     public ArrayList<TimeRange> Remove(TimeRange timeRange) throws Exception {
