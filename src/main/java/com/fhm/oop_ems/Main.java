@@ -14,5 +14,9 @@ public class Main {
         map.put("Wednesday", "9-17");
         map.put("Thursday", "9-17");
         System.out.println(map.toString().replace("=", " --> ").replace(", ", "\n").replaceAll("[{}]", ""));
+
+        System.out.println("/n");
+        System.out.println(map.get("9-17"));
+
     }
 }

@@ -7,8 +7,9 @@ import java.util.Timer;
 public class Hours {
     Map<Day, TimeRange> map = new LinkedHashMap<>();
 
-    void DisplayRange(String day){
-this.map.get(day)
+    void DisplayRange(Day day){
+
+        System.out.println(this.map.get(day));
 
 
     }
