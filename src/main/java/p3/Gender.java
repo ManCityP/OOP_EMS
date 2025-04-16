@@ -1,6 +1,6 @@
 package p3;
 
-enum Gender {
+public enum Gender {
     MALE,
     FEMALE
 }
