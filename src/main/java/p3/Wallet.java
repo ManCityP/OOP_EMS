@@ -1,3 +1,5 @@
+package p3;
+
 import p2.Event;
 
 public class Wallet {
