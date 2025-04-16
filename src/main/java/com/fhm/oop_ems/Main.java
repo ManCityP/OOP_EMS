@@ -15,13 +15,15 @@ public class Main {
         map.put(Day.MONDAY, new ArrayList<>(List.of(new TimeRange(9, 21.57))));
         map.put(Day.TUESDAY, new ArrayList<>(List.of(new TimeRange("9:11", "19:12"))));
         map.put(Day.WEDNESDAY, new ArrayList<>(List.of(new TimeRange("9:30", "17:15"))));
-        map.put(Day.THURSDAY, new ArrayList<>(List.of(new TimeRange("12:30", "18:30"), new TimeRange("22:30", "00:30"))));
+        map.put(Day.THURSDAY, new ArrayList<>(List.of(new TimeRange("13:30", "18:30"), new TimeRange("22:30", "23:30"))));
         System.out.println(map.toString().replace("=", " --> "));
-        if(map.get(Day.THURSDAY).getFirst().Contains(new TimeRange("15:15" , "17:30"))) {
-            ArrayList<TimeRange> updated = map.get(Day.THURSDAY).getFirst().Remove(new TimeRange("15:15", "17:30"));
+        TimeRange tr = new TimeRange("13:30", "15:30");
+        if(map.get(Day.THURSDAY).getFirst().Contains(tr)) {
+            ArrayList<TimeRange> updated = map.get(Day.THURSDAY).getFirst().Remove(tr);
             map.get(Day.THURSDAY).removeFirst();
-            map.get(Day.THURSDAY).addFirst(updated.getLast());
-            map.get(Day.THURSDAY).addFirst(updated.getFirst());
+            for (TimeRange range : updated.reversed()) {
+                map.get(Day.THURSDAY).addFirst(range);
+            }
         }
         System.out.println(map.toString().replace("=", " --> "));
     }

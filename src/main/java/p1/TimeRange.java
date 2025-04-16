@@ -8,7 +8,7 @@ public class TimeRange {
     String range;
 
     public TimeRange(double start, double end) throws Exception {
-        if(start >= 24 || end < 0 || start < 0 || end >= 24)
+        if(start >= end || start < 0 || end >= 24)
             throw new Exception("Invalid time range!");
         this.start = start;
         this.end = end;
@@ -30,7 +30,8 @@ public class TimeRange {
     }
 
     public boolean Contains(TimeRange timeRange) {
-        return (timeRange.start >= this.start && timeRange.end <= this.end);
+        return (timeRange.start >= this.start && timeRange.start < this.end && timeRange.end <= this.end && timeRange.end > this.start
+                && (this.end - this.start)*(timeRange.end - timeRange.start) > 0);
     }
 
     public ArrayList<TimeRange> Remove(TimeRange timeRange) throws Exception {
