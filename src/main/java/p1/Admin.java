@@ -1,7 +1,6 @@
 package p1;
 
 import p3.User;
-import p3.Wallet;
 
 import java.util.Date;
 
