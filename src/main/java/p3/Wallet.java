@@ -1,3 +1,5 @@
+package p3;
+
 import p2.Event;
 import p2.Organizer;
 
