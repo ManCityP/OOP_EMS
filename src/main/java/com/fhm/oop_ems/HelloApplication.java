@@ -6,7 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-//Test Commit.
+//Test Commit
 
 public class HelloApplication extends Application {
     @Override
