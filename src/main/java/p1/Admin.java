@@ -6,8 +6,11 @@ import p3.User;
 import java.util.Date;
 
 public class Admin extends User {
-    public Admin(String username, String password, Date dob, Gender gender) {
 
+    String role;
+
+    public Admin(String username, String password, Date dob, Gender gender, String role) {
+        super(username, password, dob, gender);
     }
     public static void AddCategory(String category) throws Exception {
         if(Category.categories.contains(category))
