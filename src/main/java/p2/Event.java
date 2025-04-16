@@ -11,7 +11,7 @@ public class Event {
 
     Event(){}
 
-    Event(String ID,double price, Room room, Category category){
+    public Event(String ID,double price, Room room, Category category){
         this.ID = ID;
         this.price = price;
         this.room = room;
@@ -22,29 +22,31 @@ public class Event {
           return new Event(ID,price,room,category);
     }*/
 
-    void DisplayEvent(){
+    public void DisplayEvent(){
         System.out.println(" Event ID: " + this.ID);
         System.out.println(" Event price: " + this.price);
         System.out.println(" Event room number: " + this.room); //room.roomNumber
         System.out.println(" Event category: " + this.category); // same same
     }
 
-    void EditEventID(String ID){
+    public void EditEventID(String ID){
         this.ID = ID;
     }
 
-    void EditEventPrice(double price){
+    public void EditEventPrice(double price){
         this.price = price;
     }
 
-    void EditEventRoom(Room room){
+    public void EditEventRoom(Room room){
         this.room = room;
     }
 
-    void EditEventCategory(Category category){
+    public void EditEventCategory(Category category){
         this.category = category;
     }
 
+    public double GetPrice(){return this.price;
+    }
 /*    void deleteEvent(){
         this = null;
     }*/
