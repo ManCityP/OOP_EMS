@@ -9,7 +9,7 @@ public class Attendee extends User {
  // static int numberOfAttendees;
     // String address;
     ArrayList<Category> interests = new ArrayList<>();
-
+    Wallet wallet;
 
 
 
@@ -25,8 +25,8 @@ public class Attendee extends User {
     }
                                                                                  // String Address excluded in constructor
                                                                                   // String address
-Attendee(String username, String password, Date dob, Wallet wallet, Gender gender, ArrayList<Category> interests) {
-super(username,password,dob, wallet, gender);
+Attendee(String username, String password, Date dob, Gender gender, ArrayList<Category> interests, Wallet wallet) {
+super(username,password,dob, gender);
 this.interests = interests;
 //this.address=address;
     //  numberOfAttendees++;

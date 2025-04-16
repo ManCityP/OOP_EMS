@@ -5,6 +5,8 @@ public class Room {
 boolean available;
 boolean reserved;
 
-    Room(){};
+    Room(){
+        //numberOfRooms++;
+    };
 
 }
