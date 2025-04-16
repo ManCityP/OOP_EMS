@@ -12,7 +12,8 @@ public class Category {
     public Category(String category) throws Exception {
         if (!categories.contains(category))
             throw new Exception("This Category doesn't exist!");
-        this.category = category;
+        else
+           this.category = category;
     }
 
     @Override
@@ -23,12 +24,14 @@ public class Category {
     static void AddCategory(String category) throws Exception {
         if(categories.contains(category))
             throw new Exception("This Category already exists!");
-        categories.add(category);
+        else
+            categories.add(category);
     }
 
     static void RemoveCategory(String category) throws Exception {
         if (!categories.contains(category))
             throw new Exception("This Category doesn't exist!");
-        categories.remove(category);
+        else
+            categories.remove(category);
     }
 }
