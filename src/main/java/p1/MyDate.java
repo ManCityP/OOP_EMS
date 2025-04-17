@@ -36,9 +36,9 @@ public class MyDate {
     public int GetYear(){
         return this.year;
     }
-    public static DayOfWeek GetDayofTheWeek(MyDate date){
+    public static Day GetDayofTheWeek(MyDate date){
         LocalDate d = LocalDate.of(date.year,date.month,date.day);
-        return d.getDayOfWeek();
+        return Day.Translate((d.getDayOfWeek().getValue()+1) % 7);
     }
 
     @Override
