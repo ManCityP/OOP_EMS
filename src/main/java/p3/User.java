@@ -6,11 +6,11 @@ import java.util.Date;
 
 public abstract class User {
 
-    String username;
-    String email;
-    String password;
-    MyDate dob;
-    Gender gender = Gender.MALE;
+    protected String username;
+    protected String email;
+    protected String password;
+    protected MyDate dob;
+    protected Gender gender = Gender.MALE;
 
     //  static int numberOfUsers= 0;
 
