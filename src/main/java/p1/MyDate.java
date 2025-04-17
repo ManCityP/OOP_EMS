@@ -1,5 +1,8 @@
 package p1;
 
+import java.time.LocalDate;
+import java.time.DayOfWeek;
+
 public class MyDate {
 
     int day,month,year;
@@ -32,6 +35,10 @@ public class MyDate {
     }
     public int GetYear(){
         return this.year;
+    }
+    public static DayOfWeek GetDayofTheWeek(MyDate date){
+        LocalDate d = LocalDate.of(date.year,date.month,date.day);
+        return d.getDayOfWeek();
     }
 
     @Override
