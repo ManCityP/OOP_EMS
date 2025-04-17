@@ -33,8 +33,24 @@ public abstract class Database {
         }
     }
 
-
-    public static ResultSet GetData(DataType type) {
+    /* How to use this function:
+    *
+    * This function will return a ResultSet which contains the data of all entries to a specific database
+    *
+    * Examples of usage:
+    *
+    * ResultSet resultSet = Database.GetData(DataType.USER.toString());
+    * while(resultSet.next()) {  to loop through the results
+    *      String username = resultSet.getString(DataType.USERNAME.toString()); gets the username of an entry
+    * }
+    *
+    * If you want the data of a user with a specific username:
+    * String username = "Ahmed Hesham";
+    * ResultSet resultSet = Database.GetData(DataType.USER.toString() + "WHERE" + DataType.USERNAME.toString() + " = " + username);
+    * String password = resultSet.GetString(DataType.PASSWORD.toString()); gets the password of the user with the above username
+    *
+    * */
+    public static ResultSet GetData(String type) {
         try {
             String sql = "SELECT * FROM " + type;
             return stat.executeQuery(sql);
