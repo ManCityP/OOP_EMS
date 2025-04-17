@@ -21,6 +21,66 @@ public class TimeRange {
         this.end = Convert(end);
     }
 
+
+
+    public double GetTotalTime() {
+        return this.end - this.start;
+    }
+
+    public static String Convert(double time) throws Exception {
+        if(time < 0 || time >= 24)
+            throw new Exception("Invalid time!");
+        return String.format("%02d:%02d", Math.round(Math.floor(time)), Math.round((time-Math.floor(time))*60));
+    }
+
+    public boolean Contains(TimeRange timeRange) {
+        return (timeRange.start >= this.start && timeRange.end <= this.end);
+    }
+
+    public ArrayList<TimeRange> Remove(TimeRange timeRange) throws Exception {
+        ArrayList<TimeRange> newRange = new ArrayList<>();
+        if (timeRange.start > this.start)
+            newRange.add(new TimeRange(this.start, timeRange.start));
+        if (timeRange.end < this.end)
+            newRange.add(new TimeRange(timeRange.end, this.end));
+        return newRange;
+    }
+
+    public static TimeRange GetOverlap(TimeRange range1, TimeRange range2) throws Exception {
+
+        double start1 = range1.start;
+        double end1 = range1.end;
+        double start2 = range2.start;
+        double end2 = range2.end;
+
+        double overlapStart = Math.max(start1, start2);
+        double overlapEnd = Math.min(end1, end2);
+
+        TimeRange newRange = new TimeRange(overlapStart, overlapEnd);
+        if (overlapStart <= overlapEnd) {
+            return newRange;
+        }/* else {
+            throw new Exception("No Overlap");
+        }*/
+        return range1;
+    }
+
+    public static double Convert(String time) throws Exception {
+        String[] t = time.split(":");
+        double d1 = Double.parseDouble(t[0]);
+        if (d1 < 0 || d1 >= 24)
+            throw new Exception("Invalid time!");
+        double d2 = Double.parseDouble(t[1]);
+        if (d2 < 0 || d2 >= 60)
+            throw new Exception("Invalid time!");
+        if (d1 > Math.floor(d1) || d2 > Math.floor(d2))
+            throw new Exception("Invalid time");
+        return d1 + (d2/60.0);
+    }
+
+    public boolean InRange(double time) {
+        return (time >= this.start && time <= this.end);
+    }
     public static String EncryptWorkingHours(Map<Day, ArrayList<TimeRange>> map) {
         // {Saturday --> [06:15-17:00], Monday --> [09:00-21:34], Tuesday --> [09:11-19:12], Wednesday --> [09:30-17:15], Thursday --> [13:30-18:30, 22:30-23:30]}
 
@@ -105,65 +165,6 @@ public class TimeRange {
         }
         return map;
     }
-
-    public double GetTotalTime() {
-        return this.end - this.start;
-    }
-
-    public static String Convert(double time) throws Exception {
-        if(time < 0 || time >= 24)
-            throw new Exception("Invalid time!");
-        return String.format("%02d:%02d", Math.round(Math.floor(time)), Math.round((time-Math.floor(time))*60));
-    }
-
-    public boolean Contains(TimeRange timeRange) {
-        return (timeRange.start >= this.start && timeRange.end <= this.end);
-    }
-
-    public ArrayList<TimeRange> Remove(TimeRange timeRange) throws Exception {
-        ArrayList<TimeRange> newRange = new ArrayList<>();
-        if (timeRange.start > this.start)
-            newRange.add(new TimeRange(this.start, timeRange.start));
-        if (timeRange.end < this.end)
-            newRange.add(new TimeRange(timeRange.end, this.end));
-        return newRange;
-    }
-
-    public static TimeRange getOverlap(TimeRange range1, TimeRange range2) throws Exception {
-
-        double start1 = range1.start;
-        double end1 = range1.end;
-        double start2 = range2.start;
-        double end2 = range2.end;
-
-        double overlapStart = Math.max(start1, start2);
-        double overlapEnd = Math.min(end1, end2);
-
-        TimeRange newRange = new TimeRange(overlapStart, overlapEnd);
-        if (overlapStart <= overlapEnd) {
-            return newRange;
-        } else {
-            throw new Exception("No Overlap");
-        }
-    }
-
-    public static double Convert(String time) throws Exception {
-        String[] t = time.split(":");
-        double d1 = Double.parseDouble(t[0]);
-        if (d1 < 0 || d1 >= 24)
-            throw new Exception("Invalid time!");
-        double d2 = Double.parseDouble(t[1]);
-        if (d2 < 0 || d2 >= 60)
-            throw new Exception("Invalid time!");
-        if (d1 > Math.floor(d1) || d2 > Math.floor(d2))
-            throw new Exception("Invalid time");
-        return d1 + (d2/60.0);
-    }
-
-    public boolean InRange(double time) {
-        return (time >= this.start && time <= this.end);
-    }
-
     @Override
     public String toString() {
         try {

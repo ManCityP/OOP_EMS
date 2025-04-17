@@ -3,17 +3,19 @@ package p1;
 import java.sql.Time;
 import java.util.*;
 
+import static p1.TimeRange.GetOverlap;
+
 public class Hours {
     Map<MyDate, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
-    void DisplayRange(Date day){
+    void DisplayRange(MyDate day){
 
         System.out.println(this.map.get(day));
 
 
     }
 
-    void RemoveTime(Date day, TimeRange rTime) throws Exception {
+    void RemoveTime(MyDate day, TimeRange rTime) throws Exception {
         double start = rTime.start;
         double end = rTime.end;
 boolean inRange=false;
@@ -32,15 +34,16 @@ boolean inRange=false;
         }
 
 
-        arrTime.get(i).Remove(rTime); // done? inshallah done.
 
+   ArrayList<TimeRange> temp = arrTime.get(i).Remove(rTime); // done? inshallah done.
+this.map.get(day).addAll(i,temp);
 
     }
 
-void AddTime(Date day, TimeRange rTime) throws Exception {
+void AddTime(MyDate day, TimeRange rTime) throws Exception {
     double start = rTime.start;
     double end = rTime.end;
-    boolean inRange=false;
+    boolean inRange = false;
     ArrayList<TimeRange> arrTime = this.map.get(day);
     int i;
     for (i = 0; i < arrTime.size(); i++) {
@@ -49,7 +52,7 @@ void AddTime(Date day, TimeRange rTime) throws Exception {
             break;
         }
     }
-    if (inRange){
+    if (inRange) {
         throw new Exception("Time to be added already exists");
     }
 /* now we need to manage A LOT of cases.
@@ -66,36 +69,40 @@ ALL THE REST
     boolean isCase1;
     double case1start;
     double case1end;
-    int case1s=0;
-    int case1e=0;
+    int case1s = 0;
+    int case1e = 0;
     for (i = 0; i < arrTime.size(); i++) {
         case1start = arrTime.get(i).start;
         case1end = arrTime.get(i).end;
 
-        if(start > case1end){
+        if (start > case1end) {
             case1s++;
         }
-        if(end < case1start){
+        if (end < case1start) {
             case1e++;
         }
     }
-    isCase1 = (case1e==arrTime.size())&&(case1s==arrTime.size());
+    isCase1 = (case1e == arrTime.size()) && (case1s == arrTime.size());
 // case 1 detected, now which index to add wanted TimeRange
-if(isCase1){
-    for (i = 0; i < arrTime.size(); i++) {
-        case1end = arrTime.get(i).end;
+    if (isCase1) {
+        for (i = 0; i < arrTime.size(); i++) {
+            case1end = arrTime.get(i).end;
 
-        if(start < case1end) {
-            break;
+            if (start < case1end) {
+                break;
+            }
         }
-    }
-    arrTime.add(i, rTime); // CASE ONE COMPLETED (INSHALLAH)
-    }
+        this.map.get(day).add(i, rTime); // CASE ONE COMPLETED (INSHALLAH)
+    } else {
+        for (i = 0; i < arrTime.size(); i++) {
+arrTime.addAll(i,arrTime.get(i).Remove(GetOverlap(arrTime.get(i),rTime)));
 
+        }
+
+        this.map.put(day, arrTime);
+    }
 
 }
-
-
 
 
 
