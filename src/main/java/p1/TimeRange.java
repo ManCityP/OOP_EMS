@@ -7,7 +7,6 @@ import java.util.Map;
 public class TimeRange {
     double start;
     double end;
-    String range;
 
     public TimeRange(double start, double end) throws Exception {
         if(start >= end || start < 0 || end >= 24)
