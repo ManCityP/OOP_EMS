@@ -11,16 +11,21 @@ public class Event {
 
     Event(){}
 
-    public Event(String ID,double price, Room room, Category category){
-        this.ID = ID;
+    public Event(double price, Room room, Category category) throws Exception{
+        if(price < 0)
+            throw new Exception("Invalid ticket price");
         this.price = price;
+        if (room == null) //TODO add invalid time range
+            throw new Exception(" Invalid Room");
         this.room = room;
+        if (!Category.GetCategory().contains(category))
+            throw new Exception("This Category doesn't exist!");
         this.category = category;
     }
 
-  /*Event createEvent(double price,String ID, Room room, Category category){
-          return new Event(ID,price,room,category);
-    }*/
+    Event createEvent(double price, Room room, Category category) throws Exception{
+          return new Event(price,room,category);
+    }
 
     public void DisplayEvent(){
         System.out.println(" Event ID: " + this.ID);
@@ -29,25 +34,31 @@ public class Event {
         System.out.println(" Event category: " + this.category); // same same
     }
 
-    public void EditEventID(String ID){
-        this.ID = ID;
-    }
+//    public void EditEventID(String ID){
+//        this.ID = ID;
+//    }
 
-    public void EditEventPrice(double price){
+    public void EditEventPrice(double price) throws Exception{
+        if(price < 0)
+            throw new Exception("Invalid ticket price");
         this.price = price;
     }
 
-    public void EditEventRoom(Room room){
+    public void EditEventRoom(Room room) throws Exception {
+        if (room == null) //TODO add invalid time range
+            throw new Exception(" Invalid Room");
         this.room = room;
     }
 
-    public void EditEventCategory(Category category){
+    public void EditEventCategory(Category category) throws Exception {
+        if (!Category.GetCategory().contains(category))
+            throw new Exception("This Category doesn't exist!");
         this.category = category;
     }
 
-    public double GetPrice(){return this.price;
+    public double GetPrice(){
+        return this.price;
     }
-//    void deleteEvent(){
-//        this = null;
-//    }
+
+    //TODO delete method (CRUD)
 }

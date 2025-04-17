@@ -14,6 +14,10 @@ public class Category {
         this.category = category;
     }
 
+    public static ArrayList<String> GetCategory(){
+        return categories;
+    }
+
     @Override
     public String toString() {
         return this.category;
