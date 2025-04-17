@@ -2,7 +2,6 @@ package p1;
 
 import java.util.ArrayList;
 
-//
 
 public class Category {
     static ArrayList<String> categories = new ArrayList<>();
