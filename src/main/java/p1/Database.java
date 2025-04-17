@@ -88,6 +88,11 @@ public abstract class Database {
     // username should be the username of the user associated with the wallet
     */
 
+    /* Updating a value:
+    // "Update wallet SET balance = '3000' WHERE username = 'mohy'"
+    // This updates the wallet with a given username
+    */
+
     //Call this function with one of the above format.
     public static void Execute(String sql) {
         try {
