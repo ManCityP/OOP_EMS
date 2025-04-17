@@ -1,6 +1,7 @@
 package p1;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -20,12 +21,13 @@ public class TimeRange {
         this.end = Convert(end);
     }
 
-    public static String EncryptTimeRange(Map<Day, ArrayList<TimeRange>> map) {
+    public static String EncryptTimeRange(Map<Date, ArrayList<TimeRange>> map) {
         // {Saturday --> [06:15-17:00], Monday --> [09:00-21:34], Tuesday --> [09:11-19:12], Wednesday --> [09:30-17:15], Thursday --> [13:30-18:30, 22:30-23:30]}
 
         StringBuilder allHours = new StringBuilder();
-        for (Map.Entry<Day, ArrayList<TimeRange>> entry: map.entrySet()) {
-            allHours.append(Day.days.get(entry.getKey().toString()));
+        for (Map.Entry<Date, ArrayList<TimeRange>> entry: map.entrySet()) {
+            //allHours.append(Day.days.get(entry.getKey().toString()));
+            allHours.append(entry.getKey().toString());
             allHours.append(">[");
             for(TimeRange timeRange : entry.getValue()) {
                 allHours.append(timeRange.toString());
@@ -33,19 +35,19 @@ public class TimeRange {
             }
             allHours.deleteCharAt(allHours.length() - 1);
             allHours.append(']');
-            allHours.append('/');
+            allHours.append('!');
         }
         allHours.deleteCharAt(allHours.length() - 1);
 
-        // "0>[06:15-17:00]/2>[09:00-21:34]/3>[09:11-19:12]/4>[09:30-17:15]/5>[13:30-18:30,22:30-23:30]"
+        // "19/7/2024>[06:15-17:00]!2>[09:00-21:34]!3>[09:11-19:12]!4>[09:30-17:15]!5>[13:30-18:30,22:30-23:30]"
 
         return allHours.toString();
     }
 
-    public static Map<Day, ArrayList<TimeRange>> DecryptTimeRange(String allHours) throws Exception {
-        Map<Day, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+    public static Map<Date, ArrayList<TimeRange>> DecryptTimeRange(String allHours) throws Exception {
+        Map<Date, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
-        String[] strings = allHours.split("/");
+        String[] strings = allHours.split("!");
         for (String str : strings) {
             String[] day = str.split(">");
             String timeRangeList = day[1].replace("[", "").replace("]", "");
@@ -57,7 +59,7 @@ public class TimeRange {
                 timeRanges.add(new TimeRange(times[0], times[1]));
             }
 
-            map.put(Day.Translate(Integer.parseInt(day[0])), timeRanges);
+            //map.put(Day.Translate(Integer.parseInt(day[0])), timeRanges);
         }
         return map;
     }

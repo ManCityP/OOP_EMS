@@ -9,34 +9,14 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) throws Exception {
         Database.Connect();
-        Day.Init();
-        Map<Day, ArrayList<TimeRange>> map = new LinkedHashMap<>();
-        map.put(Day.SATURDAY, new ArrayList<>(List.of(new TimeRange(6.25, 17))));
-        map.put(Day.MONDAY, new ArrayList<>(List.of(new TimeRange(9, 21.57))));
-        map.put(Day.TUESDAY, new ArrayList<>(List.of(new TimeRange("9:11", "19:12"))));
-        map.put(Day.WEDNESDAY, new ArrayList<>(List.of(new TimeRange("9:30", "17:15"))));
-        map.put(Day.THURSDAY, new ArrayList<>(List.of(new TimeRange("13:30", "18:30"), new TimeRange("22:30", "23:30"))));
-        System.out.println(map.toString().replace("=", " --> "));
-        TimeRange tr = new TimeRange("14:10", "15:30");
-        if(map.get(Day.THURSDAY).getFirst().Contains(tr)) {
-            ArrayList<TimeRange> updated = map.get(Day.THURSDAY).getFirst().Remove(tr);
-            map.get(Day.THURSDAY).removeFirst();
-            for (TimeRange range : updated.reversed()) {
-                map.get(Day.THURSDAY).addFirst(range);
-            }
-        }
+        Map<Date, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+        //map.put(new Date("10/22/2023"), new ArrayList<>(List.of(new TimeRange(6.25, 17))));
+        map.put(new Date(2011, 12, 14), new ArrayList<>(List.of(new TimeRange(9, 21.57))));
+        map.put(new Date(2025, 4, 17), new ArrayList<>(List.of(new TimeRange("9:11", "19:12"))));
         System.out.println(map.toString().replace("=", " --> "));
 
-        String encrypted = TimeRange.EncryptTimeRange(map);
-        System.out.println(encrypted);
-
-        ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
-        while(rs.next()) {
-            System.out.println("Category: " + rs.getString(DataType.NAME.toString()));
-        }
-
-        Map<Day, ArrayList<TimeRange>> decryptedMap = TimeRange.DecryptTimeRange(encrypted);
-        System.out.println(map.toString().replace("=", " --> "));
+        Date date = new Date("10/23/2023");
+        System.out.println();
 
         Database.CloseConnection();
     }

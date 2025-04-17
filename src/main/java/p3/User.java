@@ -4,8 +4,9 @@ import java.util.Date;
 
 public abstract class User {
 
-    String username="Default";
-    String password="Default";
+    String username;
+    String email;
+    String password;
     Date dob = new Date(0);
     Gender gender = Gender.MALE;
 

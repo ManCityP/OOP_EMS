@@ -11,6 +11,7 @@ public class Admin extends User {
 
     public Admin(String username, String password, Date dob, Gender gender, String role) {
         super(username, password, dob, gender);
+        Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, time_range, role) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')"));
         this.role = role;
     }
     public static void AddCategory(String category) throws Exception {
