@@ -36,7 +36,7 @@ public class Main {
 
         Map<Day, ArrayList<TimeRange>> decryptedMap = TimeRange.DecryptTimeRange(encrypted);
         System.out.println(map.toString().replace("=", " --> "));
-        
+
         Database.CloseConnection();
     }
 }

@@ -45,7 +45,6 @@ public abstract class Database {
         }
     }
 
-
     //Everything in the format matters a lot (including uppercase and lowercase and any special symbols)
 
     /* Inserting a user:
@@ -66,6 +65,11 @@ public abstract class Database {
     /* Inserting an event:
     // "INSERT INTO event (price, category, room_id, day, time_range) VALUES ('200', 'Entertainment', '4', 'Thursday', 'Test Range')"
     // day must be one of the weekdays first letter uppercase the rest lowercase.
+    */
+
+    /* Inserting a wallet:
+    // "INSERT INTO wallet (username, balance) VALUES ('mohy', '2400')"
+    // username should be the username of the user associated with the wallet
     */
 
     //Call this function with one of the above format.
