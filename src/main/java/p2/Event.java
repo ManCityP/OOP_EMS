@@ -23,10 +23,6 @@ public class Event {
         this.category = category;
     }
 
-    Event createEvent(double price, Room room, Category category) throws Exception{
-          return new Event(price,room,category);
-    }
-
     public void DisplayEvent(){
         System.out.println(" Event ID: " + this.ID);
         System.out.println(" Event price: " + this.price);
