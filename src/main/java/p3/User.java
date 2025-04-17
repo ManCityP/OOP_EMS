@@ -11,6 +11,10 @@ public abstract class User {
 
     //  static int numberOfUsers= 0;
 
+    void SetUsername(String NewName){
+
+    }
+
     protected User() {
         // numberOfUsers++;
     }

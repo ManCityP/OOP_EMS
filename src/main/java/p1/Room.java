@@ -2,7 +2,9 @@ package p1;
 
 public class Room {
     //static int numberOfRooms;
-Hours hours;
+    Hours hours;
+    boolean reserved;
+
 
     Room(){
         //numberOfRooms++;
