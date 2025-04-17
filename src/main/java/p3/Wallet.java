@@ -13,7 +13,10 @@ public class Wallet {
         this.walletNumber = walletNumber;
     }
 
-    public void EditBalance(double amount){
+    public void EditBalance(double amount) throws Exception {
+        if (amount < 0)
+            if (Math.abs(amount) > this.balance)
+                throw new Exception("No available balance");
         this.balance += amount;
     }
 
