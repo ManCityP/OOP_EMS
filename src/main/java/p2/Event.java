@@ -18,7 +18,7 @@ public class Event {
         if (room == null) //TODO add invalid time range
             throw new Exception(" Invalid Room");
         this.room = room;
-        if (!Category.GetCategory().contains(category))
+        if (!Category.GetCategories().contains(category))
             throw new Exception("This Category doesn't exist!");
         this.category = category;
     }
@@ -47,7 +47,7 @@ public class Event {
     }
 
     public void EditEventCategory(Category category) throws Exception {
-        if (!Category.GetCategory().contains(category))
+        if (!Category.GetCategories().contains(category))
             throw new Exception("This Category doesn't exist!");
         this.category = category;
     }
