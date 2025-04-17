@@ -6,16 +6,16 @@ import java.util.*;
 import static p1.TimeRange.GetOverlap;
 
 public class Hours {
-    Map<MyDate, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+    Map<String, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
-    void DisplayRange(MyDate day){
+    void DisplayRange(String day){
 
         System.out.println(this.map.get(day));
 
 
     }
 
-    void RemoveTime(MyDate day, TimeRange rTime) throws Exception {
+  public  void RemoveTime(String day, TimeRange rTime) throws Exception {
         double start = rTime.start;
         double end = rTime.end;
 boolean inRange=false;
@@ -40,82 +40,65 @@ this.map.get(day).addAll(i,temp);
 
     }
 
-void AddTime(MyDate day, TimeRange rTime) throws Exception {
-    double start = rTime.start;
-    double end = rTime.end;
-    boolean inRange = false;
-    ArrayList<TimeRange> arrTime = this.map.get(day);
-    int i;
-    for (i = 0; i < arrTime.size(); i++) {
-        inRange = arrTime.get(i).Contains(rTime);
-        if (inRange) {
+public void AddTime(String day, TimeRange rTime) throws Exception {
+
+
+    for (int i = 0; i < this.map.get(day).size(); i++) {
+        if (GetOverlap(this.map.get(day).get(i), rTime) == null) {
+            continue;
+        }
+
+   ArrayList<TimeRange> temp = rTime.Remove(GetOverlap(this.map.get(day).get(i), rTime));
+
+        for(int faris = 0 ; faris < temp.size(); faris++){
+            AddTime(day, temp.get(faris));
+        }
+        return;
+        //  this.map.get(day).addAll(i,this.map.get(day).get(i).Remove(GetOverlap(this.map.get(day).get(i),rTime)));
+    }
+int i;
+    for ( i = 0; i < this.map.get(day).size(); i++) {
+
+
+        if (rTime.end <= this.map.get(day).get(i).start) {
             break;
         }
     }
-    if (inRange) {
-        throw new Exception("Time to be added already exists");
-    }
-/* now we need to manage A LOT of cases.
+    this.map.get(day).add(i, rTime); // CASE ONE COMPLETED (INSHALLAH)
+    CheckArrange();
 
-CASES HANDLED:
-1. if added time has 0 overlap with any existing time
-rTime start > allArrTime ends && rTime end < allArrTime starts
+}
 
-CASES NOT HANDLED:
+public void CheckArrange(){
 
-ALL THE REST
 
- */
-    boolean isCase1;
-    double case1start;
-    double case1end;
-    int case1s = 0;
-    int case1e = 0;
-    for (i = 0; i < arrTime.size(); i++) {
-        case1start = arrTime.get(i).start;
-        case1end = arrTime.get(i).end;
+    for (Map.Entry<String, ArrayList<TimeRange>> entry : map.entrySet()) {
+     //  ArrayList<TimeRange> temp = this.map.get(entry.getKey());
+        for (int i = 0; i < this.map.get(entry.getKey()).size()-1; i++) {
 
-        if (start > case1end) {
-            case1s++;
+if(this.map.get(entry.getKey()).get(i).end == this.map.get(entry.getKey()).get(i+1).start){
+    this.map.get(entry.getKey()).get(i).end = this.map.get(entry.getKey()).get(i+1).end;
+    this.map.get(entry.getKey()).remove(i+1);
+i--;
+}
+           /* if((this.map.get(entry.getKey()).get(i).start == this.map.get(entry.getKey()).get(i+1).start)&&(this.map.get(entry.getKey()).get(i).end == this.map.get(entry.getKey()).get(i+1).end)){
+                this.map.get(entry.getKey()).remove(i);
+            }*/
         }
-        if (end < case1start) {
-            case1e++;
-        }
-    }
-    isCase1 = (case1e == arrTime.size()) && (case1s == arrTime.size());
-// case 1 detected, now which index to add wanted TimeRange
-    if (isCase1) {
-        for (i = 0; i < arrTime.size(); i++) {
-            case1end = arrTime.get(i).end;
-
-            if (start < case1end) {
-                break;
-            }
-        }
-        this.map.get(day).add(i, rTime); // CASE ONE COMPLETED (INSHALLAH)
-    } else {
-        for (i = 0; i < arrTime.size(); i++) {
-arrTime.addAll(i,arrTime.get(i).Remove(GetOverlap(arrTime.get(i),rTime)));
-
-        }
-
-        this.map.put(day, arrTime);
     }
 
 }
 
 
-
-
-
-
-
+public String toString(){
+        return this.map.toString();
+}
 
 
 
 
     Hours(){}
-    Hours(Map<MyDate, ArrayList<TimeRange>> map){
+    public Hours(Map<String, ArrayList<TimeRange>> map){
         this.map=map;
     }
 

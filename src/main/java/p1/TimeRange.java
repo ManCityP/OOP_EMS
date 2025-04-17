@@ -56,13 +56,14 @@ public class TimeRange {
         double overlapStart = Math.max(start1, start2);
         double overlapEnd = Math.min(end1, end2);
 
-        TimeRange newRange = new TimeRange(overlapStart, overlapEnd);
-        if (overlapStart <= overlapEnd) {
+
+        if (overlapStart < overlapEnd) {
+            TimeRange newRange = new TimeRange(overlapStart, overlapEnd);
             return newRange;
         }/* else {
             throw new Exception("No Overlap");
         }*/
-        return range1;
+        return null;
     }
 
     public static double Convert(String time) throws Exception {
