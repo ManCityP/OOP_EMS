@@ -16,12 +16,12 @@ public class Admin extends User {
     public static void AddCategory(String category) throws Exception {
         if(Category.categories.contains(category))
             throw new Exception("This Category already exists!");
-        Category.categories.add(category);
+        Category.AddCategory(category);
     }
 
     public static void RemoveCategory(String category) throws Exception {
         if (!Category.categories.contains(category))
             throw new Exception("This Category doesn't exist!");
-        Category.categories.remove(category);
+        Category.RemoveCategory(category);
     }
 }
