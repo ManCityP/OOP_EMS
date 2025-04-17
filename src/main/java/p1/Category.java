@@ -22,4 +22,17 @@ public class Category {
     public String toString() {
         return this.category;
     }
+
+    static void AddCategory(String category) {
+        String sql = "INSERT INTO category (name) VALUES ('" + category + "')";
+        Database.Execute(sql);
+    }
+    static void RemoveCategory(String category) {
+        String sql = "DELETE FROM category WHERE name = '" + category + "'";
+        Database.Execute(sql);
+    }
+    static void RemoveAll() {
+        String sql = "DELETE FROM category";
+        Database.Execute(sql);
+    }
 }
