@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.*;
 
 public class Hours {
-    Map<Date, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+    Map<MyDate, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
     void DisplayRange(Date day){
 
@@ -108,7 +108,7 @@ if(isCase1){
 
 
     Hours(){}
-    Hours(Map<Date, ArrayList<TimeRange>> map){
+    Hours(Map<MyDate, ArrayList<TimeRange>> map){
         this.map=map;
     }
 

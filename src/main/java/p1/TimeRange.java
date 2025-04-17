@@ -21,11 +21,11 @@ public class TimeRange {
         this.end = Convert(end);
     }
 
-    public static String EncryptTimeRange(Map<Date, ArrayList<TimeRange>> map) {
+    public static String EncryptTimeRange(Map<MyDate, ArrayList<TimeRange>> map) {
         // {Saturday --> [06:15-17:00], Monday --> [09:00-21:34], Tuesday --> [09:11-19:12], Wednesday --> [09:30-17:15], Thursday --> [13:30-18:30, 22:30-23:30]}
 
         StringBuilder allHours = new StringBuilder();
-        for (Map.Entry<Date, ArrayList<TimeRange>> entry: map.entrySet()) {
+        for (Map.Entry<MyDate, ArrayList<TimeRange>> entry: map.entrySet()) {
             //allHours.append(Day.days.get(entry.getKey().toString()));
             allHours.append(entry.getKey().toString());
             allHours.append(">[");
@@ -44,8 +44,8 @@ public class TimeRange {
         return allHours.toString();
     }
 
-    public static Map<Date, ArrayList<TimeRange>> DecryptTimeRange(String allHours) throws Exception {
-        Map<Date, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+    public static Map<MyDate, ArrayList<TimeRange>> DecryptTimeRange(String allHours) throws Exception {
+        Map<MyDate, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
         String[] strings = allHours.split("!");
         for (String str : strings) {
@@ -59,7 +59,7 @@ public class TimeRange {
                 timeRanges.add(new TimeRange(times[0], times[1]));
             }
 
-            //map.put(Day.Translate(Integer.parseInt(day[0])), timeRanges);
+            map.put(new MyDate(day[0]), timeRanges);
         }
         return map;
     }
