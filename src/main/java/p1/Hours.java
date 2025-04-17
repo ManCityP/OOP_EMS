@@ -108,7 +108,7 @@ if(isCase1){
 
 
     Hours(){}
-    Hours(Map map){
+    Hours(Map<Date, ArrayList<TimeRange>> map){
         this.map=map;
     }
 

@@ -87,6 +87,24 @@ public class TimeRange {
         return newRange;
     }
 
+    public static TimeRange getOverlap(TimeRange range1, TimeRange range2) throws Exception {
+
+        double start1 = range1.start;
+        double end1 = range1.end;
+        double start2 = range2.start;
+        double end2 = range2.end;
+
+        double overlapStart = Math.max(start1, start2);
+        double overlapEnd = Math.min(end1, end2);
+
+        TimeRange newRange = new TimeRange(overlapStart, overlapEnd);
+        if (overlapStart <= overlapEnd) {
+            return newRange;
+        } else {
+            throw new Exception("No Overlap");
+        }
+    }
+
     public static double Convert(String time) throws Exception {
         String[] t = time.split(":");
         double d1 = Double.parseDouble(t[0]);

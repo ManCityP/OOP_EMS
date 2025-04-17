@@ -1,5 +1,7 @@
 package p3;
 
+import p1.MyDate;
+
 import java.util.Date;
 
 public abstract class User {
@@ -7,7 +9,7 @@ public abstract class User {
     String username;
     String email;
     String password;
-    Date dob = new Date(0);
+    MyDate dob;
     Gender gender = Gender.MALE;
 
     //  static int numberOfUsers= 0;
@@ -20,8 +22,9 @@ public abstract class User {
         // numberOfUsers++;
     }
 
-    protected User(String username, String password, Date dob, Gender gender){
+    protected User(String username, String email, String password, MyDate dob, Gender gender){
         this.username=username;
+        this.email = email;
         this.password=password;
         this.dob=dob;
         this.gender=gender;
