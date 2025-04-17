@@ -47,7 +47,9 @@ public abstract class Database {
     * If you want the data of a user with a specific username:
     * String username = "Ahmed Hesham";
     * ResultSet resultSet = Database.GetData(DataType.USER.toString() + "WHERE" + DataType.USERNAME.toString() + " = " + username);
-    * String password = resultSet.GetString(DataType.PASSWORD.toString()); gets the password of the user with the above username
+    * while(resultSet.next()) {
+    *       String password = resultSet.GetString(DataType.PASSWORD.toString()); gets the password of the user with the above username
+    * }
     *
     * */
     public static ResultSet GetData(String type) {
