@@ -12,7 +12,32 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Database.Connect();
+     TimeRange time = new TimeRange(10, 12);
+        System.out.println(TimeRange.Convert(10.5));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*   Database.Connect();
         Day.Init();
         Map<Day, ArrayList<TimeRange>> map = new LinkedHashMap<>();
         map.put(Day.SATURDAY, new ArrayList<>(List.of(new TimeRange(6.25, 17))));
@@ -37,6 +62,6 @@ public class Main {
         Map<Day, ArrayList<TimeRange>> decryptedMap = TimeRange.DecryptTimeRange(encrypted);
         System.out.println(map.toString().replace("=", " --> "));
         
-        Database.CloseConnection();
+        Database.CloseConnection(); */
     }
 }
