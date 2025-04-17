@@ -45,17 +45,30 @@ public abstract class Database {
         }
     }
 
+
     //Everything in the format matters a lot (including uppercase and lowercase and any special symbols)
 
     /* Inserting a user:
-    // "INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type) VALUES ('Ahmed Hesham', 'ahmed@gmail.com', '24P0029', '2006', '12', '14', 'Male', 'Attendee')"
+    // "INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type) VALUES ('Ahmed Hesham', 'ahmed@gmail.com', '24P0029', '2006', '12', '14', 'Male', 'Organizer')"
     // gender must be either 'Male' or 'Female' / type must be 'Attendee' or 'Organizer' or 'Admin'
+    // If the type is Attendee the format will be the following:
+    // "INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, interests) VALUES ('Ahmed Hesham', 'ahmed@gmail.com', '24P0029', '2006', '12', '14', 'Male', 'Organizer', 'interest1,interest2')"
     // If the type is Admin the format will be the following:
     // "INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, time_range, role) VALUES ('Ahmed Hesham', 'hesham@gmail.co', '24p0029', '2006', '12', '14', 'Male', 'Admin', 'test', 'Random Role')"
     // Time range must be in the format in the TimeRange class (use the EncryptTimeRange function).
     */
-    // To add a user: "INSERT "
-    // To add a room: "INSERT "
+
+    /* Inserting a room:
+    // "INSERT INTO room (time_range) VALUES ('Test Time')"
+    // time_range is the available hours for the room
+    */
+
+    /* Inserting an event:
+    // "INSERT INTO event (price, category, room_id, day, time_range) VALUES ('200', 'Entertainment', '4', 'Thursday', 'Test Range')"
+    // day must be one of the weekdays first letter uppercase the rest lowercase.
+    */
+
+    //Call this function with one of the above format.
     public static void Execute(String sql) {
         try {
             PreparedStatement insertStatement = con.prepareStatement(sql);
