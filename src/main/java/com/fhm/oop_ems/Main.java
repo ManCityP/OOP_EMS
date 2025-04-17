@@ -1,14 +1,10 @@
 package com.fhm.oop_ems;
 
-import p1.Category;
-import p1.Database;
-import p1.Day;
-import p1.TimeRange;
+import p1.*;
+import p3.Gender;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.ResultSet;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -33,6 +29,11 @@ public class Main {
 
         String encrypted = TimeRange.EncryptTimeRange(map);
         System.out.println(encrypted);
+
+        ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
+        while(rs.next()) {
+            System.out.println("Category: " + rs.getString(DataType.NAME.toString()));
+        }
 
         Map<Day, ArrayList<TimeRange>> decryptedMap = TimeRange.DecryptTimeRange(encrypted);
         System.out.println(map.toString().replace("=", " --> "));

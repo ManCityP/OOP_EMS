@@ -1,26 +1,33 @@
 package p1;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class Category {
-    static ArrayList<String> categories = new ArrayList<>();
+    //static ArrayList<String> categories = new ArrayList<>();
 
     String category;
 
     public Category(String category) throws Exception {
-        if (!categories.contains(category))
+        if (!GetCategories().contains(category))
             throw new Exception("This Category doesn't exist!");
         this.category = category;
-    }
-
-    public static ArrayList<String> GetCategory(){
-        return categories;
     }
 
     @Override
     public String toString() {
         return this.category;
+    }
+
+    public static ArrayList<String> GetCategories() throws SQLException {
+        ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
+        ArrayList<String> categories = new ArrayList<>();
+        while(rs.next()) {
+            categories.add(rs.getString(DataType.NAME.toString()));
+        }
+        return categories;
     }
 
     static void AddCategory(String category) {
