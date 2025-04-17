@@ -47,7 +47,7 @@ public class Event {
 
     public double GetPrice(){return this.price;
     }
-/*    void deleteEvent(){
-        this = null;
-    }*/
+//    void deleteEvent(){
+//        this = null;
+//    }
 }
