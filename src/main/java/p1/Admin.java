@@ -14,14 +14,14 @@ public class Admin extends User {
         this.role = role;
     }
     public static void AddCategory(String category) throws Exception {
-        if(Category.categories.contains(category))
-            throw new Exception("This Category already exists!");
+        /*if(Category.categories.contains(category))
+            throw new Exception("This Category already exists!");*/
         Category.AddCategory(category);
     }
 
     public static void RemoveCategory(String category) throws Exception {
-        if (!Category.categories.contains(category))
-            throw new Exception("This Category doesn't exist!");
+        /*if (!Category.categories.contains(category))
+            throw new Exception("This Category doesn't exist!");*/
         Category.RemoveCategory(category);
     }
 }
