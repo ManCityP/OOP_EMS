@@ -39,6 +39,10 @@ public class TimeRange {
 
     public ArrayList<TimeRange> Remove(TimeRange timeRange) throws Exception {
         ArrayList<TimeRange> newRange = new ArrayList<>();
+        if(timeRange == null) {
+            newRange.add(this);
+            return newRange;
+        }
         if (timeRange.start > this.start)
             newRange.add(new TimeRange(this.start, timeRange.start));
         if (timeRange.end < this.end)

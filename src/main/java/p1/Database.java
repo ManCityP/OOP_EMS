@@ -114,7 +114,7 @@ public abstract class Database {
     }
 
     public static ArrayList<Admin> GetAdmins() throws Exception {
-        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Admin");
+        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Admin'");
         ArrayList<Admin> admins = new ArrayList<>();
         while(rs.next()) {
             admins.add(new Admin(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
@@ -125,7 +125,7 @@ public abstract class Database {
         return admins;
     }
     public static ArrayList<Organizer> GetOrganizers() throws Exception {
-        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Organizer");
+        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Organizer'");
         ArrayList<Organizer> organizers = new ArrayList<>();
         while(rs.next()) {
             ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = " + rs.getString(DataType.USERNAME.toString()));
@@ -139,12 +139,12 @@ public abstract class Database {
         return organizers;
     }
     //TODO: Finish this.
-    public static ArrayList<Event> GetEvents() throws Exception {
-        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Admin");
-        ArrayList<Event> events = new ArrayList<>();
-        while(rs.next()) {
+    //public static ArrayList<Event> GetEvents() throws Exception {
+        //ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Admin");
+        //ArrayList<Event> events = new ArrayList<>();
+        //while(rs.next()) {
             //events.add(new Event(rs.getDouble(DataType.BALANCE.toString())));
-        }
-        return events;
-    }
+        //}
+        //return events;
+    //}
 }

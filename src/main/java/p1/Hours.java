@@ -15,32 +15,18 @@ public class Hours {
 
     }
 
-  public  void RemoveTime(String day, TimeRange rTime) throws Exception {
-        double start = rTime.start;
-        double end = rTime.end;
-boolean inRange=false;
-        ArrayList<TimeRange> arrTime = this.map.get(day);
-
-
-        int i;
-        for (i = 0; i < arrTime.size(); i++) {
-            inRange = arrTime.get(i).Contains(rTime);
-            if (inRange) {
-                break;
-            }
+    public void RemoveTime(String day, TimeRange rTime) throws Exception {
+        ArrayList<TimeRange> temp = new ArrayList<>();
+        for(TimeRange timeRange : this.map.get(day)) {
+            temp.addAll(timeRange.Remove(GetOverlap(timeRange, rTime)));
         }
-        if (!inRange){
-            throw new Exception("Time to be removed is out of range");
-        }
-
-
-
-   ArrayList<TimeRange> temp = arrTime.get(i).Remove(rTime); // done? inshallah done.
-this.map.get(day).addAll(i,temp);
-
+        for(TimeRange timeRange : temp)
+            if(timeRange == null)
+                temp.remove(timeRange);
+        this.map.put(day, temp);
     }
 
-public void AddTime(String day, TimeRange rTime) throws Exception {
+    public void AddTime(String day, TimeRange rTime) throws Exception {
 
 
     for (int i = 0; i < this.map.get(day).size(); i++) {
