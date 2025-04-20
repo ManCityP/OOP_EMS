@@ -1,10 +1,14 @@
 package p1;
 
+import p2.Event;
+
 public class Room {
     //static int numberOfRooms;
-    Hours hours;
-    boolean reserved;
+
+    Event currentEvent;
     int id;
+
+
 
     Room(){
         //numberOfRooms++;
