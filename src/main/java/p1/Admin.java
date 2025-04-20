@@ -2,14 +2,13 @@ package p1;
 
 import p3.Gender;
 import p3.User;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
 public class Admin extends User {
 
-    String role;
+    String role; //TODO Make data field private
     Map<Day, ArrayList<TimeRange>> workingHours;
 
     public Admin(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) {
@@ -19,15 +18,24 @@ public class Admin extends User {
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, time_range, role) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Admin", TimeRange.EncryptWorkingHours(workingHours), role));
     }
-    public static void AddCategory(String category) throws Exception {
+
+    public static Admin FindAdmin(ArrayList<Admin> admins, String username){
+        for (Admin admin : admins)
+            if (admin.username.equals(username))
+                return admin;
+
+        return null;
+    }
+
+    public void AddCategory(String category) throws Exception {
         Category.AddCategory(category);
     }
 
-    public static void RemoveCategory(String category) throws Exception {
+    public void RemoveCategory(String category) throws Exception {
         Category.RemoveCategory(category);
     }
 
-    public static void RemoveAllCategory(String category) throws Exception {
+    public void RemoveAllCategory(String category) throws Exception {
         Category.RemoveAll();
     }
 

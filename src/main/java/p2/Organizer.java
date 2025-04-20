@@ -9,13 +9,21 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Organizer extends User {
-    private Wallet wallet;
+    Wallet wallet; //TODO Make data field private
 
     public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet) {
         super(username, email, password, dob, gender);
         this.wallet = wallet;
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Organizer"));
+    }
+
+    public static Organizer FindOrganizer(ArrayList<Organizer> organizers, String username){
+        for (Organizer organizer : organizers)
+            if (organizer.username.equals(username))
+                return organizer;
+
+        return null;
     }
 
     public void AddEvent(double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception {

@@ -2,10 +2,13 @@ package p2;
 
 import p1.Category;
 import p1.Room;
+import p3.Wallet;
+
+import java.util.ArrayList;
 
 public class Event {
-    Organizer organizer;
-    String ID;
+    Organizer organizer; //TODO Make data field private
+    int ID;
     Room room;
     Category category;
     double price;
@@ -21,16 +24,13 @@ public class Event {
         this.category = category;
     }
 
-    public void DisplayEvent(){
-        System.out.println(" Event ID: " + this.ID);
-        System.out.println(" Event price: " + this.price);
-        System.out.println(" Event room number: " + this.room); //room.roomNumber
-        System.out.println(" Event category: " + this.category); // same same
-    }
+    public static Event FindEvent(ArrayList<Event> events, int ID){
+        for (Event event : events)
+            if (event.ID == ID)
+                return event;
 
-//    public void EditEventID(String ID){
-//        this.ID = ID;
-//    }
+        return null;
+    }
 
     public void EditEventPrice(double price) throws Exception{
         if(price < 0)
