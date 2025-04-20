@@ -1,5 +1,7 @@
 package p1;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import p2.Event;
 import p2.Organizer;
 import p3.Attendee;
@@ -9,6 +11,9 @@ import p3.Wallet;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public abstract class Database {
     private static final String URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_Learning MYSQL";
@@ -16,7 +21,7 @@ public abstract class Database {
     private static final String PASSWORD = "n7mVp5@bM2xvJ@X";
     private static Connection con = null;
     private static Statement stat = null;
-
+    private static Gson gson = new Gson();
     public static void Connect() {
         try {
             con = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -39,6 +44,26 @@ public abstract class Database {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static StringBuilder EncryptTickets(Map<Integer, Integer> tickets) {
+        StringBuilder ticketString = new StringBuilder();
+        for(Map.Entry<Integer, Integer> entry : tickets.entrySet()) {
+            ticketString.append(entry.getKey()).append(":").append(entry.getValue()).append(",");
+        }
+        if (!ticketString.isEmpty())
+            ticketString.deleteCharAt(ticketString.length() - 1);
+        return ticketString;
+    }
+
+    public static Map<Integer, Integer> DecryptTickets(String tickets) {
+        Map<Integer, Integer> ticketsMap = new HashMap<>();
+        String[] split = tickets.split(",");
+        for (String ticket : split) {
+            int id = Integer.parseInt(ticket.split(":")[0]);
+            int numOfTickets = Integer.parseInt(ticket.split(":")[1]);
+        }
+        return ticketsMap;
     }
 
     /* How to use this function:
@@ -144,16 +169,14 @@ public abstract class Database {
         ArrayList<Attendee> attendees = new ArrayList<>();
         while(rs.next()) {
             ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = " + rs.getString(DataType.USERNAME.toString()));
-            ArrayList<Category> interests = new ArrayList<>();
-            String interests_str = resultSet.getString(DataType.INTERESTS.toString());
-            String[] interest_arr = interests_str.split(",");
-            for(String interest : interest_arr) {
-                interests.add(new Category(interest));
-            }
+            ArrayList<Category> interests_array = new ArrayList<>();
+            String json = resultSet.getString(DataType.INTERESTS.toString());
+            List<String> interests = gson.fromJson(json, new TypeToken<List<String>>() {}.getType());
+            for(String interest : interests)    interests_array.add(new Category(interest));
             while(resultSet.next()) {
                 attendees.add(new Attendee(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
                         new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
-                        rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, interests,
+                        rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, interests_array,
                         new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()))));
             }
         }
