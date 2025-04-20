@@ -1,12 +1,12 @@
 package p2;
 
 import p1.*;
+import p1.MyDate;
 import p3.Gender;
 import p3.User;
 import p3.Wallet;
-
 import java.util.ArrayList;
-import java.util.Map;
+
 
 public class Organizer extends User {
     private final Wallet wallet;         //Almost there
@@ -16,6 +16,10 @@ public class Organizer extends User {
         if(wallet == null)
             throw new Exception("Invalid Wallet");
         this.wallet = wallet;
+    }
+
+    public Organizer(String string, String string1, String string2, MyDate myDate, Gender male, Wallet wallet, Wallet wallet1) {
+        this.wallet = wallet1;
     }
 
     public static void RegisterOrganizer(String username, String email, String password, MyDate dob, Gender gender, double balance) throws Exception {

@@ -1,10 +1,6 @@
 package p3;
 
-import p1.Admin;
 import p1.Database;
-import p2.Event;
-import p2.Organizer;
-
 import java.util.ArrayList;
 
 public class Wallet {
