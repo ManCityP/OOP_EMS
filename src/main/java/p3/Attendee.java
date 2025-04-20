@@ -33,10 +33,11 @@ StringBuilder string= new StringBuilder();
 
 return string;
     }
-    public Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet) throws Exception {
+    public Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet, Map<Integer, Integer> tickets) throws Exception {
         super(username,email, password,dob, gender);
         this.interests = interests;
         this.wallet = wallet;
+        this.tickets = tickets;
     }
     public void RegisterAttendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, double balance) throws Exception {
         {
