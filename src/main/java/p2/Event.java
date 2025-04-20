@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Event {
     private final Organizer organizer;               //Almost there
     private final int ID;
+//    private int[] TicketID;
     private Room room;
     private Category category;
     private double price;

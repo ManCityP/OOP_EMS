@@ -20,7 +20,15 @@ public class Admin extends User {
         this.workingHours = workingHours;
     }
 
-    public static void RegisterAdmin(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) {
+    public static void RegisterAdmin(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) throws Exception {
+        if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
+            throw new Exception("Invalid Email format");
+        if(email.length() > 128)
+            throw new Exception("Email must be at most 128 characters");
+        if(username.isEmpty() || username.length() > 32)
+            throw new Exception("Username must be 1-32 characters");
+        if(password.length() < 8 || password.length() > 32)
+            throw new Exception("Password must be 8-32 characters long");
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, time_range, role) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Admin", TimeRange.EncryptWorkingHours(workingHours), role));
     }

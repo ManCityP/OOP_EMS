@@ -39,13 +39,6 @@ public class Wallet {
         this.balance += amount;
     }
 
-    public void PurchaseEvent(Event event, Organizer organizer) throws Exception{
-        if(this.balance < event.GetPrice())
-            throw new Exception("Invalid balance");
-        this.balance -= event.GetPrice();
-        organizer.GetWallet().EditBalance(event.GetPrice());
-    }
-
     public double GetBalance(){
         return this.balance;
     }

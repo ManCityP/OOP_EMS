@@ -18,7 +18,15 @@ public class Organizer extends User {
         this.wallet = wallet;
     }
 
-    public static void RegisterOrganizer(String username, String email, String password, MyDate dob, Gender gender, double balance) {
+    public static void RegisterOrganizer(String username, String email, String password, MyDate dob, Gender gender, double balance) throws Exception {
+        if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
+            throw new Exception("Invalid Email format");
+        if(email.length() > 128)
+            throw new Exception("Email must be at most 128 characters");
+        if(username.isEmpty() || username.length() > 32)
+            throw new Exception("Username must be 1-32 characters");
+        if(password.length() < 8 || password.length() > 32)
+            throw new Exception("Password must be 8-32 characters long");
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Organizer"));
         Wallet.CreateWallet(username, balance);
