@@ -1,7 +1,9 @@
 package p2;
 
 import p1.Category;
+import p1.MyDate;
 import p1.Room;
+import p1.TimeRange;
 import p3.Wallet;
 
 import java.util.ArrayList;
@@ -12,6 +14,9 @@ public class Event {
     private Room room;
     private Category category;
     private double price;
+    private MyDate date;
+    private TimeRange timeRange;
+
 
     public Event(Organizer organizer, int ID, double price, Room room, Category category) throws Exception{
         if (organizer == null)
@@ -67,7 +72,12 @@ public class Event {
     public Organizer GetOrganizer() {
         return this.organizer;
     }
-
+    public TimeRange getTimeRange(){
+        return this.timeRange;
+    }
+    public MyDate getDate(){
+        return this.date;
+    }
     @Override
     public String toString(){
         return  "Organizer: " + this.organizer.GetUsername() +
