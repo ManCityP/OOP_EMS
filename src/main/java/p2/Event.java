@@ -11,15 +11,13 @@ import java.util.ArrayList;
 public class Event {
     private final Organizer organizer;               //Almost there
     private final int ID;
-//    private int[] TicketID;
     private Room room;
     private Category category;
     private double price;
     private MyDate date;
     private TimeRange timeRange;
 
-
-    public Event(Organizer organizer, int ID, double price, Room room, Category category) throws Exception{
+    public Event(Organizer organizer, int ID, double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception{
         if (organizer == null)
             throw new Exception(" Invalid organizer");
         if(ID < 0)
@@ -30,12 +28,17 @@ public class Event {
             throw new Exception("Invalid room");
         if (category == null)
             throw new Exception("Invalid category");
-
+        if (date == null)
+            throw new Exception("Invalid date");
+        if (timeRange == null)
+            throw new Exception("Invalid timerange");
         this.organizer = organizer;
         this.ID = ID;
         this.price = price;
         this.room = room;
         this.category = category;
+        this.date = date;
+        this.timeRange = timeRange;
     }
 
     public static Event FindEvent(ArrayList<Event> events, int ID){
