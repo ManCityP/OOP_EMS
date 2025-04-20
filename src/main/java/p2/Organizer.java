@@ -18,10 +18,6 @@ public class Organizer extends User {
         this.wallet = wallet;
     }
 
-    public Organizer(String string, String string1, String string2, MyDate myDate, Gender male, Wallet wallet, Wallet wallet1) {
-        this.wallet = wallet1;
-    }
-
     public static void RegisterOrganizer(String username, String email, String password, MyDate dob, Gender gender, double balance) throws Exception {
         if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
             throw new Exception("Invalid Email format");
