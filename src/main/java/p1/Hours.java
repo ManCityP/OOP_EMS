@@ -14,6 +14,25 @@ public class Hours {
 
     }
 
+public boolean Contains(TimeRange timeRange, String day){
+    boolean isContained = false;
+    for(int i=0; i<this.map.get(day).size(); i++ ) {
+   if(this.map.get(day).get(i).Contains(timeRange)){
+       isContained = true;
+   }
+  }
+    return isContained;
+}
+    public static boolean Contains(Map<Day,ArrayList<TimeRange>> map,TimeRange timeRange, String day){
+        boolean isContained = false;
+        for(int i=0; i<map.get(day).size(); i++ ) {
+            if(map.get(day).get(i).Contains(timeRange)){
+                isContained = true;
+            }
+        }
+        return isContained;
+    }
+
     public void RemoveTime(String day, TimeRange rTime) throws Exception {
         ArrayList<TimeRange> temp = new ArrayList<>();
         for(TimeRange timeRange : this.map.get(day)) {
