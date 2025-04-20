@@ -32,11 +32,31 @@ public class Organizer extends User {
         return null;
     }
 
-    public void AddEvent(double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception {
+    public void CreateEvent(double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception {
         Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, day, time_range) " +
                                        "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
                                        username, price, category, room.GetID(), date.toString(), timeRange.toString()));
         System.out.println("Event added successfully");
+    }
+
+    //TODO read events
+
+    public void EditEventPrice(Event event, double price) throws Exception{
+        if(!(event.GetOrganizer().GetUsername().equals(this.username)))
+            throw new Exception("This Event belongs to another organizer");
+        event.EditPrice(price);
+    }
+
+    public void EditEventRoom(Event event, Room room) throws Exception{
+        if(!(event.GetOrganizer().GetUsername().equals(this.username)))
+            throw new Exception("This Event belongs to another organizer");
+        event.EditRoom(room);
+    }
+
+    public void EditEventCategory(Event event, Category category) throws Exception{
+        if(!(event.GetOrganizer().GetUsername().equals(this.username)))
+            throw new Exception("This Event belongs to another organizer");
+        event.EditCategory(category);
     }
 
     public void DeleteEvent(Event event) throws Exception {

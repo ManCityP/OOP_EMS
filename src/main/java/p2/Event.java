@@ -7,7 +7,7 @@ import p3.Wallet;
 import java.util.ArrayList;
 
 public class Event {
-    private final Organizer organizer; //TODO Make data field private
+    private final Organizer organizer;               //Almost there
     private final int ID;
     private Room room;
     private Category category;
@@ -40,19 +40,19 @@ public class Event {
         return null;
     }
 
-    public void EditEventPrice(double price) throws Exception{
+    public void EditPrice(double price) throws Exception{
         if(price < 0)
             throw new Exception("Invalid ticket price");
         this.price = price;
     }
 
-    public void EditEventRoom(Room room) throws Exception {
+    public void EditRoom(Room room) throws Exception {
         if (room == null)
             throw new Exception(" Invalid Room");
         this.room = room;
     }
 
-    public void EditEventCategory(Category category) throws Exception {
+    public void EditCategory(Category category) throws Exception {
         if (category == null)
             throw new Exception("Invalid Category");
         this.category = category;
@@ -64,8 +64,9 @@ public class Event {
     public int GetID(){
         return this.ID;
     }
-
-    //TODO delete method (CRUD)
+    public Organizer GetOrganizer() {
+        return this.organizer;
+    }
 
     @Override
     public String toString(){
