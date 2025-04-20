@@ -15,8 +15,6 @@ public class Room {
   // private Map<Day, ArrayList<TimeRange>> availableHours = new LinkedHashMap<>();
   private Hours availableHours;
    private Hours reservedHours;
-
-    public Room(){}
     public Room(int id, Event currentEvent, Hours availableHours, Hours reservedHours ){
         this.id = id;
         this.currentEvent = currentEvent;
