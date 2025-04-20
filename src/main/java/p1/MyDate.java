@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class MyDate {
 
-    int day,month,year;
+    private final int day,month,year;        //Almost there
 
     public MyDate(int day,int month, int year) throws Exception {
         int[] daysInMonth = { 31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -55,6 +55,8 @@ public class MyDate {
 
     @Override
     public boolean equals(Object date){
+        if(date == null)
+            return false;
         return ( (date instanceof MyDate) && this.day == ((MyDate)date).day && this.month == ((MyDate)date).month && this.year == ((MyDate)date).year);
     }
 }
