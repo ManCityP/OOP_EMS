@@ -1,6 +1,12 @@
 package p1;
 
+import p2.Organizer;
+import p3.Gender;
+import p3.User;
+import p3.Wallet;
+
 import java.sql.*;
+import java.util.ArrayList;
 
 public abstract class Database {
     private static final String URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_Learning MYSQL";
@@ -46,7 +52,7 @@ public abstract class Database {
     *
     * If you want the data of a user with a specific username:
     * String username = "Ahmed Hesham";
-    * ResultSet resultSet = Database.GetData(DataType.USER.toString() + "WHERE" + DataType.USERNAME.toString() + " = " + username);
+    * ResultSet resultSet = Database.GetData(DataType.USER.toString() + " WHERE " + DataType.USERNAME.toString() + " = " + username);
     * while(resultSet.next()) {
     *       String password = resultSet.GetString(DataType.PASSWORD.toString()); gets the password of the user with the above username
     * }
@@ -104,5 +110,31 @@ public abstract class Database {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static ArrayList<Admin> GetAdmins() throws Exception {
+        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Admin");
+        ArrayList<Admin> admins = new ArrayList<>();
+        while(rs.next()) {
+            admins.add(new Admin(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
+                            new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
+                                rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, rs.getString(DataType.ROLE.toString()),
+                                    TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))));
+        }
+        return admins;
+    }
+    public static ArrayList<Organizer> GetOrganizers() throws Exception {
+        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Organizer");
+        ArrayList<Organizer> organizers = new ArrayList<>();
+        while(rs.next()) {
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = " + rs.getString(DataType.USERNAME.toString()));
+            while(resultSet.next()) {
+                organizers.add(new Organizer(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
+                        new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
+                            rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE,
+                                new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()))));
+            }
+        }
+        return organizers;
     }
 }

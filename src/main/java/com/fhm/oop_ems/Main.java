@@ -4,18 +4,13 @@ import p1.*;
 import p3.Gender;
 
 import java.sql.ResultSet;
+import java.time.DayOfWeek;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
-
-
-
-
-
-
-      /*  Day.Init();
+        Day.Init();
         Database.Connect();
 
         Map<Day, ArrayList<TimeRange>> workingHours = new LinkedHashMap<>();
@@ -44,6 +39,6 @@ public class Main {
             System.out.print("\n");
         }
 
-        Database.CloseConnection();*/
+        Database.CloseConnection();
     }
 }

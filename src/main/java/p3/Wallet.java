@@ -8,7 +8,7 @@ public class Wallet {
     int walletNumber;
 
     Wallet(){}
-    Wallet(double balance,int walletNumber){
+    public Wallet(double balance,int walletNumber){
         this.balance = balance;
         this.walletNumber = walletNumber;
     }
