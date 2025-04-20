@@ -82,10 +82,6 @@ public class Organizer extends User {
         System.out.println("Event deleted successfully");
     }
 
-    public String GetUsername(){
-        return this.username;
-    }
-
     public Wallet GetWallet(){
         return this.wallet;
     }

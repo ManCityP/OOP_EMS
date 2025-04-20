@@ -12,16 +12,6 @@ public abstract class User {
     protected MyDate dob;
     protected Gender gender = Gender.MALE;
 
-    //  static int numberOfUsers= 0;
-
-    void SetUsername(String NewName){
-
-    }
-
-    protected User() {
-        // numberOfUsers++;
-    }
-
     protected User(String username, String email, String password, MyDate dob, Gender gender) throws Exception {
 
         if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
@@ -39,6 +29,10 @@ public abstract class User {
         this.password=password;
         this.dob=dob;
         this.gender=gender;
+    }
+
+    public String GetUsername(){
+        return this.username;
     }
 }
 

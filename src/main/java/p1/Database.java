@@ -201,7 +201,7 @@ public abstract class Database {
                 if (e.GetRoomID() == rs.getInt(DataType.ID.toString())) {
                     if(e.GetStatus() == Status.ONGOING)
                         event = e;
-                    reservedHours.AddTime(e.getDate().toString(), e.getTimeRange());
+                    reservedHours.AddTime(e.GetDate().toString(), e.GetTimeRange());
                 }
             rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), reservedHours));
         }

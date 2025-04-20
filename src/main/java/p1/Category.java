@@ -8,8 +8,9 @@ import java.util.ArrayList;
 public class Category {
     //static ArrayList<String> categories = new ArrayList<>();
 
-    String category;
+    String category = "Default";
 
+    public Category() {}
     public Category(String category) throws Exception {
         if (!GetCategories().contains(category))
             throw new Exception("This Category doesn't exist!");
@@ -34,12 +35,10 @@ public class Category {
         String sql = "INSERT INTO category (name) VALUES ('" + category + "')";
         Database.Execute(sql);
     }
-    static void RemoveCategory(String category) {
+    static void RemoveCategory(String category) throws Exception {
+        if(category.equals("Default"))
+            throw new Exception("Cannot Remove Default Category");
         String sql = "DELETE FROM category WHERE name = '" + category + "'";
-        Database.Execute(sql);
-    }
-    static void RemoveAll() {
-        String sql = "DELETE FROM category";
         Database.Execute(sql);
     }
 }

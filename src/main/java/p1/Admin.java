@@ -49,10 +49,6 @@ public class Admin extends User {
         Category.RemoveCategory(category);
     }
 
-    public void RemoveAllCategory(String category) throws Exception {
-        Category.RemoveAll();
-    }
-
     @Override
     public String toString(){
         return  "User name: " + this.username +
