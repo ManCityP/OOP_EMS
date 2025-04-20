@@ -96,6 +96,8 @@ public class Event {
         }
     }
 
+    //TODO edit timerange (Mohamed Ashraf (Database 34an mtnsa4))
+
     public Status GetStatus() {
         return this.status;
     }
