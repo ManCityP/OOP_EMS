@@ -1,9 +1,6 @@
 package p2;
 
-import p1.Category;
-import p1.MyDate;
-import p1.Room;
-import p1.TimeRange;
+import p1.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,23 +8,22 @@ import java.util.ArrayList;
 public class Event {
     private final Organizer organizer;               //Almost there
     private final int ID;
-    private int roomID;
+    private final int roomID;
     private Category category;
     private double price;
     private MyDate date;
     private TimeRange timeRange;
+    private final Status status;
 
-    private Status status;
-
-    public Event(Organizer organizer, int ID, double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception{
+    public Event(Organizer organizer, int ID, double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
         if (organizer == null)
             throw new Exception(" Invalid organizer");
         if(ID < 0)
             throw new Exception("Invalid ID");
         if(price < 0)
             throw new Exception("Invalid ticket price");
-        if (room == null)
-            throw new Exception("Invalid room");
+        if (roomID < 0)
+            throw new Exception("Invalid room ID");
         if (category == null)
             throw new Exception("Invalid category");
         if (date == null)
@@ -37,7 +33,7 @@ public class Event {
         this.organizer = organizer;
         this.ID = ID;
         this.price = price;
-        this.room = room;
+        this.roomID = roomID;
         this.category = category;
         this.date = date;
         this.timeRange = timeRange;
@@ -75,19 +71,31 @@ public class Event {
         this.price = price;
     }
 
-    public void EditRoom(Room room) throws Exception {
-        if (room == null)
-            throw new Exception(" Invalid Room");
-        this.room = room;
+    public void ChangeRoom(int roomID) throws Exception {
+        for (Room room : Database.GetRooms())
+            if (room.GetID() == roomID)
+                room.ReserveEvent(this);
+        throw new Exception(" Invalid Room");
     }
-
-    public int GetRoomID() {return this.roomID;}
 
     public void EditCategory(Category category) throws Exception {
         if (category == null)
             throw new Exception("Invalid Category");
         this.category = category;
     }
+
+    public void EditDate(MyDate date) throws Exception {
+        if (date == null)
+            throw new Exception("Invalid date");
+        MyDate temp = this.date;
+        this.date = date;
+        try {
+            Room.FindRoom(Database.GetRooms(), this.roomID).ReserveEvent(this);
+        }catch (Exception ex){
+            this.date = temp;
+        }
+    }
+
     public Status GetStatus() {
         return this.status;
     }
@@ -100,17 +108,21 @@ public class Event {
     public Organizer GetOrganizer() {
         return this.organizer;
     }
-    public TimeRange getTimeRange(){
+    public TimeRange GetTimeRange(){
         return this.timeRange;
     }
-    public MyDate getDate(){
+    public MyDate GetDate(){
         return this.date;
     }
+    public int GetRoomID() {
+        return this.roomID;
+    }
+
     @Override
     public String toString(){
         return  "Organizer: " + this.organizer.GetUsername() +
                 "\tEvent ID: " + this.ID +
-                "\tRoom: " + this.room +
+                "\tRoom ID: " + this.roomID +
                 "\tCategory: " + this.category +
                 "\tPrice: " + this.price;
     }

@@ -59,16 +59,22 @@ public class Organizer extends User {
         event.EditPrice(price);
     }
 
-    public void EditEventRoom(Event event, Room room) throws Exception{
+    public void EditEventRoom(Event event, int roomID) throws Exception{
         if(!(event.GetOrganizer().GetUsername().equals(this.username)))
             throw new Exception("This Event belongs to another organizer");
-        event.EditRoom(room);
+        event.ChangeRoom(roomID);
     }
 
     public void EditEventCategory(Event event, Category category) throws Exception{
         if(!(event.GetOrganizer().GetUsername().equals(this.username)))
             throw new Exception("This Event belongs to another organizer");
         event.EditCategory(category);
+    }
+
+    public void EditEventDate(Event event, MyDate date) throws Exception {
+        if(!(event.GetOrganizer().GetUsername().equals(this.username)))
+            throw new Exception("This Event belongs to another organizer");
+        event.EditDate(date);
     }
 
     public void DeleteEvent(Event event) throws Exception {

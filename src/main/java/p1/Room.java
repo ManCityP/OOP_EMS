@@ -34,12 +34,12 @@ public static Room FindRoom(ArrayList<Room> rooms, int id){
 }
 
 public void ReserveEvent(Event event) throws Exception{
-Day eventDay=MyDate.GetDayOfTheWeek(event.getDate());
+Day eventDay=MyDate.GetDayOfTheWeek(event.GetDate());
 ArrayList<TimeRange> dayRange = GetAvailableHours().map.get(eventDay);
 //SAM7OONI YA REGALAAAAAAA
-if(!GetReservedHours().Contains(event.getTimeRange(), eventDay.toString())){
-    if(GetAvailableHours().Contains(event.getTimeRange(), eventDay.toString())){
-GetReservedHours().map.get(eventDay).add(event.getTimeRange());
+if(!GetReservedHours().Contains(event.GetTimeRange(), eventDay.toString())){
+    if(GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())){
+GetReservedHours().map.get(eventDay).add(event.GetTimeRange());
     }
     else {
         throw new Exception("Room not available at this time");
