@@ -1,7 +1,9 @@
 package p3;
 
+import p1.Database;
 import p1.MyDate;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class User {
@@ -29,6 +31,18 @@ public abstract class User {
         this.password=password;
         this.dob=dob;
         this.gender=gender;
+    }
+
+    public static User Login(String usermail, String password) throws Exception {
+        ArrayList<User> users = new ArrayList<>();
+        users.addAll(Database.GetAdmins());
+        users.addAll(Database.GetOrganizers());
+        users.addAll(Database.GetAttendees());
+        for (User user : users) {
+            if((usermail.equals(user.username) || usermail.equals(user.email)) && password.equals(user.password))
+                return user;
+        }
+        throw new Exception("Invalid Login Details!");
     }
 
     public String GetUsername(){
