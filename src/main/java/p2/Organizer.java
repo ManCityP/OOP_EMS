@@ -9,13 +9,19 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class Organizer extends User {
-    Wallet wallet; //TODO Make data field private
+    private final Wallet wallet;         //Almost there
 
-    public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet) {
+    public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet) throws Exception {
         super(username, email, password, dob, gender);
+        if(wallet == null)
+            throw new Exception("Invalid Wallet");
         this.wallet = wallet;
+    }
+
+    public static void RegisterOrganizer(String username, String email, String password, MyDate dob, Gender gender, double balance) {
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Organizer"));
+        Wallet.CreateWallet(username, balance);
     }
 
     public static Organizer FindOrganizer(ArrayList<Organizer> organizers, String username){
@@ -34,16 +40,16 @@ public class Organizer extends User {
     }
 
     public void DeleteEvent(Event event) throws Exception {
-        Database.Execute(String.format("DELETE FROM event WHERE id = '%s'", event.ID));
+        Database.Execute(String.format("DELETE FROM event WHERE id = '%s'", event.GetID()));
         System.out.println("Event deleted successfully");
-    }
-
-    public void EditWalletBalance(double amount) throws Exception {
-        this.wallet.EditBalance(amount);
     }
 
     public String GetUsername(){
         return this.username;
+    }
+
+    public Wallet GetWallet(){
+        return this.wallet;
     }
 
     @Override

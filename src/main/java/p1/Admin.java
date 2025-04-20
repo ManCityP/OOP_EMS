@@ -20,7 +20,7 @@ public class Admin extends User {
         this.workingHours = workingHours;
     }
 
-    public static void RegisterAccount(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) {
+    public static void RegisterAdmin(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) {
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, time_range, role) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                 username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Admin", TimeRange.EncryptWorkingHours(workingHours), role));
     }

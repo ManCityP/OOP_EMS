@@ -1,19 +1,27 @@
 package p3;
 
 import p1.Admin;
+import p1.Database;
 import p2.Event;
 import p2.Organizer;
 
 import java.util.ArrayList;
 
 public class Wallet {
-    double balance; //TODO Make data field private
-    int walletNumber;
+    private double balance;                 //Almost there
+    private final int walletNumber;
 
-    public Wallet(){}
-    public Wallet(double balance,int walletNumber){
+    public Wallet(double balance,int walletNumber) throws Exception {
+        if(balance < 0)
+            throw new Exception("Invalid Balance");
+        if(walletNumber <= 0)
+            throw new Exception("Invalid wallet number");
         this.balance = balance;
         this.walletNumber = walletNumber;
+    }
+
+    public  static void CreateWallet(String username, double balance){
+        Database.Execute(String.format("INSERT INTO wallet (username, balance) VALUES ('%s', '%s')", username, balance));
     }
 
     public static Wallet FindWallet(ArrayList<Wallet> wallets, int walletNumber){
@@ -34,10 +42,12 @@ public class Wallet {
     public void PurchaseEvent(Event event, Organizer organizer) throws Exception{
         if(this.balance < event.GetPrice())
             throw new Exception("Invalid balance");
-        else{
-            this.balance -= event.GetPrice();
-            organizer.EditWalletBalance(event.GetPrice());
-        }
+        this.balance -= event.GetPrice();
+        organizer.GetWallet().EditBalance(event.GetPrice());
+    }
+
+    public double GetBalance(){
+        return this.balance;
     }
 
     @Override
