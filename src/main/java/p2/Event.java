@@ -4,13 +4,13 @@ import p1.Category;
 import p1.Room;
 
 public class Event {
-    double price;
+    Organizer organizer;
     String ID;
     Room room;
     Category category;
+    double price;
 
-    Event(){}
-
+    public Event(){}
     public Event(double price, Room room, Category category) throws Exception{
         if(price < 0)
             throw new Exception("Invalid ticket price");
@@ -18,8 +18,6 @@ public class Event {
         if (room == null) //TODO add invalid time range
             throw new Exception(" Invalid Room");
         this.room = room;
-        if (!Category.GetCategories().contains(category))
-            throw new Exception("This Category doesn't exist!");
         this.category = category;
     }
 
@@ -57,4 +55,13 @@ public class Event {
     }
 
     //TODO delete method (CRUD)
+
+    @Override
+    public String toString(){
+        return  "Organizer: " + this.organizer.GetUsername() +
+                "\tEvent ID: " + this.ID +
+                "\tRoom: " + this.room +
+                "\tCategory: " + this.category +
+                "\tPrice: " + this.price;
+    }
 }

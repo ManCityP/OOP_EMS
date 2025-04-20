@@ -30,4 +30,15 @@ public class Admin extends User {
     public static void RemoveAllCategory(String category) throws Exception {
         Category.RemoveAll();
     }
+
+    @Override
+    public String toString(){
+        return  "User name: " + this.username +
+                "\tRole: " + this.role +
+                "\tDate of birth: " + this.dob +
+                "\tGender: " + this.gender +
+                "\tEmail: " + this.email +
+                "\tPassword: " + this.password +
+                "\tWorking Hours: " + this.workingHours;
+    }
 }

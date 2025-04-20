@@ -7,7 +7,7 @@ public class Wallet {
     double balance;
     int walletNumber;
 
-    Wallet(){}
+    public Wallet(){}
     public Wallet(double balance,int walletNumber){
         this.balance = balance;
         this.walletNumber = walletNumber;
@@ -27,5 +27,11 @@ public class Wallet {
             this.balance -= event.GetPrice();
             organizer.EditWalletBalance(event.GetPrice());
         }
+    }
+
+    @Override
+    public String toString(){
+        return  "Wallet number: " + this.walletNumber +
+                "\tBalance: " + this.balance;
     }
 }
