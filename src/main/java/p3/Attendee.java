@@ -55,7 +55,7 @@ return string;
     }
 public Attendee FindAttendee(ArrayList<Attendee> attendees, String username){
     for (Attendee attendee : attendees)
-        if (attendee.username== username)
+        if (attendee.username.equals(username))
             return attendee;
     return null;
 }

@@ -1,10 +1,5 @@
 package p1;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-
 public class Category {
     //static ArrayList<String> categories = new ArrayList<>();
 
@@ -12,7 +7,7 @@ public class Category {
 
     public Category() {}
     public Category(String category) throws Exception {
-        if (!GetCategories().contains(category))
+        if (!Database.GetCategories().contains(category))
             throw new Exception("This Category doesn't exist!");
         this.category = category;
     }
@@ -20,15 +15,6 @@ public class Category {
     @Override
     public String toString() {
         return this.category;
-    }
-
-    public static ArrayList<String> GetCategories() throws SQLException {
-        ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
-        ArrayList<String> categories = new ArrayList<>();
-        while(rs.next()) {
-            categories.add(rs.getString(DataType.NAME.toString()));
-        }
-        return categories;
     }
 
     static void AddCategory(String category) {

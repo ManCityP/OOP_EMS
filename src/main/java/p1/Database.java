@@ -207,4 +207,12 @@ public abstract class Database {
         }
         return rooms;
     }
+    public static ArrayList<String> GetCategories() throws SQLException {
+        ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
+        ArrayList<String> categories = new ArrayList<>();
+        while(rs.next()) {
+            categories.add(rs.getString(DataType.NAME.toString()));
+        }
+        return categories;
+    }
 }

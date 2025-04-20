@@ -69,14 +69,14 @@ public class Event {
         if(price < 0)
             throw new Exception("Invalid ticket price");
         this.price = price;
-        Database.Execute(String.format("UPDATE event SET 'price' = '%s' WHERE ('id' = '%s')", this.price, this.ID));
+        Database.Execute(String.format("UPDATE event SET price = '%s' WHERE (id = '%s')", this.price, this.ID));
     }
 
     public void ChangeRoom(int roomID) throws Exception {
         for (Room room : Database.GetRooms())
             if (room.GetID() == roomID) {
                 room.ReserveEvent(this);
-                Database.Execute(String.format("UPDATE event SET 'room_id' = '%s' WHERE ('id' = '%s')", this.roomID, this.ID));
+                Database.Execute(String.format("UPDATE event SET room_id = '%s' WHERE (id = '%s')", this.roomID, this.ID));
             }
         throw new Exception(" Invalid Room");
     }
@@ -85,7 +85,7 @@ public class Event {
         if (category == null)
             throw new Exception("Invalid Category");
         this.category = category;
-        Database.Execute(String.format("UPDATE event SET 'category' = '%s' WHERE ('id' = '%s')", this.category, this.ID));
+        Database.Execute(String.format("UPDATE event SET category = '%s' WHERE (id = '%s')", this.category, this.ID));
     }
 
     public void EditDate(MyDate date) throws Exception {
@@ -95,7 +95,7 @@ public class Event {
         this.date = date;
         try {
             Room.FindRoom(Database.GetRooms(), this.roomID).ReserveEvent(this);
-            Database.Execute(String.format("UPDATE event SET 'date' = '%s' WHERE ('id' = '%s')", this.date, this.ID));
+            Database.Execute(String.format("UPDATE event SET date = '%s' WHERE (id = '%s')", this.date, this.ID));
         }catch (Exception ex){
             this.date = temp;
         }
@@ -108,7 +108,7 @@ public class Event {
         this.timeRange = timeRange;
         try {
             Room.FindRoom(Database.GetRooms(), this.roomID).ReserveEvent(this);
-            Database.Execute(String.format("UPDATE event SET 'time_range' = '%s' WHERE ('id' = '%s')", this.timeRange, this.ID));
+            Database.Execute(String.format("UPDATE event SET time_range = '%s' WHERE (id = '%s')", this.timeRange, this.ID));
         }
         catch (Exception ex) {
             this.timeRange = temp;

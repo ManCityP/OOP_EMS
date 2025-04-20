@@ -33,6 +33,7 @@ public class Wallet {
             if (Math.abs(amount) > this.balance)
                 throw new Exception("No available balance");
         this.balance += amount;
+        Database.Execute(String.format("UPDATE wallet SET balance = '%s' WHERE (id = '%s')", this.balance, this.walletNumber));
     }
 
     public double GetBalance(){
