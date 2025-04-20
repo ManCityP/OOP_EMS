@@ -1,5 +1,6 @@
 package p1;
 
+import p2.Event;
 import p2.Organizer;
 import p3.Gender;
 import p3.User;
@@ -136,5 +137,14 @@ public abstract class Database {
             }
         }
         return organizers;
+    }
+    //TODO: Finish this.
+    public static ArrayList<Event> GetEvents() throws Exception {
+        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Admin");
+        ArrayList<Event> events = new ArrayList<>();
+        while(rs.next()) {
+            //events.add(new Event(rs.getDouble(DataType.BALANCE.toString())));
+        }
+        return events;
     }
 }
