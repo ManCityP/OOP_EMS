@@ -10,10 +10,7 @@ import p3.Gender;
 import p3.Wallet;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class Database {
     private static final String URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_Learning MYSQL";
@@ -197,12 +194,16 @@ public abstract class Database {
         ResultSet rs = GetData(DataType.ROOM.toString());
         ArrayList<Room> rooms = new ArrayList<>();
         ArrayList<Event> events = GetEvents();
+        Hours reservedHours = new Hours(new LinkedHashMap<>());
         while(rs.next()) {
             Event event = null;
             for (Event e : events)
-                if (e.GetRoomID() == rs.getInt(DataType.ID.toString()) && e.GetStatus() == Status.ONGOING)
-                    event = e;
-            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), ));
+                if (e.GetRoomID() == rs.getInt(DataType.ID.toString())) {
+                    if(e.GetStatus() == Status.ONGOING)
+                        event = e;
+                    reservedHours.AddTime(e.getDate().toString(), e.getTimeRange());
+                }
+            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), reservedHours));
         }
         return rooms;
     }
