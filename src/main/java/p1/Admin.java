@@ -41,6 +41,14 @@ public class Admin extends User {
         return null;
     }
 
+    public void CreateRoom() {
+        //TODO This function;
+    }
+
+    public void DeleteRoom() {
+        //TODO This function;
+    }
+
     public void AddCategory(String category) throws Exception {
         Category.AddCategory(category);
     }
