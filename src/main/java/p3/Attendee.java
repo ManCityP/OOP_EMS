@@ -5,6 +5,7 @@ import p1.Database;
 import p1.MyDate;
 import p1.Room;
 import p2.Event;
+import p2.Status;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,7 +75,7 @@ if(tickets.containsKey(event.GetID())){
     }
     public void RefundTicket(Event event, int numOfTickets) throws Exception {
         if(this.tickets.get(event.GetID()) >= numOfTickets){
-            if(!event.GetStatus()){
+            if(event.GetStatus()== Status.ONGOING){
                 this.tickets.remove(event.GetID());
                 this.wallet.EditBalance(event.GetPrice()*numOfTickets);
                 event.GetOrganizer().GetWallet().EditBalance(-event.GetPrice()*numOfTickets);
