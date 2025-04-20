@@ -6,11 +6,14 @@ import p2.Event;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Attendee extends User {
 
     ArrayList<Category> interests;
     Wallet wallet;
+    Map<Event, Integer> tickets = new HashMap<>();
 
     public Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet) throws Exception {
         super(username,email, password,dob, gender);
@@ -23,6 +26,7 @@ public class Attendee extends User {
             throw new Exception("Invalid balance");
         this.wallet.EditBalance(-1*(event.GetPrice()*numOfTickets));
         event.GetOrganizer().GetWallet().EditBalance(event.GetPrice()*numOfTickets);
+        tickets.merge(event, numOfTickets, Integer::sum);
     }
 
     @Override
