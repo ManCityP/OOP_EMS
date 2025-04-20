@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import p2.Event;
 import p2.Organizer;
+import p2.Status;
 import p3.Attendee;
 import p3.Gender;
 import p3.Wallet;
@@ -195,14 +196,13 @@ public abstract class Database {
     public static ArrayList<Room> GetRooms() throws Exception {
         ResultSet rs = GetData(DataType.ROOM.toString());
         ArrayList<Room> rooms = new ArrayList<>();
+        ArrayList<Event> events = GetEvents();
         while(rs.next()) {
-            ResultSet resultSet = GetData(DataType.EVENT + " WHERE " + DataType.ROOM_ID + " = " + rs.getInt(DataType.ID.toString()));
-            while(rs.next()) {
-                TimeRange timeRange = new TimeRange(resultSet.getString(DataType.TIME_RANGE.toString().split("-")[0]), resultSet.getString(DataType.TIME_RANGE.toString().split("-")[1]));
-                MyDate myDate = new MyDate(rs.getString(DataType.DATE.toString()));
-
-            }
-            rooms.add(new Room(rs.getInt(DataType.ID.toString()), new Event(), new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), ));
+            Event event = null;
+            for (Event e : events)
+                if (e.GetRoomID() == rs.getInt(DataType.ID.toString()) && e.GetStatus() == Status.ONGOING)
+                    event = e;
+            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), ));
         }
         return rooms;
     }

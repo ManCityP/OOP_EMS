@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Event {
     private final Organizer organizer;               //Almost there
     private final int ID;
-    private Room room;
+    private int roomID;
     private Category category;
     private double price;
     private MyDate date;
@@ -80,6 +80,8 @@ public class Event {
             throw new Exception(" Invalid Room");
         this.room = room;
     }
+
+    public int GetRoomID() {return this.roomID;}
 
     public void EditCategory(Category category) throws Exception {
         if (category == null)
