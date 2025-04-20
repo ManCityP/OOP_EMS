@@ -17,23 +17,13 @@ public class MyDate {
     }
     public MyDate(String date) throws Exception {
         String[] d = date.split("/");
-//        if (Integer.parseInt(d[0].trim()) <= 0)
-//            throw new Exception("Invalid date");
-//        this.day = Integer.parseInt(d[0].trim());
-//        if (Integer.parseInt(d[1].trim()) <= 0)
-//            throw new Exception("Invalid date");
-//        this.month = Integer.parseInt(d[1].trim());
-//        if (Integer.parseInt(d[2].trim()) <= 0)
-//            throw new Exception("Invalid date");
-//        this.year = Integer.parseInt(d[2].trim());
         if(d[0] == null || d[1] == null || d[2] == null)
             throw new Exception("Invalid date");
-      //  this(Integer.parseInt(d[0].trim()), Integer.parseInt(d[1].trim()), Integer.parseInt(d[2].trim()));
         int[] daysInMonth = { 31, isLeapYear(Integer.parseInt(d[2].trim())) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
         if (Integer.parseInt(d[1].trim()) <= 0 || Integer.parseInt(d[1].trim()) > 12 ||
             Integer.parseInt(d[2].trim()) < 1900 || Integer.parseInt(d[0].trim()) <= 0 ||
             !(Integer.parseInt(d[0].trim()) <= daysInMonth[Integer.parseInt(d[1].trim()) - 1]))
-            throw new Exception("Invalid date");
+                throw new Exception("Invalid date");
 
         this.day = Integer.parseInt(d[0].trim());
         this.month = Integer.parseInt(d[1].trim());
