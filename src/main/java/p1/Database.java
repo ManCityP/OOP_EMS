@@ -2,6 +2,7 @@ package p1;
 
 import p2.Event;
 import p2.Organizer;
+import p3.Attendee;
 import p3.Gender;
 import p3.User;
 import p3.Wallet;
@@ -137,6 +138,26 @@ public abstract class Database {
             }
         }
         return organizers;
+    }
+    public static ArrayList<Attendee> GetAttendees() throws Exception {
+        ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Attendee'");
+        ArrayList<Attendee> attendees = new ArrayList<>();
+        while(rs.next()) {
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = " + rs.getString(DataType.USERNAME.toString()));
+            ArrayList<Category> interests = new ArrayList<>();
+            String interests_str = resultSet.getString(DataType.INTERESTS.toString());
+            String[] interest_arr = interests_str.split(",");
+            for(String interest : interest_arr) {
+                interests.add(new Category(interest));
+            }
+            while(resultSet.next()) {
+                attendees.add(new Attendee(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
+                        new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
+                        rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, interests,
+                        new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()))));
+            }
+        }
+        return attendees;
     }
     //TODO: Finish this.
     //public static ArrayList<Event> GetEvents() throws Exception {

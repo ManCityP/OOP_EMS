@@ -7,32 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Attendee extends User {
- // static int numberOfAttendees;
-    // String address;
-    ArrayList<Category> interests = new ArrayList<>();
+
+    ArrayList<Category> interests;
     Wallet wallet;
 
-
-
-
-
-
-
-
-
-    Attendee(){
-        super();
-        //  numberOfAttendees++;
+    public Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet) {
+        super(username,email, password,dob, gender);
+        this.interests = interests;
+        this.wallet = wallet;
     }
-                                                                                 // String Address excluded in constructor
-                                                                                  // String address
-Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet) {
-super(username,email, password,dob, gender);
-this.interests = interests;
-//this.address=address;
-    //  numberOfAttendees++;
-
-}
-
-
 }
