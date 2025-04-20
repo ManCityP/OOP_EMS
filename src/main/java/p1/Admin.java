@@ -12,15 +12,15 @@ import java.util.Map;
 public class Admin extends User {
 
     String role; //TODO Make data field private
-    Map<Day, ArrayList<TimeRange>> workingHours;
+    Hours workingHours;
 
-    public Admin(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) throws Exception {
+    public Admin(String username, String email, String password, MyDate dob, Gender gender, String role, Hours workingHours) throws Exception {
         super(username, email, password, dob, gender);
         this.role = role;
         this.workingHours = workingHours;
     }
 
-    public static void RegisterAdmin(String username, String email, String password, MyDate dob, Gender gender, String role, Map<Day, ArrayList<TimeRange>> workingHours) throws Exception {
+    public static void RegisterAdmin(String username, String email, String password, MyDate dob, Gender gender, String role, Hours workingHours) throws Exception {
         if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
             throw new Exception("Invalid Email format");
         if(email.length() > 128)
@@ -30,7 +30,7 @@ public class Admin extends User {
         if(password.length() < 8 || password.length() > 32)
             throw new Exception("Password must be 8-32 characters long");
         Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, time_range, role) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Admin", TimeRange.EncryptWorkingHours(workingHours), role));
+                username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Admin", TimeRange.EncryptWorkingHours(workingHours.map), role));
     }
 
     public static Admin FindAdmin(ArrayList<Admin> admins, String username){

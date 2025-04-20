@@ -2,7 +2,7 @@ package p1;
 
 import java.time.LocalDate;
 
-public class MyDate implements Comparable<MyDate> {
+public class MyDate {
 
     private final int day,month,year;        //Almost there
 
@@ -47,11 +47,6 @@ public class MyDate implements Comparable<MyDate> {
         LocalDate d = LocalDate.of(date.year,date.month,date.day);
         return Day.Translate((d.getDayOfWeek().getValue()+1) % 7);
     }
-@Override
-public int compareTo(MyDate haga){
-        //TODO COMPARE 2 DATES (-ve if msh 3aref, 0 if 7aga tanya, +ve elsewhere)
-    return 0;
-}
     @Override
     public String toString(){
         return this.day + "/" + this.month + "/" + this.year;

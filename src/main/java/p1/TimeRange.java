@@ -86,15 +86,15 @@ public class TimeRange {
     public boolean InRange(double time) {
         return (time >= this.start && time <= this.end);
     }
-    public static String EncryptWorkingHours(Map<Day, ArrayList<TimeRange>> map) {
+    public static String EncryptWorkingHours(Map<String, ArrayList<TimeRange>> map) {
         // {Saturday --> [06:15-17:00], Monday --> [09:00-21:34], Tuesday --> [09:11-19:12], Wednesday --> [09:30-17:15], Thursday --> [13:30-18:30, 22:30-23:30]}
 
         if(map == null)
             return "";
 
         StringBuilder allHours = new StringBuilder();
-        for (Map.Entry<Day, ArrayList<TimeRange>> entry: map.entrySet()) {
-            allHours.append(Day.days.get(entry.getKey().toString()));
+        for (Map.Entry<String, ArrayList<TimeRange>> entry: map.entrySet()) {
+            allHours.append(Day.days.get(entry.getKey()));
             allHours.append(">[");
             for(TimeRange timeRange : entry.getValue()) {
                 allHours.append(timeRange.toString());
@@ -111,8 +111,8 @@ public class TimeRange {
         return allHours.toString();
     }
 
-    public static Map<Day, ArrayList<TimeRange>> DecryptWorkingHours(String allHours) throws Exception {
-        Map<Day, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+    public static Map<String, ArrayList<TimeRange>> DecryptWorkingHours(String allHours) throws Exception {
+        Map<String, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
         String[] strings = allHours.split("/");
         for (String str : strings) {
@@ -126,7 +126,7 @@ public class TimeRange {
                 timeRanges.add(new TimeRange(times[0], times[1]));
             }
 
-            map.put(Day.Translate(Integer.parseInt(day[0])), timeRanges);
+            map.put(Day.Translate(Integer.parseInt(day[0])).toString(), timeRanges);
         }
         return map;
     }
@@ -174,6 +174,10 @@ public class TimeRange {
         }
         return map;
     }
+
+    public double GetStart() {return this.start;}
+    public double GetEnd() {return this.end;}
+
     @Override
     public String toString() {
         try {

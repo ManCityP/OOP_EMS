@@ -6,7 +6,6 @@ import p2.Event;
 import p2.Organizer;
 import p3.Attendee;
 import p3.Gender;
-import p3.User;
 import p3.Wallet;
 
 import java.sql.*;
@@ -146,7 +145,7 @@ public abstract class Database {
             admins.add(new Admin(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
                             new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
                                 rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, rs.getString(DataType.ROLE.toString()),
-                                    TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))));
+                                    new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString())))));
         }
         return admins;
     }
@@ -175,20 +174,36 @@ public abstract class Database {
             for(String interest : interests)    interests_array.add(new Category(interest));
             while(resultSet.next()) {
                 attendees.add(new Attendee(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
-                        new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
-                        rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, interests_array,
-                        new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()))));
+                                new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
+                                    rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, interests_array,
+                                        new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()))));
             }
         }
         return attendees;
     }
-    //TODO: Finish this.
-    //public static ArrayList<Event> GetEvents() throws Exception {
-        //ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = Admin");
-        //ArrayList<Event> events = new ArrayList<>();
-        //while(rs.next()) {
-            //events.add(new Event(rs.getDouble(DataType.BALANCE.toString())));
-        //}
-        //return events;
-    //}
+    public static ArrayList<Event> GetEvents() throws Exception {
+        ResultSet rs = GetData(DataType.EVENT.toString());
+        ArrayList<Event> events = new ArrayList<>();
+        while(rs.next()) {
+            events.add(new Event(Organizer.FindOrganizer(Database.GetOrganizers(), rs.getString(DataType.USERNAME.toString())), rs.getInt(DataType.ID.toString()),
+                        rs.getDouble(DataType.PRICE.toString()), rs.getInt(DataType.ROOM_ID.toString()), new Category(rs.getString(DataType.CATEGORY.toString())),
+                            new MyDate(rs.getString(DataType.DATE.toString())),
+                                new TimeRange(rs.getString(DataType.TIME_RANGE.toString().split("-")[0]), rs.getString(DataType.TIME_RANGE.toString().split("-")[1]))));
+        }
+        return events;
+    }
+    public static ArrayList<Room> GetRooms() throws Exception {
+        ResultSet rs = GetData(DataType.ROOM.toString());
+        ArrayList<Room> rooms = new ArrayList<>();
+        while(rs.next()) {
+            ResultSet resultSet = GetData(DataType.EVENT + " WHERE " + DataType.ROOM_ID + " = " + rs.getInt(DataType.ID.toString()));
+            while(rs.next()) {
+                TimeRange timeRange = new TimeRange(resultSet.getString(DataType.TIME_RANGE.toString().split("-")[0]), resultSet.getString(DataType.TIME_RANGE.toString().split("-")[1]));
+                MyDate myDate = new MyDate(rs.getString(DataType.DATE.toString()));
+
+            }
+            rooms.add(new Room(rs.getInt(DataType.ID.toString()), new Event(), new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), ));
+        }
+        return rooms;
+    }
 }

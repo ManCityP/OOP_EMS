@@ -98,11 +98,7 @@ public String toString(){
         return this.map.toString();
 }
 
-
-
-
-    Hours(){}
-    public Hours(Map<String, ArrayList<TimeRange>> map){
+public Hours(Map<String, ArrayList<TimeRange>> map){
         this.map=map;
     }
 

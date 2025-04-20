@@ -26,7 +26,7 @@ public class Room {
 public void UpdateEvent(Event event){ //change the current event
     this.currentEvent = event;
 }
-public Room FindRoom(ArrayList<Room> rooms, int id){
+public static Room FindRoom(ArrayList<Room> rooms, int id){
     for (Room room : rooms)
         if (room.id== id)
             return room;

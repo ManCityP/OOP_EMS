@@ -5,6 +5,7 @@ import p1.MyDate;
 import p1.Room;
 import p1.TimeRange;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Event {
@@ -16,8 +17,7 @@ public class Event {
     private MyDate date;
     private TimeRange timeRange;
 
-    private boolean EventFinished;
-    //TODO EVENTFINISHED LOGIC [see MyDate.compareTo()]
+    private Status status;
 
     public Event(Organizer organizer, int ID, double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception{
         if (organizer == null)
@@ -41,6 +41,24 @@ public class Event {
         this.category = category;
         this.date = date;
         this.timeRange = timeRange;
+
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime startTime = LocalDateTime.of(date.GetYear(), date.GetMonth(), date.GetDay(), (int) Math.floor(timeRange.GetStart()),
+                (int) Math.floor( (timeRange.GetStart() - Math.floor(timeRange.GetStart())) * 60 ),
+                (int) Math.floor( (timeRange.GetStart() - Math.floor(timeRange.GetStart()) * 60) - Math.floor((timeRange.GetStart() - Math.floor(timeRange.GetStart())) * 60) ));
+
+        LocalDateTime endTime = LocalDateTime.of(date.GetYear(), date.GetMonth(), date.GetDay(), (int) Math.floor(timeRange.GetEnd()),
+                (int) Math.floor( (timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60 ),
+                (int) Math.floor( (timeRange.GetEnd() - Math.floor(timeRange.GetEnd()) * 60) - Math.floor((timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60) ));
+
+        if (currentTime.compareTo(startTime) < 0)
+            this.status = Status.UPCOMING;
+        else {
+            if (currentTime.compareTo(endTime) > 0)
+                this.status = Status.OVER;
+            else
+                this.status = Status.ONGOING;
+        }
     }
 
     public static Event FindEvent(ArrayList<Event> events, int ID){
@@ -68,8 +86,8 @@ public class Event {
             throw new Exception("Invalid Category");
         this.category = category;
     }
-    public boolean GetStatus() {
-        return this.EventFinished;
+    public Status GetStatus() {
+        return this.status;
     }
     public double GetPrice(){
         return this.price;
