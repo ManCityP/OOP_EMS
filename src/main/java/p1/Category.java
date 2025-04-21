@@ -3,7 +3,7 @@ package p1;
 public class Category {
     //static ArrayList<String> categories = new ArrayList<>();
 
-    String category = "Default";
+    private String category = "Default";
 
     public Category() {}
     public Category(String category) throws Exception {
