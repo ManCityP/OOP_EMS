@@ -18,12 +18,11 @@ public class Event {
     private final Status status;
 
     public Event(Organizer organizer,String eventTitle, int ID,int maxNumOfAttendees , double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
+        //TODO put all these validations in the CreateEvent() in Organizer and remove them from here.
         if (organizer == null)
             throw new Exception("Invalid organizer");
         if (eventTitle == null)
             throw new Exception("Invalid Event title");
-        if(ID < 0)
-            throw new Exception("Invalid ID");
         if(price < 0)
             throw new Exception("Invalid ticket price");
         if (roomID < 0)
