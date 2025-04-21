@@ -18,11 +18,11 @@ public class Main {
         Database.Connect();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("What would you like to do? ");
 
         User currentUser = null;
         while(true) {
             try {
+                System.out.println("What would you like to do? ");
                 if (currentUser != null) {
                     if(currentUser instanceof Admin)
                         currentUser = Admin.FindAdmin(Database.GetAdmins(), currentUser.GetUsername());
