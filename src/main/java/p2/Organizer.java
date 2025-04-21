@@ -103,6 +103,7 @@ public class Organizer extends User {
                 "\tGender: " + this.gender +
                 "\tEmail: " + this.email +
                 "\tPassword: " + this.password +
-                "\tWallet: " + this.wallet;
+                "\tWallet: " + this.wallet +
+                "\tTickets sold: " + this.ticketsSold;
     }
 }
