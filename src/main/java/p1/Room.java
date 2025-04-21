@@ -42,10 +42,11 @@ public class Room {
     }
 
     public void ReserveEvent(Event event) throws Exception {
+        //TODO: Check if the maximum number of attendees is more than the capacity of the room
         Day eventDay = MyDate.GetDayOfTheWeek(event.GetDate());
         ArrayList<TimeRange> dayRange = GetAvailableHours().map.get(eventDay);
-//SAM7OONI YA REGALAAAAAAA
-        if (!GetReservedHours().Contains(event.GetTimeRange(), eventDay.toString())) {
+        //SAM7OONI YA REGALAAAAAAA
+        if (!GetReservedHours().Contains(event.GetTimeRange(), event.GetDate().toString())) {
             if (GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())) {
                 GetReservedHours().AddTime(event.GetDate().toString(), event.GetTimeRange());
             } else {
@@ -57,7 +58,6 @@ public class Room {
     }
 
     public void AddAvailableHours(TimeRange timeRange, String day) throws Exception {
-
         GetAvailableHours().AddTime(day, timeRange);
     }
 

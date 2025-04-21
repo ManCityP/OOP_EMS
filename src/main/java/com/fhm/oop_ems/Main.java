@@ -330,6 +330,24 @@ public class Main {
                                 System.out.println(category);
                     }
                 }
+                else if(input.equalsIgnoreCase("print")) {
+                    ArrayList<User> users = User.GetUsers();
+                    ArrayList<Room> rooms = Database.GetRooms();
+                    ArrayList<Event> events = Database.GetEvents();
+                    ArrayList<String> categories = Database.GetCategories();
+                    System.out.println("Users: ");
+                    for (User user : users)
+                        System.out.println(user);
+                    System.out.println("\nRooms: ");
+                    for (Room room : rooms)
+                        System.out.println(room);
+                    System.out.println("\nEvents: ");
+                    for (Event event : events)
+                        System.out.println(event);
+                    System.out.println("\nCategories: ");
+                    System.out.println(categories + "\n");
+
+                }
                 else if(input.equalsIgnoreCase("quit"))
                     break;
             }

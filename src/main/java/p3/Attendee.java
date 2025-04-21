@@ -65,6 +65,7 @@ public class Attendee extends User {
     }
 
     public void PurchaseEvent(Event event, int numOfTickets) throws Exception {
+        //TODO: Check if the purchase amount will put the maximum number of attendees over the limit
         if (this.wallet.GetBalance() < (event.GetPrice()) * numOfTickets)
             throw new Exception("Invalid balance");
         this.wallet.EditBalance(-(event.GetPrice() * numOfTickets));
