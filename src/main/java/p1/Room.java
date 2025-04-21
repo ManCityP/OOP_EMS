@@ -42,7 +42,7 @@ public class Room {
             ArrayList<TimeRange> dayRange = GetAvailableHours().map.get(eventDay);
             //SAM7OONI YA REGALAAAAAAA
             if (!GetReservedHours().Overlaps(event.GetTimeRange(), event.GetDate().toString())) {
-                if (GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())) {
+                if (GetAvailableHours().Overlaps(event.GetTimeRange(), eventDay.toString())) {
                     GetReservedHours().AddTime(event.GetDate().toString(), event.GetTimeRange());
                 } else {
                     throw new Exception("Room not available at this time");
