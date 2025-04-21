@@ -44,6 +44,8 @@ public abstract class Database {
     }
 
     public static StringBuilder EncryptTickets(Map<Integer, Integer> tickets) {
+        if(tickets == null)
+            return new StringBuilder();
         StringBuilder ticketString = new StringBuilder();
         for(Map.Entry<Integer, Integer> entry : tickets.entrySet()) {
             ticketString.append(entry.getKey()).append(":").append(entry.getValue()).append(",");
@@ -55,6 +57,8 @@ public abstract class Database {
 
     public static Map<Integer, Integer> DecryptTickets(String tickets) {
         Map<Integer, Integer> ticketsMap = new HashMap<>();
+        if(tickets == null || tickets.isEmpty())
+            return ticketsMap;
         String[] split = tickets.split(",");
         for (String ticket : split) {
             int id = Integer.parseInt(ticket.split(":")[0]);
@@ -85,7 +89,8 @@ public abstract class Database {
     public static ResultSet GetData(String type) {
         try {
             String sql = "SELECT * FROM " + type;
-            return stat.executeQuery(sql);
+            Statement stmt = con.createStatement();
+            return stmt.executeQuery(sql);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -151,13 +156,19 @@ public abstract class Database {
         ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Organizer'");
         ArrayList<Organizer> organizers = new ArrayList<>();
         while(rs.next()) {
-            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + rs.getString(DataType.USERNAME.toString()) + "'");
-            while(resultSet.next()) {
-                //TODO Add Tickets for organizer
-                organizers.add(new Organizer(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
-                        new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
-                            rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE,
-                                new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString())), DecryptTickets(rs.getString(DataType.TICKETS.toString()))));
+            String username = rs.getString(DataType.USERNAME.toString());
+            String email = rs.getString(DataType.EMAIL.toString());
+            String password = rs.getString(DataType.PASSWORD.toString());
+            int birthDay = rs.getInt(DataType.BIRTH_DAY.toString());
+            int birthMonth = rs.getInt(DataType.BIRTH_MONTH.toString());
+            int birthYear = rs.getInt(DataType.BIRTH_YEAR.toString());
+            Gender gender = rs.getString(DataType.GENDER.toString()).equals("Male") ? Gender.MALE : Gender.FEMALE;
+            String tickets = rs.getString(DataType.TICKETS.toString());
+
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + username + "'");
+            if(resultSet.next()) {
+                Wallet wallet = new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()));
+                organizers.add(new Organizer(username, email, password, new MyDate(birthDay, birthMonth, birthYear), gender, wallet, DecryptTickets(tickets)));
             }
         }
         return organizers;
@@ -166,17 +177,32 @@ public abstract class Database {
         ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Attendee'");
         ArrayList<Attendee> attendees = new ArrayList<>();
         while(rs.next()) {
-            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + rs.getString(DataType.USERNAME.toString()) + "'");
+            String username = rs.getString(DataType.USERNAME.toString());
+            String email = rs.getString(DataType.EMAIL.toString());
+            String password = rs.getString(DataType.PASSWORD.toString());
+            int birthDay = rs.getInt(DataType.BIRTH_DAY.toString());
+            int birthMonth = rs.getInt(DataType.BIRTH_MONTH.toString());
+            int birthYear = rs.getInt(DataType.BIRTH_YEAR.toString());
+            Gender gender = rs.getString(DataType.GENDER.toString()).equals("Male") ? Gender.MALE : Gender.FEMALE;
+            String tickets = rs.getString(DataType.TICKETS.toString());
+
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + username + "'");
+
             ArrayList<Category> interests_array = new ArrayList<>();
-            String json = resultSet.getString(DataType.INTERESTS.toString());
-            List<String> interests = gson.fromJson(json, new TypeToken<List<String>>() {}.getType());
-            for(String interest : interests)    interests_array.add(new Category(interest));
-            while(resultSet.next()) {
-                attendees.add(new Attendee(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
-                                new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
-                                    rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, interests_array,
-                                        new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString())),
-                                            Database.DecryptTickets(rs.getString(DataType.TICKETS.toString()))));
+            if (resultSet.next()) {
+                String json = resultSet.getString(DataType.INTERESTS.toString());
+                List<String> interests = gson.fromJson(json, new TypeToken<List<String>>() {}.getType());
+                for(String interest : interests)
+                    interests_array.add(new Category(interest));
+
+                Wallet wallet = new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()));
+
+                attendees.add(new Attendee(username, email, password,
+                        new MyDate(birthDay, birthMonth, birthYear),
+                        gender,
+                        interests_array,
+                        wallet,
+                        Database.DecryptTickets(tickets)));
             }
         }
         return attendees;

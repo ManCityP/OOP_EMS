@@ -32,8 +32,8 @@ public class Organizer extends User {
             throw new Exception("Username must be 1-32 characters");
         if(password.length() < 8 || password.length() > 32)
             throw new Exception("Password must be 8-32 characters long");
-        Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Organizer"));
+        Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, tickets) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Organizer", ""));
         Wallet.CreateWallet(username, balance);
     }
 

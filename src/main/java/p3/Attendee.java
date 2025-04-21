@@ -51,8 +51,8 @@ public class Attendee extends User {
                 throw new Exception("Username must be 1-32 characters");
             if (password.length() < 8 || password.length() > 32)
                 throw new Exception("Password must be 8-32 characters long");
-            Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, interests) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s')",
-                    username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Attendee", strConvert(interests)));
+            Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, interests, tickets) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s', '%s')",
+                    username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Attendee", strConvert(interests), ""));
             Wallet.CreateWallet(username, balance);
         }
     }
