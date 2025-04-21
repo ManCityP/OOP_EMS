@@ -151,7 +151,7 @@ public abstract class Database {
         ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Organizer'");
         ArrayList<Organizer> organizers = new ArrayList<>();
         while(rs.next()) {
-            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = " + rs.getString(DataType.USERNAME.toString()));
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + rs.getString(DataType.USERNAME.toString()) + "'");
             while(resultSet.next()) {
                 //TODO Add Tickets for organizer
                 organizers.add(new Organizer(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
@@ -166,7 +166,7 @@ public abstract class Database {
         ResultSet rs = GetData(DataType.USER.toString() + " WHERE " + DataType.TYPE + " = 'Attendee'");
         ArrayList<Attendee> attendees = new ArrayList<>();
         while(rs.next()) {
-            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = " + rs.getString(DataType.USERNAME.toString()));
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + rs.getString(DataType.USERNAME.toString()) + "'");
             ArrayList<Category> interests_array = new ArrayList<>();
             String json = resultSet.getString(DataType.INTERESTS.toString());
             List<String> interests = gson.fromJson(json, new TypeToken<List<String>>() {}.getType());
