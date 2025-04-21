@@ -1,13 +1,9 @@
 package p1;
 
+import p2.Event;
 import p3.Gender;
 import p3.User;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Map;
 
 public class Admin extends User {
 
@@ -41,12 +37,14 @@ public class Admin extends User {
         return null;
     }
 
-    public void CreateRoom() {
-        //TODO This function;
+    public void CreateRoom(Hours availableHours) {
+        Database.Execute(String.format("INSERT INTO room (time_range) VALUES ('%s')", availableHours));
+        System.out.println("Room added successfully");
     }
 
-    public void DeleteRoom() {
-        //TODO This function;
+    public void DeleteRoom(Room room) {
+        Database.Execute(String.format("DELETE FROM room WHERE id = '%s'", room.GetID()));
+        System.out.println("Room deleted successfully");
     }
 
     public void AddCategory(String category) throws Exception {
