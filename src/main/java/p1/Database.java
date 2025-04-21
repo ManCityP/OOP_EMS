@@ -185,16 +185,13 @@ public abstract class Database {
             int birthYear = rs.getInt(DataType.BIRTH_YEAR.toString());
             Gender gender = rs.getString(DataType.GENDER.toString()).equals("Male") ? Gender.MALE : Gender.FEMALE;
             String tickets = rs.getString(DataType.TICKETS.toString());
-
-            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + username + "'");
-
             ArrayList<Category> interests_array = new ArrayList<>();
+            String json = rs.getString(DataType.INTERESTS.toString());
+            List<String> interests = gson.fromJson(json, new TypeToken<List<String>>() {}.getType());
+            for(String interest : interests)
+                interests_array.add(new Category(interest));
+            ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + username + "'");
             if (resultSet.next()) {
-                String json = resultSet.getString(DataType.INTERESTS.toString());
-                List<String> interests = gson.fromJson(json, new TypeToken<List<String>>() {}.getType());
-                for(String interest : interests)
-                    interests_array.add(new Category(interest));
-
                 Wallet wallet = new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()));
 
                 attendees.add(new Attendee(username, email, password,
