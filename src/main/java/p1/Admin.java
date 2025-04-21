@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Admin extends User {
 
-    private String role; //TODO Make data field private
+    private String role;
     private Hours workingHours;
 
     public Admin(String username, String email, String password, MyDate dob, Gender gender, String role, Hours workingHours) throws Exception {
