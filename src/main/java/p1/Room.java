@@ -41,7 +41,7 @@ public class Room {
             Day eventDay = MyDate.GetDayOfTheWeek(event.GetDate());
             ArrayList<TimeRange> dayRange = GetAvailableHours().map.get(eventDay);
             //SAM7OONI YA REGALAAAAAAA
-            if (!GetReservedHours().Contains(event.GetTimeRange(), event.GetDate().toString())) {
+            if (!GetReservedHours().Overlaps(event.GetTimeRange(), event.GetDate().toString())) {
                 if (GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())) {
                     GetReservedHours().AddTime(event.GetDate().toString(), event.GetTimeRange());
                 } else {

@@ -18,6 +18,17 @@ public class Hours {
         }
         return isContained;
     }
+    public boolean Overlaps(TimeRange timeRange, String day) throws Exception {
+        boolean isOverlapped = false;
+        if(this.map.get(day) == null)
+            return false;
+        for (int i = 0; i < this.map.get(day).size(); i++) {
+            if (GetOverlap(this.map.get(day).get(i), timeRange)!=null) {
+                isOverlapped = true;
+            }
+        }
+        return isOverlapped;
+    }
 
     public void RemoveTime(String day, TimeRange rTime) throws Exception {
         ArrayList<TimeRange> temp = new ArrayList<>();
