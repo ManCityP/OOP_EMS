@@ -211,7 +211,7 @@ public abstract class Database {
             events.add(new Event(Organizer.FindOrganizer(Database.GetOrganizers(), rs.getString(DataType.USERNAME.toString())), rs.getString(DataType.TITLE.toString()), rs.getInt(DataType.ID.toString()),
                         rs.getDouble(DataType.PRICE.toString()), rs.getInt(DataType.ROOM_ID.toString()), new Category(rs.getString(DataType.CATEGORY.toString())),
                             new MyDate(rs.getString(DataType.DATE.toString())),
-                                new TimeRange(rs.getString(DataType.TIME_RANGE.toString().split("-")[0]), rs.getString(DataType.TIME_RANGE.toString().split("-")[1]))));
+                                new TimeRange(rs.getString(DataType.TIME_RANGE.toString()).split("-")[0], rs.getString(DataType.TIME_RANGE.toString()).split("-")[1])));
         }
         return events;
     }

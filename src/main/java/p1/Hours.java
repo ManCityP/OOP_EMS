@@ -16,6 +16,8 @@ public class Hours {
 
     public boolean Contains(TimeRange timeRange, String day) {
         boolean isContained = false;
+        if(this.map.get(day) == null)
+            return false;
         for (int i = 0; i < this.map.get(day).size(); i++) {
             if (this.map.get(day).get(i).Contains(timeRange)) {
                 isContained = true;

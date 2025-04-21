@@ -45,11 +45,11 @@ public class Event {
         LocalDateTime currentTime = LocalDateTime.now();
         LocalDateTime startTime = LocalDateTime.of(date.GetYear(), date.GetMonth(), date.GetDay(), (int) Math.floor(timeRange.GetStart()),
                 (int) Math.floor( (timeRange.GetStart() - Math.floor(timeRange.GetStart())) * 60 ),
-                (int) Math.floor( (timeRange.GetStart() - Math.floor(timeRange.GetStart()) * 60) - Math.floor((timeRange.GetStart() - Math.floor(timeRange.GetStart())) * 60) ));
+                (int) Math.floor( ((timeRange.GetStart() - Math.floor(timeRange.GetStart())) * 60) - Math.floor((timeRange.GetStart() - Math.floor(timeRange.GetStart())) * 60) ));
 
         LocalDateTime endTime = LocalDateTime.of(date.GetYear(), date.GetMonth(), date.GetDay(), (int) Math.floor(timeRange.GetEnd()),
                 (int) Math.floor( (timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60 ),
-                (int) Math.floor( (timeRange.GetEnd() - Math.floor(timeRange.GetEnd()) * 60) - Math.floor((timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60) ));
+                (int) Math.floor( ((timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60) - Math.floor((timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60) ));
 
         if (currentTime.compareTo(startTime) < 0)
             this.status = Status.UPCOMING;

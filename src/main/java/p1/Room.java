@@ -45,7 +45,7 @@ public class Room {
 //SAM7OONI YA REGALAAAAAAA
         if (!GetReservedHours().Contains(event.GetTimeRange(), eventDay.toString())) {
             if (GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())) {
-                GetReservedHours().map.get(eventDay).add(event.GetTimeRange());
+                GetReservedHours().AddTime(event.GetDate().toString(), event.GetTimeRange());
             } else {
                 throw new Exception("Room not available at this time");
             }
