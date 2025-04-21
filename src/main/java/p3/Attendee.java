@@ -39,7 +39,7 @@ return string;
         this.wallet = wallet;
         this.tickets = tickets;
     }
-    public void RegisterAttendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, double balance) throws Exception {
+    public static void RegisterAttendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, double balance) throws Exception {
         {
         if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
             throw new Exception("Invalid Email format");
@@ -54,7 +54,7 @@ return string;
         Wallet.CreateWallet(username, balance);
     }
     }
-public Attendee FindAttendee(ArrayList<Attendee> attendees, String username){
+public static Attendee FindAttendee(ArrayList<Attendee> attendees, String username){
     for (Attendee attendee : attendees)
         if (attendee.username.equals(username))
             return attendee;
