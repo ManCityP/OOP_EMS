@@ -46,6 +46,7 @@ public class Organizer extends User {
     }
 
     public void CreateEvent(double price, Room room,String eventTitle, Category category, MyDate date, TimeRange timeRange) throws Exception {
+        room.ReserveEvent(new Event(this, eventTitle, 0, price, room.GetID(), category, date, timeRange));
         Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, day, time_range, title) " +
                                        "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
                                        username, price, category, room.GetID(), date.toString(), timeRange.toString(), eventTitle));
