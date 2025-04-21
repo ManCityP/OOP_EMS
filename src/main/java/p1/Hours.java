@@ -7,29 +7,12 @@ import static p1.TimeRange.GetOverlap;
 public class Hours {
     Map<String, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
-    void DisplayRange(String day) {
-
-        System.out.println(this.map.get(day));
-
-
-    }
-
     public boolean Contains(TimeRange timeRange, String day) {
         boolean isContained = false;
         if(this.map.get(day) == null)
             return false;
         for (int i = 0; i < this.map.get(day).size(); i++) {
             if (this.map.get(day).get(i).Contains(timeRange)) {
-                isContained = true;
-            }
-        }
-        return isContained;
-    }
-
-    public static boolean Contains(Map<Day, ArrayList<TimeRange>> map, TimeRange timeRange, String day) {
-        boolean isContained = false;
-        for (int i = 0; i < map.get(day).size(); i++) {
-            if (map.get(day).get(i).Contains(timeRange)) {
                 isContained = true;
             }
         }
