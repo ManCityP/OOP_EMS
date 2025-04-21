@@ -19,7 +19,7 @@ public class Event {
 
     public Event(Organizer organizer,String eventTitle, int ID,int maxNumOfAttendees , double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
         //TODO put all these validations in the CreateEvent() in Organizer and remove them from here.
-        if (organizer == null)
+        /*if (organizer == null)
             throw new Exception("Invalid organizer");
         if (eventTitle == null)
             throw new Exception("Invalid Event title");
@@ -34,7 +34,7 @@ public class Event {
         if (date == null)
             throw new Exception("Invalid date");
         if (timeRange == null)
-            throw new Exception("Invalid timerange");
+            throw new Exception("Invalid timerange");*/
 
         this.organizer = organizer;
         this.eventTitle = eventTitle;
