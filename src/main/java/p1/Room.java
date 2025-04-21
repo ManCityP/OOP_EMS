@@ -19,19 +19,12 @@ public class Room {
     private final int maxCapacity;
 
     public Room(int id, Event currentEvent, Hours availableHours, Hours reservedHours, String LOCATION, int maxCapacity) {
-        this.id = id; //TODO validations ya zeft  @Fris233
+        this.id = id;
         this.currentEvent = currentEvent;
         this.availableHours = availableHours;
         this.reservedHours = reservedHours;
         this.LOCATION = LOCATION;
         this.maxCapacity = maxCapacity;
-        //numberOfRooms++;
-    }
-
-    ;
-
-    public void UpdateEvent(Event event) { //change the current event
-        this.currentEvent = event;
     }
 
     public static Room FindRoom(ArrayList<Room> rooms, int id) {
