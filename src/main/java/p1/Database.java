@@ -157,7 +157,7 @@ public abstract class Database {
                 organizers.add(new Organizer(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
                         new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
                             rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE,
-                                new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()))));
+                                new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString())), DecryptTickets(rs.getString(DataType.TICKETS.toString()))));
             }
         }
         return organizers;
@@ -185,7 +185,7 @@ public abstract class Database {
         ResultSet rs = GetData(DataType.EVENT.toString());
         ArrayList<Event> events = new ArrayList<>();
         while(rs.next()) {
-            events.add(new Event(Organizer.FindOrganizer(Database.GetOrganizers(), rs.getString(DataType.USERNAME.toString())), rs.getInt(DataType.ID.toString()),
+            events.add(new Event(Organizer.FindOrganizer(Database.GetOrganizers(), rs.getString(DataType.USERNAME.toString())), rs.getString(DataType.TITLE.toString()), rs.getInt(DataType.ID.toString()),
                         rs.getDouble(DataType.PRICE.toString()), rs.getInt(DataType.ROOM_ID.toString()), new Category(rs.getString(DataType.CATEGORY.toString())),
                             new MyDate(rs.getString(DataType.DATE.toString())),
                                 new TimeRange(rs.getString(DataType.TIME_RANGE.toString().split("-")[0]), rs.getString(DataType.TIME_RANGE.toString().split("-")[1]))));
@@ -205,7 +205,7 @@ public abstract class Database {
                         event = e;
                     reservedHours.AddTime(e.GetDate().toString(), e.GetTimeRange());
                 }
-            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), reservedHours));
+            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), reservedHours, rs.getString(DataType.LOCATION.toString())));
         }
         return rooms;
     }

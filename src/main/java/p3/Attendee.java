@@ -80,11 +80,19 @@ public class Attendee extends User {
         if (!(this.tickets.get(event.GetID()) == null)) {
             if (this.tickets.get(event.GetID()) >= numOfTickets) {
                 if (event.GetStatus() == Status.UPCOMING) {
-                    this.tickets.remove(event.GetID());
+                    this.tickets.put(event.GetID(), this.tickets.get(event.GetID()) - numOfTickets);
+                    if (this.tickets.get(event.GetID()) <= 0)
+                        this.tickets.remove(event.GetID());
+                    event.GetOrganizer().GetTicketsSold().put(event.GetID(), event.GetOrganizer().GetTicketsSold().get(event.GetID()) - numOfTickets);
+                    if (event.GetOrganizer().GetTicketsSold().get(event.GetID()) <= 0)
+                        event.GetOrganizer().GetTicketsSold().remove(event.GetID());
                     this.wallet.EditBalance(event.GetPrice() * numOfTickets);
                     event.GetOrganizer().GetWallet().EditBalance(-event.GetPrice() * numOfTickets);
-                } else if (event.GetStatus() == Status.OVER) {
-                    throw new Exception("The event has already ended");
+                    Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(this.tickets), this.username));
+                    Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(event.GetOrganizer().GetTicketsSold()), event.GetOrganizer().GetUsername()));
+
+                } else {
+                    throw new Exception("The Refund Time has expired!");
                 }
             } else {
                 throw new Exception("Invalid number of tickets");

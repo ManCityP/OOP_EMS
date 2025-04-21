@@ -15,11 +15,12 @@ public class Organizer extends User {
     private final Wallet wallet;
     private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
 
-    public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet) throws Exception {
+    public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
         super(username, email, password, dob, gender);
         if(wallet == null)
             throw new Exception("Invalid Wallet");
         this.wallet = wallet;
+        this.ticketsSold = ticketsSold;
     }
 
     public static void RegisterOrganizer(String username, String email, String password, MyDate dob, Gender gender, double balance) throws Exception {
