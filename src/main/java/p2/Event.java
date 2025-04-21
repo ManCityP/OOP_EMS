@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Event {
     private final Organizer organizer;               //Almost there
+    private final String eventTitle;
     private final int ID;
     private final int roomID;
     private Category category;
@@ -15,9 +16,11 @@ public class Event {
     private TimeRange timeRange;
     private final Status status;
 
-    public Event(Organizer organizer, int ID, double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
+    public Event(Organizer organizer,String eventTitle, int ID, double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
         if (organizer == null)
-            throw new Exception(" Invalid organizer");
+            throw new Exception("Invalid organizer");
+        if (eventTitle == null)
+            throw new Exception("Invalid Event title");
         if(ID < 0)
             throw new Exception("Invalid ID");
         if(price < 0)
@@ -31,6 +34,7 @@ public class Event {
         if (timeRange == null)
             throw new Exception("Invalid timerange");
         this.organizer = organizer;
+        this.eventTitle = eventTitle;
         this.ID = ID;
         this.price = price;
         this.roomID = roomID;
@@ -135,6 +139,12 @@ public class Event {
     }
     public int GetRoomID() {
         return this.roomID;
+    }
+    public String GetEventTitle(){
+        return this.eventTitle;
+    }
+    public Category GetCategory() {
+        return this.category;
     }
 
     @Override

@@ -44,10 +44,10 @@ public class Organizer extends User {
         return null;
     }
 
-    public void CreateEvent(double price, Room room, Category category, MyDate date, TimeRange timeRange) throws Exception {
-        Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, day, time_range) " +
-                                       "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
-                                       username, price, category, room.GetID(), date.toString(), timeRange.toString()));
+    public void CreateEvent(double price, Room room,String eventTitle, Category category, MyDate date, TimeRange timeRange) throws Exception {
+        Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, day, time_range, title) " +
+                                       "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                                       username, price, category, room.GetID(), date.toString(), timeRange.toString(), eventTitle));
         System.out.println("Event added successfully");
     }
 
