@@ -4,6 +4,8 @@ module com.fhm.oop_ems {
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
+    requires com.google.gson;
+    requires java.sql;
 
     opens com.fhm.oop_ems to javafx.fxml;
     exports com.fhm.oop_ems;
