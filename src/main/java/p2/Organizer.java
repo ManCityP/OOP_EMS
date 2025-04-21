@@ -2,6 +2,7 @@ package p2;
 
 import p1.*;
 import p1.MyDate;
+import p3.Attendee;
 import p3.Gender;
 import p3.User;
 import p3.Wallet;
@@ -76,9 +77,12 @@ public class Organizer extends User {
         event.EditDate(date);
     }
 
-    public void DeleteEvent(Event event) throws Exception {
+    public void CancelEvent(Event event) throws Exception {
         Database.Execute(String.format("DELETE FROM event WHERE id = '%s'", event.GetID()));
         System.out.println("Event deleted successfully");
+        for(Attendee attendee : Database.GetAttendees())
+            if (attendee.GetTickets().containsKey(event.GetID()))
+                attendee.RefundTicket(event, attendee.GetTickets().get(event.GetID()));
     }
 
     public Wallet GetWallet(){

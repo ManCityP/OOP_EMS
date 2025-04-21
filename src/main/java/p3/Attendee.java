@@ -77,12 +77,12 @@ if(tickets.containsKey(event.GetID())){
 }
     }
     public void RefundTicket(Event event, int numOfTickets) throws Exception {
-        if(this.tickets.get(event.GetID()) >= numOfTickets){
-            if(event.GetStatus()== Status.ONGOING){
+        if(this.tickets.get(event.GetID()) >= numOfTickets){ //TODO 2t2aked en el tickets mawgoda aslan
+            if(event.GetStatus()== Status.ONGOING){ //TODO Upgoing not ongoing
                 this.tickets.remove(event.GetID());
                 this.wallet.EditBalance(event.GetPrice()*numOfTickets);
                 event.GetOrganizer().GetWallet().EditBalance(-event.GetPrice()*numOfTickets);
-            }
+            } //TODO else yeb3atlo "the event has already ended"
         }
         else{
             throw new Exception("Invalid number of tickets");
