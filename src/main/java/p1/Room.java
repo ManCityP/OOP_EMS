@@ -35,18 +35,21 @@ public class Room {
     }
 
     public void ReserveEvent(Event event) throws Exception {
-        //TODO: Check if the maximum number of attendees is more than the capacity of the room
-        Day eventDay = MyDate.GetDayOfTheWeek(event.GetDate());
-        ArrayList<TimeRange> dayRange = GetAvailableHours().map.get(eventDay);
-        //SAM7OONI YA REGALAAAAAAA
-        if (!GetReservedHours().Contains(event.GetTimeRange(), event.GetDate().toString())) {
-            if (GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())) {
-                GetReservedHours().AddTime(event.GetDate().toString(), event.GetTimeRange());
-            } else {
-                throw new Exception("Room not available at this time");
-            }
+        if (event.GetMaxNumOfAttendees() > maxCapacity) {
+            throw new Exception("Maximum number of event attendees exceeds room capacity");
         } else {
-            throw new Exception("Room already reserved at this time");
+            Day eventDay = MyDate.GetDayOfTheWeek(event.GetDate());
+            ArrayList<TimeRange> dayRange = GetAvailableHours().map.get(eventDay);
+            //SAM7OONI YA REGALAAAAAAA
+            if (!GetReservedHours().Contains(event.GetTimeRange(), event.GetDate().toString())) {
+                if (GetAvailableHours().Contains(event.GetTimeRange(), eventDay.toString())) {
+                    GetReservedHours().AddTime(event.GetDate().toString(), event.GetTimeRange());
+                } else {
+                    throw new Exception("Room not available at this time");
+                }
+            } else {
+                throw new Exception("Room already reserved at this time");
+            }
         }
     }
 
