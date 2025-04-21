@@ -21,9 +21,9 @@ public class Main {
             try {
                 System.out.println("What would you like to do? ");
                 if (currentUser != null) {
-                    if(currentUser instanceof Admin)
+                    if (currentUser instanceof Admin)
                         currentUser = Admin.FindAdmin(Database.GetAdmins(), currentUser.GetUsername());
-                    else if(currentUser instanceof Organizer)
+                    else if (currentUser instanceof Organizer)
                         currentUser = Organizer.FindOrganizer(Database.GetOrganizers(), currentUser.GetUsername());
                     else
                         currentUser = Attendee.FindAttendee(Database.GetAttendees(), currentUser.GetUsername());
@@ -133,14 +133,18 @@ public class Main {
                         }
                     }
                 }
-                else if(input.equalsIgnoreCase("login") && currentUser == null) {
+                else if(input.equalsIgnoreCase("login")) {
+                    if (currentUser != null)
+                        throw new Exception("You are already logged in!");
                     System.out.print("Username or email: ");
                     String usermail = scanner.nextLine().trim();
                     System.out.print("Password: ");
                     String password = scanner.nextLine().trim();
                     currentUser = User.Login(usermail, password);
                 }
-                else if(input.equalsIgnoreCase("logout") && currentUser != null) {
+                else if(input.equalsIgnoreCase("logout")) {
+                    if(currentUser == null)
+                        throw new Exception("You are not logged in!");
                     currentUser = null;
                 }
                 else if (input.equalsIgnoreCase("delete")) {
@@ -315,10 +319,10 @@ public class Main {
                     }
                     else if(input.equalsIgnoreCase("room")) {
                         System.out.println("Search by room number: ");
-                        int roomID = scanner.nextInt();
+                        input = scanner.nextLine().trim();
                         ArrayList<Room> rooms = Database.GetRooms();
                         for (Room room : rooms)
-                            if (room.GetID() == roomID)
+                            if (room.GetID() == Integer.parseInt(input))
                                 System.out.println(room);
                     }
                     else if(input.equalsIgnoreCase("category")) {
