@@ -92,7 +92,9 @@ public class Main {
                         else {
                             System.out.println("Available Hours (Format is\t0>[06:15-17:00]/2>[09:00-21:34]/5>[13:30-18:30,22:30-23:30]\t) 0 for Saturday, 6 for Friday: ");
                             String hoursStr = scanner.nextLine().trim();
-                            ((Admin) currentUser).CreateRoom(new Hours(TimeRange.DecryptWorkingHours(hoursStr)));
+                            System.out.println("Location: ");
+                            String location = scanner.nextLine().trim();
+                            ((Admin) currentUser).CreateRoom(new Hours(TimeRange.DecryptWorkingHours(hoursStr)), location);
                         }
                     }
                     else if(input.equalsIgnoreCase("category")) {
