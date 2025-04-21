@@ -45,12 +45,12 @@ public class Organizer extends User {
         return null;
     }
 
-    public void CreateEvent(double price, Room room, String eventTitle, Category category, MyDate date, TimeRange timeRange) throws Exception {
-        room.ReserveEvent(new Event(this, eventTitle, 0, price, room.GetID(), category, date, timeRange));
+    public void CreateEvent(double price, Room room, String eventTitle, Category category, MyDate date, TimeRange timeRange, int maxNumOfAttendees) throws Exception {
+        room.ReserveEvent(new Event(this, eventTitle, 0, maxNumOfAttendees, price, room.GetID(), category, date, timeRange));
         eventTitle = eventTitle.replace("'","\\'");
-        Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, date, time_range, title) " +
-                                       "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                                       username, price, category.toString(), room.GetID(), date.toString(), timeRange.toString(), eventTitle));
+        Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, date, time_range, title, maximum) " +
+                                       "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                                       username, price, category.toString(), room.GetID(), date.toString(), timeRange.toString(), eventTitle, maxNumOfAttendees));
         System.out.println("Event added successfully");
     }
 

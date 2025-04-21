@@ -16,13 +16,15 @@ public class Room {
     private Hours availableHours;
     private Hours reservedHours;
     private final String LOCATION;
+    private final int maxCapacity;
 
-    public Room(int id, Event currentEvent, Hours availableHours, Hours reservedHours, String LOCATION) {
-        this.id = id;
+    public Room(int id, Event currentEvent, Hours availableHours, Hours reservedHours, String LOCATION, int maxCapacity) {
+        this.id = id; //TODO validations ya zeft  @Fris233
         this.currentEvent = currentEvent;
         this.availableHours = availableHours;
         this.reservedHours = reservedHours;
         this.LOCATION = LOCATION;
+        this.maxCapacity = maxCapacity;
         //numberOfRooms++;
     }
 
@@ -84,6 +86,9 @@ public class Room {
         return this.reservedHours;
     }
 
+    public int GetMaxCapacity() {
+        return this.maxCapacity;
+    }
 
     @Override
     public String toString() {

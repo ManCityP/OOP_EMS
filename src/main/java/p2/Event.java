@@ -11,12 +11,13 @@ public class Event {
     private final int ID;
     private final int roomID;
     private Category category;
+    private int maxNumOfAttendees;
     private double price;
     private MyDate date;
     private TimeRange timeRange;
     private final Status status;
 
-    public Event(Organizer organizer,String eventTitle, int ID, double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
+    public Event(Organizer organizer,String eventTitle, int ID,int maxNumOfAttendees , double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
         if (organizer == null)
             throw new Exception("Invalid organizer");
         if (eventTitle == null)
@@ -27,15 +28,19 @@ public class Event {
             throw new Exception("Invalid ticket price");
         if (roomID < 0)
             throw new Exception("Invalid room ID");
+        if (maxNumOfAttendees < 0 || maxNumOfAttendees > Room.FindRoom(Database.GetRooms(), roomID).GetMaxCapacity())
+            throw new Exception("Invalid number of attendees");
         if (category == null)
             throw new Exception("Invalid category");
         if (date == null)
             throw new Exception("Invalid date");
         if (timeRange == null)
             throw new Exception("Invalid timerange");
+
         this.organizer = organizer;
         this.eventTitle = eventTitle;
         this.ID = ID;
+        this.maxNumOfAttendees = maxNumOfAttendees;
         this.price = price;
         this.roomID = roomID;
         this.category = category;
@@ -119,6 +124,13 @@ public class Event {
         }
     }
 
+    public void EditMaxNumOfAttendees(int maxNumOfAttendees) throws Exception {
+        if (maxNumOfAttendees > Room.FindRoom(Database.GetRooms(), this.roomID).GetMaxCapacity() || maxNumOfAttendees <= 0 || maxNumOfAttendees < this.organizer.GetTicketsSold().get(this.ID))
+            throw new Exception("invalid number of attendees");
+
+        this.maxNumOfAttendees = maxNumOfAttendees;
+    }
+
     public Status GetStatus() {
         return this.status;
     }
@@ -145,6 +157,9 @@ public class Event {
     }
     public Category GetCategory() {
         return this.category;
+    }
+    public int GetMaxNumOfAttendees() {
+        return maxNumOfAttendees;
     }
 
     @Override
