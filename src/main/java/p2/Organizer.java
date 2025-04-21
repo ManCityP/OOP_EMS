@@ -6,10 +6,13 @@ import p3.Gender;
 import p3.User;
 import p3.Wallet;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Organizer extends User {
-    private final Wallet wallet;         //Almost there
+    private final Wallet wallet;
+    private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
 
     public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet) throws Exception {
         super(username, email, password, dob, gender);
@@ -80,6 +83,10 @@ public class Organizer extends User {
 
     public Wallet GetWallet(){
         return this.wallet;
+    }
+
+    public Map<Integer, Integer> GetTicketsSold() {
+        return this.ticketsSold;
     }
 
     @Override
