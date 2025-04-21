@@ -34,15 +34,20 @@ public abstract class User {
     }
 
     public static User Login(String usermail, String password) throws Exception {
-        ArrayList<User> users = new ArrayList<>();
-        users.addAll(Database.GetAdmins());
-        users.addAll(Database.GetOrganizers());
-        users.addAll(Database.GetAttendees());
+        ArrayList<User> users = GetUsers();
         for (User user : users) {
             if((usermail.equals(user.username) || usermail.equals(user.email)) && password.equals(user.password))
                 return user;
         }
         throw new Exception("Invalid Login Details!");
+    }
+
+    public static ArrayList<User> GetUsers() throws Exception {
+        ArrayList<User> users = new ArrayList<>();
+        users.addAll(Database.GetAdmins());
+        users.addAll(Database.GetOrganizers());
+        users.addAll(Database.GetAttendees());
+        return users;
     }
 
     public String GetUsername(){
