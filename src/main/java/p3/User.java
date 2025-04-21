@@ -36,8 +36,10 @@ public abstract class User {
     public static User Login(String usermail, String password) throws Exception {
         ArrayList<User> users = GetUsers();
         for (User user : users) {
-            if((usermail.equals(user.username) || usermail.equals(user.email)) && password.equals(user.password))
+            if((usermail.equals(user.username) || usermail.equals(user.email)) && password.equals(user.password)) {
+                System.out.println("Successfully logged in!");
                 return user;
+            }
         }
         throw new Exception("Invalid Login Details!");
     }
