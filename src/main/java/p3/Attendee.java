@@ -68,6 +68,7 @@ public static Attendee FindAttendee(ArrayList<Attendee> attendees, String userna
         event.GetOrganizer().GetWallet().EditBalance(event.GetPrice()*numOfTickets);
         tickets.merge(event.GetID(), numOfTickets, Integer::sum);
         Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(this.tickets), this.username));
+        event.GetOrganizer().GetTicketsSold().merge(event.GetID(), numOfTickets, Integer::sum);
         Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(event.GetOrganizer().GetTicketsSold()), event.GetOrganizer().GetUsername()));
     }
 
