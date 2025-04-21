@@ -208,7 +208,7 @@ public abstract class Database {
         ArrayList<Event> events = new ArrayList<>();
         while(rs.next()) {
             events.add(new Event(Organizer.FindOrganizer(Database.GetOrganizers(), rs.getString(DataType.USERNAME.toString())), rs.getString(DataType.TITLE.toString()), rs.getInt(DataType.ID.toString()),
-                        rs.getDouble(DataType.PRICE.toString()), rs.getInt(DataType.ROOM_ID.toString()), new Category(rs.getString(DataType.CATEGORY.toString())),
+                        rs.getInt(DataType.MAX.toString()), rs.getDouble(DataType.PRICE.toString()), rs.getInt(DataType.ROOM_ID.toString()), new Category(rs.getString(DataType.CATEGORY.toString())),
                             new MyDate(rs.getString(DataType.DATE.toString())),
                                 new TimeRange(rs.getString(DataType.TIME_RANGE.toString()).split("-")[0], rs.getString(DataType.TIME_RANGE.toString()).split("-")[1])));
         }
@@ -227,7 +227,8 @@ public abstract class Database {
                         event = e;
                     reservedHours.AddTime(e.GetDate().toString(), e.GetTimeRange());
                 }
-            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))), reservedHours, rs.getString(DataType.LOCATION.toString())));
+            rooms.add(new Room(rs.getInt(DataType.ID.toString()), event, new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString()))),
+                                    reservedHours, rs.getString(DataType.LOCATION.toString()), rs.getInt(DataType.MAX.toString())));
         }
         return rooms;
     }

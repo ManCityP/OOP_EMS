@@ -37,8 +37,8 @@ public class Admin extends User {
         return null;
     }
 
-    public void CreateRoom(Hours availableHours, String location) {
-        Database.Execute(String.format("INSERT INTO room (time_range, location) VALUES ('%s', '%s')", TimeRange.EncryptWorkingHours(availableHours.map), location));
+    public void CreateRoom(Hours availableHours, String location, int maximum) {
+        Database.Execute(String.format("INSERT INTO room (time_range, location, maximum) VALUES ('%s', '%s', '%s')", TimeRange.EncryptWorkingHours(availableHours.map), location, maximum));
         System.out.println("Room added successfully");
     }
 

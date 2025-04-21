@@ -91,7 +91,9 @@ public class Main {
                             String hoursStr = scanner.nextLine().trim();
                             System.out.println("Location: ");
                             String location = scanner.nextLine().trim();
-                            ((Admin) currentUser).CreateRoom(new Hours(TimeRange.DecryptWorkingHours(hoursStr)), location);
+                            System.out.println("Maximum Capacity: ");
+                            String maximum = scanner.nextLine().trim();
+                            ((Admin) currentUser).CreateRoom(new Hours(TimeRange.DecryptWorkingHours(hoursStr)), location, Integer.parseInt(maximum));
                         }
                     }
                     else if(input.equalsIgnoreCase("category")) {
@@ -124,8 +126,10 @@ public class Main {
                             System.out.println("Time Range: ");
                             String timeRange = scanner.nextLine().trim();
                             String[] range = timeRange.split("-");
+                            System.out.println("Maximum Number of Attendees: ");
+                            String maximum = scanner.nextLine().trim();
                             ((Organizer) currentUser).CreateEvent(Double.parseDouble(price), Objects.requireNonNull(Room.FindRoom(Database.GetRooms(), Integer.parseInt(roomID))),
-                                                                    eventTitle, new Category(category), new MyDate(date), new TimeRange(range[0].trim(), range[1].trim()));
+                                                                    eventTitle, new Category(category), new MyDate(date), new TimeRange(range[0].trim(), range[1].trim()), Integer.parseInt(maximum));
                         }
                     }
                 }
