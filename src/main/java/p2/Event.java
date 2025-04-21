@@ -150,9 +150,13 @@ public class Event {
     @Override
     public String toString(){
         return  "Organizer: " + this.organizer.GetUsername() +
+                "\tEvent title: " + this.eventTitle +
                 "\tEvent ID: " + this.ID +
                 "\tRoom ID: " + this.roomID +
                 "\tCategory: " + this.category +
-                "\tPrice: " + this.price;
+                "\tEvent date: " + this.date +
+                "\tEvent time range: " + this.timeRange +
+                "\tPrice: " + this.price +
+                "\tStatus: " + this.status;
     }
 }
