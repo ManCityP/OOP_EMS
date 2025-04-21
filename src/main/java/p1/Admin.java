@@ -37,7 +37,9 @@ public class Admin extends User {
         return null;
     }
 
-    public void CreateRoom(Hours availableHours, String location, int maximum) {
+    public void CreateRoom(Hours availableHours, String location, int maximum) throws Exception {
+        if(maximum <= 0)
+            throw new Exception("Maximum Capacity must be more than 0");
         Database.Execute(String.format("INSERT INTO room (time_range, location, maximum) VALUES ('%s', '%s', '%s')", TimeRange.EncryptWorkingHours(availableHours.map), location, maximum));
         System.out.println("Room added successfully");
     }
@@ -48,6 +50,8 @@ public class Admin extends User {
     }
 
     public void AddCategory(String category) throws Exception {
+        if (category.isEmpty())
+            throw new Exception("Category name cannot be empty");
         Category.AddCategory(category);
     }
 
