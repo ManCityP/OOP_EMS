@@ -49,7 +49,7 @@ public class Organizer extends User {
         room.ReserveEvent(new Event(this, eventTitle, 0, price, room.GetID(), category, date, timeRange));
         Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, date, time_range, title) " +
                                        "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-                                       username, price, category, room.GetID(), date.toString(), timeRange.toString(), eventTitle));
+                                       username, price, category.toString(), room.GetID(), date.toString(), timeRange.toString(), eventTitle));
         System.out.println("Event added successfully");
     }
 
