@@ -114,6 +114,9 @@ public class TimeRange {
     public static Map<String, ArrayList<TimeRange>> DecryptWorkingHours(String allHours) throws Exception {
         Map<String, ArrayList<TimeRange>> map = new LinkedHashMap<>();
 
+        if(allHours.isEmpty())
+            return map;
+
         String[] strings = allHours.split("/");
         for (String str : strings) {
             String[] day = str.split(">");
@@ -133,6 +136,9 @@ public class TimeRange {
 
     public static String EncryptTimeRange(Map<String, ArrayList<TimeRange>> map) {
         // {19/7/2024 --> [06:15-17:00], 21/7/2024 --> [09:00-21:34], 22/7/2024 --> [09:11-19:12], 23/7/2024 --> [09:30-17:15], 28/7/2024 --> [13:30-18:30, 22:30-23:30]}
+
+        if(map == null)
+            return "";
 
         StringBuilder allHours = new StringBuilder();
         for (Map.Entry<String, ArrayList<TimeRange>> entry: map.entrySet()) {
@@ -157,6 +163,9 @@ public class TimeRange {
 
     public static Map<String, ArrayList<TimeRange>> DecryptTimeRange(String allHours) throws Exception {
         Map<String, ArrayList<TimeRange>> map = new LinkedHashMap<>();
+
+        if(allHours.isEmpty())
+            return map;
 
         String[] strings = allHours.split("!");
         for (String str : strings) {
