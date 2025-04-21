@@ -46,6 +46,21 @@ public class Organizer extends User {
     }
 
     public void CreateEvent(double price, Room room, String eventTitle, Category category, MyDate date, TimeRange timeRange, int maxNumOfAttendees) throws Exception {
+        if (eventTitle == null)
+            throw new Exception("Invalid Event title");
+        if(price < 0)
+            throw new Exception("Invalid ticket price");
+        if (room == null)
+            throw new Exception("Invalid room");
+        if (maxNumOfAttendees < 0 || maxNumOfAttendees > room.GetMaxCapacity())
+            throw new Exception("Invalid number of attendees");
+        if (category == null)
+            throw new Exception("Invalid category");
+        if (date == null)
+            throw new Exception("Invalid date");
+        if (timeRange == null)
+            throw new Exception("Invalid timerange");
+
         room.ReserveEvent(new Event(this, eventTitle, 0, maxNumOfAttendees, price, room.GetID(), category, date, timeRange));
         eventTitle = eventTitle.replace("'","\\'");
         Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, date, time_range, title, maximum) " +

@@ -18,24 +18,6 @@ public class Event {
     private final Status status;
 
     public Event(Organizer organizer,String eventTitle, int ID,int maxNumOfAttendees , double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
-        //TODO put all these validations in the CreateEvent() in Organizer and remove them from here.
-        /*if (organizer == null)
-            throw new Exception("Invalid organizer");
-        if (eventTitle == null)
-            throw new Exception("Invalid Event title");
-        if(price < 0)
-            throw new Exception("Invalid ticket price");
-        if (roomID < 0)
-            throw new Exception("Invalid room ID");
-        if (maxNumOfAttendees < 0 || maxNumOfAttendees > Room.FindRoom(Database.GetRooms(), roomID).GetMaxCapacity())
-            throw new Exception("Invalid number of attendees");
-        if (category == null)
-            throw new Exception("Invalid category");
-        if (date == null)
-            throw new Exception("Invalid date");
-        if (timeRange == null)
-            throw new Exception("Invalid timerange");*/
-
         this.organizer = organizer;
         this.eventTitle = eventTitle;
         this.ID = ID;
