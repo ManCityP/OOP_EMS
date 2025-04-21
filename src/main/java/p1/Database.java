@@ -61,8 +61,7 @@ public abstract class Database {
             return ticketsMap;
         String[] split = tickets.split(",");
         for (String ticket : split) {
-            int id = Integer.parseInt(ticket.split(":")[0]);
-            int numOfTickets = Integer.parseInt(ticket.split(":")[1]);
+            ticketsMap.put(Integer.parseInt(ticket.split(":")[0]), Integer.parseInt(ticket.split(":")[1]));
         }
         return ticketsMap;
     }
