@@ -65,17 +65,19 @@ public class Attendee extends User {
     }
 
     public void PurchaseEvent(Event event, int numOfTickets) throws Exception {
-        //TODO: Check if the purchase amount will put the maximum number of attendees over the limit
-        if (this.wallet.GetBalance() < (event.GetPrice()) * numOfTickets)
-            throw new Exception("Invalid balance");
-        this.wallet.EditBalance(-(event.GetPrice() * numOfTickets));
-        event.GetOrganizer().GetWallet().EditBalance(event.GetPrice() * numOfTickets);
-        tickets.merge(event.GetID(), numOfTickets, Integer::sum);
-        Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(this.tickets), this.username));
-        event.GetOrganizer().GetTicketsSold().merge(event.GetID(), numOfTickets, Integer::sum);
-        Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(event.GetOrganizer().GetTicketsSold()), event.GetOrganizer().GetUsername()));
+        if (event.GetOrganizer().GetTicketsSold().get(event.GetID()) + numOfTickets > event.GetMaxNumOfAttendees()) {
+            throw new Exception("Number of tickets is over the event threshold");
+        } else {
+            if (this.wallet.GetBalance() < (event.GetPrice()) * numOfTickets)
+                throw new Exception("Invalid balance");
+            this.wallet.EditBalance(-(event.GetPrice() * numOfTickets));
+            event.GetOrganizer().GetWallet().EditBalance(event.GetPrice() * numOfTickets);
+            tickets.merge(event.GetID(), numOfTickets, Integer::sum);
+            Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(this.tickets), this.username));
+            event.GetOrganizer().GetTicketsSold().merge(event.GetID(), numOfTickets, Integer::sum);
+            Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(event.GetOrganizer().GetTicketsSold()), event.GetOrganizer().GetUsername()));
+        }
     }
-
 
     public void RefundTicket(Event event, int numOfTickets) throws Exception {
         if (!(this.tickets.get(event.GetID()) == null)) {

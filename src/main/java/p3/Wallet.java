@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Wallet {
     private double balance;                 //Almost there
-    private final int walletNumber;
+    private final int WALLET_NUMBER;
 
     public Wallet(double balance,int walletNumber) throws Exception {
         if(balance < 0)
@@ -13,7 +13,7 @@ public class Wallet {
         if(walletNumber <= 0)
             throw new Exception("Invalid wallet number");
         this.balance = balance;
-        this.walletNumber = walletNumber;
+        this.WALLET_NUMBER = walletNumber;
     }
 
     public  static void CreateWallet(String username, double balance){
@@ -22,7 +22,7 @@ public class Wallet {
 
     public static Wallet FindWallet(ArrayList<Wallet> wallets, int walletNumber){
         for (Wallet wallet : wallets)
-            if (wallet.walletNumber == walletNumber)
+            if (wallet.WALLET_NUMBER == walletNumber)
                 return wallet;
 
         return null;
@@ -33,7 +33,7 @@ public class Wallet {
             if (Math.abs(amount) > this.balance)
                 throw new Exception("No available balance");
         this.balance += amount;
-        Database.Execute(String.format("UPDATE wallet SET balance = '%s' WHERE (id = '%s')", this.balance, this.walletNumber));
+        Database.Execute(String.format("UPDATE wallet SET balance = '%s' WHERE (id = '%s')", this.balance, this.WALLET_NUMBER));
     }
 
     public double GetBalance(){
@@ -42,7 +42,7 @@ public class Wallet {
 
     @Override
     public String toString(){
-        return  "Wallet number: " + this.walletNumber +
+        return  "Wallet number: " + this.WALLET_NUMBER +
                 "\tBalance: " + this.balance;
     }
 }

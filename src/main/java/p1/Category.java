@@ -8,7 +8,7 @@ public class Category {
     public Category() {}
     public Category(String category) throws Exception {
         if (!Database.GetCategories().contains(category))
-            throw new Exception("This Category doesn't exist!");
+            System.out.println("This Category doesn't exist!");
         this.category = category;
     }
 

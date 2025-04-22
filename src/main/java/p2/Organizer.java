@@ -12,14 +12,14 @@ import java.util.Map;
 
 
 public class Organizer extends User {
-    private final Wallet wallet;
+    private final Wallet WALLET;
     private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
 
     public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
         super(username, email, password, dob, gender);
         if(wallet == null)
             throw new Exception("Invalid Wallet");
-        this.wallet = wallet;
+        this.WALLET = wallet;
         this.ticketsSold = ticketsSold;
     }
 
@@ -46,6 +46,21 @@ public class Organizer extends User {
     }
 
     public void CreateEvent(double price, Room room, String eventTitle, Category category, MyDate date, TimeRange timeRange, int maxNumOfAttendees) throws Exception {
+        if (eventTitle == null)
+            throw new Exception("Invalid Event title");
+        if(price < 0)
+            throw new Exception("Invalid ticket price");
+        if (room == null)
+            throw new Exception("Invalid room");
+        if (maxNumOfAttendees < 0 || maxNumOfAttendees > room.GetMaxCapacity())
+            throw new Exception("Invalid number of attendees");
+        if (category == null)
+            throw new Exception("Invalid category");
+        if (date == null)
+            throw new Exception("Invalid date");
+        if (timeRange == null)
+            throw new Exception("Invalid timerange");
+
         room.ReserveEvent(new Event(this, eventTitle, 0, maxNumOfAttendees, price, room.GetID(), category, date, timeRange));
         eventTitle = eventTitle.replace("'","\\'");
         Database.Execute(String.format("INSERT INTO event (username, price, category, room_id, date, time_range, title, maximum) " +
@@ -89,7 +104,7 @@ public class Organizer extends User {
     }
 
     public Wallet GetWallet(){
-        return this.wallet;
+        return this.WALLET;
     }
 
     public Map<Integer, Integer> GetTicketsSold() {
@@ -103,7 +118,7 @@ public class Organizer extends User {
                 "\tGender: " + this.gender +
                 "\tEmail: " + this.email +
                 "\tPassword: " + this.password +
-                "\tWallet: " + this.wallet +
+                "\tWallet: " + this.WALLET +
                 "\tTickets sold: " + this.ticketsSold;
     }
 }

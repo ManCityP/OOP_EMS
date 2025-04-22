@@ -7,14 +7,14 @@ public enum DataType {
     PRICE("price"), BALANCE("balance"), USER_ID("user_id"), ROOM_ID("room_id"), EVENT_ID("event_id"), AVAILABLE_TIME("available_time"), NAME("name"), MAX("maximum"),
     TIME_RANGE("time_range"), DAY("day"), TYPE("type"), ROLE("role"), INTERESTS("interests"), DATE("date"), TICKETS("tickets"), TITLE("title"), LOCATION("location");
 
-    private final String type;
+    private final String _TYPE;
 
     DataType(String type) {
-        this.type = type;
+        this._TYPE = type;
     }
 
     @Override
     public String toString() {
-        return this.type;
+        return this._TYPE;
     }
 }
