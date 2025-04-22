@@ -6,24 +6,24 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Event {
-    private final Organizer organizer;               //Almost there
-    private final String eventTitle;
+    private final Organizer ORGANIZER;                  //Almost there
+    private final String EVENT_TITLE;
     private final int ID;
-    private final int roomID;
+    private final int ROOM_ID;
     private Category category;
     private int maxNumOfAttendees;
     private double price;
     private MyDate date;
     private TimeRange timeRange;
-    private final Status status;
+    private final Status STATUS;
 
-    public Event(Organizer organizer,String eventTitle, int ID,int maxNumOfAttendees , double price, int roomID, Category category, MyDate date, TimeRange timeRange) throws Exception{
-        this.organizer = organizer;
-        this.eventTitle = eventTitle;
+    public Event(Organizer ORGANIZER,String EVENT_TITLE, int ID,int maxNumOfAttendees , double price, int ROOM_ID, Category category, MyDate date, TimeRange timeRange) throws Exception{
+        this.ORGANIZER = ORGANIZER;
+        this.EVENT_TITLE = EVENT_TITLE;
         this.ID = ID;
         this.maxNumOfAttendees = maxNumOfAttendees;
         this.price = price;
-        this.roomID = roomID;
+        this.ROOM_ID = ROOM_ID;
         this.category = category;
         this.date = date;
         this.timeRange = timeRange;
@@ -37,13 +37,13 @@ public class Event {
                 (int) Math.floor( (timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60 ),
                 (int) Math.floor( ((timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60) - Math.floor((timeRange.GetEnd() - Math.floor(timeRange.GetEnd())) * 60) ));
 
-        if (currentTime.compareTo(startTime) < 0)
-            this.status = Status.UPCOMING;
+        if (currentTime.isBefore(startTime))
+            this.STATUS = Status.UPCOMING;
         else {
-            if (currentTime.compareTo(endTime) > 0)
-                this.status = Status.OVER;
+            if (currentTime.isAfter(endTime))
+                this.STATUS = Status.OVER;
             else
-                this.status = Status.ONGOING;
+                this.STATUS = Status.ONGOING;
         }
     }
 
@@ -66,7 +66,7 @@ public class Event {
         for (Room room : Database.GetRooms())
             if (room.GetID() == roomID) {
                 room.ReserveEvent(this);
-                Database.Execute(String.format("UPDATE event SET room_id = '%s' WHERE (id = '%s')", this.roomID, this.ID));
+                Database.Execute(String.format("UPDATE event SET room_id = '%s' WHERE (id = '%s')", this.ROOM_ID, this.ID));
             }
         throw new Exception(" Invalid Room");
     }
@@ -84,7 +84,7 @@ public class Event {
         MyDate temp = this.date;
         this.date = date;
         try {
-            Room.FindRoom(Database.GetRooms(), this.roomID).ReserveEvent(this);
+            Room.FindRoom(Database.GetRooms(), this.ROOM_ID).ReserveEvent(this);
             Database.Execute(String.format("UPDATE event SET date = '%s' WHERE (id = '%s')", this.date, this.ID));
         }catch (Exception ex){
             this.date = temp;
@@ -97,7 +97,7 @@ public class Event {
         TimeRange temp = this.timeRange;
         this.timeRange = timeRange;
         try {
-            Room.FindRoom(Database.GetRooms(), this.roomID).ReserveEvent(this);
+            Room.FindRoom(Database.GetRooms(), this.ROOM_ID).ReserveEvent(this);
             Database.Execute(String.format("UPDATE event SET time_range = '%s' WHERE (id = '%s')", this.timeRange, this.ID));
         }
         catch (Exception ex) {
@@ -106,14 +106,14 @@ public class Event {
     }
 
     public void EditMaxNumOfAttendees(int maxNumOfAttendees) throws Exception {
-        if (maxNumOfAttendees > Room.FindRoom(Database.GetRooms(), this.roomID).GetMaxCapacity() || maxNumOfAttendees <= 0 || maxNumOfAttendees < this.organizer.GetTicketsSold().get(this.ID))
+        if (maxNumOfAttendees > Room.FindRoom(Database.GetRooms(), this.ROOM_ID).GetMaxCapacity() || maxNumOfAttendees <= 0 || maxNumOfAttendees < this.ORGANIZER.GetTicketsSold().get(this.ID))
             throw new Exception("invalid number of attendees");
 
         this.maxNumOfAttendees = maxNumOfAttendees;
     }
 
     public Status GetStatus() {
-        return this.status;
+        return this.STATUS;
     }
     public double GetPrice(){
         return this.price;
@@ -122,7 +122,7 @@ public class Event {
         return this.ID;
     }
     public Organizer GetOrganizer() {
-        return this.organizer;
+        return this.ORGANIZER;
     }
     public TimeRange GetTimeRange(){
         return this.timeRange;
@@ -131,10 +131,10 @@ public class Event {
         return this.date;
     }
     public int GetRoomID() {
-        return this.roomID;
+        return this.ROOM_ID;
     }
     public String GetEventTitle(){
-        return this.eventTitle;
+        return this.EVENT_TITLE;
     }
     public Category GetCategory() {
         return this.category;
@@ -145,14 +145,14 @@ public class Event {
 
     @Override
     public String toString(){
-        return  "Organizer: " + this.organizer.GetUsername() +
-                "\tEvent title: " + this.eventTitle +
+        return  "Organizer: " + this.ORGANIZER.GetUsername() +
+                "\tEvent title: " + this.EVENT_TITLE +
                 "\tEvent ID: " + this.ID +
-                "\tRoom ID: " + this.roomID +
+                "\tRoom ID: " + this.ROOM_ID +
                 "\tCategory: " + this.category +
                 "\tEvent date: " + this.date +
                 "\tEvent time range: " + this.timeRange +
                 "\tPrice: " + this.price +
-                "\tStatus: " + this.status;
+                "\tStatus: " + this.STATUS;
     }
 }
