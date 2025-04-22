@@ -1,12 +1,8 @@
 package p1;
 
 import p2.Event;
-import p2.Organizer;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class Room {
     //static int numberOfRooms;
@@ -16,7 +12,7 @@ public class Room {
     private Hours availableHours;
     private Hours reservedHours;
     private final String LOCATION;
-    private final int maxCapacity;
+    private final int MAX_CAPACITY;
 
     public Room(int id, Event currentEvent, Hours availableHours, Hours reservedHours, String LOCATION, int maxCapacity) {
         this.id = id;
@@ -24,7 +20,7 @@ public class Room {
         this.availableHours = availableHours;
         this.reservedHours = reservedHours;
         this.LOCATION = LOCATION;
-        this.maxCapacity = maxCapacity;
+        this.MAX_CAPACITY = maxCapacity;
     }
 
     public static Room FindRoom(ArrayList<Room> rooms, int id) {
@@ -35,7 +31,7 @@ public class Room {
     }
 
     public void ReserveEvent(Event event) throws Exception {
-        if (event.GetMaxNumOfAttendees() > maxCapacity) {
+        if (event.GetMaxNumOfAttendees() > MAX_CAPACITY) {
             throw new Exception("Maximum number of event attendees exceeds room capacity");
         } else {
             Day eventDay = MyDate.GetDayOfTheWeek(event.GetDate());
@@ -83,7 +79,7 @@ public class Room {
     }
 
     public int GetMaxCapacity() {
-        return this.maxCapacity;
+        return this.MAX_CAPACITY;
     }
 
     @Override

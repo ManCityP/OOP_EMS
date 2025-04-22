@@ -12,14 +12,14 @@ import java.util.Map;
 
 
 public class Organizer extends User {
-    private final Wallet wallet;
+    private final Wallet WALLET;
     private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
 
     public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
         super(username, email, password, dob, gender);
         if(wallet == null)
             throw new Exception("Invalid Wallet");
-        this.wallet = wallet;
+        this.WALLET = wallet;
         this.ticketsSold = ticketsSold;
     }
 
@@ -104,7 +104,7 @@ public class Organizer extends User {
     }
 
     public Wallet GetWallet(){
-        return this.wallet;
+        return this.WALLET;
     }
 
     public Map<Integer, Integer> GetTicketsSold() {
@@ -118,7 +118,7 @@ public class Organizer extends User {
                 "\tGender: " + this.gender +
                 "\tEmail: " + this.email +
                 "\tPassword: " + this.password +
-                "\tWallet: " + this.wallet +
+                "\tWallet: " + this.WALLET +
                 "\tTickets sold: " + this.ticketsSold;
     }
 }
