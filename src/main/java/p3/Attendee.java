@@ -65,17 +65,21 @@ public class Attendee extends User {
     }
 
     public void PurchaseEvent(Event event, int numOfTickets) throws Exception {
-        if (event.GetOrganizer().GetTicketsSold().get(event.GetID()) + numOfTickets > event.GetMaxNumOfAttendees()) {
-            throw new Exception("Number of tickets is over the event threshold");
+        if (event.GetStatus() == Status.UPCOMING) {
+            if (event.GetOrganizer().GetTicketsSold().get(event.GetID()) + numOfTickets > event.GetMaxNumOfAttendees()) {
+                throw new Exception("Number of tickets is over the event threshold");
+            } else {
+                if (this.wallet.GetBalance() < (event.GetPrice()) * numOfTickets)
+                    throw new Exception("Invalid balance");
+                this.wallet.EditBalance(-(event.GetPrice() * numOfTickets));
+                event.GetOrganizer().GetWallet().EditBalance(event.GetPrice() * numOfTickets);
+                tickets.merge(event.GetID(), numOfTickets, Integer::sum);
+                Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(this.tickets), this.username));
+                event.GetOrganizer().GetTicketsSold().merge(event.GetID(), numOfTickets, Integer::sum);
+                Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(event.GetOrganizer().GetTicketsSold()), event.GetOrganizer().GetUsername()));
+            }
         } else {
-            if (this.wallet.GetBalance() < (event.GetPrice()) * numOfTickets)
-                throw new Exception("Invalid balance");
-            this.wallet.EditBalance(-(event.GetPrice() * numOfTickets));
-            event.GetOrganizer().GetWallet().EditBalance(event.GetPrice() * numOfTickets);
-            tickets.merge(event.GetID(), numOfTickets, Integer::sum);
-            Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(this.tickets), this.username));
-            event.GetOrganizer().GetTicketsSold().merge(event.GetID(), numOfTickets, Integer::sum);
-            Database.Execute(String.format("UPDATE user SET tickets = '%s' WHERE (username = '%s')", Database.EncryptTickets(event.GetOrganizer().GetTicketsSold()), event.GetOrganizer().GetUsername()));
+            throw new Exception("Purchase time has expired");
         }
     }
 
