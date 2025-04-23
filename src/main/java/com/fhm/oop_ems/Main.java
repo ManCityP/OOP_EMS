@@ -192,6 +192,8 @@ public class Main {
                     System.out.println("What would you like to update? ");
                     input = scanner.nextLine().trim();
                     if(input.equalsIgnoreCase("room")) {
+                        if(!(currentUser instanceof Admin))
+                            throw new Exception("You must be an admin to edit room information!");
                         System.out.println("Room ID: ");
                         String roomID = scanner.nextLine().trim();
                         Room room = Objects.requireNonNull(Room.FindRoom(Database.GetRooms(), Integer.parseInt(roomID)));
@@ -215,6 +217,8 @@ public class Main {
                         }
                     }
                     else if(input.equalsIgnoreCase("event")) {
+                        if(!(currentUser instanceof Organizer))
+                            throw new Exception("You must be an organizer to edit event information!");
                         System.out.println("Event ID: ");
                         String eventID = scanner.nextLine().trim();
                         Event event = Objects.requireNonNull(Event.FindEvent(Database.GetEvents(), Integer.parseInt(eventID)));
@@ -223,17 +227,17 @@ public class Main {
                         if (input.equalsIgnoreCase("room")) {
                             System.out.println("New Room ID: ");
                             String roomID = scanner.nextLine().trim();
-                            event.ChangeRoom(Integer.parseInt(roomID));
+                            ((Organizer) currentUser).EditEventRoom(event, Integer.parseInt(roomID));
                         }
                         else if (input.equalsIgnoreCase("category")) {
                             System.out.println("New Category: ");
                             String category = scanner.nextLine().trim();
-                            event.EditCategory(new Category(category));
+                            ((Organizer) currentUser).EditEventCategory(event, new Category(category));
                         }
                         if (input.equalsIgnoreCase("date")) {
                             System.out.println("New Date (dd/mm/yyyy): ");
                             String date = scanner.nextLine().trim();
-                            event.EditDate(new MyDate(date));
+                            ((Organizer) currentUser).EditEventDate(event, new MyDate(date));
                         }
                         else if (input.equalsIgnoreCase("time")) {
                             System.out.println("New Event time: ");
@@ -244,7 +248,7 @@ public class Main {
                         else if (input.equalsIgnoreCase("price")) {
                             System.out.println("Enter new price: ");
                             String price = scanner.nextLine().trim();
-                            event.EditPrice(Double.parseDouble(price));
+                            ((Organizer) currentUser).EditEventPrice(event, Double.parseDouble(price));
                         }
                     }
                     else if(input.equalsIgnoreCase("wallet")) {
