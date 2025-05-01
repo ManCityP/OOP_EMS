@@ -5,18 +5,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-public class MainMenuController {
+public class OrganizerMainMenuController {
 
     @FXML
     private void ButtonHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
-        btn.setStyle("-fx-background-color: #d62300; -fx-background-radius: 20;");
+        btn.setStyle("-fx-background-color: #d62300; -fx-background-radius: 20; -fx-text-fill: white;");
     }
 
     @FXML
     private void ButtonNotHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
-        btn.setStyle("-fx-background-color: #885133; -fx-background-radius: 20;");
+        btn.setStyle("-fx-background-color: #F0E6D7; -fx-background-radius: 20; -fx-text-fill: #885133;");
     }
 
     @FXML
