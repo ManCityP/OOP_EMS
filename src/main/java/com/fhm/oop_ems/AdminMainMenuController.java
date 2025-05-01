@@ -1,9 +1,14 @@
 package com.fhm.oop_ems;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+import p3.User;
 
 public class AdminMainMenuController {
     @FXML
@@ -22,6 +27,13 @@ public class AdminMainMenuController {
     private Button roomsButton;
     @FXML
     private Label username;
+
+    private User currentUser;
+
+    public void InitData(User user) {
+        currentUser = user;
+        username.setText(currentUser.GetUsername());
+    }
 
     @FXML
     void ButtonHovered(MouseEvent event) {
@@ -55,7 +67,22 @@ public class AdminMainMenuController {
 
     @FXML
     void LogoutPressed() {
-        System.out.println("Logged out!");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)logoutButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
