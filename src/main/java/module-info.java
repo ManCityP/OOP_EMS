@@ -6,6 +6,7 @@ module com.fhm.oop_ems {
     requires com.dlsc.formsfx;
     requires com.google.gson;
     requires java.sql;
+    requires java.desktop;
 
     opens com.fhm.oop_ems to javafx.fxml;
     exports com.fhm.oop_ems;
