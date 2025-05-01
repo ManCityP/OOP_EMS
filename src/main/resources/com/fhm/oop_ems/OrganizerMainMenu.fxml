@@ -23,7 +23,7 @@
          </image>
       </ImageView>
       <Label layoutX="56.0" layoutY="18.0" />
-      <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1089.0" layoutY="30.0" mnemonicParsing="false" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" style="-fx-background-color: #F0E6D7; -fx-background-radius: 20;" text="Log Out" textAlignment="CENTER" textFill="#885133">
+      <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="1089.0" layoutY="30.0" mnemonicParsing="false" onAction="#LogoutPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" style="-fx-background-color: #F0E6D7; -fx-background-radius: 20;" text="Log Out" textAlignment="CENTER" textFill="#885133">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -34,7 +34,7 @@
             <ColorAdjust />
          </effect>
       </Button>
-      <Label fx:id="myWalletButton" alignment="CENTER" layoutX="452.0" layoutY="33.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#f0e6d7">
+      <Label fx:id="myWalletButton" alignment="CENTER" layoutX="434.0" layoutY="33.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#f0e6d7">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -42,7 +42,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="settingButton" alignment="CENTER" layoutX="338.0" layoutY="33.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="93.0" text="Settings" textFill="#f0e6d7">
+      <Label fx:id="profileButton" alignment="CENTER" layoutX="338.0" layoutY="33.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="75.0" text="Profile" textFill="#f0e6d7">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -66,9 +66,9 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="432.0" layoutY="138.0" text="Welcome!" textFill="#885133">
+      <Label layoutX="421.0" layoutY="136.0" text="Welcome!" textFill="#885133">
          <font>
-            <Font size="76.0" />
+            <Font name="System Bold" size="76.0" />
          </font>
       </Label>
    </children>
