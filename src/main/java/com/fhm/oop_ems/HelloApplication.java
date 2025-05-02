@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import p1.Database;
 import p1.Day;
+import p2.Organizer;
 
 import java.io.IOException;
 
@@ -16,8 +17,9 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Main Menu");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -28,3 +30,13 @@ public class HelloApplication extends Application {
         Database.CloseConnection();
     }
 }
+
+/*
+fris:
+Attendee;
+
+Ahmed:
+Organizer;
+
+ManCity player:
+Admin;*/
