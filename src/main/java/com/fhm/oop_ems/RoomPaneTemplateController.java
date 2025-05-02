@@ -2,13 +2,16 @@ package com.fhm.oop_ems;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import p1.Admin;
 import p1.Day;
 import p1.Room;
 import p1.TimeRange;
 import p2.Event;
+import p3.User;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -17,38 +20,37 @@ public class RoomPaneTemplateController {
 
     @FXML
     private GridPane availableHoursGrid;
-
     @FXML
     private Label eventCategoryLabel;
-
     @FXML
     private Label eventIDLabel;
-
     @FXML
     private Label eventOrganizerLabel;
-
     @FXML
     private Label eventPriceLabel;
-
     @FXML
     private Label eventTimeRangeLabel;
-
     @FXML
     private Label eventTitleLabel;
-
     @FXML
     private Label idLabel;
-
     @FXML
     private Label locationLabel;
-
     @FXML
     private Label reservedCalendarButton;
+    @FXML
+    private Button deleteButton;
+
+    private User currentUser;
+
+    private AdminRoomMenuController adminRoomMenuController;
 
     private Room room;
 
-    public void init(Room room) {
+    public void init(User user, Room room, AdminRoomMenuController adminRoomMenuController) {
+        currentUser = user;
         this.room = room;
+        this.adminRoomMenuController = adminRoomMenuController;
 
         idLabel.setText(String.format("%s", room.GetID()));
         locationLabel.setText(room.GetLocation());
@@ -96,6 +98,22 @@ public class RoomPaneTemplateController {
                 }
             }
         }
+    }
+
+    @FXML
+    void DeletePressed() {
+        ((Admin)currentUser).DeleteRoom(room);
+        adminRoomMenuController.RefreshPressed();
+    }
+
+    @FXML
+    void ButtonHovered(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
+    }
+
+    @FXML
+    void ButtonNotHovered(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
     }
 
     @FXML

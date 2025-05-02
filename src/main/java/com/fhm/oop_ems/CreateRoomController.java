@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -80,6 +77,26 @@ public class CreateRoomController {
     public void Init(User user) {
         currentUser = user;
         availableHours = new Hours(new LinkedHashMap<>());
+
+        locationField.setTextFormatter(new TextFormatter<>(change -> {
+            return change.getControlNewText().length() <= 128 ? change : null;
+        }));
+
+        capacityField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty())
+                capacityField.setText("0");
+            else if(!newValue.matches("\\d*"))
+                capacityField.setText(oldValue.isEmpty()? "0" : oldValue);
+            else {
+                try {
+                    int x = Integer.parseInt(newValue);
+                    capacityField.setText(String.format("%s", newValue));
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    capacityField.setText(oldValue.isEmpty()? "0" : oldValue);
+                }
+            }
+        });
 
         try {
             startHourTextField.textProperty().addListener((observable, oldValue, newValue) -> {

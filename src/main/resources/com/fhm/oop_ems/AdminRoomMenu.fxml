@@ -33,7 +33,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="dashboardButton" layoutY="356.0" mnemonicParsing="false" onAction="#DashboardPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: #885133;" text="Dashboard" textFill="WHITE" AnchorPane.bottomAnchor="396.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="356.0">
+                  <Button fx:id="dashboardButton" layoutY="356.0" mnemonicParsing="false" onAction="#DashboardPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE" AnchorPane.bottomAnchor="396.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="356.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -55,7 +55,7 @@
                <items>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
                      <children>
-                        <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="5.0" mnemonicParsing="false" onAction="#BackPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="5.0" mnemonicParsing="false" onAction="#BackPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -73,7 +73,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="chatButton" alignment="CENTER" contentDisplay="CENTER" layoutX="583.0" layoutY="11.0" mnemonicParsing="false" onAction="#ChatPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="121.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="chatButton" alignment="CENTER" contentDisplay="CENTER" layoutX="583.0" layoutY="11.0" mnemonicParsing="false" onAction="#ChatPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -91,7 +91,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="refreshButton" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#RefreshPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="21.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="refreshButton" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#RefreshPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

@@ -47,13 +47,14 @@ public class AdminRoomMenuController {
                 Node roomNode = loader.load();
 
                 RoomPaneTemplateController controller = loader.getController();
-                controller.init(room);
+                controller.init(currentUser, room, this);
 
                 roomsContainer.getChildren().add(roomNode);
             }
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -71,12 +72,12 @@ public class AdminRoomMenuController {
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #3053ba;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
     }
 
     @FXML
     void ButtonNotHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #885133;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
     }
 
     @FXML

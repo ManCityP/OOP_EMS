@@ -39,6 +39,8 @@ public class Hours {
             if (timeRange == null)
                 temp.remove(timeRange);
         this.map.put(day, temp);
+        if(temp.isEmpty())
+            this.map.remove(day);
     }
 
     public void AddTime(String day, TimeRange rTime) throws Exception {
