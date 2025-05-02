@@ -6,6 +6,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -168,14 +170,24 @@ public class CreateRoomController {
     }
 
     @FXML
+    void HandleKeyPress(KeyEvent event) {
+        if(event.getCode() == KeyCode.ESCAPE) {
+            BackPressed();
+        }
+    }
+
+    @FXML
     void CreatePressed() {
         errorLabel.setText("");
         try {
             ((Admin) currentUser).CreateRoom(availableHours, locationField.getText(), Integer.parseInt(capacityField.getText()));
             BackPressed();
         }
+        catch (NumberFormatException ex) {
+            errorLabel.setText("Invalid Capacity!");
+        }
         catch (Exception ex) {
-            errorLabel.setText(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -189,7 +201,7 @@ public class CreateRoomController {
             UpdateMap();
         }
         catch (Exception ex) {
-            errorLabel.setText(ex.getMessage());
+            errorLabel.setText("Unable to add the specified time!");
         }
     }
 
@@ -203,7 +215,7 @@ public class CreateRoomController {
             UpdateMap();
         }
         catch (Exception ex) {
-            errorLabel.setText(ex.getMessage());
+            errorLabel.setText("Unable to remove the specified time!");
         }
     }
 
@@ -382,11 +394,11 @@ public class CreateRoomController {
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #3053ba;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
     }
 
     @FXML
     void ButtonNotHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #885133;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
     }
 }

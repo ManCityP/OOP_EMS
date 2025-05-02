@@ -14,7 +14,7 @@
 
 <VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.AdminRoomMenuController">
    <children>
-      <SplitPane dividerPositions="0.5" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
+      <SplitPane dividerPositions="0.5" onKeyPressed="#HandleKeyPress" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
          <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="343.0" style="-fx-background-color: #121212;" SplitPane.resizableWithParent="false">
                <children>

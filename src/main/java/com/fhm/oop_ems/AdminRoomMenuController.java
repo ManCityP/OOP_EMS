@@ -1,6 +1,5 @@
 package com.fhm.oop_ems;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -55,6 +56,13 @@ public class AdminRoomMenuController {
         catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    void HandleKeyPress(KeyEvent event) {
+        if(event.getCode() == KeyCode.ESCAPE) {
+            BackPressed();
         }
     }
 
