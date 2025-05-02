@@ -1,30 +1,37 @@
 package com.fhm.oop_ems;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import p1.Database;
+import p1.Room;
 import p3.User;
 
-public class AdminMainMenuController {
+public class AdminRoomMenuController {
+
     @FXML
-    private Button categoriesButton;
+    private Button backButton;
+
     @FXML
     private Button chatButton;
+
     @FXML
     private Button dashboardButton;
+
     @FXML
-    private Button eventsButton;
+    private Button refreshButton;
+
     @FXML
-    private Button logoutButton;
-    @FXML
-    private Button profileButton;
-    @FXML
-    private Button roomsButton;
+    private VBox roomsContainer;
+
     @FXML
     private Label username;
 
@@ -33,6 +40,21 @@ public class AdminMainMenuController {
     public void InitData(User user) {
         currentUser = user;
         username.setText(currentUser.GetUsername());
+
+        try {
+            for (Room room : Database.GetRooms()) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomPaneTemplate.fxml"));
+                Node roomNode = loader.load();
+
+                RoomPaneTemplateController controller = loader.getController();
+                controller.init(room);
+
+                roomsContainer.getChildren().add(roomNode);
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -46,36 +68,29 @@ public class AdminMainMenuController {
     }
 
     @FXML
-    void CategoriesPressed() {
-        System.out.println("Categories Menu loaded!");
+    void ChatPressed(ActionEvent event) {
+        System.out.println("Chat Pressed!");
     }
 
     @FXML
-    void ChatPressed() {
-        System.out.println("Chat loaded!");
+    void CreateRoomPressed(ActionEvent event) {
+        System.out.println("Create Room Pressed!");
     }
 
     @FXML
     void DashboardPressed() {
-        System.out.println("Dashboard refreshed!");
-    }
-
-    @FXML
-    void EventsPressed() {
-        System.out.println("Events Menu loaded!");
-    }
-
-    @FXML
-    void LogoutPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMainMenu.fxml"));
             Parent root = loader.load();
+
+            AdminMainMenuController adminMainMenuController = loader.getController();
+            adminMainMenuController.InitData(currentUser);
 
             // Create the second scene
             Scene scene2 = new Scene(root);
 
             // Get the current stage
-            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            Stage stage = (Stage)backButton.getScene().getWindow();
 
             // Set the new scene
             stage.setScene(scene2);
@@ -86,12 +101,12 @@ public class AdminMainMenuController {
     }
 
     @FXML
-    void ProfilePressed() {
-        System.out.println("Profile Menu Loaded!");
+    void BackPressed() {
+        DashboardPressed();
     }
 
     @FXML
-    void RoomsPressed() {
+    void RefreshPressed() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRoomMenu.fxml"));
             Parent root = loader.load();
@@ -103,7 +118,7 @@ public class AdminMainMenuController {
             Scene scene2 = new Scene(root);
 
             // Get the current stage
-            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            Stage stage = (Stage)refreshButton.getScene().getWindow();
 
             // Set the new scene
             stage.setScene(scene2);
@@ -112,5 +127,4 @@ public class AdminMainMenuController {
             System.out.println(ex.getMessage());
         }
     }
-
 }

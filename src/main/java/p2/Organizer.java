@@ -69,8 +69,6 @@ public class Organizer extends User {
         System.out.println("Event added successfully");
     }
 
-    //TODO read events
-
     public void EditEventPrice(Event event, double price) throws Exception{
         if(!(event.GetOrganizer().GetUsername().equals(this.username)))
             throw new Exception("This Event belongs to another organizer");

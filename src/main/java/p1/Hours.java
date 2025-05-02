@@ -41,8 +41,6 @@ public class Hours {
         this.map.put(day, temp);
     }
 
-
-
     public void AddTime(String day, TimeRange rTime) throws Exception {
 
         if (!this.map.containsKey(day)) {
@@ -95,6 +93,9 @@ public class Hours {
 
     }
 
+    public Map<String, ArrayList<TimeRange>> GetMap() {
+        return this.map;
+    }
 
     public String toString() {
         return this.map.toString();
