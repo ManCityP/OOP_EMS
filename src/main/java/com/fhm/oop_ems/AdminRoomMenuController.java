@@ -58,6 +58,18 @@ public class AdminRoomMenuController {
     }
 
     @FXML
+    void LabelHovered(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        label.setStyle("-fx-underline: true;");
+    }
+
+    @FXML
+    void LabelNotHovered(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        label.setStyle("-fx-underline: false;");
+    }
+
+    @FXML
     void ButtonHovered(MouseEvent event) {
         ((Button)event.getSource()).setStyle("-fx-background-color: #3053ba;");
     }
@@ -68,13 +80,31 @@ public class AdminRoomMenuController {
     }
 
     @FXML
-    void ChatPressed(ActionEvent event) {
+    void ChatPressed() {
         System.out.println("Chat Pressed!");
     }
 
     @FXML
-    void CreateRoomPressed(ActionEvent event) {
-        System.out.println("Create Room Pressed!");
+    void CreateRoomPressed() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateRoomMenu.fxml"));
+            Parent root = loader.load();
+
+            CreateRoomController createRoomController = loader.getController();
+            createRoomController.Init(currentUser);
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)backButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

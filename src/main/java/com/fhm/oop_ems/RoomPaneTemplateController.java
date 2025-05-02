@@ -82,7 +82,7 @@ public class RoomPaneTemplateController {
 
             if(row == 1 && node instanceof Label) {
                 ArrayList<TimeRange> timeRanges = availableHours.get(Day.Translate(col).toString());
-                if(timeRanges == null) {
+                if(timeRanges == null || timeRanges.isEmpty()) {
                     ((Label) node).setText("N/A");
                 }
                 else {

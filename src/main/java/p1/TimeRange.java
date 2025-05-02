@@ -17,8 +17,7 @@ public class TimeRange {
     }
 
     public TimeRange(String start, String end) throws Exception {
-        this.start = Convert(start);
-        this.end = Convert(end);
+        this(Convert(start), Convert(end));
     }
 
 
