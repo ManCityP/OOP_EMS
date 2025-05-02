@@ -1,6 +1,6 @@
 package com.fhm.oop_ems;
 
-import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import p1.Admin;
 import p2.Organizer;
@@ -28,7 +30,29 @@ public class LoginController {
     private TextField username;
 
     @FXML
-    protected void Login(ActionEvent event){
+    public void initialize() {
+        Platform.runLater(() -> username.requestFocus());
+    }
+
+    @FXML
+    void HandleKeyPress(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            Login();
+        }
+        else if(event.getCode() == KeyCode.TAB) {
+            if (username.isFocused()) {
+                password.requestFocus();
+                event.consume();
+            }
+            else {
+                username.requestFocus();
+                event.consume();
+            }
+        }
+    }
+
+    @FXML
+    protected void Login(){
         try {
             User user = User.Login(this.username.getText(),this.password.getText());
             if(user instanceof Admin) {
