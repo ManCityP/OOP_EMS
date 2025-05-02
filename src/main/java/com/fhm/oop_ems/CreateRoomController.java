@@ -90,7 +90,7 @@ public class CreateRoomController {
             else {
                 try {
                     int x = Integer.parseInt(newValue);
-                    capacityField.setText(String.format("%s", newValue));
+                    capacityField.setText(String.format("%s", x));
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                     capacityField.setText(oldValue.isEmpty()? "0" : oldValue);
