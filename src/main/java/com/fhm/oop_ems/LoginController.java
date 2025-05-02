@@ -51,6 +51,9 @@ public class LoginController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerMainMenu.fxml"));
                 Parent root = loader.load();
 
+                OrganizerMainMenuController organizerMainMenuController = loader.getController();
+                organizerMainMenuController.InitData(user);
+
                 // Create the second scene
                 Scene scene2 = new Scene(root);
 

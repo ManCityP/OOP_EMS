@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import p3.User;
 
 import java.io.IOException;
 
@@ -24,6 +25,31 @@ public class OrganizerMainMenuController {
     private Label myWalletButton;
     @FXML
     private Label profileButton;
+
+    private User currentUser;
+
+    public void InitData(User user) {
+        this.currentUser = user;
+    }
+
+    @FXML
+    private void EventsButtonPressed(){
+        try {
+            System.out.println("events button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerEventMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerEventMenuController organizerEventMenuController = loader.getController();
+            organizerEventMenuController.InitData(currentUser);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     @FXML
     private void ButtonHovered(MouseEvent event) {
@@ -51,6 +77,7 @@ public class OrganizerMainMenuController {
 
     @FXML
     private void LogoutPressed() throws IOException {
+        System.out.println("logout button pressed");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
