@@ -126,7 +126,7 @@
                      <children>
                         <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="849.0" style="-fx-background-color: #F0E6D7;" />
+                              <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="849.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
                            </content>
                         </ScrollPane>
                      </children>
