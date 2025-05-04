@@ -85,16 +85,10 @@ public abstract class Database {
     * }
     *
     * */
-    public static ResultSet GetData(String type) {
-        try {
-            String sql = "SELECT * FROM " + type;
-            Statement stmt = con.createStatement();
-            return stmt.executeQuery(sql);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public static ResultSet GetData(String type) throws Exception {
+        String sql = "SELECT * FROM " + type;
+        Statement stmt = con.createStatement();
+        return stmt.executeQuery(sql);
     }
 
     //Everything in the format matters a lot (including uppercase and lowercase and any special symbols)
@@ -130,14 +124,9 @@ public abstract class Database {
     */
 
     //Call this function with one of the above format.
-    public static void Execute(String sql) {
-        try {
-            PreparedStatement insertStatement = con.prepareStatement(sql);
-            insertStatement.executeUpdate();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public static void Execute(String sql) throws Exception {
+        PreparedStatement insertStatement = con.prepareStatement(sql);
+        insertStatement.executeUpdate();
     }
 
     public static ArrayList<Admin> GetAdmins() throws Exception {
@@ -232,7 +221,7 @@ public abstract class Database {
         }
         return rooms;
     }
-    public static ArrayList<String> GetCategories() throws SQLException {
+    public static ArrayList<String> GetCategories() throws Exception {
         ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
         ArrayList<String> categories = new ArrayList<>();
         while(rs.next()) {

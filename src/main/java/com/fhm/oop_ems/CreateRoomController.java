@@ -78,6 +78,7 @@ public class CreateRoomController {
 
     public void Init(User user) {
         currentUser = user;
+        this.username.setText(currentUser.GetUsername());
         availableHours = new Hours(new LinkedHashMap<>());
 
         locationField.setTextFormatter(new TextFormatter<>(change -> {

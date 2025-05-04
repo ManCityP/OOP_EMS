@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.AdminRoomMenuController">
+<VBox alignment="CENTER" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.CreateCategoryController">
    <children>
       <SplitPane dividerPositions="0.5" onKeyPressed="#HandleKeyPress" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
          <items>
@@ -109,21 +110,38 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label alignment="CENTER" layoutX="245.0" layoutY="30.0" onMouseClicked="#CreateRoomPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="180.0" text="Add Room" textFill="#f0e6d7">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                      <children>
-                        <ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
+                        <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                            <content>
-                              <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
+                              <AnchorPane minHeight="698.0" minWidth="-Infinity" prefWidth="862.0" style="-fx-background-color: #F0E6D7;">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="94.0" text="Category Name:">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="categoryField" layoutX="156.0" layoutY="95.0" prefHeight="25.0" prefWidth="677.0" />
+                                    <Button fx:id="createButton" alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="197.0" mnemonicParsing="false" onAction="#CreatePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="162.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Add Category" textAlignment="CENTER" textFill="#009bff" underline="true">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="System Bold" size="19.0" />
+                                       </font>
+                                       <effect>
+                                          <ColorAdjust />
+                                       </effect>
+                                    </Button>
+                                    <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="141.0" prefHeight="48.0" prefWidth="695.0" textAlignment="CENTER" textFill="RED" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </content>
                         </ScrollPane>
                      </children>

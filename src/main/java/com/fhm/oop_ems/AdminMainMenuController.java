@@ -49,7 +49,25 @@ public class AdminMainMenuController {
 
     @FXML
     void CategoriesPressed() {
-        System.out.println("Categories Menu loaded!");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCategoryMenu.fxml"));
+            Parent root = loader.load();
+
+            AdminCategoryMenuController adminCategoryMenuController = loader.getController();
+            adminCategoryMenuController.InitData(currentUser);
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)categoriesButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

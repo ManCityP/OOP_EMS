@@ -44,7 +44,7 @@ public class Admin extends User {
         System.out.println("Room added successfully");
     }
 
-    public void DeleteRoom(Room room) {
+    public void DeleteRoom(Room room) throws Exception {
         Database.Execute(String.format("DELETE FROM room WHERE id = '%s'", room.GetID()));
         System.out.println("Room deleted successfully");
     }

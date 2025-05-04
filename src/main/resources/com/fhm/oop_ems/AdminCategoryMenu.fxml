@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.AdminRoomMenuController">
+<VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.AdminCategoryMenuController">
    <children>
       <SplitPane dividerPositions="0.5" onKeyPressed="#HandleKeyPress" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
          <items>
@@ -109,7 +109,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label alignment="CENTER" layoutX="245.0" layoutY="30.0" onMouseClicked="#CreateRoomPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="180.0" text="Add Room" textFill="#f0e6d7">
+                        <Label alignment="CENTER" layoutX="245.0" layoutY="30.0" onMouseClicked="#CreateCategoryPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="180.0" text="Add Category" textFill="#f0e6d7">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -123,7 +123,7 @@
                      <children>
                         <ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                            <content>
-                              <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
+                              <VBox fx:id="categoriesContainer" minHeight="698.0" prefWidth="862.0" spacing="15.0" style="-fx-background-color: #F0E6D7;" />
                            </content>
                         </ScrollPane>
                      </children>

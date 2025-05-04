@@ -7,17 +7,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import p1.Category;
 import p1.Database;
 import p1.Room;
 import p3.User;
 
-public class AdminRoomMenuController {
+public class AdminCategoryMenuController {
 
     @FXML
     private Button backButton;
@@ -28,7 +28,7 @@ public class AdminRoomMenuController {
     @FXML
     private Button refreshButton;
     @FXML
-    private VBox roomsContainer;
+    private VBox categoriesContainer;
     @FXML
     private Label username;
 
@@ -36,22 +36,21 @@ public class AdminRoomMenuController {
 
     public void InitData(User user) {
         currentUser = user;
-        this.username.setText(currentUser.GetUsername());
+        username.setText(currentUser.GetUsername());
 
         try {
-            for (Room room : Database.GetRooms()) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomPaneTemplate.fxml"));
+            for (String category : Database.GetCategories()) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("CategoryPaneTemplate.fxml"));
                 Node roomNode = loader.load();
 
-                RoomPaneTemplateController controller = loader.getController();
-                controller.init(currentUser, room, this);
+                CategoryPaneTemplateController controller = loader.getController();
+                controller.Init(currentUser, category, this);
 
-                roomsContainer.getChildren().add(roomNode);
+                categoriesContainer.getChildren().add(roomNode);
             }
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
-            ex.printStackTrace();
         }
     }
 
@@ -90,13 +89,13 @@ public class AdminRoomMenuController {
     }
 
     @FXML
-    void CreateRoomPressed() {
+    void CreateCategoryPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateRoomMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CreateCategoryMenu.fxml"));
             Parent root = loader.load();
 
-            CreateRoomController createRoomController = loader.getController();
-            createRoomController.Init(currentUser);
+            CreateCategoryController createCategoryController = loader.getController();
+            createCategoryController.Init(currentUser);
 
             // Create the second scene
             Scene scene2 = new Scene(root);
@@ -143,11 +142,11 @@ public class AdminRoomMenuController {
     @FXML
     void RefreshPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRoomMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCategoryMenu.fxml"));
             Parent root = loader.load();
 
-            AdminRoomMenuController adminRoomMenuController = loader.getController();
-            adminRoomMenuController.InitData(currentUser);
+            AdminCategoryMenuController adminCategoryMenuController = loader.getController();
+            adminCategoryMenuController.InitData(currentUser);
 
             // Create the second scene
             Scene scene2 = new Scene(root);

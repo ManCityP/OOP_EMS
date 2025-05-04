@@ -101,7 +101,7 @@ public class RoomPaneTemplateController {
     }
 
     @FXML
-    void DeletePressed() {
+    void DeletePressed() throws Exception {
         ((Admin)currentUser).DeleteRoom(room);
         adminRoomMenuController.RefreshPressed();
     }

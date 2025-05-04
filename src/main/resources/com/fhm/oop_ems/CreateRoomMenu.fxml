@@ -377,7 +377,7 @@
                                           <Button layoutX="204.0" layoutY="96.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" rotate="180.0" style="-fx-background-color: transparent;" />
                                        </children>
                                     </AnchorPane>
-                                    <Button fx:id="createButton" alignment="CENTER" contentDisplay="CENTER" layoutX="653.0" layoutY="390.0" mnemonicParsing="false" onAction="#CreatePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="180.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Confirm Creation" textAlignment="CENTER" textFill="#009bff" underline="true">
+                                    <Button fx:id="createButton" alignment="CENTER" contentDisplay="CENTER" layoutX="701.0" layoutY="390.0" mnemonicParsing="false" onAction="#CreatePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="132.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Add Room" textAlignment="CENTER" textFill="#009bff" underline="true">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
