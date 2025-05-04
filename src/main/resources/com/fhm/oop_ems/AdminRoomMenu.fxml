@@ -121,7 +121,7 @@
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                      <children>
-                        <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
+                        <ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                            <content>
                               <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
                            </content>

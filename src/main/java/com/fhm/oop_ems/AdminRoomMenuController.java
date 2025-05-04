@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,19 +21,14 @@ public class AdminRoomMenuController {
 
     @FXML
     private Button backButton;
-
     @FXML
     private Button chatButton;
-
     @FXML
     private Button dashboardButton;
-
     @FXML
     private Button refreshButton;
-
     @FXML
     private VBox roomsContainer;
-
     @FXML
     private Label username;
 
