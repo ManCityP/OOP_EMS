@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="692.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.CategoryPaneTemplateController">
+<AnchorPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="692.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Admin.CategoryPaneTemplateController">
    <children>
       <Label fx:id="categoryLabel" layoutX="14.0" layoutY="6.0" maxWidth="-Infinity" prefHeight="77.0" prefWidth="574.0" text="Default" textFill="WHITE" wrapText="true">
          <font>
@@ -29,7 +29,7 @@
          <graphic>
             <ImageView fitHeight="65.0" fitWidth="70.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../image/deleteImg.png" />
+                  <Image url="@../../../../image/deleteImg.png" />
                </image>
             </ImageView>
          </graphic>

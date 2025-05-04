@@ -1,4 +1,4 @@
-package com.fhm.oop_ems;
+package com.fhm.oop_ems.Admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import p1.Category;
 import p1.Database;
-import p1.Room;
 import p3.User;
 
 public class AdminCategoryMenuController {

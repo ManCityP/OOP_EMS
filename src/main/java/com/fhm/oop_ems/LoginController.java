@@ -1,5 +1,6 @@
 package com.fhm.oop_ems;
 
+import com.fhm.oop_ems.Admin.AdminMainMenuController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,7 +60,7 @@ public class LoginController {
         try {
             User user = User.Login(this.username.getText(),this.password.getText());
             if(user instanceof Admin) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMainMenu.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/AdminMainMenu.fxml"));
                 Parent root = loader.load();
 
                 AdminMainMenuController adminMainMenuController = loader.getController();

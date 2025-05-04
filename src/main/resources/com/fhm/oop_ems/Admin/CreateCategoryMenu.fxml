@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.AdminCategoryMenuController">
+<VBox alignment="CENTER" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Admin.CreateCategoryController">
    <children>
       <SplitPane dividerPositions="0.5" onKeyPressed="#HandleKeyPress" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
          <items>
@@ -20,12 +21,12 @@
                <children>
                   <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/Logo.png" />
+                        <Image url="@../../../../image/Logo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                      <image>
-                        <Image url="@../../../image/pfp.png" />
+                        <Image url="@../../../../image/pfp.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="Mohamed Ashraf Hatem Eltaie Abdelrahman" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
@@ -46,7 +47,7 @@
                   </Button>
                   <ImageView fitHeight="66.0" fitWidth="98.0" layoutX="2.0" layoutY="347.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/dashboardButton.png" />
+                        <Image url="@../../../../image/dashboardButton.png" />
                      </image>
                   </ImageView>
                </children>
@@ -68,7 +69,7 @@
                            <graphic>
                               <ImageView fitHeight="72.0" fitWidth="76.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/backImg.png" />
+                                    <Image url="@../../../../image/backImg.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -86,7 +87,7 @@
                            <graphic>
                               <ImageView fitHeight="65.0" fitWidth="60.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/chatimg.png" />
+                                    <Image url="@../../../../image/chatimg.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -104,26 +105,43 @@
                            <graphic>
                               <ImageView fitHeight="65.0" fitWidth="60.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/refreshImg.png" />
+                                    <Image url="@../../../../image/refreshImg.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Label alignment="CENTER" layoutX="245.0" layoutY="30.0" onMouseClicked="#CreateCategoryPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="180.0" text="Add Category" textFill="#f0e6d7">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                      <children>
-                        <ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
+                        <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                            <content>
-                              <VBox fx:id="categoriesContainer" minHeight="698.0" prefWidth="862.0" spacing="15.0" style="-fx-background-color: #F0E6D7;" />
+                              <AnchorPane minHeight="698.0" minWidth="-Infinity" prefWidth="862.0" style="-fx-background-color: #F0E6D7;">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="94.0" text="Category Name:">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="categoryField" layoutX="156.0" layoutY="95.0" prefHeight="25.0" prefWidth="677.0" />
+                                    <Button fx:id="createButton" alignment="CENTER" contentDisplay="CENTER" layoutX="350.0" layoutY="197.0" mnemonicParsing="false" onAction="#CreatePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="162.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Add Category" textAlignment="CENTER" textFill="#009bff" underline="true">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="System Bold" size="19.0" />
+                                       </font>
+                                       <effect>
+                                          <ColorAdjust />
+                                       </effect>
+                                    </Button>
+                                    <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="141.0" prefHeight="48.0" prefWidth="695.0" textAlignment="CENTER" textFill="RED" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </content>
                         </ScrollPane>
                      </children>

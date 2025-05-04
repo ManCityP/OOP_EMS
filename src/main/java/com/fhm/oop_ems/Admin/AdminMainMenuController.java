@@ -1,5 +1,6 @@
-package com.fhm.oop_ems;
+package com.fhm.oop_ems.Admin;
 
+import com.fhm.oop_ems.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import p3.User;
 
@@ -88,7 +87,7 @@ public class AdminMainMenuController {
     @FXML
     void LogoutPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
             Parent root = loader.load();
 
             // Create the second scene

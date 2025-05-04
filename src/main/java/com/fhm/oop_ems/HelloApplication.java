@@ -6,18 +6,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import p1.Database;
 import p1.Day;
-import p2.Organizer;
 
 import java.io.IOException;
-
-//Test Commit
 
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Main Menu");
+        stage.setTitle("Alley OOP FAM");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

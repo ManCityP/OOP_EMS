@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.AdminMainMenuController">
+<VBox alignment="CENTER" style="-fx-background-color: #F0E6D7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Admin.AdminMainMenuController">
    <children>
       <SplitPane dividerPositions="0.5" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
         <items>
@@ -19,12 +19,12 @@
                <children>
                   <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/Logo.png" />
+                        <Image url="@../../../../image/Logo.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                      <image>
-                        <Image url="@../../../image/pfp.png" />
+                        <Image url="@../../../../image/pfp.png" />
                      </image>
                   </ImageView>
                   <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="Mohamed Ashraf Hatem Eltaie Abdelrahman" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
@@ -45,7 +45,7 @@
                   </Button>
                   <ImageView fitHeight="66.0" fitWidth="98.0" layoutX="2.0" layoutY="347.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../image/dashboardButton.png" />
+                        <Image url="@../../../../image/dashboardButton.png" />
                      </image>
                   </ImageView>
                </children>
@@ -78,7 +78,7 @@
                            <graphic>
                               <ImageView fitHeight="65.0" fitWidth="60.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../image/chatimg.png" />
+                                    <Image url="@../../../../image/chatimg.png" />
                                  </image>
                               </ImageView>
                            </graphic>
@@ -133,22 +133,22 @@
                         </Button>
                         <ImageView fitHeight="117.0" fitWidth="145.0" layoutX="258.0" layoutY="188.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/categoriesImg.png" />
+                              <Image url="@../../../../image/categoriesImg.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="688.0" layoutY="500.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/profileButtonImg.png" />
+                              <Image url="@../../../../image/profileButtonImg.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="688.0" layoutY="165.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/doorIcon.png" />
+                              <Image url="@../../../../image/doorIcon.png" />
                            </image>
                         </ImageView>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="258.0" layoutY="500.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../image/eventIcon.png" />
+                              <Image url="@../../../../image/eventIcon.png" />
                            </image>
                         </ImageView>
                      </children>
