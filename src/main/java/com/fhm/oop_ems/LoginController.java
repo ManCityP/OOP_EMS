@@ -1,6 +1,7 @@
 package com.fhm.oop_ems;
 
 import com.fhm.oop_ems.Admin.AdminMainMenuController;
+import com.fhm.oop_ems.Attendee.AttendeeMainMenuController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import p1.Admin;
 import p2.Organizer;
+import p3.Attendee;
 import p3.User;
 
 public class LoginController {
@@ -91,9 +93,23 @@ public class LoginController {
                 // Set the new scene
                 stage.setScene(scene2);
             }
-            else {
+            else if(user instanceof Attendee) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendee/AttendeeMainMenu.fxml"));
+                    Parent root = loader.load();
 
-            }
+                    AttendeeMainMenuController attendeeMainMenuController = loader.getController();
+                    attendeeMainMenuController.InitData(user);
+
+                    // Create the second scene
+                    Scene scene2 = new Scene(root);
+
+                    // Get the current stage
+                    Stage stage = (Stage)loginButton.getScene().getWindow();
+
+                    // Set the new scene
+                    stage.setScene(scene2);
+                }
+
         }
         catch (Exception ex){
             errorText.setText(ex.getMessage());
