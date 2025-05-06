@@ -11,10 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import p1.Admin;
-import p1.Day;
-import p1.Hours;
-import p1.TimeRange;
+import p1.*;
 import p3.User;
 
 import java.util.ArrayList;
@@ -354,7 +351,7 @@ public class CreateRoomController {
             Parent root = loader.load();
 
             AdminRoomMenuController adminRoomMenuController = loader.getController();
-            adminRoomMenuController.InitData(currentUser);
+            adminRoomMenuController.InitData(currentUser, Database.GetRooms());
 
             // Create the second scene
             Scene scene2 = new Scene(root);

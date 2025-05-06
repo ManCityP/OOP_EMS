@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -123,7 +124,14 @@
                      <children>
                         <ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                            <content>
-                              <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
+                              <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;">
+                                 <children>
+                                    <TextField fx:id="searchField" onKeyPressed="#SearchPressed" promptText="Search Room">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                 </children></VBox>
                            </content>
                         </ScrollPane>
                      </children>

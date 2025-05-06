@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import p1.Database;
 import p3.User;
 
 public class AdminMainMenuController {
@@ -116,7 +117,7 @@ public class AdminMainMenuController {
             Parent root = loader.load();
 
             AdminRoomMenuController adminRoomMenuController = loader.getController();
-            adminRoomMenuController.InitData(currentUser);
+            adminRoomMenuController.InitData(currentUser, Database.GetRooms());
 
             // Create the second scene
             Scene scene2 = new Scene(root);

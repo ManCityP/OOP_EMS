@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -15,6 +16,9 @@ import javafx.stage.Stage;
 import p1.Database;
 import p1.Room;
 import p3.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminRoomMenuController {
 
@@ -29,16 +33,21 @@ public class AdminRoomMenuController {
     @FXML
     private VBox roomsContainer;
     @FXML
+    private TextField searchField;
+    @FXML
     private Label username;
+
+    private ArrayList<Room> rooms;
 
     private User currentUser;
 
-    public void InitData(User user) {
+    public void InitData(User user, ArrayList<Room> rooms) {
         currentUser = user;
         this.username.setText(currentUser.GetUsername());
+        this.rooms = rooms;
 
         try {
-            for (Room room : Database.GetRooms()) {
+            for (Room room : this.rooms) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomPaneTemplate.fxml"));
                 Node roomNode = loader.load();
 
@@ -51,6 +60,67 @@ public class AdminRoomMenuController {
         catch (Exception ex) {
             System.out.println(ex.getMessage());
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    void SearchPressed(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            String prompt = searchField.getText();
+            ArrayList<Room> searchRooms = new ArrayList<>();
+            try {
+                int roomNumber = Integer.parseInt(prompt);
+
+                for(Room room : Database.GetRooms()) {
+                    if(roomNumber == room.GetID())
+                        searchRooms.add(room);
+                    else if(room.GetLocation().contains(prompt))
+                        searchRooms.add(room);
+                }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRoomMenu.fxml"));
+                Parent root = loader.load();
+
+                AdminRoomMenuController adminRoomMenuController = loader.getController();
+                adminRoomMenuController.InitData(currentUser, searchRooms);
+                adminRoomMenuController.searchField.setText(prompt);
+
+                // Create the second scene
+                Scene scene2 = new Scene(root);
+
+                // Get the current stage
+                Stage stage = (Stage)refreshButton.getScene().getWindow();
+
+                // Set the new scene
+                stage.setScene(scene2);
+            }
+            catch (NumberFormatException ex) {
+                try {
+                    for(Room room : Database.GetRooms())
+                        if(room.GetLocation().contains(prompt))
+                            searchRooms.add(room);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRoomMenu.fxml"));
+                    Parent root = loader.load();
+
+                    AdminRoomMenuController adminRoomMenuController = loader.getController();
+                    adminRoomMenuController.InitData(currentUser, searchRooms);
+                    adminRoomMenuController.searchField.setText(prompt);
+
+                    // Create the second scene
+                    Scene scene2 = new Scene(root);
+
+                    // Get the current stage
+                    Stage stage = (Stage)refreshButton.getScene().getWindow();
+
+                    // Set the new scene
+                    stage.setScene(scene2);
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+            catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
@@ -146,7 +216,7 @@ public class AdminRoomMenuController {
             Parent root = loader.load();
 
             AdminRoomMenuController adminRoomMenuController = loader.getController();
-            adminRoomMenuController.InitData(currentUser);
+            adminRoomMenuController.InitData(currentUser, Database.GetRooms());
 
             // Create the second scene
             Scene scene2 = new Scene(root);
