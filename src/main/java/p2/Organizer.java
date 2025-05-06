@@ -15,8 +15,8 @@ public class Organizer extends User {
     private final Wallet WALLET;
     private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
 
-    public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
-        super(username, email, password, dob, gender);
+    public Organizer(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
+        super(username, email, password, dob, gender, dateCreated);
         if(wallet == null)
             throw new Exception("Invalid Wallet");
         this.WALLET = wallet;

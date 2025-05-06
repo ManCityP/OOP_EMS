@@ -107,7 +107,25 @@ public class AdminMainMenuController {
 
     @FXML
     void ProfilePressed() {
-        System.out.println("Profile Menu Loaded!");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminProfileMenu.fxml"));
+            Parent root = loader.load();
+
+            AdminProfileMenuController adminProfileMenuController = loader.getController();
+            adminProfileMenuController.Init(currentUser);
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)categoriesButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

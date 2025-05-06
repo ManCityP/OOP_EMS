@@ -10,8 +10,8 @@ public class Admin extends User {
     private String role;
     private Hours workingHours;
 
-    public Admin(String username, String email, String password, MyDate dob, Gender gender, String role, Hours workingHours) throws Exception {
-        super(username, email, password, dob, gender);
+    public Admin(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, String role, Hours workingHours) throws Exception {
+        super(username, email, password, dob, gender, dateCreated);
         this.role = role;
         this.workingHours = workingHours;
     }
@@ -58,6 +58,9 @@ public class Admin extends User {
     public void RemoveCategory(String category) throws Exception {
         Category.RemoveCategory(category);
     }
+
+    public String GetRole() {return this.role;}
+    public Hours GetWorkingHours() {return this.workingHours;}
 
     @Override
     public String toString(){

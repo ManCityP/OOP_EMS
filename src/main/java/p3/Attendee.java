@@ -34,8 +34,8 @@ public class Attendee extends User {
         return string;
     }
 
-    public Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet, Map<Integer, Integer> tickets) throws Exception {
-        super(username, email, password, dob, gender);
+    public Attendee(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, ArrayList<Category> interests, Wallet wallet, Map<Integer, Integer> tickets) throws Exception {
+        super(username, email, password, dob, gender, dateCreated);
         this.interests = interests;
         this.wallet = wallet;
         this.tickets = tickets;
