@@ -84,6 +84,17 @@ public class CreateRoomController {
             return change.getControlNewText().length() <= 128 ? change : null;
         }));
 
+        TextField[] fields = {startHourTextField, startMinuteTextField, endHourTextField, endMinuteTextField};
+        for (TextField field : fields) {
+            field.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.TAB || event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.W || event.getCode() == KeyCode.S ||
+                    event.getCode() == KeyCode.COMMA || event.getCode() == KeyCode.PERIOD || event.getCode() == KeyCode.D) {
+                    HandleKeyPress(event);
+                    event.consume();
+                }
+            });
+        }
+
         capacityField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.isEmpty())
                 capacityField.setText("0");
@@ -175,9 +186,15 @@ public class CreateRoomController {
         if(code == KeyCode.ESCAPE) {
             BackPressed();
         }
-        else if(code == KeyCode.D)
+        else if(code == KeyCode.D) {
+            if(dayComboBox.getSelectionModel().isSelected(6))
+                dayComboBox.getSelectionModel().selectFirst();
+            else
+                dayComboBox.getSelectionModel().selectNext();
+        }
+        else if(code == KeyCode.PERIOD)
             AddTimePressed();
-        else if(code == KeyCode.A)
+        else if(code == KeyCode.COMMA)
             RemoveTimePressed();
         else if(code == KeyCode.TAB) {
             if(startHourTextField.isFocused())
