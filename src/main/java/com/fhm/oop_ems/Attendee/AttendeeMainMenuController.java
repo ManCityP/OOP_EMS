@@ -3,7 +3,6 @@ package com.fhm.oop_ems.Attendee;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,24 +32,24 @@ public class AttendeeMainMenuController {
         this.currentUser = user;
     }
 
-    @FXML
-    private void BuyTicketsPressed(){
-        try {
-            System.out.println("events button pressed");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerEventMenu.fxml"));
-            Parent root = loader.load();
-/*
-            OrganizerEventMenuController organizerEventMenuController = loader.getController();
-            organizerEventMenuController.InitData(currentUser);
-*/
+        @FXML
+        private void BuyTicketsPressed(){
+         /*   try {
+                System.out.println("events button pressed");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerEventMenu.fxml"));
+                Parent ro = loader.load();
+
+                OrganizerEventMenuController organizerEventMenuController = loader.getController();
+                organizerEventMenuController.InitData(currentUser);
+
             Scene scene2 = new Scene(root);
             Stage stage = (Stage)logoutButton.getScene().getWindow();
             stage.setScene(scene2);
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }
-    }
+     */   }
+
 
     @FXML
     private void ButtonHovered(MouseEvent event) {

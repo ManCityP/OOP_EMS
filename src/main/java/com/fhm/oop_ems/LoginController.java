@@ -112,6 +112,7 @@ public class LoginController {
 
         }
         catch (Exception ex){
+            ex.printStackTrace();
             errorText.setText(ex.getMessage());
         }
     }
