@@ -1,5 +1,6 @@
 package com.fhm.oop_ems.Admin;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -74,6 +75,7 @@ public class CreateRoomController {
     private User currentUser;
 
     public void Init(User user) {
+        Platform.runLater(() -> startHourTextField.requestFocus());
         currentUser = user;
         this.username.setText(currentUser.GetUsername());
         availableHours = new Hours(new LinkedHashMap<>());
@@ -169,9 +171,45 @@ public class CreateRoomController {
 
     @FXML
     void HandleKeyPress(KeyEvent event) {
-        if(event.getCode() == KeyCode.ESCAPE) {
+        KeyCode code = event.getCode();
+        if(code == KeyCode.ESCAPE) {
             BackPressed();
         }
+        else if(code == KeyCode.D)
+            AddTimePressed();
+        else if(code == KeyCode.A)
+            RemoveTimePressed();
+        else if(code == KeyCode.TAB) {
+            if(startHourTextField.isFocused())
+                startMinuteTextField.requestFocus();
+            else if(startMinuteTextField.isFocused())
+                endHourTextField.requestFocus();
+            else if(endHourTextField.isFocused())
+                endMinuteTextField.requestFocus();
+            else
+                startHourTextField.requestFocus();
+        }
+        else if(code == KeyCode.UP || code == KeyCode.W) {
+            if(startHourTextField.isFocused())
+                StartHourUpPressed();
+            else if(startMinuteTextField.isFocused())
+                StartMinuteUpPressed();
+            else if(endHourTextField.isFocused())
+                EndHourUpPressed();
+            else if(endMinuteTextField.isFocused())
+                EndMinuteUpPressed();
+        }
+        else if(code == KeyCode.DOWN || code == KeyCode.S) {
+            if(startHourTextField.isFocused())
+                StartHourDownPressed();
+            else if(startMinuteTextField.isFocused())
+                StartMinuteDownPressed();
+            else if(endHourTextField.isFocused())
+                EndHourDownPressed();
+            else if(endMinuteTextField.isFocused())
+                EndMinuteDownPressed();
+        }
+        event.consume();
     }
 
     @FXML
