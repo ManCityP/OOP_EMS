@@ -18,7 +18,7 @@
         </ImageView>
         <AnchorPane prefHeight="104.0" prefWidth="1200.0" style="-fx-background-color: #03346E;">
             <children>
-                <Label fx:id="myWalletButton" alignment="CENTER" layoutX="336.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#e2e2b6">
+                <Label fx:id="myWalletButton" alignment="CENTER" layoutX="336.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#WalletPressed" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#e2e2b6">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -26,7 +26,7 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
-                <Label fx:id="profileButton" alignment="CENTER" layoutX="240.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="75.0" text="Profile" textFill="#e2e2b6">
+                <Label fx:id="profileButton" alignment="CENTER" layoutX="240.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#ProfilePressed" prefHeight="35.0" prefWidth="75.0" text="Profile" textFill="#e2e2b6">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>

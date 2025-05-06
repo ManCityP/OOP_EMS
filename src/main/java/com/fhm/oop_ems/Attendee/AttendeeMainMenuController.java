@@ -1,6 +1,7 @@
 package com.fhm.oop_ems.Attendee;
 
 
+import com.fhm.oop_ems.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import p1.Database;
 import p3.User;
 
 import java.io.IOException;
@@ -32,23 +34,34 @@ public class AttendeeMainMenuController {
         this.currentUser = user;
     }
 
-        @FXML
-        private void BuyTicketsPressed(){
-         /*   try {
-                System.out.println("events button pressed");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerEventMenu.fxml"));
-                Parent ro = loader.load();
+    @FXML
+    private void WalletPressed() {
+        System.out.println("wallet pressed");
+    }
 
-                OrganizerEventMenuController organizerEventMenuController = loader.getController();
-                organizerEventMenuController.InitData(currentUser);
+    @FXML
+    private void ProfilePressed() {
+        System.out.println("profile pressed");
+    }
 
-            Scene scene2 = new Scene(root);
-            Stage stage = (Stage)logoutButton.getScene().getWindow();
+    @FXML
+    private void BuyTicketsPressed() {
+        try {
+            System.out.println("events button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
+            Parent ro = loader.load();
+
+            AttendeeTicketsMenuController attendeeTicketsMenuController = loader.getController();
+            attendeeTicketsMenuController.InitData(currentUser, Database.GetEvents());
+
+            Scene scene2 = new Scene(ro);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
             stage.setScene(scene2);
-        }
-        catch (Exception ex) {
+
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
-     */   }
+        }
+    }
 
 
     @FXML
@@ -60,7 +73,7 @@ public class AttendeeMainMenuController {
     @FXML
     private void ButtonNotHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
-        btn.setStyle("-fx-background-color: #F0E6D7; -fx-background-radius: 20; -fx-text-fill: #885133;");
+        btn.setStyle("-fx-background-color: #021526; -fx-background-radius: 20; -fx-text-fill: #E2E2B6;");
     }
 
     @FXML
@@ -76,12 +89,21 @@ public class AttendeeMainMenuController {
     }
 
     @FXML
-    private void LogoutPressed() throws IOException {
-        System.out.println("logout button pressed");
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)logoutButton.getScene().getWindow();
-        stage.setScene(scene);
+    void LogoutPressed() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+            Parent root = loader.load();
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
