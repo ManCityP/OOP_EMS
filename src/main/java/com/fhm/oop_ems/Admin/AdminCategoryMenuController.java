@@ -7,13 +7,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import p1.Database;
+import p1.Room;
 import p3.User;
+
+import java.util.ArrayList;
 
 public class AdminCategoryMenuController {
 
@@ -28,16 +32,21 @@ public class AdminCategoryMenuController {
     @FXML
     private VBox categoriesContainer;
     @FXML
+    private TextField searchField;
+    @FXML
     private Label username;
+
+    private ArrayList<String> categories;
 
     private User currentUser;
 
-    public void InitData(User user) {
+    public void InitData(User user, ArrayList<String> categories) {
         currentUser = user;
         username.setText(currentUser.GetUsername());
+        this.categories = categories;
 
         try {
-            for (String category : Database.GetCategories()) {
+            for (String category : this.categories) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("CategoryPaneTemplate.fxml"));
                 Node roomNode = loader.load();
 
@@ -49,6 +58,38 @@ public class AdminCategoryMenuController {
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    void SearchPressed(KeyEvent event) {
+        if(event.getCode() == KeyCode.ENTER) {
+            String prompt = searchField.getText();
+            ArrayList<String> searchCategories = new ArrayList<>();
+            try {
+                for(String category : Database.GetCategories()) {
+                    if(category.toLowerCase().contains(prompt.toLowerCase()))
+                        searchCategories.add(category);
+                }
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminCategoryMenu.fxml"));
+                Parent root = loader.load();
+
+                AdminCategoryMenuController adminCategoryMenuController = loader.getController();
+                adminCategoryMenuController.InitData(currentUser, searchCategories);
+                adminCategoryMenuController.searchField.setText(prompt);
+
+                // Create the second scene
+                Scene scene2 = new Scene(root);
+
+                // Get the current stage
+                Stage stage = (Stage)refreshButton.getScene().getWindow();
+
+                // Set the new scene
+                stage.setScene(scene2);
+            }
+            catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
@@ -144,7 +185,7 @@ public class AdminCategoryMenuController {
             Parent root = loader.load();
 
             AdminCategoryMenuController adminCategoryMenuController = loader.getController();
-            adminCategoryMenuController.InitData(currentUser);
+            adminCategoryMenuController.InitData(currentUser, Database.GetCategories());
 
             // Create the second scene
             Scene scene2 = new Scene(root);

@@ -54,7 +54,7 @@ public class AdminMainMenuController {
             Parent root = loader.load();
 
             AdminCategoryMenuController adminCategoryMenuController = loader.getController();
-            adminCategoryMenuController.InitData(currentUser);
+            adminCategoryMenuController.InitData(currentUser, Database.GetCategories());
 
             // Create the second scene
             Scene scene2 = new Scene(root);

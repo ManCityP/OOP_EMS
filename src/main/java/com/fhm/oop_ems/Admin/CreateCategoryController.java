@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import p1.Admin;
+import p1.Database;
 import p3.User;
 
 public class CreateCategoryController {
@@ -126,7 +127,7 @@ public class CreateCategoryController {
             Parent root = loader.load();
 
             AdminCategoryMenuController adminCategoryMenuController = loader.getController();
-            adminCategoryMenuController.InitData(currentUser);
+            adminCategoryMenuController.InitData(currentUser, Database.GetCategories());
 
             // Create the second scene
             Scene scene2 = new Scene(root);

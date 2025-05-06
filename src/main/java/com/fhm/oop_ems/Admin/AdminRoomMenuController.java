@@ -74,7 +74,7 @@ public class AdminRoomMenuController {
                 for(Room room : Database.GetRooms()) {
                     if(roomNumber == room.GetID())
                         searchRooms.add(room);
-                    else if(room.GetLocation().contains(prompt))
+                    else if(room.GetLocation().toLowerCase().contains(prompt.toLowerCase()))
                         searchRooms.add(room);
                 }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRoomMenu.fxml"));
@@ -96,7 +96,7 @@ public class AdminRoomMenuController {
             catch (NumberFormatException ex) {
                 try {
                     for(Room room : Database.GetRooms())
-                        if(room.GetLocation().contains(prompt))
+                        if(room.GetLocation().toLowerCase().contains(prompt.toLowerCase()))
                             searchRooms.add(room);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminRoomMenu.fxml"));
                     Parent root = loader.load();
