@@ -118,7 +118,16 @@ public class RoomCalendarController {
                         }
                         rectangle.setOnMouseClicked(e -> {
                             try {
-                                System.out.println(String.format("%s Pressed!", new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear())));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomDateEventMenu.fxml"));
+                                Parent root = loader.load();
+                                RoomDateEventMenuController roomDateEventMenuController = loader.getController();
+                                roomDateEventMenuController.Init(currentUser, this.currentRoom);
+                                // Create the second scene
+                                Scene scene2 = new Scene(root);
+                                // Get the current stage
+                                Stage stage = (Stage)backButton.getScene().getWindow();
+                                // Set the new scene
+                                stage.setScene(scene2);
                             }
                             catch (Exception ex) {
                                 System.out.println(ex.getMessage());
