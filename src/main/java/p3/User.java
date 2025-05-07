@@ -65,5 +65,6 @@ public abstract class User {
     public String GetEmail() {return this.email;}
     public Gender GetGender() {return this.gender;}
     public MyDate GetBirthDate() {return this.dob;}
+    public MyDate GetDateCreated() {return this.dateCreated;}
 }
 
