@@ -39,7 +39,9 @@ public class Wallet {
     public double GetBalance(){
         return this.balance;
     }
-
+    public int GetWalletNumber(){
+        return this.WALLET_NUMBER;
+    }
     @Override
     public String toString(){
         return  "Wallet number: " + this.WALLET_NUMBER +

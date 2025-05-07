@@ -52,6 +52,25 @@ public class OrganizerMainMenuController {
     }
 
     @FXML
+    private void ProfileButtonPressed(){
+        try {
+            System.out.println("Profile button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerProfileMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerProfileMenuController organizerProfileMenuController = loader.getController();
+            organizerProfileMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     private void ButtonHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
         btn.setStyle("-fx-background-color: #d62300; -fx-background-radius: 20; -fx-text-fill: white;");
