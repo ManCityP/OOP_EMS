@@ -18,7 +18,6 @@ import p1.Room;
 import p3.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdminRoomMenuController {
 

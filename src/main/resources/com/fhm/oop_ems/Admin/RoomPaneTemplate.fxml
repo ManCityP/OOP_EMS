@@ -176,7 +176,7 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="reservedCalendarButton" alignment="CENTER" layoutX="171.0" layoutY="294.0" onMouseClicked="#calendarPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="152.0" text="Check in Calendar" textFill="#009bff">
+      <Label fx:id="reservedCalendarButton" alignment="CENTER" layoutX="171.0" layoutY="294.0" onMouseClicked="#CalendarPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="152.0" text="Check in Calendar" textFill="#009bff">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

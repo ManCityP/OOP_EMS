@@ -74,6 +74,7 @@ public class AdminProfileMenuController {
         this.genderLabel.setText(currentUser.GetGender().toString());
         this.birthDateLabel.setText(currentUser.GetBirthDate().toString());
         this.roleLabel.setText(((Admin)currentUser).GetRole());
+        this.createTimeLabel.setText(user.GetDateCreated().toString());
 
         Map<String, ArrayList<TimeRange>> workingHours = ((Admin) currentUser).GetWorkingHours().GetMap();
 

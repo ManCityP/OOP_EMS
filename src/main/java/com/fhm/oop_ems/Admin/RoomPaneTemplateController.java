@@ -1,15 +1,16 @@
 package com.fhm.oop_ems.Admin;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import p1.Admin;
-import p1.Day;
-import p1.Room;
-import p1.TimeRange;
+import javafx.stage.Stage;
+import p1.*;
 import p2.Event;
 import p3.User;
 
@@ -101,9 +102,14 @@ public class RoomPaneTemplateController {
     }
 
     @FXML
-    void DeletePressed() throws Exception {
-        ((Admin)currentUser).DeleteRoom(room);
-        adminRoomMenuController.RefreshPressed();
+    void DeletePressed() {
+        try {
+            ((Admin) currentUser).DeleteRoom(room);
+            adminRoomMenuController.RefreshPressed();
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
@@ -129,7 +135,25 @@ public class RoomPaneTemplateController {
     }
 
     @FXML
-    void calendarPressed(MouseEvent event) {
-        System.out.println("Calendar Pressed");
+    void CalendarPressed(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomCalendar.fxml"));
+            Parent root = loader.load();
+
+            RoomCalendarController roomCalendarController = loader.getController();
+            roomCalendarController.Init(currentUser, this.room, Database.GetEvents());
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)reservedCalendarButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
