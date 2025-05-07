@@ -2,6 +2,7 @@ package com.fhm.oop_ems;
 
 import com.fhm.oop_ems.Admin.AdminMainMenuController;
 import com.fhm.oop_ems.Attendee.AttendeeMainMenuController;
+import com.fhm.oop_ems.Organizer.OrganizerMainMenuController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

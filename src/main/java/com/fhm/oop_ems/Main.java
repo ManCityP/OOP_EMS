@@ -6,6 +6,9 @@ import p2.Organizer;
 import p3.Attendee;
 import p3.Gender;
 import p3.User;
+
+import java.sql.ResultSet;
+import java.time.DayOfWeek;
 import java.util.*;
 
 public class Main {

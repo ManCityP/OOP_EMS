@@ -1,4 +1,4 @@
-package com.fhm.oop_ems;
+package com.fhm.oop_ems.Organizer;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -8,7 +8,6 @@ import p2.Status;
 import p3.Attendee;
 import p3.Gender;
 import p3.Wallet;
-
 import java.sql.*;
 import java.util.*;
 

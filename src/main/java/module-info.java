@@ -14,4 +14,6 @@ module com.fhm.oop_ems {
     opens com.fhm.oop_ems.Admin to javafx.fxml;
     exports com.fhm.oop_ems.Attendee;
     opens com.fhm.oop_ems.Attendee to javafx.fxml;
+    exports com.fhm.oop_ems.Organizer;
+    opens com.fhm.oop_ems.Organizer to javafx.fxml;
 }
