@@ -7,12 +7,73 @@ import p3.Attendee;
 import p3.Gender;
 import p3.User;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.sql.ResultSet;
 import java.time.DayOfWeek;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+
+    private static String SERVER_HOST = "localhost";
+    private static final int SERVER_PORT = 7878;
+
+    public static void main(String[] args) {
+        try {
+            Day.Init();
+            Database.Connect();
+
+            ResultSet rs = Database.GetAny("SELECT ip FROM hostip LIMIT 1");
+            if(rs.next()) {
+                SERVER_HOST = rs.getString("ip");
+            }
+
+            boolean connected = false;
+            Socket socket = null;
+            for (int i = 0; i < 10; i++) { // Try 10 times
+                try {
+                    Thread.sleep(500); // Wait half a second
+                    socket = new Socket(SERVER_HOST, SERVER_PORT);
+                    connected = true;
+                    break;
+                } catch (IOException ignored) {
+                    System.out.println("Waiting for server to start...");
+                }
+            }
+
+            if (!connected) {
+                System.out.println("Failed to connect to server after retries.");
+                return;
+            }
+            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+
+            new Thread(() -> {
+                String response;
+                try {
+                    while((response = input.readLine()) != null)
+                        System.out.println("Friend: " + response);
+                }
+                catch (Exception ex) {
+                    System.out.println("Connection closed!");
+                }
+            }).start();
+
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+            String message;
+            while((message = userInput.readLine()) != null)
+                output.println(message);
+
+            Database.CloseConnection();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    /*public static void main(String[] args) throws Exception {
 
         Day.Init();
         Database.Connect();
@@ -368,5 +429,5 @@ public class Main {
         }
         System.out.println("Thank You for using this application!");
         Database.CloseConnection();
-    }
+    }*/
 }

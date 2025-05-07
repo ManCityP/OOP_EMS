@@ -84,6 +84,11 @@ public abstract class Database {
     * }
     *
     * */
+    public static ResultSet GetAny(String query) throws Exception {
+        Statement stmt = con.createStatement();
+        return stmt.executeQuery(query);
+    }
+
     public static ResultSet GetData(String type) throws Exception {
         String sql = "SELECT * FROM " + type;
         Statement stmt = con.createStatement();
