@@ -3,7 +3,6 @@ package com.fhm.oop_ems.Admin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import p2.Event;
-import p3.User;
 
 public class EventPaneTemplateController {
 
@@ -26,11 +25,7 @@ public class EventPaneTemplateController {
     @FXML
     private Label ticketsSoldLabel;
 
-    private Event event;
-
     public void Init(Event event) {
-        this.event = event;
-
         eventTitleLabel.setText(event.GetEventTitle());
         eventIDLabel.setText(String.format("%s", event.GetID()));
         eventCategoryLabel.setText(event.GetCategory().toString());

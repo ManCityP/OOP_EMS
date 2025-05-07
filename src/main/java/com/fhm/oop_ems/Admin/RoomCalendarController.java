@@ -248,7 +248,7 @@ public class RoomCalendarController {
     @FXML
     void RefreshPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomCalendarController.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomCalendar.fxml"));
             Parent root = loader.load();
 
             RoomCalendarController roomCalendarController = loader.getController();
