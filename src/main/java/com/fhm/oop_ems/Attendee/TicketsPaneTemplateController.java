@@ -6,11 +6,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
+import p1.Database;
 import p2.Event;
 import p3.Attendee;
 import p3.User;
 
+import java.util.ArrayList;
+
+import static p1.Room.FindRoom;
+
 public class TicketsPaneTemplateController {
+    @FXML
+    private Label inStock;
+    @FXML
+    private Label eventDate;
     @FXML
     private Label maxAttendees;
     @FXML
@@ -45,7 +54,7 @@ public class TicketsPaneTemplateController {
     @FXML
     public void initialize() {
         if(event1 !=null) {
-            // Initialize with default MaxVar value
+            // initialize teh valuefactry
             valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, MaxVar, 1); // min, max, initial
             spinner.setValueFactory(valueFactory);
         }
@@ -53,6 +62,7 @@ public class TicketsPaneTemplateController {
             valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 1); // min, max, initial
             spinner.setValueFactory(valueFactory);
         }
+        spinner.valueProperty().addListener((obs, oldVal, newVal) -> DynamicPrice());
     }
 
     public void updateMaxVar(int newMax) {
@@ -89,11 +99,14 @@ public class TicketsPaneTemplateController {
     public void init(User user, Event event, AttendeeTicketsMenuController attendeeTicketsMenuController) {
         currentUser = user;
         this.event1 = event;
-        this.attendeeTicketsMenuController = this.attendeeTicketsMenuController;
+        this.attendeeTicketsMenuController = attendeeTicketsMenuController;
         this.MaxVar = event.GetMaxNumOfAttendees();
         idLabel.setText(String.format("%s", event.GetRoomID()));
-        locationLabel.setText(event.GetEventTitle());
-
+        try {
+            locationLabel.setText(FindRoom(Database.GetRooms(), event.GetRoomID()).GetLocation());
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
         if(event == null) {
             eventTitleLabel.setText("N/A");
             eventIDLabel.setText("N/A");
@@ -101,6 +114,7 @@ public class TicketsPaneTemplateController {
             eventOrganizerLabel.setText("N/A");
             eventTimeRangeLabel.setText("N/A");
             eventPriceLabel.setText("N/A");
+            eventDate.setText("N/A");
         }
         else {
             eventTitleLabel.setText(event.GetEventTitle());
@@ -109,6 +123,7 @@ public class TicketsPaneTemplateController {
             eventOrganizerLabel.setText(event.GetOrganizer().GetUsername());
             eventTimeRangeLabel.setText(event.GetTimeRange().toString());
             eventPriceLabel.setText(String.format("$%s", event.GetPrice()));
+            eventDate.setText(event.GetDate().toString());
             if(((Attendee)currentUser).GetTickets().containsKey(event.GetID())){
                 this.currentTickets.setText(((Attendee)currentUser).GetTickets().get(event.GetID()).toString());
             }
@@ -118,10 +133,12 @@ public class TicketsPaneTemplateController {
             }
             else updateMaxVar(this.MaxVar);
             maxAttendees.setText(""+event.GetMaxNumOfAttendees());
-
+            inStock.setText(String.valueOf((Integer)MaxVar));
         }
     }
-
+private void DynamicPrice(){
+    eventPriceLabel.setText(String.format("$%s", this.event1.GetPrice()*spinner.getValue()));
+}
 
     @FXML
     void buyButton(MouseEvent event) throws Exception {
