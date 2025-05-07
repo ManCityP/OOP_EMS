@@ -42,6 +42,7 @@ public class Wallet {
     public int GetWalletNumber(){
         return this.WALLET_NUMBER;
     }
+
     @Override
     public String toString(){
         return  "Wallet number: " + this.WALLET_NUMBER +
