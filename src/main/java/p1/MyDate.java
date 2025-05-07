@@ -75,6 +75,11 @@ public class MyDate {
         return new MyDate(1,this.GetMonth()-1,this.GetYear());
     }
 
+    public int MaxDay(){
+        int[] daysInMonth = { 31, IsLeapYear(this.YEAR) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        return daysInMonth[this.MONTH-1];
+    }
+
     @Override
     public String toString(){
         return this.DAY + "/" + this.MONTH + "/" + this.YEAR;
