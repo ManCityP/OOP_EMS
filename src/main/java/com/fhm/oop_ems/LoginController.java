@@ -39,8 +39,8 @@ public class LoginController {
         password.setTextFormatter(new TextFormatter<>(change -> {
             return change.getControlNewText().length() <= 32 ? change : null;
         }));
-        username.setText("AhmedHesham102");
-        password.setText("fuckMohamedAshraf");
+//        username.setText("AhmedHesham102");
+//        password.setText("fuckMohamedAshraf");
     }
 
     @FXML
