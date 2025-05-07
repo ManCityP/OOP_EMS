@@ -83,8 +83,7 @@ public class RoomCalendarController {
         //List of activities for a given month
         Map<Integer, ArrayList<Event>> monthEvents = GetMonthEvents(dateFocus);
 
-        //TODO
-        int monthMaxDate = 28;
+        int monthMaxDate = this.dateFocus.MaxDay();
 
         int n = Day.days.get(MyDate.GetDayOfTheWeek(dateFocus).toString());
         int dateOffset = (n == 0 ? 7 : n);
