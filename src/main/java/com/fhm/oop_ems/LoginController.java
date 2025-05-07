@@ -39,8 +39,8 @@ public class LoginController {
         password.setTextFormatter(new TextFormatter<>(change -> {
             return change.getControlNewText().length() <= 32 ? change : null;
         }));
-        username.setText("mohy@yahoo.com");
-        password.setText("24P0024eng");
+        username.setText("AhmedHesham102");
+        password.setText("fuckMohamedAshraf");
     }
 
     @FXML
@@ -81,7 +81,7 @@ public class LoginController {
                 stage.setScene(scene2);
             }
             else if(user instanceof Organizer) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerMainMenu.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Organizer/OrganizerMainMenu.fxml"));
                 Parent root = loader.load();
 
                 OrganizerMainMenuController organizerMainMenuController = loader.getController();

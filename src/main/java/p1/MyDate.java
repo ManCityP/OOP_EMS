@@ -7,7 +7,7 @@ public class MyDate {
 
     private final int DAY, MONTH, YEAR;        //Almost there
 
-    public MyDate() {
+    public MyDate(){ //by me
         LocalDateTime currentTime = LocalDateTime.now();
         this.DAY = currentTime.getDayOfMonth();
         this.MONTH = currentTime.getMonthValue();
