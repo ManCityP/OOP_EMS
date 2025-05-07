@@ -36,7 +36,25 @@ public class AttendeeMainMenuController {
 
     @FXML
     private void WalletPressed() {
-        System.out.println("wallet pressed");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeWalletMenu.fxml"));
+            Parent root = loader.load();
+
+            AttendeeWalletMenuController attendeeWalletMenuController = loader.getController();
+            attendeeWalletMenuController.Init(currentUser);
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)myWalletButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

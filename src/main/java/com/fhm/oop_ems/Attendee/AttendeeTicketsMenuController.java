@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 public class AttendeeTicketsMenuController {
     @FXML
+    Label errorText;
+    @FXML
     private Button backButton;
     @FXML
     private Button chatButton;
@@ -57,7 +59,6 @@ public class AttendeeTicketsMenuController {
             }
         }
         catch (Exception ex) {
-            System.out.println(ex.getMessage());
             ex.printStackTrace();
         }
     }
@@ -186,7 +187,7 @@ public class AttendeeTicketsMenuController {
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #6EACDA;");
     }
 
     @FXML

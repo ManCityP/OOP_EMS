@@ -13,81 +13,64 @@ import javafx.stage.Stage;
 import p3.Attendee;
 import p3.User;
 
-public class AttendeeProfileMenuController {
+public class AttendeeWalletMenuController {
 
     @FXML
     private Button backButton;
-
     @FXML
-    private Label birthDateLabel;
-
+    private Label errorText;
     @FXML
     private Button chatButton;
 
-    @FXML
-    private Label createTimeLabel;
 
     @FXML
     private Button dashboardButton;
 
-    @FXML
-    private Label emailLabel;
-
-    @FXML
-    private Label genderLabel;
 
     @FXML
     private Button refreshButton;
 
     @FXML
-    private Button goWallet;
-
+    private Label walletNumber;
     @FXML
-    private Label typeLabel;
-
+    private Label walletBalance;
     @FXML
     private Label username;
-
     @FXML
-    private Label usernameLabel;
-
+    private Button withdrawButton;
     @FXML
-    private Label interests1;
+    private Button depositButton;
+
 
     private User currentUser;
 
     public void Init(User user) {
         this.currentUser = user;
         this.username.setText(currentUser.GetUsername());
-        this.typeLabel.setText("Attendee");
-        this.usernameLabel.setText(currentUser.GetUsername());
-        this.emailLabel.setText(currentUser.GetEmail());
-        this.genderLabel.setText(currentUser.GetGender().toString());
-        this.birthDateLabel.setText(currentUser.GetBirthDate().toString());
-        this.interests1.setText(((Attendee)currentUser).guiConcat().toString());
-        this.createTimeLabel.setText(currentUser.GetDateCreated().toString());
-
+        walletBalance.setText(String.format("$%s", ((Attendee) currentUser).GetWallet().GetBalance()));
+        walletNumber.setText(String.valueOf((Integer) (((Attendee) currentUser).GetWallet().GetWalletNumber())));
     }
 
     @FXML
     void HandleKeyPress(KeyEvent event) {
-        if(event.getCode() == KeyCode.ESCAPE) {
+        if (event.getCode() == KeyCode.ESCAPE) {
             BackPressed();
         }
     }
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #6EACDA;");
+        ((Button) event.getSource()).setStyle("-fx-background-color: #6EACDA;");
     }
 
     @FXML
     void ButtonNotHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
+        ((Button) event.getSource()).setStyle("-fx-background-color: transparent;");
     }
+
     @FXML
     void WalletButtonNotHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: transparent; -fx-border-color: white");
+        ((Button) event.getSource()).setStyle("-fx-background-color: transparent; -fx-border-color: white");
     }
 
     @FXML
@@ -101,26 +84,26 @@ public class AttendeeProfileMenuController {
     }
 
     @FXML
-    void WalletPressed(){
-
+    void WithdrawPressed() {
+        System.out.println("withdraw pressed");
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeWalletMenu.fxml"));
-            Parent root = loader.load();
-
-            AttendeeWalletMenuController attendeeWalletMenuController = loader.getController();
-            attendeeWalletMenuController.Init(currentUser);
-
-            // Create the second scene
-            Scene scene2 = new Scene(root);
-
-            // Get the current stage
-            Stage stage = (Stage)goWallet.getScene().getWindow();
-
-            // Set the new scene
-            stage.setScene(scene2);
+            ((Attendee) currentUser).GetWallet().EditBalance(-100);
+            RefreshPressed();
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorText.setText(e.getMessage());
         }
-        catch (Exception ex) {
-            System.out.println(ex.getMessage());
+    }
+
+    @FXML
+    void DepositPressed() {
+        System.out.println("deposit pressed");
+        try {
+            ((Attendee) currentUser).GetWallet().EditBalance(100);
+            RefreshPressed();
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorText.setText(e.getMessage());
         }
     }
 
@@ -137,12 +120,11 @@ public class AttendeeProfileMenuController {
             Scene scene2 = new Scene(root);
 
             // Get the current stage
-            Stage stage = (Stage)backButton.getScene().getWindow();
+            Stage stage = (Stage) backButton.getScene().getWindow();
 
             // Set the new scene
             stage.setScene(scene2);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -150,22 +132,21 @@ public class AttendeeProfileMenuController {
     @FXML
     void RefreshPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeWalletMenu.fxml"));
             Parent root = loader.load();
 
-            AttendeeProfileMenuController attendeeProfileMenuController = loader.getController();
-            attendeeProfileMenuController.Init(currentUser);
+            AttendeeWalletMenuController attendeeWalletMenuController = loader.getController();
+            attendeeWalletMenuController.Init(currentUser);
 
             // Create the second scene
             Scene scene2 = new Scene(root);
 
             // Get the current stage
-            Stage stage = (Stage)refreshButton.getScene().getWindow();
+            Stage stage = (Stage) refreshButton.getScene().getWindow();
 
             // Set the new scene
             stage.setScene(scene2);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }

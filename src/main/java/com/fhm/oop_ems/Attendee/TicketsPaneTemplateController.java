@@ -141,9 +141,14 @@ private void DynamicPrice(){
 }
 
     @FXML
-    void buyButton(MouseEvent event) throws Exception {
-        System.out.println("buy button" + spinner.getValue());
-        ((Attendee)currentUser).PurchaseEvent(event1,spinner.getValue());
+    void buyButton(MouseEvent event){
+        try {
+            System.out.println("buy button" + spinner.getValue());
+            ((Attendee) currentUser).PurchaseEvent(event1, spinner.getValue());
+        this.attendeeTicketsMenuController.RefreshPressed();
+        } catch (Exception e) {
+            this.attendeeTicketsMenuController.errorText.setText(e.getMessage());
+        }
 
     }
     @FXML
