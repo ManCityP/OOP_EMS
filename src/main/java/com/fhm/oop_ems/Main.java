@@ -7,18 +7,20 @@ import p3.Attendee;
 import p3.Gender;
 import p3.User;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.time.DayOfWeek;
 import java.util.*;
 
 public class Main {
 
-    private static final String SERVER_URL = "https://ems-mancityp.p.tnnl.in/";
+    private static final String SERVER_URL = "https://ems-mancityp.p.tnnl.in";
     private static final int SERVER_PORT = 7878;
 
     public static void main(String[] args) {
@@ -27,11 +29,13 @@ public class Main {
             Database.Connect();
 
             boolean connected = false;
-            Socket socket = null;
+            HttpsURLConnection connection = null;
             for (int i = 0; i < 10; i++) { // Try 10 times
                 try {
                     Thread.sleep(500); // Wait half a second
-                    socket = new Socket(SERVER_URL, SERVER_PORT);
+                    URL url = new URL(SERVER_URL);
+                    connection = (HttpsURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
                     connected = true;
                     break;
                 } catch (IOException ignored) {
@@ -43,8 +47,8 @@ public class Main {
                 System.out.println("Failed to connect to server after retries.");
                 return;
             }
-            BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            PrintWriter output = new PrintWriter(connection.getOutputStream(), true);
 
             new Thread(() -> {
                 String response;
