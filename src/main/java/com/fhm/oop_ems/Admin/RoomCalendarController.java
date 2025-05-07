@@ -1,6 +1,5 @@
 package com.fhm.oop_ems.Admin;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,7 +24,6 @@ import p1.Room;
 import p2.Event;
 import p3.User;
 
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -85,10 +83,11 @@ public class RoomCalendarController {
         //List of activities for a given month
         Map<Integer, ArrayList<Event>> monthEvents = GetMonthEvents(dateFocus);
 
-        int monthMaxDate = dateFocus.GetMonth();
+        //TODO
+        int monthMaxDate = 28;
 
         int n = Day.days.get(MyDate.GetDayOfTheWeek(dateFocus).toString());
-        int dateOffset = /*(n == 0 ? 7 :*/ (n);
+        int dateOffset = (n == 0 ? 7 : n);
 
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
@@ -117,18 +116,18 @@ public class RoomCalendarController {
                         if (calendarActivities != null) {
                             CreateMonthEvent(calendarActivities, rectangleHeight, rectangleWidth, stackPane);
                         }
+                        rectangle.setOnMouseClicked(e -> {
+                            try {
+                                System.out.println(String.format("%s Pressed!", new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear())));
+                            }
+                            catch (Exception ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        });
                     }
                     if (today.GetYear() == dateFocus.GetYear() && today.GetMonth() == dateFocus.GetMonth() && today.GetDay() == currentDate) {
                         rectangle.setStroke(Color.BLUE);
                     }
-                    rectangle.setOnMouseClicked(e -> {
-                        try {
-                            System.out.println(String.format("%s Pressed!", new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear())));
-                        }
-                        catch (Exception ex) {
-                            System.out.println(ex.getMessage());
-                        }
-                    });
                 }
                 calendar.getChildren().add(stackPane);
             }
@@ -151,6 +150,7 @@ public class RoomCalendarController {
         monthEventsBox.setMaxWidth(width * 0.8);
         monthEventsBox.setMaxHeight(height * 0.65);
         monthEventsBox.setStyle("-fx-background-color:GRAY");
+        monthEventsBox.setMouseTransparent(true);
         stackPane.getChildren().add(monthEventsBox);
     }
 
@@ -158,11 +158,11 @@ public class RoomCalendarController {
         Map<Integer, ArrayList<Event>> monthEvents = new HashMap<>();
 
         for (Event event : this.filteredEvents) {
-            if(event.GetDate().equals(date)) {
-                if(!monthEvents.containsKey(date.GetDay()))
-                    monthEvents.put(date.GetDay(), new ArrayList<>(List.of(event)));
+            if(event.GetDate().GetYear() == date.GetYear() && event.GetDate().GetMonth() == date.GetMonth()) {
+                if(!monthEvents.containsKey(event.GetDate().GetDay()))
+                    monthEvents.put(event.GetDate().GetDay(), new ArrayList<>(List.of(event)));
                 else
-                    monthEvents.get(date.GetDay()).add(event);
+                    monthEvents.get(event.GetDate().GetDay()).add(event);
             }
         }
         return monthEvents;
