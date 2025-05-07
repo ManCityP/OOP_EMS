@@ -1,10 +1,18 @@
 package p1;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class MyDate {
 
     private final int DAY, MONTH, YEAR;        //Almost there
+
+    public MyDate() {
+        LocalDateTime currentTime = LocalDateTime.now();
+        this.DAY = currentTime.getDayOfMonth();
+        this.MONTH = currentTime.getMonthValue();
+        this.YEAR = currentTime.getYear();
+    }
 
     public MyDate(int day,int month, int year) throws Exception {
         int[] daysInMonth = { 31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
