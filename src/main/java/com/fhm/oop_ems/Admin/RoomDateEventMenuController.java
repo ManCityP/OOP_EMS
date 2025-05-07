@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import p1.Database;
+import p1.MyDate;
 import p1.Room;
 import p2.Event;
 import p3.User;
@@ -44,8 +45,9 @@ public class RoomDateEventMenuController {
 
     private User currentUser;
     private Room currentRoom;
+    private MyDate currentDate;
 
-    public void Init(User user, Room room) {
+    public void Init(User user, Room room, MyDate date) {
         this.currentUser = user;
         this.currentRoom = room;
 
@@ -53,10 +55,11 @@ public class RoomDateEventMenuController {
 
         this.roomIDLabel.setText(String.format("Room ID: %s", this.currentRoom.GetID()));
         this.roomLocationLabel.setText(String.format("Room Location: %s", this.currentRoom.GetLocation()));
+        this.dateLabel.setText(currentDate.toString());
 
         try {
             for (Event event : Database.GetEvents()) {
-                if(event.GetRoomID() == currentRoom.GetID()) {
+                if(event.GetRoomID() == currentRoom.GetID() && event.GetDate().equals(currentDate)) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EventPaneTemplate.fxml"));
                     Node roomNode = loader.load();
 
@@ -147,7 +150,7 @@ public class RoomDateEventMenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomDateEventMenu.fxml"));
             Parent root = loader.load();
             RoomDateEventMenuController roomDateEventMenuController = loader.getController();
-            roomDateEventMenuController.Init(currentUser, this.currentRoom);
+            roomDateEventMenuController.Init(currentUser, this.currentRoom, this.currentDate);
             // Create the second scene
             Scene scene2 = new Scene(root);
             // Get the current stage

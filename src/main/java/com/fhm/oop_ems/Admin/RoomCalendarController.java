@@ -120,7 +120,7 @@ public class RoomCalendarController {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("RoomDateEventMenu.fxml"));
                                 Parent root = loader.load();
                                 RoomDateEventMenuController roomDateEventMenuController = loader.getController();
-                                roomDateEventMenuController.Init(currentUser, this.currentRoom);
+                                roomDateEventMenuController.Init(currentUser, this.currentRoom, new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear()));
                                 // Create the second scene
                                 Scene scene2 = new Scene(root);
                                 // Get the current stage
