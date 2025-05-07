@@ -33,6 +33,23 @@ public class Attendee extends User {
 
         return string;
     }
+    public StringBuilder guiConcat(){
+        StringBuilder string = new StringBuilder();
+
+        for (Category interest : GetInterests()) {
+            string.append(interest);
+            string.append(", ");
+        }
+        if (string.length() > 0) {
+            string.deleteCharAt(string.length() - 1);
+            string.deleteCharAt(string.length() - 1);
+
+        }
+        string.append('.');
+
+        return string;
+
+    }
 
     public Attendee(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, ArrayList<Category> interests, Wallet wallet, Map<Integer, Integer> tickets) throws Exception {
         super(username, email, password, dob, gender, dateCreated);

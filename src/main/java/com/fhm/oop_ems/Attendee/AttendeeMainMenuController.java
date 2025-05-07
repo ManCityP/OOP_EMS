@@ -40,8 +40,22 @@ public class AttendeeMainMenuController {
     }
 
     @FXML
-    private void ProfilePressed() {
-        System.out.println("profile pressed");
+    private void ProfilePressed() throws IOException {
+        try {
+            System.out.println("profile pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
+            Parent ro = loader.load();
+
+            AttendeeProfileMenuController attendeeProfileMenuController = loader.getController();
+            attendeeProfileMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(ro);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(scene2);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML
