@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Main {
 
-    private static String SERVER_HOST = "localhost";
+    private static final String SERVER_URL = "https://ems-mancityp.p.tnnl.in/";
     private static final int SERVER_PORT = 7878;
 
     public static void main(String[] args) {
@@ -26,17 +26,12 @@ public class Main {
             Day.Init();
             Database.Connect();
 
-            ResultSet rs = Database.GetAny("SELECT ip FROM hostip LIMIT 1");
-            if(rs.next()) {
-                SERVER_HOST = rs.getString("ip");
-            }
-
             boolean connected = false;
             Socket socket = null;
             for (int i = 0; i < 10; i++) { // Try 10 times
                 try {
                     Thread.sleep(500); // Wait half a second
-                    socket = new Socket(SERVER_HOST, SERVER_PORT);
+                    socket = new Socket(SERVER_URL, SERVER_PORT);
                     connected = true;
                     break;
                 } catch (IOException ignored) {
