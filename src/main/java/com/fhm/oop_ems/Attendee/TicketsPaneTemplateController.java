@@ -45,7 +45,7 @@ public class TicketsPaneTemplateController {
     @FXML
     public void initialize() {
         if(event1 !=null) {
-            // Initialize with default MaxVar value
+            // initialize teh valuefactry
             valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, MaxVar, 1); // min, max, initial
             spinner.setValueFactory(valueFactory);
         }
