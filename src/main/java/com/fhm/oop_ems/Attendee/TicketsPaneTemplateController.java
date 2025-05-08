@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
-import p1.Database;
 import p2.Event;
 import p3.Attendee;
 import p3.User;
@@ -103,7 +102,7 @@ public class TicketsPaneTemplateController {
         this.MaxVar = event.GetMaxNumOfAttendees();
         idLabel.setText(String.format("%s", event.GetRoomID()));
         try {
-            locationLabel.setText(FindRoom(Database.GetRooms(), event.GetRoomID()).GetLocation());
+            locationLabel.setText(FindRoom(attendeeTicketsMenuController.rooms, event.GetRoomID()).GetLocation());
         } catch (Exception e) {
         e.printStackTrace();
         }
@@ -147,6 +146,7 @@ private void DynamicPrice(){
             ((Attendee) currentUser).PurchaseEvent(event1, spinner.getValue());
         this.attendeeTicketsMenuController.RefreshPressed();
         } catch (Exception e) {
+            e.printStackTrace();
             this.attendeeTicketsMenuController.errorText.setText(e.getMessage());
         }
 
