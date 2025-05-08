@@ -86,6 +86,7 @@ public class Attendee extends User {
     }
 
     public void PurchaseEvent(Event event, int numOfTickets) throws Exception {
+        event.GetOrganizer().GetTicketsSold().putIfAbsent(event.GetID(), 0);
         if (event.GetStatus() == Status.UPCOMING) {
             if (event.GetOrganizer().GetTicketsSold().get(event.GetID()) + numOfTickets > event.GetMaxNumOfAttendees()) {
                 throw new Exception("Number of tickets is over the event threshold");

@@ -41,13 +41,14 @@ public class AttendeeTicketsMenuController {
     private ArrayList<Event> events;
 
     private User currentUser;
+    ArrayList<Room> rooms;
 
     public void InitData(User user, ArrayList<Event> events) {
         currentUser = user;
         this.username.setText(currentUser.GetUsername());
         this.events = events;
-
         try {
+            rooms = Database.GetRooms();
             for (Event event : this.events) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketsPaneTemplate.fxml"));
                 Node roomNode = loader.load();
