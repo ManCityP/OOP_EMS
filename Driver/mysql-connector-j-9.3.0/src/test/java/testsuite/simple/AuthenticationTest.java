@@ -149,7 +149,7 @@ public class AuthenticationTest extends BaseTestCase {
         //   [n,,n=user,r=fyko+d2lbbFgONRv9qkxdawL]
         overrideSaslClientData(authPlugin, "fyko+d2lbbFgONRv9qkxdawL");
 
-        // Server's 'server-first-message':
+        // com.fhm.oop_ems.Server's 'server-first-message':
         //   [r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096]
         challenge = new NativePacketPayload("r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096".getBytes("UTF-8"));
 
@@ -160,7 +160,7 @@ public class AuthenticationTest extends BaseTestCase {
         data = response.get(0).readString(StringSelfDataType.STRING_EOF, "UTF-8");
         assertEquals("c=biws,r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,p=v0X8v3Bz2T0CJGbJQyF0X+HI4Ts=", data);
 
-        // Server's 'server-final-message':
+        // com.fhm.oop_ems.Server's 'server-final-message':
         //   [v=rmF9pqV8S7suAoZWja4dJRkFsKQ=]
         challenge = new NativePacketPayload("v=rmF9pqV8S7suAoZWja4dJRkFsKQ=".getBytes("UTF-8"));
 
@@ -223,7 +223,7 @@ public class AuthenticationTest extends BaseTestCase {
         //   [n,,n=user,r=rOprNGfwEbeRWgbNEkqO]
         overrideSaslClientData(authPlugin, "rOprNGfwEbeRWgbNEkqO");
 
-        // Server's 'server-first-message':
+        // com.fhm.oop_ems.Server's 'server-first-message':
         //   [r=rOprNGfwEbeRWgbNEkqO%hvYDpWUa2RaTCAfuxFIlj)hNlF$k0,s=W22ZaJ0SNY7soEsUEjb6gQ==,i=4096]
         challenge = new NativePacketPayload("r=rOprNGfwEbeRWgbNEkqO%hvYDpWUa2RaTCAfuxFIlj)hNlF$k0,s=W22ZaJ0SNY7soEsUEjb6gQ==,i=4096".getBytes("UTF-8"));
 
@@ -234,7 +234,7 @@ public class AuthenticationTest extends BaseTestCase {
         data = response.get(0).readString(StringSelfDataType.STRING_EOF, "UTF-8");
         assertEquals("c=biws,r=rOprNGfwEbeRWgbNEkqO%hvYDpWUa2RaTCAfuxFIlj)hNlF$k0,p=dHzbZapWIk4jUhN+Ute9ytag9zjfMHgsqmmiz7AndVQ=", data);
 
-        // Server's 'server-final-message':
+        // com.fhm.oop_ems.Server's 'server-final-message':
         //   [v=6rriTRBi23WpRR/wtup+mMhUZUn/dB5nLTJRsjl95G4=]
         challenge = new NativePacketPayload("v=6rriTRBi23WpRR/wtup+mMhUZUn/dB5nLTJRsjl95G4=".getBytes("UTF-8"));
 
@@ -252,7 +252,7 @@ public class AuthenticationTest extends BaseTestCase {
      */
     @Test
     public void authLdapSaslCliPluginChallengeMissingAttributes() throws Exception {
-        // Server's 'server-first-message' attributes:
+        // com.fhm.oop_ems.Server's 'server-first-message' attributes:
         String ar = "r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j";
         String as = "s=QSXCR+Q6sek8bf92";
         String ai = "i=4096";
@@ -282,7 +282,7 @@ public class AuthenticationTest extends BaseTestCase {
             assertTrue(data.startsWith("n,,n=user,r="));
             assertEquals("n,,n=user,r=".length() + 32, data.length());
 
-            // Server's 'server-first-message':
+            // com.fhm.oop_ems.Server's 'server-first-message':
             //   [r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096]
             //   ;; But skip one of the attributes at a time.
             String sfm = null;
@@ -345,7 +345,7 @@ public class AuthenticationTest extends BaseTestCase {
         //   [n,,n=user,r=fyko+d2lbbFgONRv9qkxdawL]
         overrideSaslClientData(authPlugin, "fyko+d2lbbFgONRv9qkxdawL");
 
-        // Server's 'server-first-message':
+        // com.fhm.oop_ems.Server's 'server-first-message':
         //   [r=XXXXXXXXXXXXXXXXXXXXXXXX3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096]
         //   ;; Bad 'r' attribute.
         NativePacketPayload badChallenge = new NativePacketPayload("r=XXXXXXXXXXXXXXXXXXXXXXXX3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096".getBytes("UTF-8"));
@@ -394,7 +394,7 @@ public class AuthenticationTest extends BaseTestCase {
         //   [n,,n=user,r=fyko+d2lbbFgONRv9qkxdawL]
         overrideSaslClientData(authPlugin, "fyko+d2lbbFgONRv9qkxdawL");
 
-        // Server's 'server-first-message':
+        // com.fhm.oop_ems.Server's 'server-first-message':
         //   [r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=1024]
         //   ;; Bad 'i' attribute.
         NativePacketPayload badChallenge = new NativePacketPayload("r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=1024".getBytes("UTF-8"));
@@ -443,7 +443,7 @@ public class AuthenticationTest extends BaseTestCase {
         //   [n,,n=user,r=fyko+d2lbbFgONRv9qkxdawL]
         overrideSaslClientData(authPlugin, "fyko+d2lbbFgONRv9qkxdawL");
 
-        // Server's 'server-first-message':
+        // com.fhm.oop_ems.Server's 'server-first-message':
         //   [r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096]
         challenge = new NativePacketPayload("r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096".getBytes("UTF-8"));
 
@@ -454,7 +454,7 @@ public class AuthenticationTest extends BaseTestCase {
         data = response.get(0).readString(StringSelfDataType.STRING_EOF, "UTF-8");
         assertEquals("c=biws,r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,p=v0X8v3Bz2T0CJGbJQyF0X+HI4Ts=", data);
 
-        // Server's 'server-final-message':
+        // com.fhm.oop_ems.Server's 'server-final-message':
         //   [x=rmF9pqV8S7suAoZWja4dJRkFsKQ=]
         //   ;; Missing 'v' attribute.
         NativePacketPayload badChallenge = new NativePacketPayload("x=rmF9pqV8S7suAoZWja4dJRkFsKQ=".getBytes("UTF-8"));
@@ -503,7 +503,7 @@ public class AuthenticationTest extends BaseTestCase {
         //   [n,,n=user,r=fyko+d2lbbFgONRv9qkxdawL]
         overrideSaslClientData(authPlugin, "fyko+d2lbbFgONRv9qkxdawL");
 
-        // Server's 'server-first-message':
+        // com.fhm.oop_ems.Server's 'server-first-message':
         //   [r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096]
         challenge = new NativePacketPayload("r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,s=QSXCR+Q6sek8bf92,i=4096".getBytes("UTF-8"));
 
@@ -514,7 +514,7 @@ public class AuthenticationTest extends BaseTestCase {
         data = response.get(0).readString(StringSelfDataType.STRING_EOF, "UTF-8");
         assertEquals("c=biws,r=fyko+d2lbbFgONRv9qkxdawL3rfcNHYJY1ZVvWVs7j,p=v0X8v3Bz2T0CJGbJQyF0X+HI4Ts=", data);
 
-        // Server's 'server-final-message':
+        // com.fhm.oop_ems.Server's 'server-final-message':
         //   [v=XXXXXXXXXXXXXXXXXXXXXXXXXXXX]
         //   ;; Bad 'v' attribute.
         NativePacketPayload badChallenge = new NativePacketPayload("v=XXXXXXXXXXXXXXXXXXXXXXXXXXXX".getBytes("UTF-8"));

@@ -927,7 +927,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
         String outText = this.rs.getString(1);
         this.rs.close();
-        assertTrue(inText.equals(outText), "Server side only\n In: " + inText + "\nOut: " + outText);
+        assertTrue(inText.equals(outText), "com.fhm.oop_ems.Server side only\n In: " + inText + "\nOut: " + outText);
 
         // Now bring a binary geometry object to the client and send it back
         toGeom.setString(1, inText);
@@ -944,7 +944,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
         // Return WKT from the binary geometry
         outText = this.rs.getString(1);
         this.rs.close();
-        assertTrue(inText.equals(outText), "Server to client and back\n In: " + inText + "\nOut: " + outText);
+        assertTrue(inText.equals(outText), "com.fhm.oop_ems.Server to client and back\n In: " + inText + "\nOut: " + outText);
     }
 
     /**
@@ -1273,7 +1273,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9098 - Server doesn't give us info to distinguish between CURRENT_TIMESTAMP and 'CURRENT_TIMESTAMP' for default values.
+     * Tests fix for BUG#9098 - com.fhm.oop_ems.Server doesn't give us info to distinguish between CURRENT_TIMESTAMP and 'CURRENT_TIMESTAMP' for default values.
      *
      * @throws Exception
      */
@@ -7343,7 +7343,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             Connection con = getConnectionWithProps(props);
 
             DatabaseMetaData meta = con.getMetaData();
-            System.out.println("MySQL Server: " + meta.getDatabaseProductVersion() + "; Driver: " + meta.getDriverName() + meta.getDriverVersion());
+            System.out.println("MySQL com.fhm.oop_ems.Server: " + meta.getDatabaseProductVersion() + "; Driver: " + meta.getDriverName() + meta.getDriverVersion());
 
             Statement s = con.createStatement();
             s.execute("set autocommit = 0;");

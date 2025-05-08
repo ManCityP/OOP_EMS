@@ -576,7 +576,7 @@ public class ServerPreparedStatement extends ClientPreparedStatement {
      * parameter bindings.
      *
      * <pre>
-     *    -   Server gets the command 'COM_EXECUTE' to execute the
+     *    -   com.fhm.oop_ems.Server gets the command 'COM_EXECUTE' to execute the
      *        previously         prepared query. If there is any param markers;
      *  then client will send the data in the following format:
      *

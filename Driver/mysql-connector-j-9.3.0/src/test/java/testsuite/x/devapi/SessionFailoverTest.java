@@ -186,7 +186,7 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
                     clientSocket.close();
                 }
             } catch (IOException e) {
-                // Server socket closed.
+                // com.fhm.oop_ems.Server socket closed.
             }
             return null;
         }
@@ -211,15 +211,15 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
         String customFakeHost = System.getProperty(PropertyDefinitions.SYSP_testsuite_unavailable_host);
         String fakeHost = customFakeHost != null && customFakeHost.trim().length() != 0 ? customFakeHost : "10.77.77.77:37070";
 
-        // TS1_1 Create a session to a Server using explicit "xdevapi.connect-timeout" overriding implicit "connectTimeout".
+        // TS1_1 Create a session to a com.fhm.oop_ems.Server using explicit "xdevapi.connect-timeout" overriding implicit "connectTimeout".
         testConnectionTimeout_assertFailureTimeout(buildConnectionString(fakeHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "500", true), 500,
                 1500);
 
-        // TS1_2 Create a session to a Server using explicit "xdevapi.connect-timeout" overriding explicit "connectTimeout".
+        // TS1_2 Create a session to a com.fhm.oop_ems.Server using explicit "xdevapi.connect-timeout" overriding explicit "connectTimeout".
         testConnectionTimeout_assertFailureTimeout(buildConnectionString(fakeHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "500", true)
                 + makeParam(PropertyKey.connectTimeout, "8000"), 500, 1500);
 
-        // TS1_3 Create a session to a Server using explicit "connectTimeout" overriding implicit "xdevapi.connect-timeout".
+        // TS1_3 Create a session to a com.fhm.oop_ems.Server using explicit "connectTimeout" overriding implicit "xdevapi.connect-timeout".
         testConnectionTimeout_assertFailureTimeout(buildConnectionString(fakeHost) + "?" + makeParam(PropertyKey.connectTimeout, "800", true), 800, 1800);
 
         // TS3_1 Create a session to a remote offline host not setting the "connect-timeout" parameter. The connection must timeout in ~10 seconds.
@@ -230,17 +230,17 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
         testConnectionTimeout_assertFailureTimeout(buildConnectionString(fakeHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "0", true), 12000,
                 600000);
 
-        // TS6_1 Create a session using the fail over functionality passing two different Server addresses.
-        // The Server with the higher priority must be offline. The connection must succeed after connect-timeout milliseconds.
+        // TS6_1 Create a session using the fail over functionality passing two different com.fhm.oop_ems.Server addresses.
+        // The com.fhm.oop_ems.Server with the higher priority must be offline. The connection must succeed after connect-timeout milliseconds.
         testConnectionTimeout_assertSuccessTimeout(
                 buildConnectionString(fakeHost, this.testsHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "1000", true), 1000, 2000);
 
-        // TS6_2 Create a session using the fail over functionality passing two different Server addresses.
+        // TS6_2 Create a session using the fail over functionality passing two different com.fhm.oop_ems.Server addresses.
         // Both Servers must be offline. The connection must time out after connect-timeout * 2 milliseconds.
         testConnectionTimeout_assertFailureTimeout(buildConnectionString(fakeHost, fakeHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "500", true),
                 1000, 2000);
 
-        // TS8_1 Create a session to a Server using valid credentials passing the "connect-timeout" and set it to a valid value.
+        // TS8_1 Create a session to a com.fhm.oop_ems.Server using valid credentials passing the "connect-timeout" and set it to a valid value.
         // Call the function SLEEP() and set it to 10 seconds once the connections is established. No timeout exception/error must be displayed.
         long begin = System.currentTimeMillis();
         Session sess = this.fact.getSession(buildConnectionString(this.testsHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "3000", true));
@@ -279,7 +279,7 @@ public class SessionFailoverTest extends DevApiBaseTestCase {
         testConnectionTimeout_assertFailureTimeout(buildConnectionString(fakeHost) + "?" + makeParam(PropertyKey.xdevapiConnectTimeout, "12.8", true), 12,
                 1000);
 
-        // TS12_1 Create a session to a Server giving a valid value for the "connect-timeout", and use invalid credentials.
+        // TS12_1 Create a session to a com.fhm.oop_ems.Server giving a valid value for the "connect-timeout", and use invalid credentials.
         testConnectionTimeout_assertFailureTimeout(buildConnectionStringNoUser(this.testsHost) + "?"
                 + makeParam(PropertyKey.xdevapiConnectTimeout, "1000", true) + makeParam(PropertyKey.USER, "nosuchuser"), 0, 1000, XProtocolError.class);
     }

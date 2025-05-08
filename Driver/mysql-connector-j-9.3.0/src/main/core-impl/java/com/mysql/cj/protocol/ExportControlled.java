@@ -176,7 +176,7 @@ public class ExportControlled {
         KeyStoreConfigurations trustStoreConfigs = !verifyServerCert ? new KeyStoreConfigurations() : getTrustStoreConfigurations(pset);
         if (serverVersion == null && verifyServerCert && !fallbackToSystemTrustStore && StringUtils.isNullOrEmpty(trustStoreConfigs.keyStoreUrl)) {
             // If serverVersion == null then this was called from the X DevAPI.
-            throw new CJCommunicationsException("No truststore provided to verify the Server certificate.");
+            throw new CJCommunicationsException("No truststore provided to verify the com.fhm.oop_ems.Server certificate.");
         }
 
         SslContextBuilder sslContextBuilder = new SslContextBuilder();
@@ -219,7 +219,7 @@ public class ExportControlled {
                     peerCert = (java.security.cert.X509Certificate) peerCerts[0];
                 } else {
                     throw ExceptionFactory.createException(SSLParamsException.class,
-                            "Server identity verification failed. Could not read Server's X.509 Certificate.");
+                            "com.fhm.oop_ems.Server identity verification failed. Could not read com.fhm.oop_ems.Server's X.509 Certificate.");
 
                 }
                 try {
@@ -758,7 +758,7 @@ public class ExportControlled {
                     }
                 }
                 if (sanVerification && !hostNameVerified) {
-                    throw new CertificateException("Server identity verification failed. None of the certificate's DNS or IP Subject Alternative Name entries "
+                    throw new CertificateException("com.fhm.oop_ems.Server identity verification failed. None of the certificate's DNS or IP Subject Alternative Name entries "
                             + "matched the server hostname/IP '" + this.hostname + "'.");
                 }
             }
@@ -777,7 +777,7 @@ public class ExportControlled {
 
                 if (!verifyHostName(cn)) {
                     throw new CertificateException(
-                            "Server identity verification failed. The certificate's Common Name '" + cn + "' does not match '" + this.hostname + "'.");
+                            "com.fhm.oop_ems.Server identity verification failed. The certificate's Common Name '" + cn + "' does not match '" + this.hostname + "'.");
                 }
             }
         }

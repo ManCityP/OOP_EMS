@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import p1.Database;
 import p1.Day;
 
-import java.io.IOException;
+import java.io.*;
 
 public class HelloApplication extends Application {
     @Override
@@ -20,19 +20,16 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Day.Init();
-        Database.Connect();
-        launch();
-        Database.CloseConnection();
+        try {
+            Day.Init();
+            Database.Connect();
+
+            launch();
+
+            Database.CloseConnection();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
-
-/*
-fris:
-Attendee;
-
-Ahmed:
-Organizer;
-
-ManCity player:
-Admin;*/

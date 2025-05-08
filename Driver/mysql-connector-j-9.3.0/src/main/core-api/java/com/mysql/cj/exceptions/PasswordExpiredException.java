@@ -24,7 +24,7 @@ package com.mysql.cj.exceptions;
  * Equivalent to SQLSTATE ER_MUST_CHANGE_PASSWORD = 1820
  * "You must SET PASSWORD before executing this statement"
  *
- * Server entered to sandbox morde when this failure happens.
+ * com.fhm.oop_ems.Server entered to sandbox morde when this failure happens.
  */
 public class PasswordExpiredException extends CJException {
 

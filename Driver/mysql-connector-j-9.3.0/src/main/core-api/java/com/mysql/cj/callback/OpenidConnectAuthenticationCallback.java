@@ -29,7 +29,7 @@ import com.mysql.cj.conf.PropertyKey;
  *
  * In OpenID, user authentication is outsourced to an IdP. This Callback is required to trigger some sort of user interaction by performing a login into an
  * external system at the time the connection is established but not prior to it, because the success of the authentication depends on the MySQL user being
- * authenticated and how the user was created on the MySQL Server.
+ * authenticated and how the user was created on the MySQL com.fhm.oop_ems.Server.
  */
 public class OpenidConnectAuthenticationCallback implements MysqlCallback {
 
