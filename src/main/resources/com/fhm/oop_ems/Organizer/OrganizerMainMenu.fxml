@@ -50,7 +50,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="createEventButton" alignment="CENTER" layoutX="175.0" layoutY="33.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="142.0" text="Create Event" textFill="#f0e6d7">
+      <Label fx:id="createEventButton" alignment="CENTER" layoutX="175.0" layoutY="33.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#CreateEventButtonPressed" prefHeight="35.0" prefWidth="142.0" text="Create Event" textFill="#f0e6d7">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
