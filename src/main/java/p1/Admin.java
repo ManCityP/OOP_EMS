@@ -1,6 +1,7 @@
 package p1;
 
 import p2.Event;
+import p2.Organizer;
 import p3.Gender;
 import p3.User;
 import java.util.ArrayList;
@@ -45,6 +46,9 @@ public class Admin extends User {
     }
 
     public void DeleteRoom(Room room) throws Exception {
+        for(Event event : Database.GetEvents())
+            if(event.GetRoomID() == room.GetID())
+                event.GetOrganizer().CancelEvent(event);
         Database.Execute(String.format("DELETE FROM room WHERE id = '%s'", room.GetID()));
         System.out.println("Room deleted successfully");
     }

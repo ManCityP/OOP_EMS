@@ -35,19 +35,37 @@ public class Server {
             int end = json.indexOf("\"", start);
             String publicUrl = json.substring(start, end);
 
+            if(!publicUrl.startsWith("http"))
+                return null;
+
             System.out.println("Ngrok Public URL: " + publicUrl);
             return publicUrl;
 
         } catch (Exception e) {
-            System.out.println("Could not fetch ngrok URL: " + e.getMessage());
+            //System.out.println("Could not fetch ngrok URL: " + e.getMessage());
             return null;
         }
     }
 
     private static final int PORT = 7878;
+    private static Process ngrokProcess;
 
     public static void main(String[] args) throws IOException {
         Database.Connect();
+
+        try {
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/k", "start", "tunnel.bat");
+            builder.redirectErrorStream(true);
+            ngrokProcess = builder.start();
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                if(ngrokProcess.isAlive())
+                    ngrokProcess.destroy();
+            }));
+            Thread.sleep(100);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
         HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
 
@@ -93,7 +111,19 @@ public class Server {
         server.setExecutor(null); // default
         server.start();
 
-        String tunnelURL = GetTunnelURL();
+        String tunnelURL = null;
+        try {
+            for (int i = 0; i < 100; i++) {
+                tunnelURL = GetTunnelURL();
+                if (tunnelURL != null)
+                    break;
+                Thread.sleep(200);
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
         try {
             ResultSet resultSet = Database.GetAny("SELECT url FROM hosturl LIMIT 1");
             if(resultSet.next()) {
