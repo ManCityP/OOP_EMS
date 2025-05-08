@@ -59,6 +59,7 @@ public class RoomCalendarController {
     public void Init(User user, Room room, ArrayList<Event> filteredEvents) {
         try {
             this.currentUser = user;
+            this.username.setText(this.currentUser.GetUsername());
             this.currentRoom = room;
             this.filteredEvents = filteredEvents;
             this.today = new MyDate();

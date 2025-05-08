@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.ChatController">
+   <children>
+      <TextArea fx:id="messageArea" layoutY="550.0" onKeyPressed="#MessageKeyPress" prefHeight="50.0" prefWidth="600.0" promptText="Type a Message" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextArea>
+      <Label fx:id="friendLabel" alignment="CENTER" prefHeight="28.0" prefWidth="600.0" style="-fx-background-color: #121212;" text="AhmedHesham102" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ScrollPane fx:id="scrollPane" layoutY="28.0" prefHeight="522.0" prefWidth="600.0" style="-fx-background-color: #82A67D;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+         <content>
+            <VBox fx:id="messagesContainer" minHeight="520.0" prefWidth="598.0" style="-fx-background-color: #566E52;" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

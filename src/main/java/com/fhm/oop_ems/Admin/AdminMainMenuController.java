@@ -1,6 +1,7 @@
 package com.fhm.oop_ems.Admin;
 
 import com.fhm.oop_ems.HelloApplication;
+import com.fhm.oop_ems.UsersMenuController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,7 @@ public class AdminMainMenuController {
     @FXML
     private Label categoriesButton;
     @FXML
-    private Button chatButton;
+    private Label usersButton;
     @FXML
     private Button dashboardButton;
     @FXML
@@ -95,7 +96,25 @@ public class AdminMainMenuController {
 
     @FXML
     void UsersPressed() {
-        System.out.println("Users Menu loaded!");
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("UsersMenu.fxml"));
+            Parent root = loader.load();
+
+            UsersMenuController usersMenuController = loader.getController();
+            usersMenuController.Init(currentUser, User.GetUsers());
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)usersButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

@@ -68,24 +68,6 @@
                               <ColorAdjust />
                            </effect>
                         </Button>
-                        <Button fx:id="chatButton" alignment="CENTER" contentDisplay="CENTER" layoutX="583.0" layoutY="11.0" mnemonicParsing="false" onAction="#ChatPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="19.0" />
-                           </font>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                           <graphic>
-                              <ImageView fitHeight="65.0" fitWidth="60.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../image/chatimg.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                         <Label fx:id="roomsButton" alignment="CENTER" layoutX="14.0" layoutY="30.0" onMouseClicked="#RoomsPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="101.0" text="Rooms" textFill="#f0e6d7">
                            <cursor>
                               <Cursor fx:constant="HAND" />
