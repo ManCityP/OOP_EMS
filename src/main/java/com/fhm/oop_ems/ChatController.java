@@ -135,7 +135,6 @@ public class ChatController {
 
     private void SendMessage(String text) {
         try {
-            //TODO test multiline messages!
             MessageReceived(text, true);
             String message = String.format("%s:%s", me.GetUsername().replace(" ", ""), text);
 

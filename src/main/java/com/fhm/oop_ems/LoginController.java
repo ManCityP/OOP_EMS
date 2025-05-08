@@ -67,52 +67,39 @@ public class LoginController {
             if(user instanceof Admin) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/AdminMainMenu.fxml"));
                 Parent root = loader.load();
-
                 AdminMainMenuController adminMainMenuController = loader.getController();
                 adminMainMenuController.InitData(user);
-
                 // Create the second scene
                 Scene scene2 = new Scene(root);
-
                 // Get the current stage
                 Stage stage = (Stage)loginButton.getScene().getWindow();
-
                 // Set the new scene
                 stage.setScene(scene2);
             }
             else if(user instanceof Organizer) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Organizer/OrganizerMainMenu.fxml"));
                 Parent root = loader.load();
-
                 OrganizerMainMenuController organizerMainMenuController = loader.getController();
                 organizerMainMenuController.InitData(user);
-
                 // Create the second scene
                 Scene scene2 = new Scene(root);
-
                 // Get the current stage
                 Stage stage = (Stage)loginButton.getScene().getWindow();
-
                 // Set the new scene
                 stage.setScene(scene2);
             }
-            else if(user instanceof Attendee) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendee/AttendeeMainMenu.fxml"));
-                    Parent root = loader.load();
-
-                    AttendeeMainMenuController attendeeMainMenuController = loader.getController();
-                    attendeeMainMenuController.InitData(user);
-
-                    // Create the second scene
-                    Scene scene2 = new Scene(root);
-
-                    // Get the current stage
-                    Stage stage = (Stage)loginButton.getScene().getWindow();
-
-                    // Set the new scene
-                    stage.setScene(scene2);
-                }
-
+            else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendee/AttendeeMainMenu.fxml"));
+                Parent root = loader.load();
+                AttendeeMainMenuController attendeeMainMenuController = loader.getController();
+                attendeeMainMenuController.InitData(user);
+                // Create the second scene
+                Scene scene2 = new Scene(root);
+                // Get the current stage
+                Stage stage = (Stage)loginButton.getScene().getWindow();
+                // Set the new scene
+                stage.setScene(scene2);
+            }
         }
         catch (Exception ex){
             ex.printStackTrace();

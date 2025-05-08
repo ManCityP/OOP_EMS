@@ -3,6 +3,8 @@ package com.fhm.oop_ems;
 import com.fhm.oop_ems.Admin.AdminMainMenuController;
 import com.fhm.oop_ems.Admin.AdminRoomMenuController;
 import com.fhm.oop_ems.Admin.RoomPaneTemplateController;
+import com.fhm.oop_ems.Attendee.AttendeeMainMenuController;
+import com.fhm.oop_ems.Organizer.OrganizerMainMenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +20,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import p1.Admin;
 import p1.Database;
 import p1.Room;
+import p2.Organizer;
+import p3.Attendee;
 import p3.User;
 
 import java.util.ArrayList;
@@ -53,6 +58,8 @@ public class UsersMenuController {
 
         try {
             for(User user : this.users) {
+                if(user.GetUsername().equals(this.currentUser.GetUsername()))
+                    continue;
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("UserPaneTemplate.fxml"));
                 Node userNode = loader.load();
 
@@ -85,20 +92,42 @@ public class UsersMenuController {
     @FXML
     void DashboardPressed() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminMainMenu.fxml"));
-            Parent root = loader.load();
-
-            AdminMainMenuController adminMainMenuController = loader.getController();
-            adminMainMenuController.InitData(currentUser);
-
-            // Create the second scene
-            Scene scene2 = new Scene(root);
-
-            // Get the current stage
-            Stage stage = (Stage)backButton.getScene().getWindow();
-
-            // Set the new scene
-            stage.setScene(scene2);
+            if(currentUser instanceof Admin) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/AdminMainMenu.fxml"));
+                Parent root = loader.load();
+                AdminMainMenuController adminMainMenuController = loader.getController();
+                adminMainMenuController.InitData(currentUser);
+                // Create the second scene
+                Scene scene2 = new Scene(root);
+                // Get the current stage
+                Stage stage = (Stage)backButton.getScene().getWindow();
+                // Set the new scene
+                stage.setScene(scene2);
+            }
+            else if(currentUser instanceof Organizer) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Organizer/OrganizerMainMenu.fxml"));
+                Parent root = loader.load();
+                OrganizerMainMenuController organizerMainMenuController = loader.getController();
+                organizerMainMenuController.InitData(currentUser);
+                // Create the second scene
+                Scene scene2 = new Scene(root);
+                // Get the current stage
+                Stage stage = (Stage)backButton.getScene().getWindow();
+                // Set the new scene
+                stage.setScene(scene2);
+            }
+            else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendee/AttendeeMainMenu.fxml"));
+                Parent root = loader.load();
+                AttendeeMainMenuController attendeeMainMenuController = loader.getController();
+                attendeeMainMenuController.InitData(currentUser);
+                // Create the second scene
+                Scene scene2 = new Scene(root);
+                // Get the current stage
+                Stage stage = (Stage)backButton.getScene().getWindow();
+                // Set the new scene
+                stage.setScene(scene2);
+            }
         }
         catch (Exception ex) {
             System.out.println(ex.getMessage());
