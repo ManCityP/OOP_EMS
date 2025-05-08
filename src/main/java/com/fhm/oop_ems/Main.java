@@ -16,8 +16,8 @@ public class Main {
     private static String SERVER_URL = "https://XXXX/send";
     private static String GET_URL = "https://XXXX/get";
 
-    private static String username = "Fris233";
-    private static String friend = "AhmedHesham102";
+    private static String username = "AhmedHesham102";
+    private static String friend = "Fris233";
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
