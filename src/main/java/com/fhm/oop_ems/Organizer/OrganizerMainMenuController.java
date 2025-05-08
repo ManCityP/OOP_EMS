@@ -71,6 +71,25 @@ public class OrganizerMainMenuController {
     }
 
     @FXML
+    private void CreateEventButtonPressed(){
+        try {
+            System.out.println("Create event button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerCreateEventMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerCreateEventMenuController organizerCreateEventMenuController = loader.getController();
+            organizerCreateEventMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     private void ButtonHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
         btn.setStyle("-fx-background-color: #d62300; -fx-background-radius: 20; -fx-text-fill: white;");
