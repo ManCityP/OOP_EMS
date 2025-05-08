@@ -63,6 +63,27 @@ public class AttendeeTicketsMenuController {
             ex.printStackTrace();
         }
     }
+    public void InitData(User user, ArrayList<Event> events, String search) {
+        currentUser = user;
+        this.searchField.setText(search);
+        this.username.setText(currentUser.GetUsername());
+        this.events = events;
+        try {
+            rooms = Database.GetRooms();
+            for (Event event : this.events) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketsPaneTemplate.fxml"));
+                Node roomNode = loader.load();
+
+                TicketsPaneTemplateController controller = loader.getController();
+                controller.init(currentUser, event, this);
+
+                roomsContainer.getChildren().add(roomNode);
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     @FXML
     void SearchPressed(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
@@ -70,11 +91,12 @@ public class AttendeeTicketsMenuController {
             ArrayList<Event> searchEvents = new ArrayList<>();
             try {
                 int eventID = Integer.parseInt(prompt);
-
                 for(Event event1 : Database.GetEvents()) {
                     if(eventID == event1.GetID())
                         searchEvents.add(event1);
                     else if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
+                        searchEvents.add(event1);
+                    else if(prompt.equals(event1.GetDate().toString()))
                         searchEvents.add(event1);
                 }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
@@ -97,6 +119,8 @@ public class AttendeeTicketsMenuController {
                 try {
                     for(Event event1 : Database.GetEvents())
                         if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
+                            searchEvents.add(event1);
+                        else if(prompt.equals(event1.GetDate().toString()))
                             searchEvents.add(event1);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
                     Parent root = loader.load();

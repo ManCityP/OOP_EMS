@@ -18,6 +18,8 @@ import java.io.IOException;
 public class AttendeeMainMenuController {
 
     @FXML
+    private Label calendarButton;
+    @FXML
     private Label buyTicketsButton;
     @FXML
     private Label eventsButton;
@@ -32,6 +34,28 @@ public class AttendeeMainMenuController {
 
     public void InitData(User user) {
         this.currentUser = user;
+    }
+    @FXML
+    private void CalendarPressed(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketsCalendar.fxml"));
+            Parent root = loader.load();
+
+            TicketsCalendarController ticketsCalendarController = loader.getController();
+            ticketsCalendarController.Init(currentUser, Database.GetEvents());
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)calendarButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @FXML

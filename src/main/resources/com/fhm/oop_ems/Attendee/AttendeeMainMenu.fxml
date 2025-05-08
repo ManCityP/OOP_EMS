@@ -42,6 +42,14 @@
                         <Font name="System Bold" size="24.0" />
                     </font>
                 </Label>
+            <Label fx:id="calendarButton" alignment="CENTER" layoutX="482.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#CalendarPressed" prefHeight="35.0" prefWidth="185.0" text="Events Calendar" textFill="#e2e2b6">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
             </children></AnchorPane>
         <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="10.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="30.0">
             <image>
