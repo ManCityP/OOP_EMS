@@ -50,6 +50,7 @@ public class RoomDateEventMenuController {
     public void Init(User user, Room room, MyDate date) {
         this.currentUser = user;
         this.currentRoom = room;
+        this.currentDate = date;
 
         this.username.setText(currentUser.GetUsername());
 

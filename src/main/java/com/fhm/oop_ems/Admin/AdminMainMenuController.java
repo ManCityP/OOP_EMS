@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import p1.Database;
@@ -14,19 +15,19 @@ import p3.User;
 
 public class AdminMainMenuController {
     @FXML
-    private Button categoriesButton;
+    private Label categoriesButton;
     @FXML
     private Button chatButton;
     @FXML
     private Button dashboardButton;
     @FXML
-    private Button eventsButton;
+    private Label eventsButton;
     @FXML
     private Button logoutButton;
     @FXML
-    private Button profileButton;
+    private ImageView profileButton;
     @FXML
-    private Button roomsButton;
+    private Label roomsButton;
     @FXML
     private Label username;
 
@@ -39,12 +40,24 @@ public class AdminMainMenuController {
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #3053ba;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
     }
 
     @FXML
     void ButtonNotHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #885133;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
+    }
+
+    @FXML
+    private void LabelHovered(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        label.setStyle("-fx-underline: true;");
+    }
+
+    @FXML
+    private void LabelNotHovered(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        label.setStyle("-fx-underline: false;");
     }
 
     @FXML
@@ -81,8 +94,8 @@ public class AdminMainMenuController {
     }
 
     @FXML
-    void EventsPressed() {
-        System.out.println("Events Menu loaded!");
+    void UsersPressed() {
+        System.out.println("Users Menu loaded!");
     }
 
     @FXML

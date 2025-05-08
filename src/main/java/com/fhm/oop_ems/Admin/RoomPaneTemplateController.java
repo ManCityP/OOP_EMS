@@ -40,6 +40,8 @@ public class RoomPaneTemplateController {
     @FXML
     private Label reservedCalendarButton;
     @FXML
+    private Label capacityLabel;
+    @FXML
     private Button deleteButton;
 
     private User currentUser;
@@ -55,6 +57,7 @@ public class RoomPaneTemplateController {
 
         idLabel.setText(String.format("%s", room.GetID()));
         locationLabel.setText(room.GetLocation());
+        capacityLabel.setText(String.format("%s", room.GetMaxCapacity()));
         Event currentEvent = room.GetCurrentEvent();
         if(currentEvent == null) {
             eventTitleLabel.setText("N/A");

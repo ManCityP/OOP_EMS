@@ -75,7 +75,7 @@ public class CreateRoomController {
     private User currentUser;
 
     public void Init(User user) {
-        Platform.runLater(() -> startHourTextField.requestFocus());
+        //Platform.runLater(() -> startHourTextField.requestFocus());
         currentUser = user;
         this.username.setText(currentUser.GetUsername());
         availableHours = new Hours(new LinkedHashMap<>());
@@ -83,17 +83,6 @@ public class CreateRoomController {
         locationField.setTextFormatter(new TextFormatter<>(change -> {
             return change.getControlNewText().length() <= 128 ? change : null;
         }));
-
-        TextField[] fields = {startHourTextField, startMinuteTextField, endHourTextField, endMinuteTextField};
-        for (TextField field : fields) {
-            field.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-                if (event.getCode() == KeyCode.TAB || event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.W || event.getCode() == KeyCode.S ||
-                    event.getCode() == KeyCode.COMMA || event.getCode() == KeyCode.PERIOD || event.getCode() == KeyCode.D) {
-                    HandleKeyPress(event);
-                    event.consume();
-                }
-            });
-        }
 
         capacityField.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.isEmpty())
@@ -110,6 +99,17 @@ public class CreateRoomController {
                 }
             }
         });
+
+        TextField[] fields = {startHourTextField, startMinuteTextField, endHourTextField, endMinuteTextField};
+        for (TextField field : fields) {
+            field.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.TAB || event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.W || event.getCode() == KeyCode.S ||
+                        event.getCode() == KeyCode.COMMA || event.getCode() == KeyCode.PERIOD || event.getCode() == KeyCode.D) {
+                    HandleKeyPress(event);
+                    event.consume();
+                }
+            });
+        }
 
         try {
             startHourTextField.textProperty().addListener((observable, oldValue, newValue) -> {

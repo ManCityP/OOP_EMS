@@ -63,6 +63,7 @@ public class RoomCalendarController {
             this.filteredEvents = filteredEvents;
             this.today = new MyDate();
             this.dateFocus = new MyDate(1, today.GetMonth(), today.GetYear());
+            this.filteredEvents.removeIf(event -> event.GetRoomID() != this.currentRoom.GetID());
             drawCalendar();
         }
         catch (Exception ex) {

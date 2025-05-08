@@ -16,6 +16,8 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Alley OOP FAM");
         stage.setScene(scene);
+        stage.setMinWidth(1092);
+        stage.setMinHeight(802);
         stage.show();
     }
 

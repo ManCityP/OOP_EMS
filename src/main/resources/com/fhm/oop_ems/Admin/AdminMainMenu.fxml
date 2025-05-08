@@ -22,17 +22,20 @@
                         <Image url="@../../../../image/Logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
+                  <ImageView fx:id="profileButton" fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" onMouseClicked="#ProfilePressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                      <image>
                         <Image url="@../../../../image/pfp.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="Mohamed Ashraf Hatem Eltaie Abdelrahman" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button fx:id="dashboardButton" layoutY="356.0" mnemonicParsing="false" onAction="#DashboardPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: #885133;" text="Dashboard" textFill="WHITE" AnchorPane.bottomAnchor="396.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="356.0">
+                  <Button fx:id="dashboardButton" layoutY="356.0" mnemonicParsing="false" onAction="#DashboardPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE" AnchorPane.bottomAnchor="396.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="356.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -54,7 +57,7 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
                      <children>
-                        <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="11.0" mnemonicParsing="false" onAction="#LogoutPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" text="Logout" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="logoutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="11.0" mnemonicParsing="false" onAction="#LogoutPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Logout" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -65,7 +68,7 @@
                               <ColorAdjust />
                            </effect>
                         </Button>
-                        <Button fx:id="chatButton" alignment="CENTER" contentDisplay="CENTER" layoutX="583.0" layoutY="11.0" mnemonicParsing="false" onAction="#ChatPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="121.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="chatButton" alignment="CENTER" contentDisplay="CENTER" layoutX="583.0" layoutY="11.0" mnemonicParsing="false" onAction="#ChatPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="59.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -83,76 +86,40 @@
                               </ImageView>
                            </graphic>
                         </Button>
+                        <Label fx:id="roomsButton" alignment="CENTER" layoutX="14.0" layoutY="30.0" onMouseClicked="#RoomsPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="101.0" text="Rooms" textFill="#f0e6d7">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="categoriesButton" alignment="CENTER" layoutX="151.0" layoutY="30.0" onMouseClicked="#CategoriesPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="145.0" text="Categories" textFill="#f0e6d7">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="usersButton" alignment="CENTER" layoutX="311.0" layoutY="30.0" onMouseClicked="#UsersPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="121.0" text="Users" textFill="#f0e6d7">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                      <children>
-                        <Button fx:id="categoriesButton" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" onAction="#CategoriesPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" text="Categories" textAlignment="CENTER" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                        </Button>
-                        <Button fx:id="eventsButton" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="14.0" layoutY="350.0" mnemonicParsing="false" onAction="#EventsPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" text="Events" textAlignment="CENTER" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                        </Button>
-                        <Button fx:id="roomsButton" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="438.0" layoutY="15.0" mnemonicParsing="false" onAction="#RoomsPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" text="Rooms" textAlignment="CENTER" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                        </Button>
-                        <Button fx:id="profileButton" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="438.0" layoutY="350.0" mnemonicParsing="false" onAction="#ProfilePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #885133; -fx-background-radius: 20;" text="Profile" textAlignment="CENTER" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="System Bold" size="36.0" />
-                           </font>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                        </Button>
-                        <ImageView fitHeight="117.0" fitWidth="145.0" layoutX="258.0" layoutY="188.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="700.0" fitWidth="864.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <image>
-                              <Image url="@../../../../image/categoriesImg.png" />
+                              <Image url="@../../../../image/SkyscraperField.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="688.0" layoutY="500.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../image/profileButtonImg.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="688.0" layoutY="165.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../image/doorIcon.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="258.0" layoutY="500.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../image/eventIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
+                     </children></AnchorPane>
               </items>
             </SplitPane>
         </items>
