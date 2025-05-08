@@ -7,13 +7,32 @@ import java.net.*;
 import java.util.*;
 
 public class Server {
-
     private static final int PORT = 7878;
     private static final List<Socket> clients = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
+        Database.Connect();
+
         ServerSocket serverSocket = new ServerSocket(PORT);
         System.out.println("com.fhm.oop_ems.Server started. Waiting for clients...");
+
+        try {
+            InetAddress localhost = InetAddress.getLocalHost();
+            Database.Execute(String.format("INSERT INTO hostip (ip) VALUES ('%s')", localhost.getHostAddress()));
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                Database.Execute("TRUNCATE hostip");
+                Database.CloseConnection();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }));
 
         while (true) {
             Socket clientSocket = serverSocket.accept();
