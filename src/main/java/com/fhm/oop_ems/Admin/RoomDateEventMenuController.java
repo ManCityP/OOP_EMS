@@ -61,7 +61,7 @@ public class RoomDateEventMenuController {
         try {
             for (Event event : Database.GetEvents()) {
                 if(event.GetRoomID() == currentRoom.GetID() && event.GetDate().equals(currentDate)) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("EventPaneTemplate.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("DefaultEventPaneTemplate.fxml"));
                     Node roomNode = loader.load();
 
                     EventPaneTemplateController controller = loader.getController();

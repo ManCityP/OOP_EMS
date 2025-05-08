@@ -5,8 +5,8 @@ import javafx.scene.control.Label;
 import p2.Event;
 
 public class EventPaneTemplateController {
-    @FXML
-    private Label category;
+//    @FXML
+//    private Label category;
     @FXML
     private Label date;
     @FXML
@@ -25,7 +25,7 @@ public class EventPaneTemplateController {
     public void displayevent(Event event){
         eventTitle.setText(event.GetEventTitle());
         eventID.setText(String.format("%s",event.GetID()));
-        category.setText(event.GetCategory().toString());
+//        category.setText(event.GetCategory().toString());
         maxNumOfAttendees.setText(String.format("%s",event.GetMaxNumOfAttendees()));
         price.setText(String.format("%s",event.GetPrice()));
         date.setText(event.GetDate().toString());

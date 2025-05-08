@@ -23,24 +23,29 @@ public class OrganizerEventMenuController {
     private VBox eventsContainer;
     @FXML
     private Label noEventsLabel;
+    @FXML
+    private Button dashboardButton;
+    @FXML
+    private Label username;
 
     private User user;
     private int eventsLoaded = 0;
 
     public void InitData(User user) {
         this.user = user;
+        this.username.setText(user.GetUsername());
 
         try {
             for (Event event : Database.GetEvents()) {
                 if(event.GetOrganizer().GetUsername().equals(this.user.GetUsername())){
 
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("EventPaneTemplate.fxml"));
-                    Node roomNode = loader.load();
-                    EventPaneTemplateController controller = loader.getController();
-                    controller.displayevent(event);
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("DefaultEventPaneTemplate.fxml"));
+                        Node roomNode = loader.load();
+                        EventPaneTemplateController controller = loader.getController();
+                        controller.displayevent(event);
 
-                    eventsContainer.getChildren().add(roomNode);
-                    eventsLoaded++;
+                        eventsContainer.getChildren().add(roomNode);
+                        eventsLoaded++;
                 }
             }
 
@@ -67,6 +72,15 @@ public class OrganizerEventMenuController {
             stage.setScene(scene2);
         }
         catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    void DashboardPressed() {
+        try{
+            BackButtonPressed();
+        }catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }

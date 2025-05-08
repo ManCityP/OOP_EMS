@@ -90,6 +90,25 @@ public class OrganizerMainMenuController {
     }
 
     @FXML
+    private void MyWalletButtonPressed(){
+        try {
+            System.out.println("Wallet button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerWalletMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerWalletMenuController organizerWalletMenuController = loader.getController();
+            organizerWalletMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     private void ButtonHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
         btn.setStyle("-fx-background-color: #d62300; -fx-background-radius: 20; -fx-text-fill: white;");

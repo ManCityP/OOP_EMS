@@ -107,7 +107,7 @@
                                     <ColorAdjust />
                                  </effect>
                               </Button>
-                              <AnchorPane focusTraversable="true" layoutX="20.0" layoutY="305.0">
+                              <AnchorPane focusTraversable="true" layoutX="20.0" layoutY="305.0" prefWidth="338.0">
                                  <children>
                                     <AnchorPane focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="170.0" style="-fx-background-color: #121212;">
                                        <children>

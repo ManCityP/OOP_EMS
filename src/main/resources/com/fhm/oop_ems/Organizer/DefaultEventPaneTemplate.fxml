@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="237.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Organizer.EventPaneTemplateController">
+   <children>
+      <ImageView fitHeight="276.0" fitWidth="600.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../../image/Default_BG.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="6.0" layoutY="46.0" text="ID:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="449.0" layoutY="45.0" text="Default Category" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="128.0" layoutY="186.0" text="Max number of attendees:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="228.0" text="Price:" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutY="89.0" text="Date:" textFill="WHITE">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="453.0" layoutY="164.0" text="Status:" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="eventTitle" layoutX="5.0" layoutY="5.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <Label fx:id="eventID" layoutX="28.0" layoutY="46.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="maxNumOfAttendees" layoutX="340.0" layoutY="187.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="price" layoutX="59.0" layoutY="231.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" layoutX="54.0" layoutY="80.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="timeRange" layoutX="54.0" layoutY="106.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="status" layoutX="511.0" layoutY="165.0" text="Untiteled" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

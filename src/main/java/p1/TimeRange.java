@@ -20,8 +20,6 @@ public class TimeRange {
         this(Convert(start), Convert(end));
     }
 
-
-
     public double GetTotalTime() {
         return this.end - this.start;
     }
