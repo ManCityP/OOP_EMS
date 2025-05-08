@@ -7,6 +7,7 @@ module com.fhm.oop_ems {
     requires com.google.gson;
     requires java.sql;
     requires java.desktop;
+    requires jdk.httpserver;
 
     opens com.fhm.oop_ems to javafx.fxml;
     exports com.fhm.oop_ems;

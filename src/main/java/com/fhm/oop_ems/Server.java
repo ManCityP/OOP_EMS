@@ -1,32 +1,114 @@
 package com.fhm.oop_ems;
 
+import com.sun.net.httpserver.*;
 import p1.Database;
 
 import java.io.*;
-import java.net.*;
+import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.URL;
+import java.sql.ResultSet;
 import java.util.*;
 
 public class Server {
+    private static final List<String> messages = Collections.synchronizedList(new ArrayList<>());
+
+    public static String GetTunnelURL() {
+        try {
+            URL url = new URL("http://localhost:4040/api/tunnels");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuilder response = new StringBuilder();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            // Look for the public URL in the JSON response
+            String json = response.toString();
+            int start = json.indexOf("public_url\":\"") + 13;
+            int end = json.indexOf("\"", start);
+            String publicUrl = json.substring(start, end);
+
+            System.out.println("Ngrok Public URL: " + publicUrl);
+            return publicUrl;
+
+        } catch (Exception e) {
+            System.out.println("Could not fetch ngrok URL: " + e.getMessage());
+            return null;
+        }
+    }
+
     private static final int PORT = 7878;
-    private static final List<Socket> clients = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         Database.Connect();
 
-        ServerSocket serverSocket = new ServerSocket(PORT);
-        System.out.println("com.fhm.oop_ems.Server started. Waiting for clients...");
+        HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
 
+        server.createContext("/send", exchange -> {
+            if ("POST".equals(exchange.getRequestMethod())) {
+                InputStream is = exchange.getRequestBody();
+                String message = new BufferedReader(new InputStreamReader(is)).readLine();
+                messages.add(message);
+                String response = "Message received";
+                exchange.sendResponseHeaders(200, response.length());
+                OutputStream os = exchange.getResponseBody();
+                os.write(response.getBytes());
+                os.close();
+            }
+        });
+
+        server.createContext("/get", exchange -> {
+
+            String query = exchange.getRequestURI().getQuery();
+            String userId = null;
+
+            if (query != null && query.startsWith("id=")) {
+                userId = query.substring(3);
+            }
+
+            StringBuilder response = new StringBuilder();
+            synchronized (messages) {
+                Iterator<String> it = messages.iterator();
+                while (it.hasNext()) {
+                    String msg = it.next();
+                    if(msg.startsWith(userId)) {
+                        response.append(msg).append("\n");
+                        it.remove();
+                    }
+                }
+            }
+            byte[] resp = response.toString().getBytes();
+            exchange.sendResponseHeaders(200, resp.length);
+            exchange.getResponseBody().write(resp);
+            exchange.getResponseBody().close();
+        });
+
+        server.setExecutor(null); // default
+        server.start();
+
+        String tunnelURL = GetTunnelURL();
         try {
-            InetAddress localhost = InetAddress.getLocalHost();
-            Database.Execute(String.format("INSERT INTO hostip (ip) VALUES ('%s')", localhost.getHostAddress()));
+            ResultSet resultSet = Database.GetAny("SELECT url FROM hosturl LIMIT 1");
+            if(resultSet.next()) {
+                System.out.println("There is already an active server!");
+                System.exit(0);
+            }
+            Database.Execute(String.format("INSERT INTO hosturl (url) VALUES ('%s')", tunnelURL));
         }
-        catch (Exception ex) {
+        catch(Exception ex) {
             ex.printStackTrace();
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
-                Database.Execute("TRUNCATE hostip");
+                Database.Execute("TRUNCATE hosturl");
                 Database.CloseConnection();
             }
             catch (Exception ex) {
@@ -34,42 +116,6 @@ public class Server {
             }
         }));
 
-        while (true) {
-            Socket clientSocket = serverSocket.accept();
-            clients.add(clientSocket);
-            System.out.println("Client connected: " + clientSocket.getInetAddress());
-
-            // Handle each client in its own thread
-            new Thread(() -> handleClient(clientSocket)).start();
-        }
-    }
-
-    private static void handleClient(Socket clientSocket) {
-        try (
-                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
-        ) {
-            String message;
-            while ((message = in.readLine()) != null) {
-                broadcastMessage(message, clientSocket);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            clients.remove(clientSocket);
-            try { clientSocket.close(); } catch (IOException ignored) {}
-        }
-    }
-
-    private static void broadcastMessage(String message, Socket sender) {
-        for (Socket client : clients) {
-            if (client != sender) {
-                try {
-                    PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-                    out.println(message);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        System.out.println("HTTP Chat Server running on port " + PORT);
     }
 }
