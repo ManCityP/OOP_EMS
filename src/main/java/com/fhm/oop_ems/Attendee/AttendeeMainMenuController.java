@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import p1.Database;
@@ -30,7 +31,7 @@ public class AttendeeMainMenuController {
     @FXML
     private Label myWalletButton;
     @FXML
-    private Label profileButton;
+    private ImageView profileButton;
 
     private User currentUser;
 
@@ -108,7 +109,6 @@ public class AttendeeMainMenuController {
     @FXML
     private void ProfilePressed(){
         try {
-            System.out.println("profile pressed");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
             Parent ro = loader.load();
 
@@ -154,6 +154,16 @@ public class AttendeeMainMenuController {
     private void ButtonNotHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
         btn.setStyle("-fx-background-color: #021526; -fx-background-radius: 20; -fx-text-fill: #E2E2B6;");
+    }
+
+    @FXML
+    void ButtonHoveredmo(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
+    }
+
+    @FXML
+    void ButtonNotHoveredmo(MouseEvent event) {
+        ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
     }
 
     @FXML
