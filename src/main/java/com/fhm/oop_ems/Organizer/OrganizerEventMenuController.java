@@ -129,7 +129,7 @@ public class OrganizerEventMenuController {
                     searchEvents.add(event1);
                 else if(prompt.equals(event1.GetDate().toString()))
                     searchEvents.add(event1);
-                else if (event1.GetOrganizer().toString().toLowerCase().contains(prompt.toLowerCase()))
+                else if (event1.GetOrganizer().GetUsername().toLowerCase().contains(prompt.toLowerCase()))
                     searchEvents.add(event1);
                 else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
                     searchEvents.add(event1);
@@ -152,7 +152,7 @@ public class OrganizerEventMenuController {
                         searchEvents.add(event1);
                     else if(prompt.equals(event1.GetDate().toString()))
                         searchEvents.add(event1);
-                    else if (event1.GetOrganizer().toString().toLowerCase().contains(prompt.toLowerCase()))
+                    else if (event1.GetOrganizer().GetUsername().toLowerCase().contains(prompt.toLowerCase()))
                         searchEvents.add(event1);
                     else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
                         searchEvents.add(event1);
