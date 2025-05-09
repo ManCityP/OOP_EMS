@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="692.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.UserPaneTemplateController">
+<AnchorPane fx:id="faris1" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="692.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.UserPaneTemplateController">
    <children>
       <Label layoutX="15.0" layoutY="7.0" text="Username:" textFill="WHITE">
          <font>

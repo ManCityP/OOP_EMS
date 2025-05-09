@@ -4,10 +4,12 @@ import com.fhm.oop_ems.Admin.AdminMainMenuController;
 import com.fhm.oop_ems.Admin.AdminRoomMenuController;
 import com.fhm.oop_ems.Admin.RoomPaneTemplateController;
 import com.fhm.oop_ems.Attendee.AttendeeMainMenuController;
+import com.fhm.oop_ems.Attendee.AttendeeProfileMenuController;
 import com.fhm.oop_ems.Organizer.OrganizerMainMenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,9 +17,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import p1.Admin;
@@ -30,7 +34,12 @@ import p3.User;
 import java.util.ArrayList;
 
 public class UsersMenuController {
-
+    @FXML
+    private ImageView profile;
+    @FXML
+    private AnchorPane faris1;
+    @FXML
+    private AnchorPane faris2;
     @FXML
     private Button backButton;
     @FXML
@@ -68,6 +77,11 @@ public class UsersMenuController {
 
                 usersContainer.getChildren().add(userNode);
             }
+            if(currentUser instanceof Attendee){
+                faris1.setStyle("-fx-background-color:#021526;");
+                faris2.setStyle("-fx-background-color:#021526;");
+                usersContainer.setStyle("-fx-background-color:#121212;");
+            }
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -81,14 +95,37 @@ public class UsersMenuController {
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
+        if(currentUser instanceof Attendee){
+            ((Button)event.getSource()).setStyle("-fx-background-color: #6EACDA;");
+        } else {
+            ((Button) event.getSource()).setStyle("-fx-background-color: #5F6368;");
+        }
     }
 
     @FXML
     void ButtonNotHovered(MouseEvent event) {
         ((Button)event.getSource()).setStyle("-fx-background-color: transparent;");
     }
+    @FXML
+    private void ProfilePressed() {
+        if (currentUser instanceof Attendee) {
+            try {
+                System.out.println("profile pressed");
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
+                Parent ro = loader.load();
 
+                AttendeeProfileMenuController attendeeProfileMenuController = loader.getController();
+                attendeeProfileMenuController.Init(currentUser);
+
+                Scene scene2 = new Scene(ro);
+                Stage stage = (Stage) profile.getScene().getWindow();
+                stage.setScene(scene2);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
     @FXML
     void DashboardPressed() {
         try {

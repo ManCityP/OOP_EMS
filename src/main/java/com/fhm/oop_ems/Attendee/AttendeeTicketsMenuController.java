@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -22,6 +23,8 @@ import p3.User;
 import java.util.ArrayList;
 
 public class AttendeeTicketsMenuController {
+    @FXML
+    private ImageView profile;
     @FXML
     Label errorText;
     @FXML
@@ -72,6 +75,24 @@ public class AttendeeTicketsMenuController {
         this.searchField.setText(search);
         SearchPressed(new KeyEvent(KeyEvent.KEY_PRESSED,"","",KeyCode.ENTER,false,false,false,false));
 
+    }
+    @FXML
+    private void ProfilePressed(){
+        try {
+            System.out.println("profile pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
+            Parent ro = loader.load();
+
+            AttendeeProfileMenuController attendeeProfileMenuController = loader.getController();
+            attendeeProfileMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(ro);
+            Stage stage = (Stage) profile.getScene().getWindow();
+            stage.setScene(scene2);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     @FXML
     void SearchPressed(KeyEvent event) {

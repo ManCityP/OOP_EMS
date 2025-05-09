@@ -106,7 +106,7 @@ public class AttendeeMainMenuController {
     }
 
     @FXML
-    private void ProfilePressed() throws IOException {
+    private void ProfilePressed(){
         try {
             System.out.println("profile pressed");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));

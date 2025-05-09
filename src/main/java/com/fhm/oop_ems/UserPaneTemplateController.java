@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,7 +16,10 @@ import p3.Attendee;
 import p3.User;
 
 public class UserPaneTemplateController {
-
+    @FXML
+    private AnchorPane faris1;
+    @FXML
+    private AnchorPane faris2;
     @FXML
     private Label usernameLabel;
     @FXML
@@ -52,6 +56,9 @@ public class UserPaneTemplateController {
         else {
             this.flexLabel.setVisible(false);
             this.flexLabel.setDisable(false);
+        }
+        if(currentUser instanceof Attendee){
+            faris1.setStyle("-fx-background-color:#121212; -fx-border-color:#6EACDA; -fx-border-width:4px;");
         }
     }
 

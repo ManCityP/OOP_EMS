@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +34,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TicketsCalendarController {
-
+    @FXML
+    private ImageView profile;
     @FXML
     private Button backButton;
     @FXML
@@ -158,8 +160,8 @@ public class TicketsCalendarController {
             }
 
             Text text = new Text(events.get(k).GetID() + ": " + events.get(k).GetTimeRange());
-            if(((Attendee)currentUser).GetInterests().contains(events.get(k).GetCategory())){
-                text.setFill(Color.RED);
+            if(((Attendee)currentUser).guiConcat().toString().contains(events.get(k).GetCategory().toString())){
+                text.setFill(Color.PURPLE);
             }
             monthEventsBox.getChildren().add(text);
         }
@@ -184,7 +186,24 @@ public class TicketsCalendarController {
         }
         return monthEvents;
     }
+    @FXML
+    private void ProfilePressed(){
+        try {
+            System.out.println("profile pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
+            Parent ro = loader.load();
 
+            AttendeeProfileMenuController attendeeProfileMenuController = loader.getController();
+            attendeeProfileMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(ro);
+            Stage stage = (Stage) profile.getScene().getWindow();
+            stage.setScene(scene2);
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     @FXML
     void BackPressed() {
         try {
@@ -210,7 +229,7 @@ public class TicketsCalendarController {
 
     @FXML
     void ButtonHovered(MouseEvent event) {
-        ((Button)event.getSource()).setStyle("-fx-background-color: #5F6368;");
+        ((Button)event.getSource()).setStyle("-fx-background-color: #6EACDA;");
     }
 
     @FXML

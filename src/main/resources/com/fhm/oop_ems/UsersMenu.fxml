@@ -17,14 +17,14 @@
    <children>
       <SplitPane dividerPositions="0.5" onKeyPressed="#HandleKeyPress" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="343.0" style="-fx-background-color: #121212;" SplitPane.resizableWithParent="false">
+            <AnchorPane fx:id="faris2" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="343.0" style="-fx-background-color: #121212;" SplitPane.resizableWithParent="false">
                <children>
                   <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../image/Logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
+                  <ImageView fx:id="profile" fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" onMouseClicked="#ProfilePressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                      <image>
                         <Image url="@../../../image/pfp.png" />
                      </image>
@@ -54,7 +54,7 @@
             </AnchorPane>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="812.0" prefWidth="520.0" SplitPane.resizableWithParent="false">
                <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
+                  <AnchorPane fx:id="faris1" minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
                      <children>
                         <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="5.0" mnemonicParsing="false" onAction="#BackPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
                            <cursor>

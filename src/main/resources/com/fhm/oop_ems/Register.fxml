@@ -87,6 +87,11 @@
                         <ComboBox fx:id="genderBox" layoutX="115.0" layoutY="195.0" prefWidth="150.0" />
                         <PasswordField fx:id="passwordField" layoutX="123.0" layoutY="94.0" prefHeight="25.0" prefWidth="318.0" promptText="Choose a password" />
                         <PasswordField fx:id="confirmPasswordField" layoutX="181.0" layoutY="127.0" prefHeight="25.0" prefWidth="318.0" promptText="Confirm your password" />
+                        <Label layoutX="282.0" layoutY="194.0" prefHeight="27.0" prefWidth="99.0" text="(or Engineer)" textFill="#ff9500">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="adminPane" disable="true" layoutX="4.0" layoutY="346.0" prefHeight="312.0" prefWidth="696.0" visible="false">
