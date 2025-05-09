@@ -1,8 +1,6 @@
 package p3;
 
 import p1.Database;
-
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Wallet {
@@ -34,10 +32,8 @@ public class Wallet {
         if (amount < 0)
             if (Math.abs(amount) > this.balance)
                 throw new Exception("No available balance");
-        Database.Execute(String.format("UPDATE wallet SET balance = balance + %s WHERE (id = '%s')", this.balance, amount, this.WALLET_NUMBER));
-        ResultSet resultSet = Database.GetAny(String.format("SELECT balance FROM wallet WHERE (id = '%s')", this.WALLET_NUMBER));
-        if(resultSet.next())
-            this.balance = resultSet.getInt("balance");
+        this.balance += amount;
+        Database.Execute(String.format("UPDATE wallet SET balance = '%s' WHERE (id = '%s')", this.balance, this.WALLET_NUMBER));
     }
 
     public double GetBalance(){
