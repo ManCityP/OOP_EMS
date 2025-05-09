@@ -11,121 +11,160 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="812.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Organizer.OrganizerProfileMenuController">
-   <items>
-      <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1092.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.fhm.oop_ems.Organizer.OrganizerProfileMenuController">
+  <items>
+      <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="343.0" style="-fx-background-color: #121212;">
          <children>
-            <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="5.0" mnemonicParsing="false" onAction="#BackButtonPressed" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+            <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../image/Logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
+               <image>
+                  <Image url="@../../../../image/pfp.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="[Untitled]" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="dashboardButton" layoutY="356.0" mnemonicParsing="false" onAction="#DashboardPressed" prefHeight="48.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="Dashboard" textFill="WHITE" AnchorPane.bottomAnchor="396.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="356.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
                <effect>
                   <ColorAdjust />
                </effect>
-               <graphic>
-                  <ImageView fitHeight="72.0" fitWidth="76.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../image/backImg.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
+            <ImageView fitHeight="66.0" fitWidth="98.0" layoutX="2.0" layoutY="347.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../image/dashboardButton.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
-         <children>
-            <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
-               <content>
-                  <AnchorPane focusTraversable="true" minHeight="698.0" minWidth="-Infinity" prefWidth="862.0" style="-fx-background-color: #F0E6D7;">
-                     <children>
-                        <Label layoutX="18.0" layoutY="85.0" text="Username:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="124.0" text="Email:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="202.0" text="Date of Birth:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="163.0" text="Gender:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="46.0" text="Account Type:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="typeLabel" layoutX="153.0" layoutY="46.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="usernameLabel" layoutX="125.0" layoutY="85.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="emailLabel" layoutX="85.0" layoutY="124.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="genderLabel" layoutX="96.0" layoutY="163.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="birthDateLabel" layoutX="150.0" layoutY="202.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="19.0" layoutY="243.0" text="Account Created at:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="createTimeLabel" layoutX="206.0" layoutY="243.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="19.0" layoutY="285.0" text="Wallet ID:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="walletIDLabel" layoutX="119.0" layoutY="285.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="18.0" layoutY="322.0" text="Wallet Balance:">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="walletBalanceLabel" layoutX="156.0" layoutY="322.0" text="[Untiteled]">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
-   </items>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="812.0" prefWidth="520.0">
+         <items>
+            <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
+               <children>
+                  <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="5.0" mnemonicParsing="false" onAction="#BackButtonPressed" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="76.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../image/backImg.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
+               <children>
+                  <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
+                     <content>
+                        <AnchorPane focusTraversable="true" minHeight="698.0" minWidth="-Infinity" prefWidth="862.0" style="-fx-background-color: #F0E6D7;">
+                           <children>
+                              <Label layoutX="18.0" layoutY="85.0" text="Username:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="124.0" text="Email:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="202.0" text="Date of Birth:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="163.0" text="Gender:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="46.0" text="Account Type:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="typeLabel" layoutX="153.0" layoutY="46.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="usernameLabel" layoutX="125.0" layoutY="85.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="emailLabel" layoutX="85.0" layoutY="124.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="genderLabel" layoutX="96.0" layoutY="163.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="birthDateLabel" layoutX="150.0" layoutY="202.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="19.0" layoutY="243.0" text="Account Created at:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="createTimeLabel" layoutX="206.0" layoutY="243.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="19.0" layoutY="285.0" text="Wallet ID:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="walletIDLabel" layoutX="119.0" layoutY="285.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="18.0" layoutY="322.0" text="Wallet Balance:">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="walletBalanceLabel" layoutX="156.0" layoutY="322.0" text="[Untiteled]">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+  </items>
 </SplitPane>
