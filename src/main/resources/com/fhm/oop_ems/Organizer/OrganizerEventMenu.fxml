@@ -12,23 +12,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1180.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.fhm.oop_ems.Organizer.OrganizerEventMenuController">
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1093.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Organizer.OrganizerEventMenuController">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
-            <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="307.0" style="-fx-background-color: #121212;">
+            <AnchorPane focusTraversable="true" minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="221.0" style="-fx-background-color: #121212;">
                <children>
                   <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../image/Logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="68.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="548.0" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="89.58824157714844" AnchorPane.topAnchor="102.0">
+                  <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" layoutX="36.0" layoutY="103.0" onMousePressed="#ProfileImagePressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                      <image>
                         <Image url="@../../../../image/pfp.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="[Untitled]" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="263.0">
+                  <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="[Untitled]" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -76,7 +79,15 @@
                   </Button>
                   <Label alignment="CENTER" layoutX="395.0" layoutY="30.0" prefHeight="35.0" prefWidth="75.0" text="Events" textFill="#f0e6d7">
                      <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="addEventButton" alignment="CENTER" layoutX="24.0" layoutY="30.0" onMouseEntered="#AddEventButtonHovered" onMouseExited="#AddEventButtonNotHovered" onMousePressed="#AddEventButtonPressed" prefHeight="35.0" prefWidth="121.0" text="Add Event" textFill="#f0e6d7">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
                      </cursor>
                      <font>
                         <Font name="System Bold" size="24.0" />
@@ -88,17 +99,14 @@
                <children>
                   <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                      <content>
-                        <VBox fx:id="eventsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;">
-                           <children>
-                              <Label fx:id="noEventsLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="69.0" prefWidth="865.0" textFill="RED">
-                                 <font>
-                                    <Font size="47.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
+                        <VBox fx:id="eventsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
                      </content>
                   </ScrollPane>
+                  <Label fx:id="noEventsLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="862.0" textFill="RED">
+                     <font>
+                        <Font size="47.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </items>

@@ -25,10 +25,13 @@
                                 <Image url="@../../../../image/Logo.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
+                        <ImageView fx:id="profileImage" fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" onMousePressed="#ProfileButtonPressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                             <image>
                                 <Image url="@../../../../image/pfp.png" />
                             </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                         </ImageView>
                         <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="[Untitled]" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
                             <font>
@@ -72,6 +75,9 @@
                                             <image>
                                                 <Image url="@../../../../image/backImg.png" />
                                             </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                                         </ImageView>
                                     </graphic>
                                 </Button>
@@ -86,7 +92,10 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="eventTitle" layoutX="120.0" layoutY="49.0" prefHeight="25.0" prefWidth="239.0" promptText="Event Title" />
+                              <TextField fx:id="eventTitle" layoutX="120.0" layoutY="49.0" prefHeight="25.0" prefWidth="239.0" promptText="Event Title">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor></TextField>
                               <Label layoutX="138.0" layoutY="265.0" text="24-hour Format!">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -116,11 +125,17 @@
                                              <font>
                                                 <Font name="System Bold" size="28.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
                                           <TextField fx:id="startMinuteTextField" layoutX="103.0" layoutY="38.0" prefHeight="54.0" prefWidth="66.0" style="-fx-background-color: #262626; -fx-text-fill: white;" text="00">
                                              <font>
                                                 <Font name="System Bold" size="28.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
                                           <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="66.0" layoutY="38.0" mouseTransparent="true" prefHeight="51.0" prefWidth="35.0" style="-fx-background-color: #121212; -fx-text-fill: white;" text=":">
                                              <font>
@@ -129,10 +144,13 @@
                                           </TextField>
                                           <Button fx:id="startHourUpButton" focusTraversable="false" layoutY="11.0" mnemonicParsing="false" onAction="#StartHourUpPressed" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: transparent;">
                                              <graphic>
-                                                <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="19.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -142,8 +160,14 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </Button>
                                           <Button fx:id="startHourDownButton" focusTraversable="false" layoutY="96.0" mnemonicParsing="false" onAction="#StartHourDownPressed" prefHeight="27.0" prefWidth="66.0" rotate="180.0" style="-fx-background-color: transparent;">
                                              <graphic>
@@ -151,6 +175,9 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -160,6 +187,9 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -171,11 +201,17 @@
                                              <font>
                                                 <Font name="System Bold" size="28.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
                                           <TextField fx:id="endMinuteTextField" layoutX="103.0" layoutY="38.0" prefHeight="54.0" prefWidth="66.0" style="-fx-background-color: #262626; -fx-text-fill: white;" text="00">
                                              <font>
                                                 <Font name="System Bold" size="28.0" />
                                              </font>
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
                                           </TextField>
                                           <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="66.0" layoutY="38.0" mouseTransparent="true" prefHeight="51.0" prefWidth="35.0" style="-fx-background-color: #121212; -fx-text-fill: white;" text=":">
                                              <font>
@@ -188,6 +224,9 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -197,6 +236,9 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -206,6 +248,9 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -215,6 +260,9 @@
                                                    <image>
                                                       <Image url="@../../../../image/arrowImg.png" />
                                                    </image>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
                                                 </ImageView>
                                              </graphic>
                                           </Button>
@@ -227,13 +275,19 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="categories" layoutX="120.0" layoutY="87.0" prefHeight="25.0" prefWidth="239.0" />
+                              <ComboBox fx:id="categories" layoutX="120.0" layoutY="87.0" prefHeight="25.0" prefWidth="239.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></ComboBox>
                               <Label layoutX="14.0" layoutY="122.0" text="Room:">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="rooms" layoutX="120.0" layoutY="123.0" prefHeight="25.0" prefWidth="239.0" />
+                              <ComboBox fx:id="rooms" layoutX="120.0" layoutY="123.0" prefHeight="25.0" prefWidth="239.0">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></ComboBox>
                               <Label layoutX="14.0" layoutY="160.0" text="Date:">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
@@ -244,13 +298,19 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="maxNumOfAttendees" layoutX="296.0" layoutY="197.0" prefHeight="25.0" prefWidth="66.0" />
+                              <TextField fx:id="maxNumOfAttendees" layoutX="296.0" layoutY="197.0" prefHeight="25.0" prefWidth="66.0">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor></TextField>
                               <Label layoutX="14.0" layoutY="230.0" text="Price:">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="price" layoutX="68.0" layoutY="231.0" prefHeight="25.0" prefWidth="82.0" promptText="price" />
+                              <TextField fx:id="price" layoutX="68.0" layoutY="231.0" prefHeight="25.0" prefWidth="82.0" promptText="price">
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor></TextField>
                               <Label layoutX="154.0" layoutY="222.0" text="\$">
                                  <font>
                                     <Font name="System Bold" size="29.0" />
@@ -261,12 +321,15 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="errorMessage" layoutX="20.0" layoutY="496.0" textFill="RED">
+                              <Label fx:id="errorMessage" layoutX="20.0" layoutY="496.0" prefHeight="30.0" prefWidth="133.0" textFill="RED">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <DatePicker fx:id="date" layoutX="121.0" layoutY="161.0" prefHeight="25.0" prefWidth="190.0" promptText="Date" />
+                              <DatePicker fx:id="date" layoutX="121.0" layoutY="161.0" prefHeight="25.0" prefWidth="190.0" promptText="Date">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></DatePicker>
                            </children>
                         </AnchorPane>
                      </children>

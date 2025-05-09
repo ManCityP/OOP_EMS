@@ -27,6 +27,8 @@ public class OrganizerEventMenuController {
     private Button dashboardButton;
     @FXML
     private Label username;
+    @FXML
+    private Label addEventButton;
 
     private User user;
     private int eventsLoaded = 0;
@@ -77,10 +79,56 @@ public class OrganizerEventMenuController {
     }
 
     @FXML
-    void DashboardPressed() {
+    private void DashboardPressed() {
         try{
             BackButtonPressed();
         }catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void AddEventButtonPressed(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerCreateEventMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerCreateEventMenuController organizerCreateEventMenuController = loader.getController();
+            organizerCreateEventMenuController.Init(user);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)backButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void AddEventButtonHovered(){
+        this.addEventButton.setUnderline(true);
+    }
+
+    @FXML
+    private void AddEventButtonNotHovered(){
+        this.addEventButton.setUnderline(false);
+    }
+
+    @FXML
+    private void ProfileImagePressed(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerProfileMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerProfileMenuController organizerProfileMenuController = loader.getController();
+            organizerProfileMenuController.Init(user);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)backButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }

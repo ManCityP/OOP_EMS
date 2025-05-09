@@ -124,6 +124,25 @@ public class OrganizerWalletMenuController {
     }
 
     @FXML
+    private void ProfileButtonPressed(){
+        try {
+            System.out.println("Profile button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerProfileMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerProfileMenuController organizerProfileMenuController = loader.getController();
+            organizerProfileMenuController.Init(currentUser);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)backButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     void RefreshPressed() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerWalletMenu.fxml"));

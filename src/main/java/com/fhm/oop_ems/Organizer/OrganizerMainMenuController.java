@@ -173,8 +173,6 @@ public class OrganizerMainMenuController {
             System.out.println(ex.getMessage());
         }
     }
-
     @FXML
     private void DashboardPressed(){}
-
 }

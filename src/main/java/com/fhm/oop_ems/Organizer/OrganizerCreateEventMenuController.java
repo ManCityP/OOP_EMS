@@ -211,7 +211,26 @@ public class OrganizerCreateEventMenuController {
         }catch(Exception ex){
             System.out.println(ex.getMessage());
 //            errorMessage.setText(ex.getMessage());
-            errorMessage.setText("Invalid data");
+            errorMessage.setText("Invalid data !");
+        }
+    }
+
+    @FXML
+    private void ProfileButtonPressed(){
+        try {
+            System.out.println("Profile button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerProfileMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerProfileMenuController organizerProfileMenuController = loader.getController();
+            organizerProfileMenuController.Init(user);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)backButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -339,10 +358,8 @@ public class OrganizerCreateEventMenuController {
             System.out.println(ex.getMessage());
         }
     }
-
     @FXML
     void DashboardPressed() {
         BackButtonPressed();
     }
-
 }
