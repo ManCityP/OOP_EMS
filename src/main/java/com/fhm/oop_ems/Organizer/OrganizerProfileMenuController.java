@@ -21,11 +21,14 @@ public class OrganizerProfileMenuController {
     @FXML private Label usernameLabel;
     @FXML private Label walletBalanceLabel;
     @FXML private Label walletIDLabel;
+    @FXML private Label username;
+    @FXML private Button dashboardButton;
 
     private User user;
 
     public void Init(User user) {
         this.user = user;
+        username.setText(user.GetUsername());
         typeLabel.setText("Organizer");
         usernameLabel.setText(user.GetUsername());
         emailLabel.setText(user.GetEmail());
@@ -52,5 +55,10 @@ public class OrganizerProfileMenuController {
         catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    @FXML
+    private void DashboardPressed() {
+        BackButtonPressed();
     }
 }
