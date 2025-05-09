@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -99,10 +100,13 @@
                <children>
                   <ScrollPane prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                      <content>
-                        <VBox fx:id="eventsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;" />
+                        <VBox fx:id="eventsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #F0E6D7;">
+                           <children>
+                              <TextField fx:id="searchBar" onKeyPressed="#SearchPressed" promptText="Search for Events" />
+                           </children></VBox>
                      </content>
                   </ScrollPane>
-                  <Label fx:id="noEventsLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="0.0" prefWidth="862.0" textFill="RED">
+                  <Label fx:id="noEventsLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="27.0" prefHeight="0.0" prefWidth="862.0" textFill="RED">
                      <font>
                         <Font size="47.0" />
                      </font>

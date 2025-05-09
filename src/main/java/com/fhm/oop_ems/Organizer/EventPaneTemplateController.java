@@ -67,7 +67,7 @@ public class EventPaneTemplateController {
             Parent root = loader.load();
 
             OrganizerEventMenuController organizerEventMenuController = loader.getController();
-            organizerEventMenuController.InitData(user);
+            organizerEventMenuController.InitData(user, Database.GetEvents());
 
             Scene scene2 = new Scene(root);
             Stage stage = (Stage)category.getScene().getWindow();

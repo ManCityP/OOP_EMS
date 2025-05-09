@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import p1.Database;
 import p3.User;
 import java.io.IOException;
 
@@ -50,7 +51,7 @@ public class OrganizerMainMenuController {
             Parent root = loader.load();
 
             OrganizerEventMenuController organizerEventMenuController = loader.getController();
-            organizerEventMenuController.InitData(currentUser);
+            organizerEventMenuController.InitData(currentUser, Database.GetEvents());
 
             Scene scene2 = new Scene(root);
             Stage stage = (Stage)logoutButton.getScene().getWindow();
