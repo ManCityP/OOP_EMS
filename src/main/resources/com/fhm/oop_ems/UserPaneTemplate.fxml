@@ -67,9 +67,14 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="flexLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="142.0" prefWidth="611.0" text="Flex:" textFill="WHITE" wrapText="true">
+      <Label fx:id="flexLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="142.0" prefWidth="434.0" text="Flex:" textFill="WHITE" wrapText="true">
          <font>
             <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="typeLabel" alignment="CENTER" layoutX="652.0" layoutY="142.0" style="-fx-border-color: green; -fx-border-width: 3;" text="Organizer" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="18.0" />
          </font>
       </Label>
    </children>

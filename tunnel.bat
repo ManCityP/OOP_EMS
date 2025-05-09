@@ -1,1 +1,2 @@
+ngrok config add-authtoken 2wmmnWVydgNPa2fQIO5al8LyC6k_2cY2dBuHFHGVL3FJpTatF
 ngrok http 7878

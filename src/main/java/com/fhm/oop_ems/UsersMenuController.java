@@ -1,11 +1,13 @@
 package com.fhm.oop_ems;
 
 import com.fhm.oop_ems.Admin.AdminMainMenuController;
+import com.fhm.oop_ems.Admin.AdminProfileMenuController;
 import com.fhm.oop_ems.Admin.AdminRoomMenuController;
 import com.fhm.oop_ems.Admin.RoomPaneTemplateController;
 import com.fhm.oop_ems.Attendee.AttendeeMainMenuController;
 import com.fhm.oop_ems.Attendee.AttendeeProfileMenuController;
 import com.fhm.oop_ems.Organizer.OrganizerMainMenuController;
+import com.fhm.oop_ems.Organizer.OrganizerProfileMenuController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -110,7 +112,6 @@ public class UsersMenuController {
     private void ProfilePressed() {
         if (currentUser instanceof Attendee) {
             try {
-                System.out.println("profile pressed");
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendee/AttendeeProfileMenu.fxml"));
                 Parent ro = loader.load();
 
@@ -125,7 +126,40 @@ public class UsersMenuController {
                 System.out.println(ex.getMessage());
             }
         }
+        else if (currentUser instanceof Admin) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Admin/AdminProfileMenu.fxml"));
+                Parent ro = loader.load();
+
+                AdminProfileMenuController adminProfileMenuController = loader.getController();
+                adminProfileMenuController.Init(currentUser);
+
+                Scene scene2 = new Scene(ro);
+                Stage stage = (Stage) profile.getScene().getWindow();
+                stage.setScene(scene2);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Organizer/OrganizerProfileMenu.fxml"));
+                Parent ro = loader.load();
+
+                OrganizerProfileMenuController organizerProfileMenuController = loader.getController();
+                organizerProfileMenuController.Init(currentUser);
+
+                Scene scene2 = new Scene(ro);
+                Stage stage = (Stage) profile.getScene().getWindow();
+                stage.setScene(scene2);
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
     }
+
     @FXML
     void DashboardPressed() {
         try {

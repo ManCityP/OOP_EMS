@@ -34,6 +34,8 @@ public class UserPaneTemplateController {
     private Label flexLabel;
     @FXML
     private Label birthDateLabel;
+    @FXML
+    private Label typeLabel;
 
     private User currentUser;
     private User displayedUser;
@@ -47,15 +49,19 @@ public class UserPaneTemplateController {
         this.genderLabel.setText(displayedUser.GetGender().toString());
         this.birthDateLabel.setText(displayedUser.GetBirthDate().toString());
         this.createTimeLabel.setText(displayedUser.GetDateCreated().toString());
+
         if(displayedUser instanceof Admin) {
             this.flexLabel.setText(String.format("Role: %s", ((Admin)this.displayedUser).GetRole()));
+            typeLabel.setText("Admin");
         }
         else if(displayedUser instanceof Attendee) {
             this.flexLabel.setText(String.format("Interests: %s", ((Attendee)this.displayedUser).GetInterests().toString()));
+            typeLabel.setText("Attendee");
         }
         else {
             this.flexLabel.setVisible(false);
             this.flexLabel.setDisable(false);
+            typeLabel.setText("Organizer");
         }
         if(currentUser instanceof Attendee){
             faris1.setStyle("-fx-background-color:#121212; -fx-border-color:#6EACDA; -fx-border-width:4px;");

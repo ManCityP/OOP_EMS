@@ -204,6 +204,29 @@ public class AdminRoomMenuController {
     }
 
     @FXML
+    void ProfilePressed() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminProfileMenu.fxml"));
+            Parent root = loader.load();
+
+            AdminProfileMenuController adminProfileMenuController = loader.getController();
+            adminProfileMenuController.Init(currentUser);
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)dashboardButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     void BackPressed() {
         DashboardPressed();
     }
