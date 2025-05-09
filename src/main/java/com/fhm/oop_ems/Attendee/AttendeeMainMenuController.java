@@ -19,6 +19,8 @@ import java.io.IOException;
 
 public class AttendeeMainMenuController {
     @FXML
+    private Label username;
+    @FXML
     private Label usersButton;
     @FXML
     private Label calendarButton;
@@ -37,6 +39,7 @@ public class AttendeeMainMenuController {
 
     public void InitData(User user) {
         this.currentUser = user;
+        username.setText(user.GetUsername());
     }
     @FXML
     private void CalendarPressed(){
