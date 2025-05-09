@@ -103,7 +103,7 @@ public class RegisterController {
         userTypeBox.setItems(FXCollections.observableArrayList(new ArrayList<>(List.of("Attendee", "Organizer", "Admin"))));
         genderBox.setItems(FXCollections.observableArrayList(new ArrayList<>(List.of("Male", "Female"))));
         try {
-            genderBox.setItems(FXCollections.observableArrayList(Database.GetCategories()));
+            interestsBox.setItems(FXCollections.observableArrayList(Database.GetCategories()));
         }
         catch (Exception ex) {
             ex.printStackTrace();

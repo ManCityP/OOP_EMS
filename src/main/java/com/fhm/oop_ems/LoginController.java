@@ -61,6 +61,25 @@ public class LoginController {
     }
 
     @FXML
+    private void RegisterPressed() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+            Parent root = loader.load();
+            RegisterController registerController = loader.getController();
+            registerController.Init();
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+            // Get the current stage
+            Stage stage = (Stage)loginButton.getScene().getWindow();
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
     protected void Login(){
         try {
             User user = User.Login(this.username.getText(),this.password.getText());

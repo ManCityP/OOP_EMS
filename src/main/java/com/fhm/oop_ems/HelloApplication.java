@@ -20,8 +20,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Alley OOP FAM");
         stage.getIcons().add(new Image(getClass().getResource("/image/Logo.png").toExternalForm()));
         stage.setScene(scene);
-        stage.setMinWidth(1092);
-        stage.setMinHeight(802);
+        //stage.setMinWidth(1092);
+        //stage.setMinHeight(802);
 
         stage.setOnCloseRequest(windowEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

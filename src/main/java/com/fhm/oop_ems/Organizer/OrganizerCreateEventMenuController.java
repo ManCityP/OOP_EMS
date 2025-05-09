@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import p1.*;
 import p2.Organizer;
@@ -66,6 +68,116 @@ public class OrganizerCreateEventMenuController {
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
+
+        maxNumOfAttendees.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty())
+                maxNumOfAttendees.setText("0");
+            else if(!newValue.matches("\\d*"))
+                maxNumOfAttendees.setText(oldValue.isEmpty()? "0" : oldValue);
+            else {
+                try {
+                    int x = Integer.parseInt(newValue);
+                    maxNumOfAttendees.setText(String.format("%s", x));
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    maxNumOfAttendees.setText(oldValue.isEmpty()? "0" : oldValue);
+                }
+            }
+        });
+        price.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty())
+                price.setText("0");
+            else if(!newValue.matches("\\d*"))
+                price.setText(oldValue.isEmpty()? "0" : oldValue);
+            else {
+                try {
+                    int x = Integer.parseInt(newValue);
+                    price.setText(String.format("%s", x));
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    price.setText(oldValue.isEmpty()? "0" : oldValue);
+                }
+            }
+        });
+
+        TextField[] fields = {startHourTextField, startMinuteTextField, endHourTextField, endMinuteTextField};
+        for (TextField field : fields) {
+            field.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.TAB || event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.W || event.getCode() == KeyCode.S) {
+                    HandleKeyPress(event);
+                    event.consume();
+                }
+            });
+        }
+
+        try {
+            startHourTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*") || newValue.isEmpty()) {
+                    startHourTextField.setText(oldValue); // Revert to the old value if the input is not numeric
+                } else {
+                    int h = Integer.parseInt(newValue);
+                    if (h < 0 || h >= 24)
+                        startHourTextField.setText(oldValue);
+                    else
+                        startHourTextField.setText(String.format("%02d", h));
+                }
+            });
+        }
+        catch (Exception ex) {
+            startHourTextField.setText("00");
+        }
+
+        try {
+            endHourTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*") || newValue.isEmpty()) {
+                    endHourTextField.setText(oldValue); // Revert to the old value if the input is not numeric
+                } else {
+                    int h = Integer.parseInt(newValue);
+                    if (h < 0 || h >= 24)
+                        endHourTextField.setText(oldValue);
+                    else
+                        endHourTextField.setText(String.format("%02d", h));
+                }
+            });
+        }
+        catch (Exception ex) {
+            endHourTextField.setText("00");
+        }
+
+        try {
+            startMinuteTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*") || newValue.isEmpty()) {
+                    startMinuteTextField.setText(oldValue); // Revert to the old value if the input is not numeric
+                } else {
+                    int m = Integer.parseInt(newValue);
+                    if (m < 0 || m >= 60)
+                        startMinuteTextField.setText(oldValue);
+                    else
+                        startMinuteTextField.setText(String.format("%02d", m));
+                }
+            });
+        }
+        catch (Exception ex) {
+            startMinuteTextField.setText("00");
+        }
+
+        try {
+            endMinuteTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*") || newValue.isEmpty()) {
+                    endMinuteTextField.setText(oldValue); // Revert to the old value if the input is not numeric
+                } else {
+                    int m = Integer.parseInt(newValue);
+                    if (m < 0 || m >= 60)
+                        endMinuteTextField.setText(oldValue);
+                    else
+                        endMinuteTextField.setText(String.format("%02d", m));
+                }
+            });
+        }
+        catch (Exception ex) {
+            endMinuteTextField.setText("00");
+        }
+
     }
 
     @FXML
@@ -173,6 +285,41 @@ public class OrganizerCreateEventMenuController {
             endMinuteTextField.setText("59");
         else
             endMinuteTextField.setText(String.format("%s", --min));
+    }
+
+    @FXML
+    void HandleKeyPress(KeyEvent event) {
+        KeyCode code = event.getCode();
+        if(code == KeyCode.TAB) {
+            if(startHourTextField.isFocused())
+                startMinuteTextField.requestFocus();
+            else if(startMinuteTextField.isFocused())
+                endHourTextField.requestFocus();
+            else if(endHourTextField.isFocused())
+                endMinuteTextField.requestFocus();
+            else
+                startHourTextField.requestFocus();
+        }
+        else if(code == KeyCode.UP || code == KeyCode.W) {
+            if(startHourTextField.isFocused())
+                StartHourUpPressed();
+            else if(startMinuteTextField.isFocused())
+                StartMinuteUpPressed();
+            else if(endHourTextField.isFocused())
+                EndHourUpPressed();
+            else if(endMinuteTextField.isFocused())
+                EndMinuteUpPressed();
+        }
+        else if(code == KeyCode.DOWN || code == KeyCode.S) {
+            if(startHourTextField.isFocused())
+                StartHourDownPressed();
+            else if(startMinuteTextField.isFocused())
+                StartMinuteDownPressed();
+            else if(endHourTextField.isFocused())
+                EndHourDownPressed();
+            else if(endMinuteTextField.isFocused())
+                EndMinuteDownPressed();
+        }
     }
 
     @FXML
