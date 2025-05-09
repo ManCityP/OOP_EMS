@@ -20,9 +20,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="681.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.RegisterController">
+<ScrollPane prefHeight="665.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.RegisterController">
    <content>
-      <VBox alignment="CENTER" prefWidth="958.0" style="-fx-background-color: #121212;">
+      <VBox alignment="CENTER" prefWidth="974.0" style="-fx-background-color: #121212;">
          <children>
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#HandleKeyPress" prefWidth="974.0">
                <children>
