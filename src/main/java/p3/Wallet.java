@@ -34,7 +34,7 @@ public class Wallet {
         if (amount < 0)
             if (Math.abs(amount) > this.balance)
                 throw new Exception("No available balance");
-        ResultSet resultSet = Database.GetAny(String.format("UPDATE wallet SET balance = balance + %s WHERE (id = '%s')", this.balance, amount, this.WALLET_NUMBER));
+        ResultSet resultSet = Database.GetAny(String.format("UPDATE wallet SET balance = balance + %s WHERE (id = '%s') RETURNING balance", this.balance, amount, this.WALLET_NUMBER));
         if(resultSet.next())
             this.balance = resultSet.getInt("balance");
     }
