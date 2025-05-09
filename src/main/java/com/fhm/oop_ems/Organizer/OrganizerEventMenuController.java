@@ -42,7 +42,7 @@ public class OrganizerEventMenuController {
     private int eventsLoaded = 0;
     private ArrayList<Event> events;
 
-    public void InitData(User user, ArrayList<Event> events) { //TODO
+    public void InitData(User user, ArrayList<Event> events) {
         this.user = user;
         this.events = events;
         this.username.setText(user.GetUsername());
@@ -52,11 +52,11 @@ public class OrganizerEventMenuController {
                 if(event.GetOrganizer().GetUsername().equals(this.user.GetUsername())){
 
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("DefaultEventPaneTemplate.fxml"));
-                        Node roomNode = loader.load();
+                        Node eventNode = loader.load();
                         EventPaneTemplateController controller = loader.getController();
                         controller.displayevent(this.user, event);
 
-                        eventsContainer.getChildren().add(roomNode);
+                        eventsContainer.getChildren().add(eventNode);
                         eventsLoaded++;
                 }
             }
