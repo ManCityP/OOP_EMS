@@ -10,7 +10,7 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class Server {
+public abstract class Server {
     private static final List<String> messages = Collections.synchronizedList(new ArrayList<>());
 
     public static String GetTunnelURL() {
