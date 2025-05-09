@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -140,7 +141,7 @@
                                                           <Font name="System Bold" size="18.0" />
                                                       </font>
                                                   </Label>
-                                                  <Button fx:id="withdrawButton" layoutX="266.0" layoutY="161.0" mnemonicParsing="false" onMousePressed="#WithdrawPressed" prefHeight="41.0" prefWidth="169.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Withdraw $100" textFill="WHITE">
+                                                  <Button fx:id="withdrawButton" layoutX="266.0" layoutY="144.0" mnemonicParsing="false" onMousePressed="#WithdrawPressed" prefHeight="41.0" prefWidth="180.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Withdraw" textFill="WHITE">
                                                       <font>
                                                           <Font name="System Bold" size="18.0" />
                                                       </font>
@@ -148,7 +149,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                                   </Button>
-                                                  <Button fx:id="depositButton" layoutX="14.0" layoutY="161.0" mnemonicParsing="false" onMousePressed="#DepositPressed" prefHeight="41.0" prefWidth="144.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Deposit $100" textFill="WHITE">
+                                                  <Button fx:id="depositButton" layoutX="14.0" layoutY="144.0" mnemonicParsing="false" onMousePressed="#DepositPressed" prefHeight="41.0" prefWidth="180.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Deposit " textFill="WHITE">
                                                       <font>
                                                           <Font name="System Bold" size="18.0" />
                                                       </font>
@@ -156,6 +157,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                                   </Button>
+                                    <TextField fx:id="amount" layoutX="157.0" layoutY="232.0" promptText="Amount" />
                                             </children>
                                         </AnchorPane>
                                     </content>

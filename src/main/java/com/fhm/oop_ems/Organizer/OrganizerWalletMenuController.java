@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -40,12 +41,29 @@ public class OrganizerWalletMenuController {
     private Button withdrawButton;
     @FXML
     private Button depositButton;
+    @FXML
+    private TextField amount;
 
     private User currentUser;
 
     public void Init(User user) {
         try{
             this.currentUser = Organizer.FindOrganizer(Database.GetOrganizers(), user.GetUsername());
+            amount.textProperty().addListener((observable, oldValue, newValue) -> {
+                if(newValue.isEmpty())
+                    amount.setText("0");
+                else if(!newValue.matches("\\d*"))
+                    amount.setText(oldValue.isEmpty()? "0" : oldValue);
+                else {
+                    try {
+                        int x = Integer.parseInt(newValue);
+                        amount.setText(String.format("%s", x));
+                    } catch (Exception ex) {
+                        System.out.println(ex.getMessage());
+                        amount.setText(oldValue.isEmpty()? "0" : oldValue);
+                    }
+                }
+            });
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -91,8 +109,8 @@ public class OrganizerWalletMenuController {
     void WithdrawPressed() {
         System.out.println("withdraw pressed");
         try {
-            ((Organizer)currentUser).GetWallet().EditBalance(-100);
-            walletBalance.setText(String.format("$%s", ((Organizer)currentUser).GetWallet().GetBalance()));
+            ((Organizer) currentUser).GetWallet().EditBalance(Double.parseDouble(amount.getText())*(-1));
+            walletBalance.setText(String.format("$%s", ((Organizer) currentUser).GetWallet().GetBalance()));
         } catch (Exception e) {
             e.printStackTrace();
             errorText.setText(e.getMessage());
@@ -103,8 +121,8 @@ public class OrganizerWalletMenuController {
     void DepositPressed() {
         System.out.println("deposit pressed");
         try {
-            ((Organizer)currentUser).GetWallet().EditBalance(100);
-            walletBalance.setText(String.format("$%s", ((Organizer)currentUser).GetWallet().GetBalance()));
+            ((Organizer) currentUser).GetWallet().EditBalance(Double.parseDouble(amount.getText()));
+            walletBalance.setText(String.format("$%s", ((Organizer) currentUser).GetWallet().GetBalance()));
         } catch (Exception e) {
             e.printStackTrace();
             errorText.setText(e.getMessage());
