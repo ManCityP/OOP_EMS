@@ -191,7 +191,11 @@ public class OrganizerCreateEventMenuController {
                 if(category.equals(categories.getValue()))
                     this.category = new Category(category);
 
-            ((Organizer)this.user).CreateEvent(Double.parseDouble(price.getText()), this.room, eventTitle.getText(), this.category , new MyDate(date.getEditor().getText()), new TimeRange(String.format("%s:%s", startHourTextField.getText(), startMinuteTextField.getText()), String.format("%s:%s", endHourTextField.getText(), endMinuteTextField.getText())), Integer.parseInt(maxNumOfAttendees.getText()));
+            String[] d = date.getEditor().getText().split("/");
+            MyDate date1 = new MyDate(Integer.parseInt(d[1].trim()), Integer.parseInt(d[0].trim()), Integer.parseInt(d[2].trim()));
+            System.out.println(date1);
+
+            ((Organizer)this.user).CreateEvent(Double.parseDouble(price.getText()), this.room, eventTitle.getText(), this.category , new MyDate(date1.toString()), new TimeRange(String.format("%s:%s", startHourTextField.getText(), startMinuteTextField.getText()), String.format("%s:%s", endHourTextField.getText(), endMinuteTextField.getText())), Integer.parseInt(maxNumOfAttendees.getText()));
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerMainMenu.fxml"));
