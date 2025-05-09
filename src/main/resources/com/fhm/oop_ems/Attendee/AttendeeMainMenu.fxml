@@ -12,7 +12,7 @@
 
 <SplitPane dividerPositions="0.2037037037037037" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Attendee.AttendeeMainMenuController">
    <items>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="212.0" style="-fx-background-color: #121212;">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="212.0" style="-fx-background-color: #021526;">
          <children>
             <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -57,7 +57,7 @@
                       <Image url="@../../../../image/AttendeeMenu3-Photoroom.png" />
                   </image>
               </ImageView>
-              <AnchorPane prefHeight="104.0" prefWidth="1200.0" style="-fx-background-color: #03346E;">
+              <AnchorPane prefHeight="104.0" prefWidth="1200.0" style="-fx-background-color: #021526;">
                   <children>
                       <Label fx:id="myWalletButton" alignment="CENTER" layoutX="210.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#WalletPressed" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#e2e2b6">
                           <cursor>
