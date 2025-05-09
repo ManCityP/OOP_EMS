@@ -24,10 +24,13 @@
                         <Image url="@../../../../image/Logo.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="35.0" layoutY="103.0" onMouseClicked="#ProfilePressed" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="547.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.58824157714844" AnchorPane.topAnchor="103.0">
                      <image>
                         <Image url="@../../../../image/pfp.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <Label fx:id="username" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="263.0" prefHeight="72.0" prefWidth="180.0" text="Mohamed Ashraf Hatem Eltaie Abdelrahman" textAlignment="CENTER" textFill="#009bff" wrapText="true" AnchorPane.bottomAnchor="465.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="263.0">
                      <font>
