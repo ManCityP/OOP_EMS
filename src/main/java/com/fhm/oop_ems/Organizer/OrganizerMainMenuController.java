@@ -1,16 +1,17 @@
 package com.fhm.oop_ems.Organizer;
 
 import com.fhm.oop_ems.HelloApplication;
+import com.fhm.oop_ems.UsersMenuController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import p3.User;
-
 import java.io.IOException;
 
 public class OrganizerMainMenuController {
@@ -25,11 +26,20 @@ public class OrganizerMainMenuController {
     private Label myWalletButton;
     @FXML
     private Label profileButton;
+    @FXML
+    private ImageView profileImage;
+    @FXML
+    private Button dashboardButton;
+    @FXML
+    private Label username;
+    @FXML
+    private Label usersButton;
 
     private User currentUser;
 
     public void InitData(User user) {
         this.currentUser = user;
+        this.username.setText(user.GetUsername());
     }
 
     @FXML
@@ -109,6 +119,24 @@ public class OrganizerMainMenuController {
     }
 
     @FXML
+    private void UsersPressed(){
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("UsersMenu.fxml"));
+            Parent root = loader.load();
+
+            UsersMenuController usersMenuController = loader.getController();
+            usersMenuController.Init(currentUser, User.GetUsers());
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)usersButton.getScene().getWindow();
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     private void ButtonHovered(MouseEvent event) {
         Button btn = (Button) event.getSource();
         btn.setStyle("-fx-background-color: #d62300; -fx-background-radius: 20; -fx-text-fill: white;");
@@ -145,4 +173,8 @@ public class OrganizerMainMenuController {
             System.out.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void DashboardPressed(){}
+
 }
