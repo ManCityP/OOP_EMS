@@ -382,6 +382,24 @@
                         </Label>
                      </children>
                   </AnchorPane>
+                  <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="853.0" layoutY="11.0" mnemonicParsing="false" onAction="#BackPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                     <graphic>
+                        <ImageView fitHeight="72.0" fitWidth="76.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../image/backImg.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

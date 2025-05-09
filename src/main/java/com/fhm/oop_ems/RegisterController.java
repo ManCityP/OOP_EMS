@@ -3,7 +3,10 @@ package com.fhm.oop_ems;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -14,7 +17,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import p1.*;
 import p2.Organizer;
 import p3.Attendee;
@@ -70,6 +75,8 @@ public class RegisterController {
     private Button removeInterestButton;
     @FXML
     private Button removeTimeButton;
+    @FXML
+    private Button backButton;
     @FXML
     private TextField roleField;
     @FXML
@@ -419,6 +426,20 @@ public class RegisterController {
     }
 
     @FXML
+    void BackPressed() {
+        try {
+            System.out.println("logout button pressed");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)backButton.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
     void Login() {
         if(!passwordField.getText().equals(confirmPasswordField.getText())) {
             errorText.setText("Please confirm your password!");
@@ -428,10 +449,12 @@ public class RegisterController {
             if (userTypeBox.getValue().equals("Admin")) {
                 Admin.RegisterAdmin(usernameField.getText(), emailField.getText(), passwordField.getText(), new MyDate(birthDatePicker.getEditor().getText()),
                                     genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, roleField.getText(), workingHours);
+                BackPressed();
             }
             else if (userTypeBox.getValue().equals("Organizer")) {
                 Organizer.RegisterOrganizer(usernameField.getText(), emailField.getText(), passwordField.getText(), new MyDate(birthDatePicker.getEditor().getText()),
                         genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, 0);
+                BackPressed();
             }
             else if (userTypeBox.getValue().equals("Attendee")) {
                 ArrayList<Category> categories = new ArrayList<>();
@@ -440,6 +463,7 @@ public class RegisterController {
                 }
                 Attendee.RegisterAttendee(usernameField.getText(), emailField.getText(), passwordField.getText(), new MyDate(birthDatePicker.getEditor().getText()),
                         genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, categories, 0);
+                BackPressed();
             }
             else {
                 errorText.setText("Choose a user type!");
