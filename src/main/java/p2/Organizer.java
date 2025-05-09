@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Organizer extends User {
     private final Wallet WALLET;
-    private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
+    private Map<Integer, Integer> ticketsSold = new HashMap<>();   //Almost there
 
     public Organizer(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
         super(username, email, password, dob, gender, dateCreated);

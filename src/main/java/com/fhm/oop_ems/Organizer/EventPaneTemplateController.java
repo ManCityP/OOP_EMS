@@ -28,6 +28,11 @@ public class EventPaneTemplateController {
     private Label status;
     @FXML
     private Label timeRange;
+    @FXML
+    private Label ticketsSold;
+    @FXML
+    private Label roomID;
+
     private Event event;
     private User user;
 
@@ -43,6 +48,11 @@ public class EventPaneTemplateController {
            date.setText(event.GetDate().toString());
            timeRange.setText(event.GetTimeRange().toString());
            status.setText(event.GetStatus().toString());
+           roomID.setText(String.format("%s",event.GetRoomID()));
+           if(((Organizer)user).GetTicketsSold().containsKey(event.GetID())){
+               ticketsSold.setText(String.format("%s", ((Organizer)user).GetTicketsSold().get(event.GetID())));
+           }else
+               ticketsSold.setText("0");
        } catch (Exception ex) {
            System.out.println(ex.getMessage());;
        }
@@ -66,6 +76,7 @@ public class EventPaneTemplateController {
 
         }catch(Exception ex){
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 }
