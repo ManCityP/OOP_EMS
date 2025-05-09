@@ -34,7 +34,7 @@ public abstract class User {
         this.dateCreated = Translate(dateCreated);
     }
 
-    MyDate Translate(String date) throws Exception {
+    private MyDate Translate(String date) throws Exception {
         String d = date.split(" ")[0];
         String[] str = d.split("-");
         return new MyDate(Integer.parseInt(str[2]), Integer.parseInt(str[1]), Integer.parseInt(str[0]));
