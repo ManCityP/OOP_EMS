@@ -12,8 +12,10 @@ import java.util.*;
 
 public abstract class Server {
     private static final List<String> messages = Collections.synchronizedList(new ArrayList<>());
+    private static final int PORT = 7878;
+    private static Process ngrokProcess;
 
-    public static String GetTunnelURL() {
+    private static String GetTunnelURL() {
         try {
             URL url = new URL("http://localhost:4040/api/tunnels");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -46,9 +48,6 @@ public abstract class Server {
             return null;
         }
     }
-
-    private static final int PORT = 7878;
-    private static Process ngrokProcess;
 
     public static void main(String[] args) throws IOException {
         Database.Connect();
