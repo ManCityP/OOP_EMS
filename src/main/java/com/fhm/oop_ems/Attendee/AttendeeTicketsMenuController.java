@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -18,11 +19,14 @@ import p1.Database;
 import p1.Room;
 import p2.Event;
 import p2.Status;
+import p3.Attendee;
 import p3.User;
 
 import java.util.ArrayList;
 
 public class AttendeeTicketsMenuController {
+    @FXML
+    private CheckBox filterInterests;
     @FXML
     private ImageView profile;
     @FXML
@@ -51,6 +55,9 @@ public class AttendeeTicketsMenuController {
         currentUser = user;
         this.username.setText(currentUser.GetUsername());
         this.events = events;
+        filterInterests.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            SearchPressed(new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.ENTER, false, false, false, false));
+        });
         try {
             rooms = Database.GetRooms();
             for (Event event : this.events) {
@@ -134,7 +141,10 @@ public class AttendeeTicketsMenuController {
             }
             catch (NumberFormatException ex) {
                 try {
-                    for(Event event1 : Database.GetEvents())
+                    for(Event event1 : Database.GetEvents()){
+                        if(filterInterests.isSelected() && !(((Attendee)currentUser).guiConcat().toString().contains(event1.GetCategory().toString()))){
+                            continue;
+                        }
                         if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
                             searchEvents.add(event1);
                         else if(prompt.equals(event1.GetDate().toString()))
@@ -143,7 +153,7 @@ public class AttendeeTicketsMenuController {
                             searchEvents.add(event1);
                         else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
                             searchEvents.add(event1);
-
+                    }
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
                     Parent root = loader.load();
 
@@ -169,6 +179,7 @@ public class AttendeeTicketsMenuController {
             }
         }
     }
+
     @FXML
     void BackPressed() {
         try {
