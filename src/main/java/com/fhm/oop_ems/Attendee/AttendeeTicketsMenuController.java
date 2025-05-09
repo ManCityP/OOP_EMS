@@ -63,26 +63,11 @@ public class AttendeeTicketsMenuController {
             ex.printStackTrace();
         }
     }
-    public void InitData(User user, ArrayList<Event> events, String search) {
+    public void InitData(User user, String search) {
         currentUser = user;
-        this.searchField.setText(search);
-        this.username.setText(currentUser.GetUsername());
-        this.events = events;
-        try {
-            rooms = Database.GetRooms();
-            for (Event event : this.events) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketsPaneTemplate.fxml"));
-                Node roomNode = loader.load();
+        //this.searchField.setText(search);
+        SearchPressed(new KeyEvent(KeyEvent.KEY_PRESSED,"","",KeyCode.ENTER,false,false,false,false));
 
-                TicketsPaneTemplateController controller = loader.getController();
-                controller.init(currentUser, event, this);
-
-                roomsContainer.getChildren().add(roomNode);
-            }
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();
-        }
     }
     @FXML
     void SearchPressed(KeyEvent event) {

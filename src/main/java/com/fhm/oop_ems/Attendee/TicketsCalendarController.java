@@ -122,14 +122,13 @@ public class TicketsCalendarController {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
                                 Parent root = loader.load();
                                 AttendeeTicketsMenuController attendeeTicketsMenuController = loader.getController();
-                                attendeeTicketsMenuController.InitData(currentUser, Database.GetEvents(), (new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear())).toString());
+                                attendeeTicketsMenuController.InitData(currentUser, (new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear())).toString());
                                 // Create the second scene
                                 Scene scene2 = new Scene(root);
                                 // Get the current stage
                                 Stage stage = (Stage)backButton.getScene().getWindow();
                                 // Set the new scene
                                 stage.setScene(scene2);
-                                attendeeTicketsMenuController.SearchPressed(new KeyEvent(KeyEvent.KEY_PRESSED,"","",KeyCode.ENTER,false,false,false,false));
                             }
                             catch (Exception ex) {
                                 System.out.println(ex.getMessage());
