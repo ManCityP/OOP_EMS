@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -152,18 +153,19 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Button fx:id="withdrawButton" mnemonicParsing="false" onMouseClicked="#WithdrawPressed" onMouseEntered="#ButtonHovered" onMouseExited="#WalletButtonNotHovered" prefHeight="41.0" prefWidth="169.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Withdraw $100" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                          <Button fx:id="withdrawButton" mnemonicParsing="false" onMouseClicked="#WithdrawPressed" onMouseEntered="#ButtonHovered" onMouseExited="#WalletButtonNotHovered" prefHeight="41.0" prefWidth="169.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Withdraw" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Button>
-                                          <Button fx:id="depositButton" mnemonicParsing="false" onMouseClicked="#DepositPressed" onMouseEntered="#ButtonHovered" onMouseExited="#WalletButtonNotHovered" prefHeight="41.0" prefWidth="144.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Deposit $100" textFill="WHITE" GridPane.rowIndex="2">
+                                          <Button fx:id="depositButton" mnemonicParsing="false" onMouseClicked="#DepositPressed" onMouseEntered="#ButtonHovered" onMouseExited="#WalletButtonNotHovered" prefHeight="41.0" prefWidth="144.0" style="-fx-background-color: #121212; -fx-border-color: white;" text="Deposit" textFill="WHITE" GridPane.rowIndex="2">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Button>
                                        </children>
                                     </GridPane>
+                                    <TextField fx:id="moneyAmount" layoutX="143.0" layoutY="366.0" prefHeight="25.0" prefWidth="149.0" />
                                  </children>
                               </AnchorPane>
                            </content>
