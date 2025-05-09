@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<ScrollPane prefHeight="681.0" prefWidth="976.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.RegisterController">
+   <content>
+      <VBox alignment="CENTER" prefWidth="958.0" style="-fx-background-color: #121212;">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#HandleKeyPress" prefWidth="974.0">
+               <children>
+                  <ComboBox fx:id="userTypeBox" layoutX="430.0" layoutY="82.0" prefWidth="150.0" />
+                  <Label alignment="CENTER" layoutX="426.0" layoutY="14.0" prefHeight="52.0" prefWidth="158.0" text="Register" textFill="WHITE">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+                  <GridPane alignment="CENTER" layoutX="707.0" layoutY="370.0" prefHeight="100.0" prefWidth="261.0" snapToPixel="false" vgap="10.0" AnchorPane.bottomAnchor="193.0" AnchorPane.leftAnchor="707.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="370.0">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="registerButton" alignment="CENTER" focusTraversable="false" maxHeight="35.0" maxWidth="92.0" minHeight="35.0" minWidth="25.0" mnemonicParsing="false" onAction="#Login" prefHeight="35.0" prefWidth="92.0" text="Register" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="errorText" alignment="CENTER" textAlignment="CENTER" textFill="RED" />
+                     </children>
+                  </GridPane>
+                  <AnchorPane fx:id="forAllPane" layoutX="83.0" layoutY="115.0" prefHeight="231.0" prefWidth="539.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="23.0" text="Username:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="usernameField" layoutX="122.0" layoutY="24.0" prefHeight="25.0" prefWidth="320.0" promptText="Choose a username" />
+                        <Label layoutX="16.0" layoutY="58.0" text="Email:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="emailField" layoutX="122.0" layoutY="59.0" prefHeight="25.0" prefWidth="320.0" promptText="Choose an email" />
+                        <Label layoutX="16.0" layoutY="93.0" text="Password:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="126.0" text="Confirm Password:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="16.0" layoutY="161.0" text="Birth Date:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="birthDatePicker" layoutX="115.0" layoutY="162.0" />
+                        <Label layoutX="16.0" layoutY="194.0" text="Gender:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="genderBox" layoutX="115.0" layoutY="195.0" prefWidth="150.0" />
+                        <PasswordField fx:id="passwordField" layoutX="123.0" layoutY="94.0" prefHeight="25.0" prefWidth="318.0" promptText="Choose a password" />
+                        <PasswordField fx:id="confirmPasswordField" layoutX="181.0" layoutY="127.0" prefHeight="25.0" prefWidth="318.0" promptText="Confirm your password" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="adminPane" disable="true" layoutX="4.0" layoutY="346.0" prefHeight="312.0" prefWidth="696.0" visible="false">
+                     <children>
+                        <Label layoutX="17.0" layoutY="61.0" text="Working Hours:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="17.0" layoutY="23.0" text="Role:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="roleField" layoutX="96.0" layoutY="24.0" prefHeight="25.0" prefWidth="320.0" promptText="Enter your role" />
+                        <AnchorPane focusTraversable="true" layoutX="96.0" layoutY="95.0">
+                           <children>
+                              <AnchorPane focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="170.0" style="-fx-background-color: #121212;">
+                                 <children>
+                                    <TextField fx:id="startHourTextField" layoutY="38.0" prefHeight="54.0" prefWidth="66.0" style="-fx-background-color: #262626; -fx-text-fill: white;" text="08">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="startMinuteTextField" layoutX="103.0" layoutY="38.0" prefHeight="54.0" prefWidth="66.0" style="-fx-background-color: #262626; -fx-text-fill: white;" text="00">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="66.0" layoutY="38.0" mouseTransparent="true" prefHeight="51.0" prefWidth="35.0" style="-fx-background-color: #121212; -fx-text-fill: white;" text=":">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="startHourUpButton" focusTraversable="false" layoutY="11.0" mnemonicParsing="false" onAction="#StartHourUpPressed" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="startMinuteUpButton" focusTraversable="false" layoutX="103.0" layoutY="11.0" mnemonicParsing="false" onAction="#StartMinuteUpPressed" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="startHourDownButton" focusTraversable="false" layoutY="96.0" mnemonicParsing="false" onAction="#StartHourDownPressed" prefHeight="27.0" prefWidth="66.0" rotate="180.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="startMinuteDownButton" focusTraversable="false" layoutX="103.0" layoutY="96.0" mnemonicParsing="false" onAction="#StartMinuteDownPressed" prefHeight="27.0" prefWidth="66.0" rotate="180.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane focusTraversable="true" layoutX="206.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="170.0" style="-fx-background-color: #121212;">
+                                 <children>
+                                    <TextField fx:id="endHourTextField" layoutY="38.0" prefHeight="54.0" prefWidth="66.0" style="-fx-background-color: #262626; -fx-text-fill: white;" text="20">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField fx:id="endMinuteTextField" layoutX="103.0" layoutY="38.0" prefHeight="54.0" prefWidth="66.0" style="-fx-background-color: #262626; -fx-text-fill: white;" text="00">
+                                       <font>
+                                          <Font name="System Bold" size="28.0" />
+                                       </font>
+                                    </TextField>
+                                    <TextField alignment="CENTER" editable="false" focusTraversable="false" layoutX="66.0" layoutY="38.0" mouseTransparent="true" prefHeight="51.0" prefWidth="35.0" style="-fx-background-color: #121212; -fx-text-fill: white;" text=":">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </TextField>
+                                    <Button fx:id="endHourUpButton" focusTraversable="false" layoutY="11.0" mnemonicParsing="false" onAction="#EndHourUpPressed" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="endMinuteUpButton" focusTraversable="false" layoutX="103.0" layoutY="11.0" mnemonicParsing="false" onAction="#EndMinuteUpPressed" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="endHourDownButton" focusTraversable="false" layoutY="96.0" mnemonicParsing="false" onAction="#EndHourDownPressed" prefHeight="27.0" prefWidth="66.0" rotate="180.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="endMinuteDownButton" focusTraversable="false" layoutX="103.0" layoutY="96.0" mnemonicParsing="false" onAction="#EndMinuteDownPressed" prefHeight="27.0" prefWidth="66.0" rotate="180.0" style="-fx-background-color: transparent;">
+                                       <graphic>
+                                          <ImageView fitHeight="19.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../image/arrowImg.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <Button fx:id="removeTimeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="124.0" mnemonicParsing="false" onAction="#RemoveTimePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="42.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="-" textAlignment="CENTER" textFill="RED">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Button>
+                        <Button fx:id="addTimeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="124.0" mnemonicParsing="false" onAction="#AddTimePressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="+" textAlignment="CENTER" textFill="GREEN">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Button>
+                        <GridPane fx:id="workingHoursGrid" layoutY="244.0" prefWidth="692.0" style="-fx-background-color: #262626;">
+                           <columnConstraints>
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="-Infinity" minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Saturday" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Sunday" textFill="WHITE" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Monday" textFill="WHITE" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Tuesday" textFill="WHITE" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Wednesday" textFill="WHITE" GridPane.columnIndex="4">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Thursday" textFill="WHITE" GridPane.columnIndex="5">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Friday" textFill="WHITE" GridPane.columnIndex="6">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefWidth="98.0" text="N/A" textFill="WHITE" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N/A" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N/A" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N/A" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N/A" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N/A" textFill="WHITE" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="N/A" textFill="WHITE" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </GridPane>
+                        <ComboBox fx:id="dayComboBox" layoutX="168.0" layoutY="62.0" prefWidth="150.0" value="Saturday" visibleRowCount="7">
+                           <items>
+                              <FXCollections fx:factory="observableArrayList">
+                                 <String fx:value="Saturday" />
+                                 <String fx:value="Sunday" />
+                                 <String fx:value="Monday" />
+                                 <String fx:value="Tuesday" />
+                                 <String fx:value="Wednesday" />
+                                 <String fx:value="Thursday" />
+                                 <String fx:value="Friday" />
+                              </FXCollections>
+                           </items>
+                        </ComboBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="attendeePane" layoutX="14.0" layoutY="356.0" prefHeight="294.0" prefWidth="674.0">
+                     <children>
+                        <Label layoutX="81.0" layoutY="28.0" text="Interests:" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="removeInterestButton" alignment="CENTER" contentDisplay="CENTER" layoutX="448.0" layoutY="3.0" mnemonicParsing="false" onAction="#RemoveInterestPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="3.0" prefWidth="63.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="-" textAlignment="CENTER" textFill="RED">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Button>
+                        <Button fx:id="addInterestButton" alignment="CENTER" contentDisplay="CENTER" layoutX="536.0" mnemonicParsing="false" onAction="#AddInterestPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="48.0" prefWidth="21.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="+" textAlignment="CENTER" textFill="GREEN">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </Button>
+                        <ComboBox fx:id="interestsBox" layoutX="182.0" layoutY="29.0" prefHeight="25.0" prefWidth="235.0" />
+                        <Label fx:id="interestsLabel" layoutX="98.0" layoutY="67.0" maxWidth="450.0" style="-fx-background-color: white;" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
