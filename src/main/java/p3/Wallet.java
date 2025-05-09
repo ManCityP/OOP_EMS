@@ -16,7 +16,7 @@ public class Wallet {
         this.WALLET_NUMBER = walletNumber;
     }
 
-    public  static void CreateWallet(String username, double balance){
+    public  static void CreateWallet(String username, double balance) throws Exception {
         Database.Execute(String.format("INSERT INTO wallet (username, balance) VALUES ('%s', '%s')", username, balance));
     }
 
@@ -38,6 +38,9 @@ public class Wallet {
 
     public double GetBalance(){
         return this.balance;
+    }
+    public int GetWalletNumber(){
+        return this.WALLET_NUMBER;
     }
 
     @Override

@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Organizer extends User {
     private final Wallet WALLET;
-    private Map<Integer, Integer> ticketsSold = new HashMap<>();//Almost there
+    private Map<Integer, Integer> ticketsSold = new HashMap<>();   //Almost there
 
-    public Organizer(String username, String email, String password, MyDate dob, Gender gender, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
-        super(username, email, password, dob, gender);
+    public Organizer(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, Wallet wallet, Map<Integer, Integer> ticketsSold) throws Exception {
+        super(username, email, password, dob, gender, dateCreated);
         if(wallet == null)
             throw new Exception("Invalid Wallet");
         this.WALLET = wallet;
@@ -69,8 +68,6 @@ public class Organizer extends User {
         System.out.println("Event added successfully");
     }
 
-    //TODO read events
-
     public void EditEventPrice(Event event, double price) throws Exception{
         if(!(event.GetOrganizer().GetUsername().equals(this.username)))
             throw new Exception("This Event belongs to another organizer");
@@ -96,11 +93,13 @@ public class Organizer extends User {
     }
 
     public void CancelEvent(Event event) throws Exception {
+        if(event.GetStatus() != Status.OVER)
+            for(Attendee attendee : Database.GetAttendees())
+                if (attendee.GetTickets().containsKey(event.GetID()))
+                    attendee.RefundTicket(event, attendee.GetTickets().get(event.GetID()));
+
         Database.Execute(String.format("DELETE FROM event WHERE id = '%s'", event.GetID()));
         System.out.println("Event deleted successfully");
-        for(Attendee attendee : Database.GetAttendees())
-            if (attendee.GetTickets().containsKey(event.GetID()))
-                attendee.RefundTicket(event, attendee.GetTickets().get(event.GetID()));
     }
 
     public Wallet GetWallet(){

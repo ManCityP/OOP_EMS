@@ -515,7 +515,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
         // Read the first packet
         NativePacketPayload buf = readMessage(null);
 
-        // Server Greeting Error packet instead of Server Greeting
+        // com.fhm.oop_ems.Server Greeting Error packet instead of com.fhm.oop_ems.Server Greeting
         if (buf.isErrorPacket()) {
             rejectProtocol(buf);
         }

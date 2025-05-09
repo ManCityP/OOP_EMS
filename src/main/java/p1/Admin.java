@@ -1,6 +1,7 @@
 package p1;
 
 import p2.Event;
+import p2.Organizer;
 import p3.Gender;
 import p3.User;
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ public class Admin extends User {
     private String role;
     private Hours workingHours;
 
-    public Admin(String username, String email, String password, MyDate dob, Gender gender, String role, Hours workingHours) throws Exception {
-        super(username, email, password, dob, gender);
+    public Admin(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, String role, Hours workingHours) throws Exception {
+        super(username, email, password, dob, gender, dateCreated);
         this.role = role;
         this.workingHours = workingHours;
     }
@@ -44,7 +45,10 @@ public class Admin extends User {
         System.out.println("Room added successfully");
     }
 
-    public void DeleteRoom(Room room) {
+    public void DeleteRoom(Room room) throws Exception {
+        for(Event event : Database.GetEvents())
+            if(event.GetRoomID() == room.GetID())
+                event.GetOrganizer().CancelEvent(event);
         Database.Execute(String.format("DELETE FROM room WHERE id = '%s'", room.GetID()));
         System.out.println("Room deleted successfully");
     }
@@ -58,6 +62,9 @@ public class Admin extends User {
     public void RemoveCategory(String category) throws Exception {
         Category.RemoveCategory(category);
     }
+
+    public String GetRole() {return this.role;}
+    public Hours GetWorkingHours() {return this.workingHours;}
 
     @Override
     public String toString(){

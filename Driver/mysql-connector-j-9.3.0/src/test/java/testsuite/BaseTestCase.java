@@ -91,7 +91,7 @@ public abstract class BaseTestCase {
     /** Connection to server, initialized in setUp() Cleaned up in tearDown(). */
     protected Connection conn = null;
 
-    /** Server version `this.conn' is connected to. */
+    /** com.fhm.oop_ems.Server version `this.conn' is connected to. */
     protected ServerVersion serverVersion;
 
     /** list of schema objects to be dropped in tearDown */
@@ -1313,7 +1313,7 @@ public abstract class BaseTestCase {
                 break;
             }
         }
-        System.out.println("Server supports TLS protocols: " + serverSupportedProtocols);
+        System.out.println("com.fhm.oop_ems.Server supports TLS protocols: " + serverSupportedProtocols);
         System.out.println("Highest common TLS protocol: " + highestCommonTlsVersion);
 
         return highestCommonTlsVersion;

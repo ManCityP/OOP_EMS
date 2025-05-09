@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Event {
-    private final Organizer ORGANIZER;                  //Almost there
+    private final Organizer ORGANIZER;                 //Almost there
     private final String EVENT_TITLE;
     private final int ID;
     private final int ROOM_ID;

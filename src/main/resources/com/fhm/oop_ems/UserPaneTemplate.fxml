@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="faris1" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="692.0" style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.UserPaneTemplateController">
+   <children>
+      <Label layoutX="15.0" layoutY="7.0" text="Username:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="usernameLabel" layoutX="112.0" layoutY="7.0" text="Fris" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="61.0" text="Gender:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="15.0" layoutY="34.0" text="Email:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="77.0" layoutY="34.0" text="hoho@" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="chatButton" fitHeight="83.0" fitWidth="70.0" layoutX="622.0" onMouseClicked="#ChatPressed" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/chatimg.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Label fx:id="genderLabel" layoutX="92.0" layoutY="61.0" text="Male" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="88.0" text="Birth Date:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="birthDateLabel" layoutX="116.0" layoutY="88.0" text="12" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="115.0" text="Account Created at:" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="createTimeLabel" layoutX="190.0" layoutY="115.0" text="12" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="flexLabel" alignment="TOP_LEFT" layoutX="14.0" layoutY="142.0" prefWidth="434.0" text="Flex:" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="typeLabel" alignment="CENTER" layoutX="652.0" layoutY="142.0" style="-fx-border-color: green; -fx-border-width: 3;" text="Organizer" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -17,11 +17,8 @@ public class TimeRange {
     }
 
     public TimeRange(String start, String end) throws Exception {
-        this.start = Convert(start);
-        this.end = Convert(end);
+        this(Convert(start), Convert(end));
     }
-
-
 
     public double GetTotalTime() {
         return this.end - this.start;
@@ -104,7 +101,8 @@ public class TimeRange {
             allHours.append(']');
             allHours.append('/');
         }
-        allHours.deleteCharAt(allHours.length() - 1);
+        if(!allHours.isEmpty())
+            allHours.deleteCharAt(allHours.length() - 1);
 
         // "0>[06:15-17:00]/2>[09:00-21:34]/3>[09:11-19:12]/4>[09:30-17:15]/5>[13:30-18:30,22:30-23:30]"
 

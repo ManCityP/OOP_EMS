@@ -3,9 +3,11 @@ package p1;
 public class Category {
     //static ArrayList<String> categories = new ArrayList<>();
 
-    private String category = "Default";
+    private String category;
 
-    public Category() {}
+    public Category() {
+        this.category = "Default";
+    }
     public Category(String category) throws Exception {
         if (!Database.GetCategories().contains(category))
             System.out.println("This Category doesn't exist!");
@@ -17,7 +19,7 @@ public class Category {
         return this.category;
     }
 
-    static void AddCategory(String category) {
+    static void AddCategory(String category) throws Exception {
         String sql = "INSERT INTO category (name) VALUES ('" + category + "')";
         Database.Execute(sql);
     }

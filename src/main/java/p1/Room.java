@@ -66,6 +66,10 @@ public class Room {
         return this.id;
     }
 
+    public String GetLocation() {
+        return this.LOCATION;
+    }
+
     public Event GetCurrentEvent() {
         return this.currentEvent;
     }

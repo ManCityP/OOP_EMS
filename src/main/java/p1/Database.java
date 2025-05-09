@@ -8,7 +8,6 @@ import p2.Status;
 import p3.Attendee;
 import p3.Gender;
 import p3.Wallet;
-
 import java.sql.*;
 import java.util.*;
 
@@ -85,16 +84,15 @@ public abstract class Database {
     * }
     *
     * */
-    public static ResultSet GetData(String type) {
-        try {
-            String sql = "SELECT * FROM " + type;
-            Statement stmt = con.createStatement();
-            return stmt.executeQuery(sql);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
+    public static ResultSet GetAny(String query) throws Exception {
+        Statement stmt = con.createStatement();
+        return stmt.executeQuery(query);
+    }
+
+    public static ResultSet GetData(String type) throws Exception {
+        String sql = "SELECT * FROM " + type;
+        Statement stmt = con.createStatement();
+        return stmt.executeQuery(sql);
     }
 
     //Everything in the format matters a lot (including uppercase and lowercase and any special symbols)
@@ -130,14 +128,9 @@ public abstract class Database {
     */
 
     //Call this function with one of the above format.
-    public static void Execute(String sql) {
-        try {
-            PreparedStatement insertStatement = con.prepareStatement(sql);
-            insertStatement.executeUpdate();
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public static void Execute(String sql) throws Exception {
+        PreparedStatement insertStatement = con.prepareStatement(sql);
+        insertStatement.executeUpdate();
     }
 
     public static ArrayList<Admin> GetAdmins() throws Exception {
@@ -146,8 +139,8 @@ public abstract class Database {
         while(rs.next()) {
             admins.add(new Admin(rs.getString(DataType.USERNAME.toString()), rs.getString(DataType.EMAIL.toString()), rs.getString(DataType.PASSWORD.toString()),
                             new MyDate(rs.getInt(DataType.BIRTH_DAY.toString()), rs.getInt(DataType.BIRTH_MONTH.toString()), rs.getInt(DataType.BIRTH_YEAR.toString())),
-                                rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, rs.getString(DataType.ROLE.toString()),
-                                    new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString())))));
+                                rs.getString(DataType.GENDER.toString()).equals("Male")? Gender.MALE : Gender.FEMALE, rs.getString(DataType.CREATE_TIME.toString()),
+                                    rs.getString(DataType.ROLE.toString()), new Hours(TimeRange.DecryptWorkingHours(rs.getString(DataType.TIME_RANGE.toString())))));
         }
         return admins;
     }
@@ -163,11 +156,12 @@ public abstract class Database {
             int birthYear = rs.getInt(DataType.BIRTH_YEAR.toString());
             Gender gender = rs.getString(DataType.GENDER.toString()).equals("Male") ? Gender.MALE : Gender.FEMALE;
             String tickets = rs.getString(DataType.TICKETS.toString());
+            String createTime = rs.getString(DataType.CREATE_TIME.toString());
 
             ResultSet resultSet = GetData(DataType.WALLET.toString() + " WHERE " + DataType.USERNAME + " = '" + username + "'");
             if(resultSet.next()) {
                 Wallet wallet = new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()));
-                organizers.add(new Organizer(username, email, password, new MyDate(birthDay, birthMonth, birthYear), gender, wallet, DecryptTickets(tickets)));
+                organizers.add(new Organizer(username, email, password, new MyDate(birthDay, birthMonth, birthYear), gender, createTime, wallet, DecryptTickets(tickets)));
             }
         }
         return organizers;
@@ -183,6 +177,7 @@ public abstract class Database {
             int birthMonth = rs.getInt(DataType.BIRTH_MONTH.toString());
             int birthYear = rs.getInt(DataType.BIRTH_YEAR.toString());
             Gender gender = rs.getString(DataType.GENDER.toString()).equals("Male") ? Gender.MALE : Gender.FEMALE;
+            String createTime = rs.getString(DataType.CREATE_TIME.toString());
             String tickets = rs.getString(DataType.TICKETS.toString());
             ArrayList<Category> interests_array = new ArrayList<>();
             String json = rs.getString(DataType.INTERESTS.toString());
@@ -193,12 +188,7 @@ public abstract class Database {
             if (resultSet.next()) {
                 Wallet wallet = new Wallet(resultSet.getDouble(DataType.BALANCE.toString()), resultSet.getInt(DataType.ID.toString()));
 
-                attendees.add(new Attendee(username, email, password,
-                        new MyDate(birthDay, birthMonth, birthYear),
-                        gender,
-                        interests_array,
-                        wallet,
-                        Database.DecryptTickets(tickets)));
+                attendees.add(new Attendee(username, email, password, new MyDate(birthDay, birthMonth, birthYear), gender, createTime, interests_array, wallet, Database.DecryptTickets(tickets)));
             }
         }
         return attendees;
@@ -232,7 +222,7 @@ public abstract class Database {
         }
         return rooms;
     }
-    public static ArrayList<String> GetCategories() throws SQLException {
+    public static ArrayList<String> GetCategories() throws Exception {
         ResultSet rs = Database.GetData(DataType.CATEGORY.toString());
         ArrayList<String> categories = new ArrayList<>();
         while(rs.next()) {

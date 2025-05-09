@@ -13,8 +13,9 @@ public abstract class User {
     protected String password;
     protected MyDate dob;
     protected Gender gender = Gender.MALE;
+    protected MyDate dateCreated;
 
-    protected User(String username, String email, String password, MyDate dob, Gender gender) throws Exception {
+    protected User(String username, String email, String password, MyDate dob, Gender gender, String dateCreated) throws Exception {
 
         if(!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"))
             throw new Exception("Invalid Email format");
@@ -24,13 +25,19 @@ public abstract class User {
             throw new Exception("Username must be 1-32 characters");
         if(password.length() < 8 || password.length() > 32)
             throw new Exception("Password must be 8-32 characters long");
-        //TODO if we want strict password rules.
 
         this.username=username;
         this.email = email;
         this.password=password;
         this.dob=dob;
         this.gender=gender;
+        this.dateCreated = Translate(dateCreated);
+    }
+
+    private MyDate Translate(String date) throws Exception {
+        String d = date.split(" ")[0];
+        String[] str = d.split("-");
+        return new MyDate(Integer.parseInt(str[2]), Integer.parseInt(str[1]), Integer.parseInt(str[0]));
     }
 
     public static User Login(String usermail, String password) throws Exception {
@@ -55,5 +62,9 @@ public abstract class User {
     public String GetUsername(){
         return this.username;
     }
+    public String GetEmail() {return this.email;}
+    public Gender GetGender() {return this.gender;}
+    public MyDate GetBirthDate() {return this.dob;}
+    public MyDate GetDateCreated() {return this.dateCreated;}
 }
 

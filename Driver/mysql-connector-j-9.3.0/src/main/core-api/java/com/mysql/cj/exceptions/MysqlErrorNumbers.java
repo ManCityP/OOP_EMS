@@ -163,7 +163,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_USER_REQUIRES_ROOT = 10122; // [HY000] One can only use the --user switch if running as root
     public final static int ER_REALLY_RUN_AS_ROOT = 10123; // [HY000] Fatal error: Please read "Security" section of the manual to find out how to run mysqld...
     public final static int ER_USER_WHAT_USER = 10124; // [HY000] Fatal error: Can't change to run as user '%s' ;  Please check that the user exists!
-    public final static int ER_TRANSPORTS_WHAT_TRANSPORTS = 10125; // [HY000] Server is started with --require-secure-transport=ON but no secure transports (...
+    public final static int ER_TRANSPORTS_WHAT_TRANSPORTS = 10125; // [HY000] com.fhm.oop_ems.Server is started with --require-secure-transport=ON but no secure transports (...
     public final static int ER_FAIL_SETGID = 10126; // [HY000] setgid: %s
     public final static int ER_FAIL_SETUID = 10127; // [HY000] setuid: %s
     public final static int ER_FAIL_SETREGID = 10128; // [HY000] setregid: %s
@@ -291,8 +291,8 @@ public final class MysqlErrorNumbers {
     public final static int ER_CONN_PER_THREAD_NO_THREAD = 10249; // [HY000] Can't create thread to handle new connection(errno= %d)
     public final static int ER_ERROR_ON_RENAME = 1025; // [HY000] Error on rename of '%s' to '%s' (errno: %d - %s)
     public final static int ER_CONN_TCP_NO_SOCKET = 10250; // [HY000] Failed to create a socket for %s '%s': errno: %d.
-    public final static int ER_CONN_TCP_CREATED = 10251; // [HY000] Server socket created on IP: '%s'.
-    public final static int ER_CONN_TCP_ADDRESS = 10252; // [HY000] Server hostname (bind-address): '%s'; port: %d
+    public final static int ER_CONN_TCP_CREATED = 10251; // [HY000] com.fhm.oop_ems.Server socket created on IP: '%s'.
+    public final static int ER_CONN_TCP_ADDRESS = 10252; // [HY000] com.fhm.oop_ems.Server hostname (bind-address): '%s'; port: %d
     public final static int ER_CONN_TCP_IPV6_AVAILABLE = 10253; // [HY000] IPv6 is available.
     public final static int ER_CONN_TCP_IPV6_UNAVAILABLE = 10254; // [HY000] IPv6 is not available.
     public final static int ER_CONN_TCP_ERROR_WITH_STRERROR = 10255; // [HY000] Can't create IP socket: %s
@@ -466,7 +466,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_HANDSHAKE_ERROR = 1043; // [08S01] Bad handshake
     public final static int ER_RPL_FAILED_TO_CREATE_CACHE_FOR_INFO_FILE = 10430; // [HY000] Failed to create a cache on info file (file '%s')
     public final static int ER_RPL_FAILED_TO_OPEN_INFO_FILE = 10431; // [HY000] Failed to open the existing info file (file '%s', errno %d)
-    public final static int ER_RPL_GTID_MEMORY_FINALLY_AVAILABLE = 10432; // [HY000] Server overcomes the temporary 'out of memory' in '%d' tries while alloc...
+    public final static int ER_RPL_GTID_MEMORY_FINALLY_AVAILABLE = 10432; // [HY000] com.fhm.oop_ems.Server overcomes the temporary 'out of memory' in '%d' tries while alloc...
     public final static int ER_SERVER_COST_UNKNOWN_COST_CONSTANT = 10433; // [HY000] Unknown cost constant "%s" in mysql.server_cost table
     public final static int ER_SERVER_COST_INVALID_COST_CONSTANT = 10434; // [HY000] Invalid value for cost constant "%s" in mysql.server_cost table: %.1f
     public final static int ER_ENGINE_COST_UNKNOWN_COST_CONSTANT = 10435; // [HY000] Unknown cost constant "%s" in mysql.engine_cost table
@@ -528,7 +528,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_TC_HEURISTIC_RECOVERY_FAILED = 10527; // [HY000] Heuristic crash recovery failed
     public final static int ER_TC_RESTART_WITHOUT_TC_HEURISTIC_RECOVER = 10528; // [HY000] Please restart mysqld without --tc-heuristic-recover
     public final static int ER_RPL_REPLICA_FAILED_TO_CREATE_OR_RECOVER_INFO_REPOSITORIES = 10529; // [HY000] Failed to create or recover replication info rep...
-    public final static int ER_SERVER_SHUTDOWN = 1053; // [08S01] Server shutdown in progress
+    public final static int ER_SERVER_SHUTDOWN = 1053; // [08S01] com.fhm.oop_ems.Server shutdown in progress
     public final static int ER_RPL_REPLICA_AUTO_POSITION_IS_1_AND_GTID_MODE_IS_OFF = 10530; // [HY000] Detected misconfiguration: replication channel '%s' wa...
     public final static int ER_RPL_REPLICA_CANT_START_REPLICA_FOR_CHANNEL = 10531; // [HY000] Replica: Could not start replica for channel '%s'. operation di...
     public final static int ER_RPL_REPLICA_CANT_STOP_REPLICA_FOR_CHANNEL = 10532; // [HY000] Replica: Could not stop replica for channel '%s' operation disco...
@@ -545,7 +545,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_RPL_MTA_AUTOMATIC_RECOVERY_FAILED = 10543; // [HY000] MTA recovery: automatic recovery failed. Either the replica server had s...
     public final static int ER_RPL_MTA_RECOVERY_CANT_OPEN_RELAY_LOG = 10544; // [HY000] Failed to open the relay log '%s' (relay_log_pos %s).
     public final static int ER_RPL_MTA_RECOVERY_SUCCESSFUL = 10545; // [HY000] MTA recovery: completed successfully.
-    public final static int ER_RPL_SERVER_ID_MISSING = 10546; // [HY000] Server id not set, will not start replica%s
+    public final static int ER_RPL_SERVER_ID_MISSING = 10546; // [HY000] com.fhm.oop_ems.Server id not set, will not start replica%s
     public final static int ER_RPL_CANT_CREATE_REPLICA_THREAD = 10547; // [HY000] Can't create replica thread%s.
     public final static int ER_RPL_REPLICA_IO_THREAD_WAS_KILLED = 10548; // [HY000] The replica IO thread%s was killed while executing initialization query '%s'
     public final static int ER_WRONG_FIELD_WITH_GROUP = 1055; // [42000] '%s' isn't in GROUP BY
@@ -656,7 +656,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_PLUGIN_HAS_NONZERO_REFCOUNT_AFTER_SHUTDOWN = 10739; // [HY000] Plugin '%s' has ref_count=%d after shutdown.
     public final static int ER_TOO_BIG_FIELDLENGTH = 1074; // [42000] Column length too big for column '%s' (max = %lu); use BLOB or TEXT instead
     public final static int ER_PLUGIN_UNKNOWN_VARIABLE_TYPE = 10740; // [HY000] Unknown variable type code 0x%x in plugin '%s'.
-    public final static int ER_PLUGIN_VARIABLE_SET_READ_ONLY = 10741; // [HY000] Server variable %s of plugin %s was forced to be read-only: string variable ...
+    public final static int ER_PLUGIN_VARIABLE_SET_READ_ONLY = 10741; // [HY000] com.fhm.oop_ems.Server variable %s of plugin %s was forced to be read-only: string variable ...
     public final static int ER_PLUGIN_VARIABLE_MISSING_NAME = 10742; // [HY000] Missing variable name in plugin '%s'.
     public final static int ER_PLUGIN_VARIABLE_NOT_ALLOCATED_THREAD_LOCAL = 10743; // [HY000] Thread local variable '%s' not allocated in plugin '%s'.
     public final static int ER_PLUGIN_OOM = 10744; // [HY000] Out of memory for plugin '%s'.
@@ -880,7 +880,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_FAILED_TO_ALLOCATE_MEMORY_FOR_RESOURCE_GROUP = 10975; // [HY000] Unable to allocate memory for Resource Group %s.
     public final static int ER_FAILED_TO_ALLOCATE_MEMORY_FOR_RESOURCE_GROUP_HASH = 10976; // [HY000] Failed to allocate memory for resource group hash.
     public final static int ER_FAILED_TO_ADD_RESOURCE_GROUP_TO_MAP = 10977; // [HY000] Failed to add resource group %s to resource group map.
-    public final static int ER_RESOURCE_GROUP_IS_DISABLED = 10978; // [HY000] Resource group feature is disabled. (Server is compiled with DISABLE_PSI_THREAD).
+    public final static int ER_RESOURCE_GROUP_IS_DISABLED = 10978; // [HY000] Resource group feature is disabled. (com.fhm.oop_ems.Server is compiled with DISABLE_PSI_THREAD).
     public final static int ER_FAILED_TO_APPLY_RESOURCE_GROUP_CONTROLLER = 10979; // [HY000] Unable to apply resource group controller %s.
     public final static int ER_NO_UNIQUE_LOGFILE = 1098; // [HY000] Can't generate a unique log-filename %s.(1-999)
     public final static int ER_FAILED_TO_ACQUIRE_LOCK_ON_RESOURCE_GROUP = 10980; // [HY000] Unable to acquire lock on the resource group %s. Hint to switch r...
@@ -1163,9 +1163,9 @@ public final class MysqlErrorNumbers {
     public final static int ER_REWRITER_QUERY_FAILED = 11236; // [HY000] Rewritten query failed to parse:%s
     public final static int ER_XPLUGIN_STARTUP_FAILED = 11237; // [HY000] Startup failed with error "%s"
     public final static int ER_UDF_NO_PATHS = 1124; // [HY000] No paths allowed for shared library
-    public final static int ER_XPLUGIN_USING_SSL_CONF_FROM_SERVER = 11240; // [HY000] Using SSL configuration from MySQL Server
+    public final static int ER_XPLUGIN_USING_SSL_CONF_FROM_SERVER = 11240; // [HY000] Using SSL configuration from MySQL com.fhm.oop_ems.Server
     public final static int ER_XPLUGIN_USING_SSL_CONF_FROM_MYSQLX = 11241; // [HY000] Using SSL configuration from Mysqlx Plugin
-    public final static int ER_XPLUGIN_FAILED_TO_USE_SSL_CONF = 11242; // [HY000] Neither MySQL Server nor Mysqlx Plugin has valid SSL configuration
+    public final static int ER_XPLUGIN_FAILED_TO_USE_SSL_CONF = 11242; // [HY000] Neither MySQL com.fhm.oop_ems.Server nor Mysqlx Plugin has valid SSL configuration
     public final static int ER_XPLUGIN_USING_SSL_FOR_TLS_CONNECTION = 11243; // [HY000] Using %s for TLS connections
     public final static int ER_XPLUGIN_REFERENCE_TO_SECURE_CONN_WITH_XPLUGIN = 11244; // [HY000] For more information, please see the Using Secure Connection...
     public final static int ER_XPLUGIN_ERROR_MSG = 11245; // [HY000] %s
@@ -2869,7 +2869,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_IB_MSG_1123 = 12948; // [HY000] Compressed tables use zlib %s
     public final static int ER_IB_MSG_1124 = 12949; // [HY000] %s
     public final static int ER_UNSUPPORTED_PS = 1295; // [HY000] This command is not supported in the prepared statement protocol yet
-    public final static int ER_IB_MSG_1125 = 12950; // [HY000] Startup called second time during the process lifetime. In the MySQL Embedded Server Library y...
+    public final static int ER_IB_MSG_1125 = 12950; // [HY000] Startup called second time during the process lifetime. In the MySQL Embedded com.fhm.oop_ems.Server Library y...
     public final static int ER_IB_MSG_1126 = 12951; // [HY000] %s
     public final static int ER_IB_MSG_1127 = 12952; // [HY000] Unable to create monitor file %s: %s
     public final static int ER_IB_MSG_1128 = 12953; // [HY000] Disabling background ibuf IO read threads.
@@ -3191,7 +3191,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_CLONE_DONOR_TRACE = 13270; // [HY000] Clone donor reported : %s.
     public final static int ER_CLONE_PROTOCOL_TRACE = 13271; // [HY000] Clone received unexpected response from donor : %s.
     public final static int ER_CLONE_CLIENT_TRACE = 13272; // [HY000] Client: %s.
-    public final static int ER_CLONE_SERVER_TRACE = 13273; // [HY000] Server: %s.
+    public final static int ER_CLONE_SERVER_TRACE = 13273; // [HY000] com.fhm.oop_ems.Server: %s.
     public final static int ER_THREAD_POOL_PFS_TABLES_INIT_FAILED = 13274; // [HY000] Failed to initialize the performance schema tables service.
     public final static int ER_THREAD_POOL_PFS_TABLES_ADD_FAILED = 13275; // [HY000] Failed to add thread pool performance schema tables.
     public final static int ER_CANT_SET_DATA_DIR = 13276; // [HY000] Failed to set datadir to \'%s\' (OS errno: %d - %s)
@@ -3295,12 +3295,12 @@ public final class MysqlErrorNumbers {
     public final static int ER_GRP_RPL_TIMEOUT_RECEIVED_VC_ON_REJOIN = 13374; // [HY000] Timeout while waiting for a view change event during the auto-rejoin...
     public final static int ER_GRP_RPL_FINISHED_AUTO_REJOIN = 13375; // [HY000] Auto-rejoin procedure attempt %lu of %lu finished. Member was%s able to join ...
     public final static int ER_GRP_RPL_DEFAULT_TABLE_ENCRYPTION_DIFF_FROM_GRP = 13376; // [HY000] The member is configured with a default_table_encryption op...
-    public final static int ER_SERVER_UPGRADE_OFF = 13377; // [HY000] Server shutting down because upgrade is required, yet prohibited by the command line op...
-    public final static int ER_SERVER_UPGRADE_SKIP = 13378; // [HY000] Server upgrade is required, but skipped by command line option '--upgrade=MINIMAL'.
-    public final static int ER_SERVER_UPGRADE_PENDING = 13379; // [HY000] Server upgrade started with version %d, but server upgrade of version %d is still p...
+    public final static int ER_SERVER_UPGRADE_OFF = 13377; // [HY000] com.fhm.oop_ems.Server shutting down because upgrade is required, yet prohibited by the command line op...
+    public final static int ER_SERVER_UPGRADE_SKIP = 13378; // [HY000] com.fhm.oop_ems.Server upgrade is required, but skipped by command line option '--upgrade=MINIMAL'.
+    public final static int ER_SERVER_UPGRADE_PENDING = 13379; // [HY000] com.fhm.oop_ems.Server upgrade started with version %d, but server upgrade of version %d is still p...
     public final static int ER_SP_CURSOR_AFTER_HANDLER = 1338; // [42000] Cursor declaration after handler declaration
     public final static int ER_SERVER_UPGRADE_FAILED = 13380; // [HY000] Failed to upgrade server.
-    public final static int ER_SERVER_UPGRADE_STATUS = 13381; // [HY000] Server upgrade from '%d' to '%d' %s.
+    public final static int ER_SERVER_UPGRADE_STATUS = 13381; // [HY000] com.fhm.oop_ems.Server upgrade from '%d' to '%d' %s.
     public final static int ER_SERVER_UPGRADE_REPAIR_REQUIRED = 13382; // [HY000] Table '%s' requires repair.
     public final static int ER_SERVER_UPGRADE_REPAIR_STATUS = 13383; // [HY000] Table '%s' repair %s.
     public final static int ER_SERVER_UPGRADE_INFO_FILE = 13384; // [HY000] Could not open server upgrade info file '%s' for writing. Please make sure the fi...
@@ -3417,7 +3417,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_PLUGIN_LOAD_OPTIONS_IGNORED = 13501; // [HY000] Ignoring --plugin-load[_add] list as the server is running with --initialize(-...
     public final static int ER_WARN_AUTH_ID_WITH_SYSTEM_USER_PRIV_IN_MANDATORY_ROLES = 13502; // [HY000] Cannot set mandatory_roles: AuthId `%s`@`%s` has '%s...
     public final static int ER_IB_MSG_SKIP_HIDDEN_DIR = 13503; // [HY000] Directory '%s' will not be scanned because it is a hidden directory.
-    public final static int ER_WARN_RPL_RECOVERY_NO_ROTATE_EVENT_FROM_SOURCE_EOF = 13504; // [HY000] Server was not able to find a rotate event from source s...
+    public final static int ER_WARN_RPL_RECOVERY_NO_ROTATE_EVENT_FROM_SOURCE_EOF = 13504; // [HY000] com.fhm.oop_ems.Server was not able to find a rotate event from source s...
     public final static int ER_IB_LOB_ROLLBACK_INDEX_LEN = 13505; // [HY000] Rolling back LOB for transaction %llu undo number %llu : current index length %l...
     public final static int ER_CANT_PROCESS_EXPRESSION_FOR_GENERATED_COLUMN_TO_DD = 13506; // [HY000] Error in processing (possibly deprecated) expression or...
     public final static int ER_RPL_REPLICA_QUEUE_EVENT_FAILED_INVALID_NON_ROW_FORMAT = 13507; // [HY000] The queue event failed for channel '%s' as an invali...
@@ -3515,7 +3515,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_WARN_TLS_CHANNEL_INITIALIZATION_ERROR = 13595; // [HY000] Failed to initialize TLS for channel: %s. See below for the descript...
     public final static int ER_XPLUGIN_FAILED_TO_VALIDATE_ADDRESS = 13596; // [HY000] Validation of value '%s' set to `Mysqlx_bind_address` failed: %s. Skipp...
     public final static int ER_XPLUGIN_FAILED_TO_BIND_INTERFACE_ADDRESS = 13597; // [HY000] Value '%s' set to `Mysqlx_bind_address`, X Plugin can't bind to i...
-    public final static int ER_IB_ERR_RECOVERY_REDO_DISABLED = 13598; // [HY000] Server was killed when InnoDB redo logging was disabled. Data files could be...
+    public final static int ER_IB_ERR_RECOVERY_REDO_DISABLED = 13598; // [HY000] com.fhm.oop_ems.Server was killed when InnoDB redo logging was disabled. Data files could be...
     public final static int ER_IB_WRN_FAST_SHUTDOWN_REDO_DISABLED = 13599; // [HY000] InnoDB cannot do cold shutdown 'innodb_fast_shutdown = 2' and is forcin...
     public final static int ER_TRG_DOES_NOT_EXIST = 1360; // [HY000] Trigger does not exist
     public final static int ER_IB_WRN_REDO_DISABLED = 13600; // [HY000] InnoDB redo logging is disabled. All data could be lost in case of a server crash.
@@ -3673,7 +3673,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_FIREWALL_DEPRECATED_USER_PROFILE = 13747; // [HY000] User profile \'%s\' loaded. Firewall user profiles are deprecated, consid...
     public final static int ER_GRP_RPL_VIEW_CHANGE_UUID_INVALID = 13748; // [HY000] Invalid input value for group_replication_view_change_uuid '%s'. Please, ...
     public final static int ER_GRP_RPL_VIEW_CHANGE_UUID_SAME_AS_GROUP_NAME = 13749; // [HY000] Variable 'group_replication_view_change_uuid' cannot be set to...
-    public final static int ER_BINLOG_PURGE_PROHIBITED = 1375; // [HY000] Server configuration does not permit binlog purge
+    public final static int ER_BINLOG_PURGE_PROHIBITED = 1375; // [HY000] com.fhm.oop_ems.Server configuration does not permit binlog purge
     public final static int ER_GRP_RPL_GROUP_NAME_SAME_AS_VIEW_CHANGE_UUID = 13750; // [HY000] group_replication_group_name '%s', which is the same as group_...
     public final static int ER_GRP_RPL_VIEW_CHANGE_UUID_IS_SAME_AS_ANONYMOUS_TO_GTID_UUID = 13751; // [HY000] The group_replication_view_change_uuid '%s' is ...
     public final static int ER_GRP_RPL_GRP_VIEW_CHANGE_UUID_IS_INCOMPATIBLE_WITH_SERVER_UUID = 13752; // [HY000] group_replication_view_change_uuid is incomp...
@@ -4004,7 +4004,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_INVALID_SERVER_DOWNGRADE_NOT_PATCH = 14061; // [HY000] Invalid MySQL server downgrade: Cannot downgrade from %u to %u. Downgra...
     public final static int ER_FAILED_GET_DD_PROPERTY = 14062; // [HY000] Failed to get the data dictionary property %s.
     public final static int ER_FAILED_SET_DD_PROPERTY = 14063; // [HY000] Failed to set the data dictionary property %s.
-    public final static int ER_SERVER_DOWNGRADE_STATUS = 14064; // [HY000] Server downgrade from '%d' to '%d' %s.
+    public final static int ER_SERVER_DOWNGRADE_STATUS = 14064; // [HY000] com.fhm.oop_ems.Server downgrade from '%d' to '%d' %s.
     public final static int ER_INFORMATION_SCHEMA_VERSION_CHANGE = 14065; // [HY000] %s information schema from version %u to %u.
     public final static int ER_PERFORMANCE_SCHEMA_VERSION_CHANGE = 14066; // [HY000] %s performance schema from version %u to %u.
     public final static int ER_WARN_DEPRECATED_OR_BLOCKED_CIPHER = 14067; // [HY000] Value for option '%s' contains cipher '%s' that is either blocked or dep...
@@ -4107,22 +4107,22 @@ public final class MysqlErrorNumbers {
     public final static int ER_WARN_FAILED_TO_SETUP_TLS = 15008; // [HY000] Internal TLS error %s:%s:%d:%s
     public final static int ER_TLS_LIBRARY_ERROR_INTERNAL = 15009; // [HY000] Failed to set up TLS. Check logs for details
     public final static int ER_CANT_CREATE_HANDLER_FILE = 1501; // [HY000] Failed to create specific handler file
-    public final static int ER_SERVER_CERT_VERIFY_FAILED = 15010; // [HY000] Server certificate %s verification has failed. Check logs for more details
+    public final static int ER_SERVER_CERT_VERIFY_FAILED = 15010; // [HY000] com.fhm.oop_ems.Server certificate %s verification has failed. Check logs for more details
     public final static int ER_WARN_CERTIFICATE_ERROR_STRING = 15011; // [HY000] Failed to validate certificate %s because %s
     public final static int ER_TELEMETRY_INFO = 15012; // [HY000] %s
     public final static int ER_TELEMETRY_WARNING = 15013; // [HY000] %s
     public final static int ER_TELEMETRY_ERROR = 15014; // [HY000] %s
-    public final static int ER_SRV_START = 15015; // [HY000] MySQL Server - start.
-    public final static int ER_SRV_END = 15016; // [HY000] MySQL Server - end.
-    public final static int ER_SRV_INIT_START = 15017; // [HY000] MySQL Server Initialization - start.
-    public final static int ER_SRV_INIT_END = 15018; // [HY000] MySQL Server Initialization - end.
-    public final static int ER_PLUGINS_SHUTDOWN_START = 15019; // [HY000] MySQL Server: Plugins Shutdown - start.
+    public final static int ER_SRV_START = 15015; // [HY000] MySQL com.fhm.oop_ems.Server - start.
+    public final static int ER_SRV_END = 15016; // [HY000] MySQL com.fhm.oop_ems.Server - end.
+    public final static int ER_SRV_INIT_START = 15017; // [HY000] MySQL com.fhm.oop_ems.Server Initialization - start.
+    public final static int ER_SRV_INIT_END = 15018; // [HY000] MySQL com.fhm.oop_ems.Server Initialization - end.
+    public final static int ER_PLUGINS_SHUTDOWN_START = 15019; // [HY000] MySQL com.fhm.oop_ems.Server: Plugins Shutdown - start.
     public final static int ER_BLOB_FIELD_IN_PART_FUNC_ERROR = 1502; // [HY000] A BLOB field is not allowed in partition function
-    public final static int ER_PLUGINS_SHUTDOWN_END = 15020; // [HY000] MySQL Server: Plugins Shutdown - end.
-    public final static int ER_COMPONENTS_INFRASTRUCTURE_SHUTDOWN_START = 15021; // [HY000] MySQL Server: Components Shutdown - start.
-    public final static int ER_COMPONENTS_INFRASTRUCTURE_SHUTDOWN_END = 15022; // [HY000] MySQL Server: Components Shutdown - end (with return value = %d).
-    public final static int ER_CONNECTIONS_SHUTDOWN_START = 15023; // [HY000] MySQL Server: Closing Connections - start.
-    public final static int ER_CONNECTIONS_SHUTDOWN_END = 15024; // [HY000] MySQL Server: Closing Connections - end.
+    public final static int ER_PLUGINS_SHUTDOWN_END = 15020; // [HY000] MySQL com.fhm.oop_ems.Server: Plugins Shutdown - end.
+    public final static int ER_COMPONENTS_INFRASTRUCTURE_SHUTDOWN_START = 15021; // [HY000] MySQL com.fhm.oop_ems.Server: Components Shutdown - start.
+    public final static int ER_COMPONENTS_INFRASTRUCTURE_SHUTDOWN_END = 15022; // [HY000] MySQL com.fhm.oop_ems.Server: Components Shutdown - end (with return value = %d).
+    public final static int ER_CONNECTIONS_SHUTDOWN_START = 15023; // [HY000] MySQL com.fhm.oop_ems.Server: Closing Connections - start.
+    public final static int ER_CONNECTIONS_SHUTDOWN_END = 15024; // [HY000] MySQL com.fhm.oop_ems.Server: Closing Connections - end.
     public final static int ER_THREAD_STILL_ALIVE = 15025; // [HY000] Waiting for forceful disconnection of Thread (ID %ld) to end.
     public final static int ER_NUM_THREADS_STILL_ALIVE = 15026; // [HY000] Waiting for forceful disconnection of %ld thread(s) to end.
     public final static int ER_GRP_RPL_MYSQL_NETWORK_PROVIDER_SERVER_ERROR_COMMAND_ERR = 15027; // [HY000] Failed to accept a MySQL connection for Group Repl...
@@ -4731,7 +4731,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_INVALID_JSON_PATH_ARRAY_CELL = 3165; // [42000] A path expression is not a path to a cell in an array.
     public final static int ER_BUFPOOL_RESIZE_INPROGRESS = 3166; // [HY000] Another buffer pool resize is already in progress.
     public final static int ER_FEATURE_DISABLED_SEE_DOC = 3167; // [HY000] The '%s' feature is disabled; see the documentation for '%s'
-    public final static int ER_SERVER_ISNT_AVAILABLE = 3168; // [HY000] Server isn't available
+    public final static int ER_SERVER_ISNT_AVAILABLE = 3168; // [HY000] com.fhm.oop_ems.Server isn't available
     public final static int ER_SESSION_WAS_KILLED = 3169; // [HY000] Session was killed
     public final static int ER_CAPACITY_EXCEEDED = 3170; // [HY000] Memory capacity of %llu bytes for '%s' exceeded. %s
     public final static int ER_CAPACITY_EXCEEDED_IN_RANGE_OPTIMIZER = 3171; // [HY000] Range optimization was not done for this query.
@@ -5106,7 +5106,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_PLUGIN_NOT_EARLY = 3838; // [HY000] Plugin '%s' is not to be used as an "early" plugin. Don't add it to --early-plugin-load, k...
     public final static int ER_INNODB_REDO_LOG_ARCHIVE_START_SUBDIR_PATH = 3839; // [HY000] Redo log archiving start prohibits path name in 'subdir' argument
     public final static int ER_INNODB_REDO_LOG_ARCHIVE_START_TIMEOUT = 3840; // [HY000] Redo log archiving start timed out
-    public final static int ER_INNODB_REDO_LOG_ARCHIVE_DIRS_INVALID = 3841; // [HY000] Server variable 'innodb_redo_log_archive_dirs' is NULL or empty
+    public final static int ER_INNODB_REDO_LOG_ARCHIVE_DIRS_INVALID = 3841; // [HY000] com.fhm.oop_ems.Server variable 'innodb_redo_log_archive_dirs' is NULL or empty
     public final static int ER_INNODB_REDO_LOG_ARCHIVE_LABEL_NOT_FOUND = 3842; // [HY000] Label '%s' not found in server variable 'innodb_redo_log_archive_dirs'
     public final static int ER_INNODB_REDO_LOG_ARCHIVE_DIR_EMPTY = 3843; // [HY000] Directory is empty after label '%s' in server variable 'innodb_redo_log_a...
     public final static int ER_INNODB_REDO_LOG_ARCHIVE_NO_SUCH_DIR = 3844; // [HY000] Redo log archive directory '%s' does not exist or is not a directory
@@ -5565,7 +5565,7 @@ public final class MysqlErrorNumbers {
     public final static int ER_EXTERNAL_UNSUPPORTED_INDEX_ALGORITHM = 6139; // [HY000] This storage engine ignores the %s index algorithm.
 
     /*
-     * MySQL X Plugin-specific errors. Don't map to SQLSTATE codes. Extracted manually from the Server source code (plugin/x/src/xpl_error.h).
+     * MySQL X Plugin-specific errors. Don't map to SQLSTATE codes. Extracted manually from the com.fhm.oop_ems.Server source code (plugin/x/src/xpl_error.h).
      */
     public static final int ER_X_BAD_MESSAGE = 5000;
     public static final int ER_X_CAPABILITIES_PREPARE_FAILED = 5001;
@@ -5881,7 +5881,7 @@ public final class MysqlErrorNumbers {
     public static final String SQLSTATE_CLI_SPECIFIC_CONDITION_INVALID_HANDLE = "HYHHH";
 
     /*
-     * MySQL implementation-defined SQLSTATE. Extracted manually from the Server source code.
+     * MySQL implementation-defined SQLSTATE. Extracted manually from the com.fhm.oop_ems.Server source code.
      */
     public static final String SQLSTATE_MYSQL_INVALID_CONNECTION_ATTRIBUTE = "01S00";
     public static final String SQLSTATE_MYSQL_ERROR_IN_ROW = "01S01";

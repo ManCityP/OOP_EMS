@@ -837,7 +837,7 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#18041 - Server-side prepared statements don't cause
+     * Tests fix for BUG#18041 - com.fhm.oop_ems.Server-side prepared statements don't cause
      * truncation exceptions to be thrown.
      *
      * @throws Exception
@@ -1542,7 +1542,7 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Server doesn't accept everything as a server-side prepared statement, so
+     * com.fhm.oop_ems.Server doesn't accept everything as a server-side prepared statement, so
      * by default we scan for stuff it can't handle.
      *
      * @throws SQLException
@@ -9042,7 +9042,7 @@ public class StatementRegressionTest extends BaseTestCase {
             // Test a number of time zones that coincide with 'GMT' on the some specific point in time.
             for (String tz : new String[] { "Europe/Lisbon", "UTC", "GMT+00", "GMT" }) {
                 //  Europe/Lisbon ~~ WET (UTC) on 2015-01-01; ~~ CET (UTC+01) on 1970-01-01
-                System.out.println("\nServer time zone: " + tz);
+                System.out.println("\ncom.fhm.oop_ems.Server time zone: " + tz);
                 System.out.println("---------------------------------------------------");
 
                 testConnProps.setProperty(PropertyKey.connectionTimeZone.getKeyName(), tz);
@@ -9061,7 +9061,7 @@ public class StatementRegressionTest extends BaseTestCase {
                     tz.append(tzOffset < 0 ? "-" : "+").append(String.format("%02d", Math.abs(tzOffset)));
                     tz.append(String.format(":%02d", tzSubOffset));
 
-                    System.out.println("\nServer time zone: " + tz.toString());
+                    System.out.println("\ncom.fhm.oop_ems.Server time zone: " + tz.toString());
                     System.out.println("---------------------------------------------------");
                     testConnProps.setProperty(PropertyKey.connectionTimeZone.getKeyName(), tz.toString());
                     testConn = getConnectionWithProps(testConnProps);
@@ -10230,7 +10230,7 @@ public class StatementRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#74932 - ConnectionImp Doesn't Close Server Prepared Statement (PreparedStatement Leak).
+     * Tests fix for Bug#74932 - ConnectionImp Doesn't Close com.fhm.oop_ems.Server Prepared Statement (PreparedStatement Leak).
      *
      * @throws Exception
      */
@@ -13895,7 +13895,7 @@ public class StatementRegressionTest extends BaseTestCase {
                     testPstmt.executeQuery();
                 }
 
-                // Server PreparedStatement:
+                // com.fhm.oop_ems.Server PreparedStatement:
                 props.setProperty(PropertyKey.useServerPrepStmts.getKeyName(), "true");
                 try (Connection testConn = getConnectionWithProps(props); PreparedStatement testPstmt = testConn.prepareStatement(testQuery)) {
                     testPstmt.executeQuery();

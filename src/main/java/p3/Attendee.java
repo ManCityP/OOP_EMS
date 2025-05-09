@@ -26,16 +26,33 @@ public class Attendee extends User {
             string.append("\"" + interest + "\"");
             string.append(',');
         }
-        if (string.length() > 0) {
+        if (!string.isEmpty()) {
             string.deleteCharAt(string.length() - 1);
         }
         string.append(']');
 
         return string;
     }
+    public StringBuilder guiConcat(){
+        StringBuilder string = new StringBuilder();
 
-    public Attendee(String username, String email, String password, MyDate dob, Gender gender, ArrayList<Category> interests, Wallet wallet, Map<Integer, Integer> tickets) throws Exception {
-        super(username, email, password, dob, gender);
+        for (Category interest : GetInterests()) {
+            string.append(interest);
+            string.append(", ");
+        }
+        if (string.length() > 0) {
+            string.deleteCharAt(string.length() - 1);
+            string.deleteCharAt(string.length() - 1);
+
+        }
+        string.append('.');
+
+        return string;
+
+    }
+
+    public Attendee(String username, String email, String password, MyDate dob, Gender gender, String dateCreated, ArrayList<Category> interests, Wallet wallet, Map<Integer, Integer> tickets) throws Exception {
+        super(username, email, password, dob, gender, dateCreated);
         this.interests = interests;
         this.wallet = wallet;
         this.tickets = tickets;
@@ -51,6 +68,9 @@ public class Attendee extends User {
                 throw new Exception("Username must be 1-32 characters");
             if (password.length() < 8 || password.length() > 32)
                 throw new Exception("Password must be 8-32 characters long");
+            if(interests == null)
+                interests = new ArrayList<>();
+            interests.add(new Category());
             Database.Execute(String.format("INSERT INTO user (username, email, password, birth_year, birth_month, birth_day, gender, type, interests, tickets) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s','%s', '%s')",
                     username, email, password, dob.GetYear(), dob.GetMonth(), dob.GetDay(), gender, "Attendee", strConvert(interests), ""));
             Wallet.CreateWallet(username, balance);
@@ -65,6 +85,7 @@ public class Attendee extends User {
     }
 
     public void PurchaseEvent(Event event, int numOfTickets) throws Exception {
+        event.GetOrganizer().GetTicketsSold().putIfAbsent(event.GetID(), 0);
         if (event.GetStatus() == Status.UPCOMING) {
             if (event.GetOrganizer().GetTicketsSold().get(event.GetID()) + numOfTickets > event.GetMaxNumOfAttendees()) {
                 throw new Exception("Number of tickets is over the event threshold");
@@ -84,9 +105,9 @@ public class Attendee extends User {
     }
 
     public void RefundTicket(Event event, int numOfTickets) throws Exception {
-        if (!(this.tickets.get(event.GetID()) == null)) {
+        if (this.tickets.containsKey(event.GetID())) {
             if (this.tickets.get(event.GetID()) >= numOfTickets) {
-                if (event.GetStatus() == Status.UPCOMING) {
+                if (event.GetStatus() != Status.OVER) {
                     this.tickets.put(event.GetID(), this.tickets.get(event.GetID()) - numOfTickets);
                     if (this.tickets.get(event.GetID()) <= 0)
                         this.tickets.remove(event.GetID());

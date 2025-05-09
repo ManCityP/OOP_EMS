@@ -59,7 +59,7 @@ public class ServerStatusDiffInterceptor implements QueryInterceptor {
     public <T extends Resultset> T postProcess(Supplier<String> sql, Query interceptedQuery, T originalResultSet, ServerSession serverSession) {
         populateMapWithSessionStatusValues(this.postExecuteValues);
 
-        this.log.logInfo("Server status change for query:\n" + Util.calculateDifferences(this.preExecuteValues, this.postExecuteValues));
+        this.log.logInfo("com.fhm.oop_ems.Server status change for query:\n" + Util.calculateDifferences(this.preExecuteValues, this.postExecuteValues));
 
         return null; // we don't actually modify a result set
     }

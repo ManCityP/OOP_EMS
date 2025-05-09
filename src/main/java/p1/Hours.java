@@ -39,9 +39,9 @@ public class Hours {
             if (timeRange == null)
                 temp.remove(timeRange);
         this.map.put(day, temp);
+        if(temp.isEmpty())
+            this.map.remove(day);
     }
-
-
 
     public void AddTime(String day, TimeRange rTime) throws Exception {
 
@@ -95,7 +95,10 @@ public class Hours {
 
     }
 
-
+    public Map<String, ArrayList<TimeRange>> GetMap() {
+        return this.map;
+    }
+@Override
     public String toString() {
         return this.map.toString();
     }

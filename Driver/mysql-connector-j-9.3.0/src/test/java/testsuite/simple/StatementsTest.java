@@ -2935,7 +2935,7 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Server)PreparedStatement.executeLargeBatch().
+     * Test for (com.fhm.oop_ems.Server)PreparedStatement.executeLargeBatch().
      * Validate update count returned and generated keys.
      *
      * @throws Exception
@@ -3159,7 +3159,7 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Server)PreparedStatement.setObject().
+     * Test for (com.fhm.oop_ems.Server)PreparedStatement.setObject().
      * Validate new methods as well as support for the types java.time.Local[Date][Time] and java.time.Offset[Date]Time.
      *
      * @throws Exception
@@ -3190,7 +3190,7 @@ public class StatementsTest extends BaseTestCase {
     }
 
     /**
-     * Test for (Server)PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
+     * Test for (com.fhm.oop_ems.Server)PreparedStatement.setObject(), unsupported SQL types TIME_WITH_TIMEZONE, TIMESTAMP_WITH_TIMEZONE and REF_CURSOR.
      *
      * @throws Exception
      */
