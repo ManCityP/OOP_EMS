@@ -2,6 +2,7 @@ package com.fhm.oop_ems.Attendee;
 
 
 import com.fhm.oop_ems.HelloApplication;
+import com.fhm.oop_ems.UsersMenuController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +17,8 @@ import p3.User;
 import java.io.IOException;
 
 public class AttendeeMainMenuController {
-
+    @FXML
+    private Label usersButton;
     @FXML
     private Label calendarButton;
     @FXML
@@ -58,6 +60,28 @@ public class AttendeeMainMenuController {
         }
     }
 
+    @FXML
+    private void usersPressed(){
+        try {
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("UsersMenu.fxml"));
+            Parent root = loader.load();
+
+            UsersMenuController usersMenuController = loader.getController();
+            usersMenuController.Init(currentUser, User.GetUsers());
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)usersButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     @FXML
     private void WalletPressed() {
         try {

@@ -16,6 +16,8 @@ import static p1.Room.FindRoom;
 
 public class TicketsPaneTemplateController {
     @FXML
+    private Label eventStatus;
+    @FXML
     private Label inStock;
     @FXML
     private Label eventDate;
@@ -27,6 +29,8 @@ public class TicketsPaneTemplateController {
     private Label currentTickets;
     @FXML
     private Button buyButton;
+    @FXML
+    private Button refundButton;
     @FXML
     private Label eventCategoryLabel;
     @FXML
@@ -116,6 +120,7 @@ public class TicketsPaneTemplateController {
             eventDate.setText("N/A");
         }
         else {
+            eventStatus.setText(event.GetStatus().toString());
             eventTitleLabel.setText(event.GetEventTitle());
             eventIDLabel.setText(String.format("%s", event.GetID()));
             eventCategoryLabel.setText(event.GetCategory().toString());
@@ -149,7 +154,17 @@ private void DynamicPrice(){
             e.printStackTrace();
             this.attendeeTicketsMenuController.errorText.setText(e.getMessage());
         }
-
+    }
+    @FXML
+    void refundButton(MouseEvent event){
+        try {
+            System.out.println("buy button" + spinner.getValue());
+            ((Attendee) currentUser).RefundTicket(event1, spinner.getValue());
+            this.attendeeTicketsMenuController.RefreshPressed();
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.attendeeTicketsMenuController.errorText.setText(e.getMessage());
+        }
     }
     @FXML
     void ButtonHovered(MouseEvent event) {

@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import p1.Database;
 import p1.Room;
 import p2.Event;
+import p2.Status;
 import p3.User;
 
 import java.util.ArrayList;
@@ -50,6 +51,9 @@ public class AttendeeTicketsMenuController {
         try {
             rooms = Database.GetRooms();
             for (Event event : this.events) {
+                if(event.GetStatus()!= Status.UPCOMING){
+                    continue;
+                }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("TicketsPaneTemplate.fxml"));
                 Node roomNode = loader.load();
 
@@ -65,7 +69,7 @@ public class AttendeeTicketsMenuController {
     }
     public void InitData(User user, String search) {
         currentUser = user;
-        //this.searchField.setText(search);
+        this.searchField.setText(search);
         SearchPressed(new KeyEvent(KeyEvent.KEY_PRESSED,"","",KeyCode.ENTER,false,false,false,false));
 
     }
