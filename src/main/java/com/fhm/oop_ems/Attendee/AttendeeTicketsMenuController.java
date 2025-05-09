@@ -1,5 +1,6 @@
 package com.fhm.oop_ems.Attendee;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -55,9 +56,6 @@ public class AttendeeTicketsMenuController {
         currentUser = user;
         this.username.setText(currentUser.GetUsername());
         this.events = events;
-        filterInterests.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            SearchPressed(new KeyEvent(KeyEvent.KEY_PRESSED, "", "", KeyCode.ENTER, false, false, false, false));
-        });
         try {
             rooms = Database.GetRooms();
             for (Event event : this.events) {
@@ -104,16 +102,53 @@ public class AttendeeTicketsMenuController {
     @FXML
     void SearchPressed(KeyEvent event) {
         if(event.getCode() == KeyCode.ENTER) {
-            String prompt = searchField.getText();
-            ArrayList<Event> searchEvents = new ArrayList<>();
+            Search();
+        }
+    }
+    void Search(){
+        String prompt = searchField.getText();
+        ArrayList<Event> searchEvents = new ArrayList<>();
+        try {
+            int eventID = Integer.parseInt(prompt);
+            for(Event event1 : Database.GetEvents()) {
+                if(eventID == event1.GetID())
+                    searchEvents.add(event1);
+                else if(event1.GetRoomID() == eventID)
+                    searchEvents.add(event1);
+                else if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
+                    searchEvents.add(event1);
+                else if(prompt.equals(event1.GetDate().toString()))
+                    searchEvents.add(event1);
+                else if (event1.GetOrganizer().toString().toLowerCase().contains(prompt.toLowerCase()))
+                    searchEvents.add(event1);
+                else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
+                    searchEvents.add(event1);
+
+            }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
+            Parent root = loader.load();
+
+            AttendeeTicketsMenuController attendeeTicketsMenuController = loader.getController();
+            attendeeTicketsMenuController.InitData(currentUser, searchEvents);
+            attendeeTicketsMenuController.searchField.setText(prompt);
+            attendeeTicketsMenuController.filterInterests.setSelected(filterInterests.isSelected());
+
+            // Create the second scene
+            Scene scene2 = new Scene(root);
+
+            // Get the current stage
+            Stage stage = (Stage)refreshButton.getScene().getWindow();
+
+            // Set the new scene
+            stage.setScene(scene2);
+        }
+        catch (NumberFormatException ex) {
             try {
-                int eventID = Integer.parseInt(prompt);
-                for(Event event1 : Database.GetEvents()) {
-                    if(eventID == event1.GetID())
-                        searchEvents.add(event1);
-                    else if(event1.GetRoomID() == eventID)
-                        searchEvents.add(event1);
-                    else if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
+                for(Event event1 : Database.GetEvents()){
+                    if(filterInterests.isSelected() && !(((Attendee)currentUser).guiConcat().toString().contains(event1.GetCategory().toString()))){
+                        continue;
+                    }
+                    if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
                         searchEvents.add(event1);
                     else if(prompt.equals(event1.GetDate().toString()))
                         searchEvents.add(event1);
@@ -121,7 +156,6 @@ public class AttendeeTicketsMenuController {
                         searchEvents.add(event1);
                     else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
                         searchEvents.add(event1);
-
                 }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
                 Parent root = loader.load();
@@ -129,6 +163,7 @@ public class AttendeeTicketsMenuController {
                 AttendeeTicketsMenuController attendeeTicketsMenuController = loader.getController();
                 attendeeTicketsMenuController.InitData(currentUser, searchEvents);
                 attendeeTicketsMenuController.searchField.setText(prompt);
+                attendeeTicketsMenuController.filterInterests.setSelected(filterInterests.isSelected());
 
                 // Create the second scene
                 Scene scene2 = new Scene(root);
@@ -139,44 +174,12 @@ public class AttendeeTicketsMenuController {
                 // Set the new scene
                 stage.setScene(scene2);
             }
-            catch (NumberFormatException ex) {
-                try {
-                    for(Event event1 : Database.GetEvents()){
-                        if(filterInterests.isSelected() && !(((Attendee)currentUser).guiConcat().toString().contains(event1.GetCategory().toString()))){
-                            continue;
-                        }
-                        if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
-                            searchEvents.add(event1);
-                        else if(prompt.equals(event1.GetDate().toString()))
-                            searchEvents.add(event1);
-                        else if (event1.GetOrganizer().toString().toLowerCase().contains(prompt.toLowerCase()))
-                            searchEvents.add(event1);
-                        else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
-                            searchEvents.add(event1);
-                    }
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
-                    Parent root = loader.load();
-
-                    AttendeeTicketsMenuController attendeeTicketsMenuController = loader.getController();
-                    attendeeTicketsMenuController.InitData(currentUser, searchEvents);
-                    attendeeTicketsMenuController.searchField.setText(prompt);
-
-                    // Create the second scene
-                    Scene scene2 = new Scene(root);
-
-                    // Get the current stage
-                    Stage stage = (Stage)refreshButton.getScene().getWindow();
-
-                    // Set the new scene
-                    stage.setScene(scene2);
-                }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
+            catch (Exception e) {
+                System.out.println(e.getMessage());
             }
-            catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
