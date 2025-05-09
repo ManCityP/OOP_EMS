@@ -5,14 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import p1.*;
 import p2.Organizer;
 import p3.User;
+
+import java.util.ArrayList;
 
 public class OrganizerCreateEventMenuController {
 
@@ -44,34 +43,64 @@ public class OrganizerCreateEventMenuController {
     private Label username;
     @FXML
     private TextField year;
+    @FXML
+    private Label errorMessage;
+    @FXML
+    private DatePicker date;
 
     private User user;
     private Room room;
     private Category category;
+    private ArrayList<String> categoryList ;
+    private ArrayList<Room> roomList;
 
     @FXML
     void Init(User user) {
         try{
             this.user = user;
             username.setText(this.user.GetUsername());
-            categories.setItems(FXCollections.observableArrayList(Database.GetCategories()));
-            rooms.setItems(FXCollections.observableArrayList(Database.GetRooms()));
+            categoryList = Database.GetCategories();
+            roomList = Database.GetRooms();
+            categories.setItems(FXCollections.observableArrayList(categoryList));
+            rooms.setItems(FXCollections.observableArrayList(roomList));
         }catch(Exception ex){
             System.out.println(ex.getMessage());
         }
     }
 
     @FXML
-    private void CreatePressed() throws Exception {
-        for(Room room : Database.GetRooms())
-            if(room.toString().equals(rooms.getValue().toString()))
-                this.room = room;
+    private void CreatePressed() {
+        try{
+            for(Room room : roomList)
+                if(room.toString().equals(rooms.getValue().toString()))
+                    this.room = room;
 
-        for(String category : Database.GetCategories())
-            if(category.equals(categories.getValue()))
-                this.category = new Category(category);
+            for(String category : categoryList)
+                if(category.equals(categories.getValue()))
+                    this.category = new Category(category);
 
-        ((Organizer)this.user).CreateEvent(Double.parseDouble(price.getText()), this.room, eventTitle.getText(), this.category , new MyDate(day.getText() + "/" + month.getText() + "/" + year.getText()), new TimeRange(String.format("%s:%s", startHourTextField.getText(), startMinuteTextField.getText()), String.format("%s:%s", endHourTextField.getText(), endMinuteTextField.getText())), Integer.parseInt(maxNumOfAttendees.getText()));
+            ((Organizer)this.user).CreateEvent(Double.parseDouble(price.getText()), this.room, eventTitle.getText(), this.category , new MyDate(date.getEditor().getText()), new TimeRange(String.format("%s:%s", startHourTextField.getText(), startMinuteTextField.getText()), String.format("%s:%s", endHourTextField.getText(), endMinuteTextField.getText())), Integer.parseInt(maxNumOfAttendees.getText()));
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerMainMenu.fxml"));
+                Parent root = loader.load();
+
+                OrganizerMainMenuController organizerMainMenuController = loader.getController();
+                organizerMainMenuController.InitData(user);
+
+                Scene scene2 = new Scene(root);
+                Stage stage = (Stage)backButton.getScene().getWindow();
+                stage.setScene(scene2);
+            }
+            catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+//            errorMessage.setText(ex.getMessage());
+            errorMessage.setText("Invalid data");
+        }
     }
 
     @FXML

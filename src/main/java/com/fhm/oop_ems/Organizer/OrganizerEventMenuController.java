@@ -59,7 +59,7 @@ public class OrganizerEventMenuController {
     }
 
     @FXML
-    private void BackButtonPressed() throws IOException {
+    private void BackButtonPressed() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerMainMenu.fxml"));
             Parent root = loader.load();

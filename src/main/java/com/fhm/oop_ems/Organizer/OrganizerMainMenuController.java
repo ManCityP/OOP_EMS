@@ -133,12 +133,16 @@ public class OrganizerMainMenuController {
     }
 
     @FXML
-    private void LogoutPressed() throws IOException {
-        System.out.println("logout button pressed");
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)logoutButton.getScene().getWindow();
-        stage.setScene(scene);
+    private void LogoutPressed() {
+        try {
+            System.out.println("logout button pressed");
+            FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)logoutButton.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

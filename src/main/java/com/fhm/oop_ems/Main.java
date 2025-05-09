@@ -4,7 +4,6 @@ import p1.Admin;
 import p1.Database;
 import p1.Day;
 import p3.User;
-
 import java.io.*;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
@@ -16,8 +15,8 @@ public class Main {
     private static String SERVER_URL = "https://XXXX/send";
     private static String GET_URL = "https://XXXX/get";
 
-    private static String username = "AhmedHesham102";
-    private static String friend = "Fris233";
+    private static String username = "Fris233";
+    private static String friend = "AhmedHesham102";
 
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);

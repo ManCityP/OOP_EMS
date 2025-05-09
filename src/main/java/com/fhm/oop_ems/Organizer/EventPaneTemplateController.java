@@ -23,13 +23,17 @@ public class EventPaneTemplateController {
     private Label timeRange;
 
     public void displayevent(Event event){
-        eventTitle.setText(event.GetEventTitle());
-        eventID.setText(String.format("%s",event.GetID()));
+       try{
+           eventTitle.setText(event.GetEventTitle());
+           eventID.setText(String.format("%s",event.GetID()));
 //        category.setText(event.GetCategory().toString());
-        maxNumOfAttendees.setText(String.format("%s",event.GetMaxNumOfAttendees()));
-        price.setText(String.format("%s",event.GetPrice()));
-        date.setText(event.GetDate().toString());
-        timeRange.setText(event.GetTimeRange().toString());
-        status.setText(event.GetStatus().toString());
+           maxNumOfAttendees.setText(String.format("%s",event.GetMaxNumOfAttendees()));
+           price.setText(String.format("%s",event.GetPrice()));
+           date.setText(event.GetDate().toString());
+           timeRange.setText(event.GetTimeRange().toString());
+           status.setText(event.GetStatus().toString());
+       } catch (Exception ex) {
+           System.out.println(ex.getMessage());;
+       }
     }
 }
