@@ -84,7 +84,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fx:id="deleteEvent" fitHeight="64.0" fitWidth="72.0" layoutX="511.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="deleteEvent" fitHeight="64.0" fitWidth="72.0" layoutX="511.0" layoutY="38.0" onMousePressed="#DeleteEvent" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../image/deleteImg.png" />
          </image>

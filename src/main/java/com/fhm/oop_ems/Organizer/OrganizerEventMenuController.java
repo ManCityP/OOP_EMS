@@ -44,7 +44,7 @@ public class OrganizerEventMenuController {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("DefaultEventPaneTemplate.fxml"));
                         Node roomNode = loader.load();
                         EventPaneTemplateController controller = loader.getController();
-                        controller.displayevent(event);
+                        controller.displayevent(this.user, event);
 
                         eventsContainer.getChildren().add(roomNode);
                         eventsLoaded++;

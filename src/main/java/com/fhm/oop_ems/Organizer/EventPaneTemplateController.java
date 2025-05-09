@@ -1,9 +1,15 @@
 package com.fhm.oop_ems.Organizer;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import p1.Database;
 import p2.Event;
+import p2.Organizer;
+import p3.User;
 
 public class EventPaneTemplateController {
     @FXML
@@ -23,9 +29,11 @@ public class EventPaneTemplateController {
     @FXML
     private Label timeRange;
     private Event event;
+    private User user;
 
-    public void displayevent(Event event){
+    public void displayevent(User user, Event event){
        try{
+           this.user = user;
            this.event = event;
            eventTitle.setText(event.GetEventTitle());
            eventID.setText(String.format("%s",event.GetID()));
@@ -42,6 +50,22 @@ public class EventPaneTemplateController {
 
     @FXML
     private void DeleteEvent(){
-        //TODO
+        try{
+            ((Organizer)this.user).CancelEvent(this.event);
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("OrganizerEventMenu.fxml"));
+            Parent root = loader.load();
+
+            OrganizerEventMenuController organizerEventMenuController = loader.getController();
+            organizerEventMenuController.InitData(user);
+
+            Scene scene2 = new Scene(root);
+            Stage stage = (Stage)category.getScene().getWindow();
+            stage.setScene(scene2);
+            System.out.println("events menu updated");
+
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
     }
 }
