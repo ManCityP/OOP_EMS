@@ -94,12 +94,13 @@ public class Organizer extends User {
     }
 
     public void CancelEvent(Event event) throws Exception {
-        Database.Execute(String.format("DELETE FROM event WHERE id = '%s'", event.GetID()));
-        System.out.println("Event deleted successfully");
         if(event.GetStatus() != Status.OVER)
             for(Attendee attendee : Database.GetAttendees())
                 if (attendee.GetTickets().containsKey(event.GetID()))
                     attendee.RefundTicket(event, attendee.GetTickets().get(event.GetID()));
+
+        Database.Execute(String.format("DELETE FROM event WHERE id = '%s'", event.GetID()));
+        System.out.println("Event deleted successfully");
     }
 
     public Wallet GetWallet(){
