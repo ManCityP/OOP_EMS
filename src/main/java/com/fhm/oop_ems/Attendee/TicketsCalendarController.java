@@ -24,6 +24,7 @@ import p1.Day;
 import p1.MyDate;
 import p1.Room;
 import p2.Event;
+import p3.Attendee;
 import p3.User;
 
 import java.util.ArrayList;
@@ -96,7 +97,7 @@ public class TicketsCalendarController {
 
                 Rectangle rectangle = new Rectangle();
                 rectangle.setFill(Color.TRANSPARENT);
-                rectangle.setStroke(Color.BLACK);
+                rectangle.setStroke(Color.WHITE);
                 rectangle.setStrokeWidth(strokeWidth);
                 double rectangleWidth = (calendarWidth / 7) - strokeWidth - spacingH;
                 rectangle.setWidth(rectangleWidth);
@@ -109,6 +110,7 @@ public class TicketsCalendarController {
                     int currentDate = calculatedDate - dateOffset;
                     if (currentDate <= monthMaxDate) {
                         Text date = new Text(String.valueOf(currentDate));
+                        date.setFill(Color.WHITE);
                         double textTranslationY = -(rectangleHeight / 2) * 0.75;
                         date.setTranslateY(textTranslationY);
                         stackPane.getChildren().add(date);
@@ -154,7 +156,11 @@ public class TicketsCalendarController {
                 monthEventsBox.getChildren().add(moreActivities);
                 break;
             }
+
             Text text = new Text(events.get(k).GetID() + ": " + events.get(k).GetTimeRange());
+            if(((Attendee)currentUser).GetInterests().contains(events.get(k).GetCategory())){
+                text.setFill(Color.RED);
+            }
             monthEventsBox.getChildren().add(text);
         }
         monthEventsBox.setTranslateY((height / 2) * 0.20);

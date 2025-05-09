@@ -20,7 +20,7 @@
    <children>
       <SplitPane dividerPositions="0.5" onKeyPressed="#HandleKeyPress" prefHeight="802.0" prefWidth="1092.0" style="-fx-background-color: #F0E6D7;">
          <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="343.0" style="-fx-background-color: #121212;" SplitPane.resizableWithParent="false">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="343.0" style="-fx-background-color: #021526;" SplitPane.resizableWithParent="false">
                <children>
                   <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,7 +57,7 @@
             </AnchorPane>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="812.0" prefWidth="520.0" SplitPane.resizableWithParent="false">
                <items>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #121212;">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="127.0" prefWidth="864.0" style="-fx-background-color: #021526;">
                      <children>
                         <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="729.0" layoutY="5.0" mnemonicParsing="false" onAction="#BackPressed" onMouseEntered="#ButtonHovered" onMouseExited="#ButtonNotHovered" prefHeight="72.0" prefWidth="121.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" textAlignment="CENTER" textFill="WHITE">
                            <cursor>
@@ -119,18 +119,18 @@
                      <children>
                         <ScrollPane fx:id="scrollPane" prefHeight="700.0" prefWidth="864.0" style="-fx-background-color: #F0E6D7;">
                            <content>
-                              <AnchorPane prefHeight="697.0" prefWidth="862.0" style="-fx-background-color: #F0E6D7;">
+                              <AnchorPane prefHeight="697.0" prefWidth="862.0" style="-fx-background-color: #121212;">
                                  <children>
                                     <FlowPane fx:id="calendar" hgap="10.0" layoutX="74.0" layoutY="116.0" prefHeight="498.0" prefWidth="716.0" vgap="5.0" />
                                     <HBox alignment="CENTER" layoutX="222.0" layoutY="14.0" prefHeight="44.0" prefWidth="419.0" spacing="5.0">
                                        <children>
                                           <Button mnemonicParsing="false" onAction="#BackOneMonth" text="&lt;" />
-                                          <Text fx:id="year" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                                          <Text fx:id="year" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
                                              <font>
                                                 <Font size="22.0" />
                                              </font>
                                           </Text>
-                                          <Text fx:id="month" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
+                                          <Text fx:id="month" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="####">
                                              <font>
                                                 <Font size="22.0" />
                                              </font>
@@ -140,13 +140,13 @@
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="74.0" layoutY="72.0" prefHeight="44.0" prefWidth="716.0" spacing="88.75">
                                        <children>
-                                          <Text layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sa" textAlignment="CENTER" />
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Su" textAlignment="CENTER" />
-                                          <Text layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mo" textAlignment="CENTER" />
-                                          <Text layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tu" textAlignment="CENTER" />
-                                          <Text layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We" textAlignment="CENTER" />
-                                          <Text layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Th" textAlignment="CENTER" />
-                                          <Text layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fr" textAlignment="CENTER" />
+                                          <Text fill="WHITE" layoutX="266.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sa" textAlignment="CENTER" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Su" textAlignment="CENTER" />
+                                          <Text fill="WHITE" layoutX="213.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mo" textAlignment="CENTER" />
+                                          <Text fill="WHITE" layoutX="222.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tu" textAlignment="CENTER" />
+                                          <Text fill="WHITE" layoutX="232.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We" textAlignment="CENTER" />
+                                          <Text fill="WHITE" layoutX="241.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Th" textAlignment="CENTER" />
+                                          <Text fill="WHITE" layoutX="251.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fr" textAlignment="CENTER" />
                                        </children>
                                        <padding>
                                           <Insets right="9.0" />
