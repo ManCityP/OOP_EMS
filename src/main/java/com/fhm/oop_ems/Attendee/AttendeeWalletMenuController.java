@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import p1.Database;
 import p3.Attendee;
 import p3.User;
 
@@ -49,7 +50,13 @@ public class AttendeeWalletMenuController {
     private User currentUser;
 
     public void Init(User user) {
-        this.currentUser = user;
+        try{
+            this.currentUser = Attendee.FindAttendee(Database.GetAttendees(), user.GetUsername());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
         this.username.setText(currentUser.GetUsername());
         walletBalance.setText(String.format("$%s", ((Attendee) currentUser).GetWallet().GetBalance()));
         walletNumber.setText(String.valueOf((Integer) (((Attendee) currentUser).GetWallet().GetWalletNumber())));
