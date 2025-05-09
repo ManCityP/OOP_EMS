@@ -98,7 +98,7 @@ public class Hours {
     public Map<String, ArrayList<TimeRange>> GetMap() {
         return this.map;
     }
-
+@Override
     public String toString() {
         return this.map.toString();
     }

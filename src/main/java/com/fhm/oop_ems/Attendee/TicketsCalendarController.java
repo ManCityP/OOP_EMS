@@ -77,7 +77,7 @@ public class TicketsCalendarController {
 
     private void drawCalendar() {
         year.setText(String.valueOf(dateFocus.GetYear()));
-        month.setText(String.valueOf(dateFocus.GetMonth()));
+        month.setText(String.valueOf(dateFocus.GetMonthOfTheYear()));
 
         double calendarWidth = calendar.getPrefWidth();
         double calendarHeight = calendar.getPrefHeight();

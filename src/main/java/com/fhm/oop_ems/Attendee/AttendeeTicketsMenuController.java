@@ -104,10 +104,17 @@ public class AttendeeTicketsMenuController {
                 for(Event event1 : Database.GetEvents()) {
                     if(eventID == event1.GetID())
                         searchEvents.add(event1);
+                    else if(event1.GetRoomID() == eventID)
+                        searchEvents.add(event1);
                     else if(event1.GetEventTitle().toLowerCase().contains(prompt.toLowerCase()))
                         searchEvents.add(event1);
                     else if(prompt.equals(event1.GetDate().toString()))
                         searchEvents.add(event1);
+                    else if (event1.GetOrganizer().toString().toLowerCase().contains(prompt.toLowerCase()))
+                        searchEvents.add(event1);
+                    else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
+                        searchEvents.add(event1);
+
                 }
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
                 Parent root = loader.load();
@@ -132,6 +139,11 @@ public class AttendeeTicketsMenuController {
                             searchEvents.add(event1);
                         else if(prompt.equals(event1.GetDate().toString()))
                             searchEvents.add(event1);
+                        else if (event1.GetOrganizer().toString().toLowerCase().contains(prompt.toLowerCase()))
+                            searchEvents.add(event1);
+                        else if (event1.GetCategory().toString().toLowerCase().contains(prompt.toLowerCase()))
+                            searchEvents.add(event1);
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeTicketsMenu.fxml"));
                     Parent root = loader.load();
 

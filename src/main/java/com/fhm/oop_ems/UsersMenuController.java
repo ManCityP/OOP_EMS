@@ -111,7 +111,7 @@ public class UsersMenuController {
         if (currentUser instanceof Attendee) {
             try {
                 System.out.println("profile pressed");
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("AttendeeProfileMenu.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Attendee/AttendeeProfileMenu.fxml"));
                 Parent ro = loader.load();
 
                 AttendeeProfileMenuController attendeeProfileMenuController = loader.getController();
