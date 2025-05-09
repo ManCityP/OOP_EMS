@@ -446,13 +446,15 @@ public class RegisterController {
             return;
         }
         try {
+            String[] d = birthDatePicker.getEditor().getText().split("/");
+            MyDate date1 = new MyDate(Integer.parseInt(d[1].trim()), Integer.parseInt(d[0].trim()), Integer.parseInt(d[2].trim()));
             if (userTypeBox.getValue().equals("Admin")) {
-                Admin.RegisterAdmin(usernameField.getText(), emailField.getText(), passwordField.getText(), new MyDate(birthDatePicker.getEditor().getText()),
+                Admin.RegisterAdmin(usernameField.getText(), emailField.getText(), passwordField.getText(), date1,
                                     genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, roleField.getText(), workingHours);
                 BackPressed();
             }
             else if (userTypeBox.getValue().equals("Organizer")) {
-                Organizer.RegisterOrganizer(usernameField.getText(), emailField.getText(), passwordField.getText(), new MyDate(birthDatePicker.getEditor().getText()),
+                Organizer.RegisterOrganizer(usernameField.getText(), emailField.getText(), passwordField.getText(), date1,
                         genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, 0);
                 BackPressed();
             }
@@ -461,7 +463,7 @@ public class RegisterController {
                 for(String str : interests) {
                     categories.add(new Category(str));
                 }
-                Attendee.RegisterAttendee(usernameField.getText(), emailField.getText(), passwordField.getText(), new MyDate(birthDatePicker.getEditor().getText()),
+                Attendee.RegisterAttendee(usernameField.getText(), emailField.getText(), passwordField.getText(), date1,
                         genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, categories, 0);
                 BackPressed();
             }

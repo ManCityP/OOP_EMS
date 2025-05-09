@@ -12,7 +12,7 @@
 
 <SplitPane dividerPositions="0.2037037037037037" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fhm.oop_ems.Attendee.AttendeeMainMenuController">
    <items>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="212.0" style="-fx-background-color: #121212;">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="212.0" style="-fx-background-color: #021526;">
          <children>
             <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="20.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -57,9 +57,9 @@
                       <Image url="@../../../../image/AttendeeMenu3-Photoroom.png" />
                   </image>
               </ImageView>
-              <AnchorPane prefHeight="104.0" prefWidth="1200.0" style="-fx-background-color: #03346E;">
+              <AnchorPane prefHeight="104.0" prefWidth="1200.0" style="-fx-background-color: #021526;">
                   <children>
-                      <Label fx:id="myWalletButton" alignment="CENTER" layoutX="268.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#WalletPressed" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#e2e2b6">
+                      <Label fx:id="myWalletButton" alignment="CENTER" layoutX="210.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#WalletPressed" prefHeight="35.0" prefWidth="118.0" text="My Wallet" textFill="#e2e2b6">
                           <cursor>
                               <Cursor fx:constant="HAND" />
                           </cursor>
@@ -67,7 +67,7 @@
                               <Font name="System Bold" size="24.0" />
                           </font>
                       </Label>
-                      <Label fx:id="buyTicketsButton" alignment="CENTER" layoutX="77.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#BuyTicketsPressed" prefHeight="35.0" prefWidth="142.0" text="Buy Tickets" textFill="#e2e2b6">
+                      <Label fx:id="buyTicketsButton" alignment="CENTER" layoutX="28.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#BuyTicketsPressed" prefHeight="35.0" prefWidth="142.0" text="Buy Tickets" textFill="#e2e2b6">
                           <cursor>
                               <Cursor fx:constant="HAND" />
                           </cursor>
@@ -75,7 +75,7 @@
                               <Font name="System Bold" size="24.0" />
                           </font>
                       </Label>
-                  <Label fx:id="calendarButton" alignment="CENTER" layoutX="445.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#CalendarPressed" prefHeight="35.0" prefWidth="185.0" text="Events Calendar" textFill="#e2e2b6">
+                  <Label fx:id="calendarButton" alignment="CENTER" layoutX="369.0" layoutY="35.0" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" onMousePressed="#CalendarPressed" prefHeight="35.0" prefWidth="185.0" text="Events Calendar" textFill="#e2e2b6">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -83,7 +83,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="usersButton" alignment="CENTER" layoutX="667.0" layoutY="35.0" onMouseClicked="#usersPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="98.0" text="Users" textFill="#e2e2b6">
+                  <Label fx:id="usersButton" alignment="CENTER" layoutX="578.0" layoutY="35.0" onMouseClicked="#usersPressed" onMouseEntered="#LabelHovered" onMouseExited="#LabelNotHovered" prefHeight="35.0" prefWidth="98.0" text="Users" textFill="#e2e2b6">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -104,12 +104,7 @@
                     </Button>
                   </children>
             </AnchorPane>
-              <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="10.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="30.0">
-                  <image>
-                      <Image url="@../../../../image/Logo.png" />
-                  </image>
-              </ImageView>
-              <Label layoutX="267.0" layoutY="104.0" text="Grab Your Friends!" textFill="#e2e2b6">
+              <Label layoutX="181.0" layoutY="105.0" text="Grab Your Friends!" textFill="#e2e2b6">
                   <font>
                       <Font name="System Bold" size="76.0" />
                   </font>
