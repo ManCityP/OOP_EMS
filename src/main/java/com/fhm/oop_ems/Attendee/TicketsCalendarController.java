@@ -123,12 +123,6 @@ public class TicketsCalendarController {
                                 Parent root = loader.load();
                                 AttendeeTicketsMenuController attendeeTicketsMenuController = loader.getController();
                                 attendeeTicketsMenuController.InitData(currentUser, (new MyDate(currentDate, dateFocus.GetMonth(), dateFocus.GetYear())).toString());
-                                // Create the second scene
-                                Scene scene2 = new Scene(root);
-                                // Get the current stage
-                                Stage stage = (Stage)backButton.getScene().getWindow();
-                                // Set the new scene
-                                stage.setScene(scene2);
                             }
                             catch (Exception ex) {
                                 System.out.println(ex.getMessage());
