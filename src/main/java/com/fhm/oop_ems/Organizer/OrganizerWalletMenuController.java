@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import p1.Database;
 import p2.Organizer;
 import p3.Attendee;
 import p3.User;
@@ -43,7 +44,12 @@ public class OrganizerWalletMenuController {
     private User currentUser;
 
     public void Init(User user) {
-        this.currentUser = user;
+        try{
+            this.currentUser = Organizer.FindOrganizer(Database.GetOrganizers(), user.GetUsername());
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         this.username.setText(currentUser.GetUsername());
         walletBalance.setText(String.format("$%s", ((Organizer)currentUser).GetWallet().GetBalance()));
         walletNumber.setText(String.valueOf((Integer) (((Organizer)currentUser).GetWallet().GetWalletNumber())));
@@ -86,7 +92,7 @@ public class OrganizerWalletMenuController {
         System.out.println("withdraw pressed");
         try {
             ((Organizer)currentUser).GetWallet().EditBalance(-100);
-            RefreshPressed();
+            walletBalance.setText(String.format("$%s", ((Organizer)currentUser).GetWallet().GetBalance()));
         } catch (Exception e) {
             e.printStackTrace();
             errorText.setText(e.getMessage());
@@ -98,7 +104,7 @@ public class OrganizerWalletMenuController {
         System.out.println("deposit pressed");
         try {
             ((Organizer)currentUser).GetWallet().EditBalance(100);
-            RefreshPressed();
+            walletBalance.setText(String.format("$%s", ((Organizer)currentUser).GetWallet().GetBalance()));
         } catch (Exception e) {
             e.printStackTrace();
             errorText.setText(e.getMessage());

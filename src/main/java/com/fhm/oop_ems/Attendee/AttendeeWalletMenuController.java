@@ -131,7 +131,7 @@ public class AttendeeWalletMenuController {
         System.out.println("withdraw pressed");
         try {
             ((Attendee) currentUser).GetWallet().EditBalance(Double.parseDouble(moneyAmount.getText())*-1);
-            RefreshPressed();
+            walletBalance.setText(String.format("$%s", ((Attendee) currentUser).GetWallet().GetBalance()));
         } catch (Exception e) {
             e.printStackTrace();
             errorText.setText(e.getMessage());
@@ -143,7 +143,7 @@ public class AttendeeWalletMenuController {
         System.out.println("deposit pressed");
         try {
             ((Attendee) currentUser).GetWallet().EditBalance(Double.parseDouble(moneyAmount.getText()));
-            RefreshPressed();
+            walletBalance.setText(String.format("$%s", ((Attendee) currentUser).GetWallet().GetBalance()));
         } catch (Exception e) {
             e.printStackTrace();
             errorText.setText(e.getMessage());
