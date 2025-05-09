@@ -109,7 +109,7 @@
                                     <content>
                                         <VBox fx:id="roomsContainer" minHeight="698.0" prefWidth="862.0" spacing="30.0" style="-fx-background-color: #121212;">
                                             <children>
-                                                <TextField fx:id="searchField" onKeyPressed="#SearchPressed" promptText="Search Room">
+                                                <TextField fx:id="searchField" onKeyPressed="#SearchPressed" promptText="Search Event">
                                                     <font>
                                                         <Font size="14.0" />
                                                     </font>
