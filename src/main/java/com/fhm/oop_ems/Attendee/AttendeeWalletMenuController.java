@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -15,7 +16,8 @@ import p3.Attendee;
 import p3.User;
 
 public class AttendeeWalletMenuController {
-
+    @FXML
+    private TextField moneyAmount;
     @FXML
     private Button backButton;
     @FXML
@@ -51,6 +53,21 @@ public class AttendeeWalletMenuController {
         this.username.setText(currentUser.GetUsername());
         walletBalance.setText(String.format("$%s", ((Attendee) currentUser).GetWallet().GetBalance()));
         walletNumber.setText(String.valueOf((Integer) (((Attendee) currentUser).GetWallet().GetWalletNumber())));
+        moneyAmount.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.isEmpty())
+                moneyAmount.setText("0");
+            else if(!newValue.matches("\\d*"))
+                moneyAmount.setText(oldValue.isEmpty()? "0" : oldValue);
+            else {
+                try {
+                    int x = Integer.parseInt(newValue);
+                    moneyAmount.setText(String.format("%s", x));
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                    moneyAmount.setText(oldValue.isEmpty()? "0" : oldValue);
+                }
+            }
+        });
     }
 
     @FXML
@@ -106,7 +123,7 @@ public class AttendeeWalletMenuController {
     void WithdrawPressed() {
         System.out.println("withdraw pressed");
         try {
-            ((Attendee) currentUser).GetWallet().EditBalance(-100);
+            ((Attendee) currentUser).GetWallet().EditBalance(Double.parseDouble(moneyAmount.getText())*-1);
             RefreshPressed();
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,7 +135,7 @@ public class AttendeeWalletMenuController {
     void DepositPressed() {
         System.out.println("deposit pressed");
         try {
-            ((Attendee) currentUser).GetWallet().EditBalance(100);
+            ((Attendee) currentUser).GetWallet().EditBalance(Double.parseDouble(moneyAmount.getText()));
             RefreshPressed();
         } catch (Exception e) {
             e.printStackTrace();

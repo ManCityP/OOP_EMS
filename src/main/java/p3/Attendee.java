@@ -105,9 +105,9 @@ public class Attendee extends User {
     }
 
     public void RefundTicket(Event event, int numOfTickets) throws Exception {
-        if (!(this.tickets.get(event.GetID()) == null)) {
+        if (this.tickets.containsKey(event.GetID())) {
             if (this.tickets.get(event.GetID()) >= numOfTickets) {
-                if (event.GetStatus() == Status.UPCOMING) {
+                if (event.GetStatus() != Status.OVER) {
                     this.tickets.put(event.GetID(), this.tickets.get(event.GetID()) - numOfTickets);
                     if (this.tickets.get(event.GetID()) <= 0)
                         this.tickets.remove(event.GetID());
