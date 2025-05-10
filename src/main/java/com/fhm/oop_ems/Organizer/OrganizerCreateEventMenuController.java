@@ -214,8 +214,8 @@ public class OrganizerCreateEventMenuController {
 
         }catch(Exception ex){
             System.out.println(ex.getMessage());
-//            errorMessage.setText(ex.getMessage());
-            errorMessage.setText("Invalid data !");
+            errorMessage.setText(ex.getMessage());
+            //errorMessage.setText("Invalid data !");
         }
     }
 
