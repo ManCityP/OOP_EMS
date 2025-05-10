@@ -111,7 +111,9 @@ public class RegisterController {
         userTypeBox.setItems(FXCollections.observableArrayList(new ArrayList<>(List.of("Attendee", "Organizer", "Admin"))));
         genderBox.setItems(FXCollections.observableArrayList(new ArrayList<>(List.of("Male", "Female"))));
         try {
-            interestsBox.setItems(FXCollections.observableArrayList(Database.GetCategories()));
+            ArrayList<String> categories = Database.GetCategories();
+            categories.remove("Default");
+            interestsBox.setItems(FXCollections.observableArrayList(categories));
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -380,6 +382,10 @@ public class RegisterController {
             if(interests.contains(interestsBox.getValue()))
                 throw new Exception();
             interests.add(interestsBox.getValue());
+            ArrayList<Category> categories = new ArrayList<>();
+            for(String str : interests)
+                categories.add(new Category(str));
+            this.interestsLabel.setText(Attendee.strConvert(categories).toString());
         }
         catch (Exception ex) {
             System.out.println("Could not add category!");
@@ -392,6 +398,10 @@ public class RegisterController {
             if(!interests.contains(interestsBox.getValue()))
                 throw new Exception();
             interests.remove(interestsBox.getValue());
+            ArrayList<Category> categories = new ArrayList<>();
+            for(String str : interests)
+                categories.add(new Category(str));
+            this.interestsLabel.setText(Attendee.strConvert(categories).toString());
         }
         catch (Exception ex) {
             System.out.println("Could not remove category!");
