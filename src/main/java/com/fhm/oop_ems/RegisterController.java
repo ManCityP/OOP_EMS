@@ -25,6 +25,7 @@ import p2.Organizer;
 import p3.Attendee;
 import p3.Gender;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -446,8 +447,8 @@ public class RegisterController {
             return;
         }
         try {
-            String[] d = birthDatePicker.getEditor().getText().split("/");
-            MyDate date1 = new MyDate(Integer.parseInt(d[1].trim()), Integer.parseInt(d[0].trim()), Integer.parseInt(d[2].trim()));
+            LocalDate localDate = birthDatePicker.getValue();
+            MyDate date1 = new MyDate(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
             if (userTypeBox.getValue().equals("Admin")) {
                 Admin.RegisterAdmin(usernameField.getText(), emailField.getText(), passwordField.getText(), date1,
                                     genderBox.getValue().equals("Male")? Gender.MALE : Gender.FEMALE, roleField.getText(), workingHours);
