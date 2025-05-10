@@ -321,7 +321,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="errorMessage" layoutX="20.0" layoutY="496.0" prefHeight="30.0" prefWidth="133.0" textFill="RED">
+                              <Label fx:id="errorMessage" layoutX="20.0" layoutY="496.0" maxWidth="800.0" textFill="RED">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
